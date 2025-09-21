@@ -1,4 +1,4 @@
-"""Font metrics for the Adobe core 14 fonts.
+""" Font metrics for the Adobe core 14 fonts.
 
 Font metrics are used to compute the boundary of each character
 written with a proportional font.
@@ -36,7 +36,7 @@ def convert_font_metrics(path: str) -> None:
     See below for the output.
     """
     fonts = {}
-    with open(path) as fileinput:
+    with open(path, "r") as fileinput:
         for line in fileinput.readlines():
             f = line.strip().split(" ")
             if not f:
@@ -65,8 +65,8 @@ def convert_font_metrics(path: str) -> None:
                 props[k] = tuple(map(float, f[1:5]))
         print("# -*- python -*-")
         print("FONT_METRICS = {")
-        for fontname, (props, chars) in fonts.items():
-            print(f" {fontname!r}: {(props, chars)!r},")
+        for (fontname, (props, chars)) in fonts.items():
+            print(" {!r}: {!r},".format(fontname, (props, chars)))
         print("}")
 
 

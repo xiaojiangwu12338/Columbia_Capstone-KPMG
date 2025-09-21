@@ -1,8 +1,6 @@
 #!/Users/duruoheng/Desktop/Columbia_Capstone-KPMG/.venv/bin/python
 """A command line tool for extracting text and images from PDF and
-output it to plain text, html, xml or tags.
-"""
-
+output it to plain text, html, xml or tags."""
 import argparse
 import logging
 import sys
@@ -10,7 +8,6 @@ from typing import Any, Container, Iterable, List, Optional
 
 import pdfminer.high_level
 from pdfminer.layout import LAParams
-from pdfminer.pdfexceptions import PDFValueError
 from pdfminer.utils import AnyIO
 
 logging.basicConfig()
@@ -24,7 +21,7 @@ def float_or_disabled(x: str) -> Optional[float]:
     try:
         return float(x)
     except ValueError:
-        raise argparse.ArgumentTypeError(f"invalid float value: {x}")
+        raise argparse.ArgumentTypeError("invalid float value: {}".format(x))
 
 
 def extract_text(
@@ -43,10 +40,10 @@ def extract_text(
     output_dir: Optional[str] = None,
     debug: bool = False,
     disable_caching: bool = False,
-    **kwargs: Any,
+    **kwargs: Any
 ) -> AnyIO:
     if not files:
-        raise PDFValueError("Must provide files to work upon!")
+        raise ValueError("Must provide files to work upon!")
 
     if output_type == "text" and outfile != "-":
         for override, alttype in OUTPUT_TYPES:
@@ -80,7 +77,7 @@ def create_parser() -> argparse.ArgumentParser:
         "--version",
         "-v",
         action="version",
-        version=f"pdfminer.six v{pdfminer.__version__}",
+        version="pdfminer.six v{}".format(pdfminer.__version__),
     )
     parser.add_argument(
         "--debug",
@@ -98,8 +95,7 @@ def create_parser() -> argparse.ArgumentParser:
     )
 
     parse_params = parser.add_argument_group(
-        "Parser",
-        description="Used during PDF parsing",
+        "Parser", description="Used during PDF parsing"
     )
     parse_params.add_argument(
         "--page-numbers",
@@ -141,8 +137,7 @@ def create_parser() -> argparse.ArgumentParser:
 
     la_params = LAParams()  # will be used for defaults
     la_param_group = parser.add_argument_group(
-        "Layout analysis",
-        description="Used during layout analysis.",
+        "Layout analysis", description="Used during layout analysis."
     )
     la_param_group.add_argument(
         "--no-laparams",
@@ -216,8 +211,7 @@ def create_parser() -> argparse.ArgumentParser:
     )
 
     output_params = parser.add_argument_group(
-        "Output",
-        description="Used during output generation.",
+        "Output", description="Used during output generation."
     )
     output_params.add_argument(
         "--outfile",
