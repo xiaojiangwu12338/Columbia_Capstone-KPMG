@@ -1,0 +1,498 @@
+January 2021 
+Volume 37 | Number 1 
+
+Important Information for All Providers Serving Children 
+
+Effective Ju ly 1, 2021 , as part of the New York State overall redesign of children��s healthcare and behavioral 
+health systems, Medicaid-covered children/youth in f oster care will be enrolled in Medicaid Managed Care 
+Plans (MMCP) unless they are otherwise excluded or exempt f rom mandatory Medicaid managed care. The 
+Medicaid-covered children/youth in f oster care can either be in the care of Voluntary Foster Care Agencies 
+(VFCAs) or be in f oster homes certif ied by Local Departments of Social Services (LDSS) statewide. Their 
+enrollment in MMCP can include Mainstream MMCP and HIV Special Needs Plans (HIV -SNP). 
+
+Beginning in February 2021, the State will license qualif ied VFCAs pursuant to Article 29 -I of the New York 
+State Public Health Law (visit: http://public.leginfo.state.ny.us/lawssrch.cgi?NVLWO : f or Laws of New Yo rk, 
+then select ��PBH�� f or Public Health, then navigate to Article 29 -I) to deliver a limited set of health -related 
+services to children/youth in their care. In accordance with the 29-I Health Facility Billing Guidance , Medicaid 
+will cover health and behavioral health services provided to eligible children/youth by licensed 29 -I Health 
+Facilities. Effective Ju ly 1, 2021, MMC Plans will beg in covering 29 -I Health Facility services for their 
+elig ib le members. 
+
+Effective February 1, 2021 , the Medicaid f ee-for-service (FFS) Program will update the Medicaid Foster 
+Care Drug Carve -Out List with additional drug(s)/drug classes and products listed on the Pref erred Diabetic 
+Supply Program. VFCAs will continue to cover the cost of drugs/products that are not included on the Foster 
+Care Drug Carve -Out list until June 30, 2021. Effective Ju ly 1, 2021, all pharmacy benefits for this 
+popu lation will be paid for under Med icaid FFS. 
+
+All providers who deliver services to children/y outh in f oster care or to children/youth in the care of VFCAs 
+should be aware of this transition. Effective Ju ly 1, 2021 , VFCAs will no longer be the payor f or Medicaid 
+covered services delivered to children/youth in their care, and community providers ser ving these children will 
+direct claims to the child/youth��s MMCP or the Medicaid FFS, as applicable. To avoid disruption in services 
+to children/youth during this transition, providers traditionally serving this population are strongly encouraged 
+to enroll in the NYS Medicaid program then engage with MMCP in their area to ensure continued coverage 
+f or their patients. 
+
+Policy requirements f or this transition, including continuity of care requirements f or transitioning children/youth 
+enrolling in Medicaid managed care, 29 -I Health Facility rate inf ormation, and 29 -I Health Facility services 
+guidelines, can be located on the Department of Health��s 29-I Health Facility (VFCA Transition) web page. 
+
+Questions 
+All questions may be directed to BH.transition@health.ny.gov . 
+
+*************************************************************************************************************** 
+
+Andrew M. Cuomo 
+Governor 
+State o f New Yo rk 
+
+Howard A. Zucker, M.D., J.D. 
+Commiss ioner 
+New Yo rk State  
+Dep ar tmen t o f Heal th 
+
+Donna Frescatore 
+Medicaid Direc tor 
+O ffi ce o f Heal th In suran ce Pro g rams 
+
+The Medicaid Update is a monthly publication of the New York State Depar tment of Health. 
+
+In This Issue�� 
+
+Impo rtant Info rmat io n fo r All Prov id ers Serving Child ren. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . Cover 
+
+All Providers 
+
+Help Stop the Sp read of COVID -19 by Sharing the COVID Alert NY App . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .3 
+Med icaid Co nsumer Fac t Sheets Now Availab le . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .3 
+Remind er: S ig n Up fo r eMedNY Training Webinars . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .3 
+Chang e of Add ress (and Co ntact) Not if icat io n . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .4 
+NY State of Health Op en Enro llment fo r New Yo rkers Extend ed Thro ug h March 31 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .4 
+
+Pharmacy 
+
+Med icaid Pharmacy Prio r Autho rizat io n Prog rams Upd ate . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .5 
+Pract it io ner Disp ens ing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .6 
+
+Policy and Billing 
+
+Up d ated Co verage Criteria for Healthcare Common Procedure Coding System Co de E0467: 
+Home Ventilato r, Mult i-Funct io n Respirato ry Dev ice . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .7 
+Dental Proced ure Cod e Chang es Ef fec tive January 1, 2021 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .7 
+
+Provider Directory . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .8 
+
+Jan uary 2021 New Yo rk State Med icaid Upd ate 
+
+p g . 2 
+
+All Providers 
+
+Help Stop the Spread of COVID-19 by Sharing 
+the COVID Alert NY App 
+
+New York State Department of Health��s COVID Alert NY app is gaining participation with more New Yorkers 
+every day. Please keep shar ing the COVID Alert NY app inf ormation with partners and consumers. Together 
+everyone can help stop the spread of this virus. 
+
+*************************************************************************************************************** 
+
+Medicaid Consumer Fact Sheets Now Available 
+
+New York State Department of Health ( DOH) Of f ice of Health Insurance Programs has created Medicaid 
+consumer f act sheets f ocused on chronic health conditions. Each f act sheet provides inf ormation regarding 
+how a condition can be prevented and managed, as well as relevant Medicaid benef its that can be used to 
+help enrollees stay healthy. Fact sheets are currently available on the topics of diabetes, high blood pressure , 
+asthma control and HIV-PrEP (Human Immunodef iciency Virus - Pre-Exposure Prophylaxis) , in the f ollowing 
+languages: English, Spanish, Traditional Chinese, Russian, Haitian Creole, Bengali and Korean. Fact sheets 
+on additional health topics will be produced in the coming weeks and will be posted on the Medicaid Redesign 
+Team (MRT) II Policies and Guidance web page. 
+
+*************************************************************************************************************** 
+
+Reminder: Sign Up for eMedNY T raining Webinars 
+
+eMedNY of f ers a number of training webinars f or providers and their billing staf f . Webinars are conducted 
+online, so that providers may join the meeting via a computer and telephone. No travel is necessary. 
+
+January 2021 
+Volume 37 | Number 1 
+
+Important Information for All Providers Serving Children 
+
+Effective Ju ly 1, 2021 , as part of the New York State overall redesign of children’s healthcare and behavioral 
+health systems, Medicaid-covered children/youth in f oster care will be enrolled in Medicaid Managed Care 
+Plans (MMCP) unless they are otherwise excluded or exempt f rom mandatory Medicaid managed care. The 
+Medicaid-covered children/youth in f oster care can either be in the care of Voluntary Foster Care Agencies 
+(VFCAs) or be in f oster homes certif ied by Local Departments of Social Services (LDSS) statewide. Their 
+enrollment in MMCP can include Mainstream MMCP and HIV Special Needs Plans (HIV -SNP). 
+
+Beginning in February 2021, the State will license qualif ied VFCAs pursuant to Article 29 -I of the New York 
+State Public Health Law (visit: http://public.leginfo.state.ny.us/lawssrch.cgi?NVLWO : f or Laws of New Yo rk, 
+then select “PBH” f or Public Health, then navigate to Article 29 -I) to deliver a limited set of health -related 
+services to children/youth in their care. In accordance with the 29-I Health Facility Billing Guidance , Medicaid 
+will cover health and behavioral health services provided to eligible children/youth by licensed 29 -I Health 
+Facilities. Effective Ju ly 1, 2021, MMC Plans will beg in covering 29 -I Health Facility services for their 
+elig ib le members. 
+
+Effective February 1, 2021 , the Medicaid f ee-for-service (FFS) Program will update the Medicaid Foster 
+Care Drug Carve -Out List with additional drug(s)/drug classes and products listed on the Pref erred Diabetic 
+Supply Program. VFCAs will continue to cover the cost of drugs/products that are not included on the Foster 
+Care Drug Carve -Out list until June 30, 2021. Effective Ju ly 1, 2021, all pharmacy benefits for this 
+popu lation will be paid for under Med icaid FFS. 
+
+All providers who deliver services to children/y outh in f oster care or to children/youth in the care of VFCAs 
+should be aware of this transition. Effective Ju ly 1, 2021 , VFCAs will no longer be the payor f or Medicaid 
+covered services delivered to children/youth in their care, and community providers ser ving these children will 
+direct claims to the child/youth’s MMCP or the Medicaid FFS, as applicable. To avoid disruption in services 
+to children/youth during this transition, providers traditionally serving this population are strongly encouraged 
+to enroll in the NYS Medicaid program then engage with MMCP in their area to ensure continued coverage 
+f or their patients. 
+
+Policy requirements f or this transition, including continuity of care requirements f or transitioning children/youth 
+enrolling in Medicaid managed care, 29 -I Health Facility rate inf ormation, and 29 -I Health Facility services 
+guidelines, can be located on the Department of Health’s 29-I Health Facility (VFCA Transition) web page. 
+
+Questions 
+All questions may be directed to BH.transition@health.ny.gov . 
+
+*************************************************************************************************************** 
+
+Andrew M. Cuomo 
+Governor 
+State o f New Yo rk 
+
+Howard A. Zucker, M.D., J.D. 
+Commiss ioner 
+New Yo rk State  
+Dep ar tmen t o f Heal th 
+
+Donna Frescatore 
+Medicaid Direc tor 
+O ffi ce o f Heal th In suran ce Pro g rams 
+
+The Medicaid Update is a monthly publication of the New York State Depar tment of Health. 
+
+In This Issue… 
+
+Impo rtant Info rmat io n fo r All Prov id ers Serving Child ren. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . Cover 
+
+All Providers 
+
+Help Stop the Sp read of COVID -19 by Sharing the COVID Alert NY App . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .3 
+Med icaid Co nsumer Fac t Sheets Now Availab le . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .3 
+Remind er: S ig n Up fo r eMedNY Training Webinars . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .3 
+Chang e of Add ress (and Co ntact) Not if icat io n . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .4 
+NY State of Health Op en Enro llment fo r New Yo rkers Extend ed Thro ug h March 31 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .4 
+
+Pharmacy 
+
+Med icaid Pharmacy Prio r Autho rizat io n Prog rams Upd ate . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .5 
+Pract it io ner Disp ens ing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .6 
+
+Policy and Billing 
+
+Up d ated Co verage Criteria for Healthcare Common Procedure Coding System Co de E0467: 
+Home Ventilato r, Mult i-Funct io n Respirato ry Dev ice . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .7 
+Dental Proced ure Cod e Chang es Ef fec tive January 1, 2021 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .7 
+
+Provider Directory . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .8 
+
+Jan uary 2021 New Yo rk State Med icaid Upd ate 
+
+p g . 2 
+
+All Providers 
+
+Help Stop the Spread of COVID-19 by Sharing 
+the COVID Alert NY App 
+
+New York State Department of Health’s COVID Alert NY app is gaining participation with more New Yorkers 
+every day. Please keep shar ing the COVID Alert NY app inf ormation with partners and consumers. Together 
+everyone can help stop the spread of this virus. 
+
+*************************************************************************************************************** 
+
+Medicaid Consumer Fact Sheets Now Available 
+
+New York State Department of Health ( DOH) Of f ice of Health Insurance Programs has created Medicaid 
+consumer f act sheets f ocused on chronic health conditions. Each f act sheet provides inf ormation regarding 
+how a condition can be prevented and managed, as well as relevant Medicaid benef its that can be used to 
+help enrollees stay healthy. Fact sheets are currently available on the topics of diabetes, high blood pressure , 
+asthma control and HIV-PrEP (Human Immunodef iciency Virus - Pre-Exposure Prophylaxis) , in the f ollowing 
+languages: English, Spanish, Traditional Chinese, Russian, Haitian Creole, Bengali and Korean. Fact sheets 
+on additional health topics will be produced in the coming weeks and will be posted on the Medicaid Redesign 
+Team (MRT) II Policies and Guidance web page. 
+
+*************************************************************************************************************** 
+
+Reminder: Sign Up for eMedNY T raining Webinars 
+
+eMedNY of f ers a number of training webinars f or providers and their billing staf f . Webinars are conducted 
+online, so that providers may join the meeting via a computer and telephone. No travel is necessary. 
+
+Valuable provider webinars of fered include: 
+• ePACES for Dental, DME, Free -Standing and Hospital-Based Clinics, Home Health, Institutional, 
+Nursing Home, Physician, Pr ivate Duty Nursing, Professional (Real -Time), Transportation and Vision 
+Care 
+• ePACES for Dispensing Validation System (DVS) for Durable Medical Equipment (DME) 
+• ePACES for Dispensing Validation System (DVS) for Rehabilitation Services 
+• eMedNY Website Review 
+• Medicaid Eligibility Ver ification System (MEVS) 
+• New Provider / New Biller 
+
+Web inar reg istration is fast and easy. To register, view the list of topics, descriptions and available session 
+dates, please visit the Provider Training web page. Providers are reminded to review the webinar descr iptions 
+carefu lly to identif y the webinar appropriate f or their specific training needs. 
+
+Questions regarding training webinars should be directed to the eMedNY Call Center at (800) 343-9000. 
+
+*************************************************************************************************************** 
+
+Jan uary 2021 New Yo rk State Med icaid Upd ate 
+
+p g . 3 
+
+Change of Address (and Contact) Notification 
+
+Providers must notif y Medicaid of any change of address, telephone number, or other pertinent inf ormation 
+within 15 days of the change . eMedNY distributes provider checks and paper remittances using the Pay-
+To Address kept on f ile. Other mail, including important update s, is directed to the Correspondence 
+Address kept on file for providers. Providers may be missing out on important notifications if their address on 
+f ile is outdated. Occasionally, eMedNY provider representatives will need to contact provider s by telephone 
+with important inf ormation that may impact claims processing and payment. 
+
+To update provider addresses and telephone information, providers must complete their designated Change 
+of Address f orm. Each Change of Address f orm contains detailed instructions f or submission based on 
+provider type and license/registration address. 
+• Fee-for-Service (FFS) providers (such as practitioners, DME, laborator ies, transportation, etc.) : 
+Practitioners, Businesses and Groups Change of Address Form 
+• Rate-based (Institutional) providers : NYS Medicaid Institutional/Rate Based Provider Change of 
+Address Form 
+
+Change of Address f orms can be completed online using the f illable option or pr inted. P roviders must sign 
+using their orig inal signature in ink without using white out, red ink or double -sided f orms. Both f orms must 
+be mailed to : 
+
+eMedNY 
+P.O. Box 4610 
+Rensselaer, NY 12144 -4610 
+
+Questions 
+All questions may be directed to the eMedNY Call Center at (800) 343-9000. 
+
+*************************************************************************************************************** 
+
+NY State of Health Open Enrollment for New Yorkers  
+Extended Through March 31 
+
+NY State of Health’s 2021 Open Enrollment Per iod will be extended through March 31, 2021 as New Yorkers 
+can apply f or coverage through NY State of Healt h, New York’s health insurance Marketplace, or directly 
+through insurers. 
+
+Extending the Open Enrollment Per iod to March 31, 2021 helps to align New York with the f ederal Public 
+Health Emergency which was recently extended to Apr il 20, 2021. This extension allows individuals enrolling 
+in Qualif ied Health Plan coverage additional time to enroll f or coverage in 2021 and means that enrollment 
+remains open f or all NY State of Health programs, which is especially important dur ing the ongoing public 
+health emergency. 
+
+Individuals who are eligible f or other NY State of Health programs – Medicaid, Essential Plan and Child Health 
+Plus – can enroll year -round. As always, consumers can apply f or coverage through the NY State of Health 
+website, by phone at (855) 355-5777, and by connecting with a f ree enrollment assistor. 
+
+Additional inf ormation on NY State of Health insurance options dur ing the Coronavirus emergency can be 
+f ound at the NY State of Health Coronavirus (COVID -19) Information web page. 
+
+*************************************************************************************************************** 
+
+Jan uary 2021 New Yo rk State Med icaid Upd ate 
+
+p g . 4 
+
+Pharmacy 
+
+Medicaid Pharmacy Prior Authorization Programs Update 
+
+On November 5, 2020, the New York State Medicaid Drug Utilization Review Board (DURB) recommended 
+changes to the Medicaid pharmacy pr ior author ization (PA) programs. Effective February 4, 2021 , the f ee-
+f or-service (FFS) PA requirements will change f or management of acute pain. 
+
+Prior Authorization in the Management of Acute Pain 
+For opioid-naïve patients, PA is required when initiating therapy with a short -acting opioid (SAO) at equal to 
+or greater than (≥) 50 morphine milligram equivalents (MME) per day. Patients with a cancer or sickle cell 
+disease diagnosis, or who are in hospice care , will not require PA. 
+
+Add itional Information: 
+• Providers can visit the DURB web page f or detailed inf ormation regarding this update. 
+• Providers can ref er to the Preferred Drug List (PDL) for updated information , as well as a f ull listing of 
+drugs subject to the Medicaid FFS Pharmacy Programs . 
+• Providers and their agents can quickly obtain a PA by contacting the clinical call center at (877) 309-
+9493. The clinical call center is available 24 hours per day, seven days per week with pharmacy 
+technicians and pharmacists available to assist providers. 
+• Medicaid enrolled prescr ibers can also initiate PA requests using a web -based application. PAXpress ® 
+is a web-based pharmacy PA request/response application accessible through the “PAXpress” web 
+button located on eMedNY.org under the “MEIPASS” section. 
+• Providers can ref er to the f ollowing web sites for additional inf ormation : 
+o Department of Health , Medicaid Pharmacy Program 
+o Magellan Health , Inc., Medicaid Administration 
+o eMedNY 
+
+*************************************************************************************************************** 
+
+Jan uary 2021 New Yo rk State Med icaid Upd ate 
+
+p g . 5 
+
+Practitioner Dispensing
+
+Effective April 1, 2021, in concert with the Pharmacy Carve Out, the New York (NY) Medicaid Pharmacy 
+Fee-f or-Service (FFS) program will enable claims submission for drugs dispensed by practitioners 
+authorized to prescribe, in accordance with NY State Education Law Article 137 §6807(1)(b) and (2)(a) and 
+Public Health Law §2312. The laws can be found at Laws of New York, then by selecting “EDN” or “PBH” for 
+the respective laws and navigating to correct articles and sections. This is ref erred to as practitioner 
+dispensing, which provides the ability for practitioners to dispense certain medications to their patients . 
+
+NY FFS Medicaid will reimburse practitioners under the following parameters: 
+
+•
+
+•
+
+to supply antibiotics (to treat Chlamydia and other Sexually Transmitted Inf ections) to a patient for
+later use by the patient and/or the patient's sexual partners. [Public Health Law §2312]
+pursuant to NY Education Law, NY licensed practitioners author ized to prescr ibe may dispense up to
+a 72-hour supply, or more than 72-hour supply when:
+o practicing in hospitals as def ined in section twenty -eight hundred one of the Public Health Law;
+o the dispensing of drugs is at no charge to their patients;
+o their practices are situated ten miles or more f rom a registered pharmacy;
+o the dispensing of drugs is in a clinic, inf irmary or health service that is operated by or af f iliated
+with a post-secondary institution;
+o the dispensing of drugs is due to a medical emergency as def ined in NY State Education Law
+Article 137 §6810(6);
+o the dispensing of drugs that are diluted, reconstituted or compounded by a prescr iber;
+o the dispensing of allergenic extracts; or
+o the dispensing of drugs pursuant to an oncological or acquired immunodef iciency syndrome
+(AIDS) protocol:
+▪ An oncologic protocol is wr itten set of instructions to guide the administration
+chemotherapy, immunotherapy, hormone therapy, targeted therapy to patients f or the
+treatment of cancer or tumors. It does not include protoco ls that cover drugs
+prescribed to relieve side effects of these therap ies or to relieve d istressing
+symptoms (such as nausea or pain). [Education Law §6807]
+▪ An AIDS protocol is a wr itten set of instructions to guide the administration antiretroviral
+drugs to patients f or the treatment of H IV inf ections or AIDS. It does not include
+protoco ls that cover med ications prescribed to provide relieve side effects of
+these therap ies or d istressing symptoms (such as nausea or pain). [Education
+Law §6807]
+
+Add itional Information and Questions: 
+•
+Inf ormation regarding how to enroll in Medicaid FFS as a practitioner dispenser and billing guidance
+will be published in a subsequent issue of the Medicaid Update .
+• Questions regarding this policy should be directed to the Medicaid Pharmacy Policy unit by emailing
+ppno@health.ny.gov or by calling (518) 486-3209.
+
+*************************************************************************************************************** 
+
+Jan uary 2021 New Yo rk State Med icaid Upd ate 
+
+p g . 6 
+
+Policy and Billing 
+
+Updated Coverage Criteria for Healthcare Common Procedure 
+Coding System Code E0467:  
+Home Ventilator, Multi-Function Respiratory Device 
+
+For dates of service on or after February 1, 2021 , the Coverage Cr iter ia f or Healthcare Common Procedure 
+Coding System (HCPCS) code “E0467” have been updated. Providers can ref er to the DME Provider 
+Communication: Updated Coverage Cr iter ia for HCPCS Code E0467- Home Ventilator, Multi-Function 
+Respiratory Device document f or more inf ormation. 
+
+Questions: 
+• For policy questions, providers can contact the Bureau of Medical review at (800) 342-3005 or email 
+OHIPMEDPA@health.ny.gov . 
+• All Medicaid Managed Care (MMC) questions regarding policy should be directed to the member ’s 
+MMC plan. 
+
+********************************************************************************** ****************************** 
+
+Dental Procedure Code Changes Effective January 1, 2021 
+
+Effective January 1, 2021 , the dental procedure code “D9920” Behavior Management code has been 
+deleted and is not billable f or dates of service af ter January 1, 2021. A new procedure code of “D9997” 
+has been added. 
+
+“D9997” Dental Case Management Code 
+The new procedure code “D9997” is f or individuals with special health care needs. Individuals, with physical, 
+medical, developmental or cognitive conditions resulting in substantial f unctional limitations that require 
+modif ication in the delivery of comprehensive oral health care servi ces, need special treatment 
+considerations. The new code cr iter ia will be as f ollows: 
+• This per visit incentive is meant to compensate f or the greater knowledge, skill, sophisticated 
+equipment, extra time and personnel required to treat these individuals. 
+• The f ee will be paid in addition to the normal f ees f or specific dental procedures. 
+• For purposes of the NYS Medicaid program, t his code is limited to those who receive ongoing services 
+f rom community programs operated or certif ied by New York State Of f ice f or People with 
+Developmental Disabilities (OPWDD). These individuals have a recipient exception code of “RE 81” 
+[Traumatic Brain Injury (TBI) Eligible] or “RE 95” (OPWDD/Managed Care Exemption). 
+• This code can also be used 
+f or individuals 
+f or which 
+the provider has a 
+Immobilization/Protective Stabilization (MIPS)” f orm f rom institutions only. 
+• This code is not billable in conjunction with “D9430” or procedures perf ormed under deep 
+sedation/general anesthesia. In th is situation, a report is not re quired. 
+• The code “D9997” reimburses at $29.00 in NY Medicaid f ee -for-service (FFS). 
+
+“Medical 
+
+Add itional Information and Questions: 
+• When billing, providers are advised to use the procedure code that was active on the date the service 
+was rendered . The code “D9920” is valid if services were performed pr ior to January 1, 2021 . 
+• Please direct all questions to dental@health.ny.gov. 
+
+**************************************************************************************************************** 
+
+Jan uary 2021 New Yo rk State Med icaid Upd ate 
+
+p g . 7 
+
+Provider Directory 
+
+Office of the Med icaid Inspector General: 
+For suspected f raud or abuse complaints/allegations, call 1-877-87FRAUD, (877) 873-7283, or visit Office of 
+Medicaid Inspector General (OMIG) web site . 
+
+Provider Manuals/Companion Gu ides, Enro llment Information/Forms/Train ing Schedu les:  
+Please visit the eMedNY website . 
+
+Providers wish ing to listen to the current week’s check/EFT amounts: 
+Please call (866) 307-5549 (available Thursday PM f or one week f or the current week's amount). 
+
+For questions about b illing and performing MEVS transactions: 
+Please call the eMedNY Call Center at (800) 343-9000. 
+
+Provider Train ing: 
+Please enroll online f or a provider seminar . For individual training reque sts, call (800) 343 -9000. 
+
+Beneficiary Elig ib ility: 
+Call the Touchtone Telephone Ver ification System at (800) 997 -1111. 
+
+Med icaid Prescriber Education Program: 
+For current inf ormation on best practices in pharmacotherapy, please visit the f ollowing websites: 
+• DOH Prescr iber Education Program page 
+• Prescr iber Education Program in partnership with SUNY 
+
+eMedNY 
+For a number of services , including: change of address, updating an enrollment f ile due to an 
+ownership change, enrolling another NPI, or revalidating an existing enrollment, please visit eMedNY’s 
+Provider Enrollment page and choose the appropr iate link based on provider type. 
+
+NY Med icaid Electron ic Health Record (EHR) Incentive Program 
+Contact the New York Medicaid EHR Call Center at (877) 646 -5410 f or assistance. 
+
+Comments and Suggestions Regard ing Th is Publication 
+Please contact the editor, Angela Lince , at medicaidupdate@health.ny.gov . 
+
+Jan uary 2021 New Yo rk State Med icaid Upd ate 
+
+p g . 8 
+
