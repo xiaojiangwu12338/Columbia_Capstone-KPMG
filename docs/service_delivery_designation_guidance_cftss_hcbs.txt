@@ -48,7 +48,7 @@ receive a designation from the NYS Children’s Provider Designation Review Team
 representative of DOH, OMH, OASAS, OPWDD, or OCFS. Being designated and
 authorized to provide services is not a substitute for possessing any required State
 licensure, certification, authorization, or credential, and any such designation may be
-conditioned upon obtaining or modifying a rhequired licensure, certification, authorization,
+conditioned upon obtaining or mhodifying a required licensure, certification, authorization,
 or credential.
 Services subject to designation include Children and Family Treatment and Supports
 Services (CFTSS):
@@ -84,7 +84,7 @@ monitoring and oversight of the provider.
 CFTSS and HCBS services may only be rendered by a designated agency. Designated
 agencies retain all responsibility for services provided, quality of care, and assuring
 Medicaid compliance. Billing for CFTSS or HCBS should be completed using the
-responsible designated agency’s NPI and MhMIS ID, unless one of the options below is
+responsible designated agency’sh NPI and MMIS ID, unless one of the options below is
 followed. If a designated agency would like to collaborate with another designated
 agency to provide services they cannot provide, or to collaborate for the purposes of
 coordination of care, they will refer the child directly for services to the other agency.

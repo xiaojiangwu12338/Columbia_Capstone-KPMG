@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=62"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kpmg_capstone"
+version = "0.1.0"
+description = "Capstone ingestion/parsing pipeline"
+requires-python = ">=3.9"
+dependencies = [
+  "PyYAML",
+  "tqdm",
+  "pdfminer.six",
+  "python-docx",
+  "pytesseract",
+  "pdf2image",
+  "Pillow",
+  "pdfplumber"
+]
+
+[project.optional-dependencies]
+doc_2_docx = [
+  "pywin32>=306; sys_platform == 'win32'"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
