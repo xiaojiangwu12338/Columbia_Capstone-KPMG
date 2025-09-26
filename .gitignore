@@ -30,7 +30,7 @@ Thumbs.db
 # Project data (large or raw)
 # -------------------------
 data/processed/
-data/raw/Childrens Evolution of Care/State
+data/raw/
 
 # If you want to keep empty folder structure
 # add .gitkeep manually into each folder

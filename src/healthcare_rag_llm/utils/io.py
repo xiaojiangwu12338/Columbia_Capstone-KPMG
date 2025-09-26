@@ -1,4 +1,4 @@
-# src/kpmg_capstone/utils/io.py
+# src/healthcare_rag_llm/utils/io.py
 from pathlib import Path
 import json
 import yaml

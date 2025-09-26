@@ -1,6 +1,6 @@
 from pathlib import Path
-from kpmg_capstone.doc_parsing import parse_file
-from kpmg_capstone.utils.io import ensure_dir
+from healthcare_rag_llm.doc_parsing import parse_file
+from healthcare_rag_llm.utils.io import ensure_dir
 
 def run_pipeline(raw_dir: str = "data/raw", out_dir: str = "data/processed",save_text=False,save_json=True):
     """
