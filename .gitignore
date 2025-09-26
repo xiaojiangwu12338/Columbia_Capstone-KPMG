@@ -1,1 +1,44 @@
-data/Childrens Evolution of Care
+# Python caches
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Build / dist / egg-info
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtualenv
+.venv/
+venv/
+env/
+ENV/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Logs / temp
+*.log
+*.tmp
+
+# -------------------------
+# Project data (large or raw)
+# -------------------------
+data/processed/
+data/raw/
+
+# If you want to keep empty folder structure
+# add .gitkeep manually into each folder
+
+# -------------------------
+# Config / secrets
+# -------------------------
+.env
+*.secret
+*.key
+*.pem
