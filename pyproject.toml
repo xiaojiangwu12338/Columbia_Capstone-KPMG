@@ -3,7 +3,7 @@ requires = ["setuptools>=62"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "kpmg_capstone"
+name = "healthcare_rag_llm"
 version = "0.1.0"
 description = "Capstone ingestion/parsing pipeline"
 requires-python = ">=3.9"
