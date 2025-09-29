@@ -15,7 +15,10 @@ dependencies = [
   "pytesseract",
   "pdf2image",
   "Pillow",
-  "pdfplumber"
+  "pdfplumber",
+  "transformers",
+  "FlagEmbedding",
+  "accelerate"
 ]
 
 [project.optional-dependencies]
