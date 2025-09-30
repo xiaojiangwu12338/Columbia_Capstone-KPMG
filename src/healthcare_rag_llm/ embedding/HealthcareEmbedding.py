@@ -6,6 +6,7 @@ specifically designed for healthcare document processing and retrieval.
 """
 import numpy as np
 from FlagEmbedding import BGEM3FlagModel
+import torch
 
 class HealthcareEmbedding:
     """
@@ -34,8 +35,11 @@ class HealthcareEmbedding:
         return self.model.encode(text,return_dense=return_dense,return_sparse=return_sparse,return_colbert_vecs=return_colbert_vecs)
 
 if __name__ == "__main__":
-    documents = ["John likes apple and Tom likes banana","Today is a good day"]
-    queries = ["John likes apple"]
+    documents = ["C-YES conducts the HCBS/Level of Care Eligibility Determination for children opting out of Health Home."]
+    queries = ["Providers seeking prior authorization can contact the Magellan Clinical Call Center."]
     embedding = HealthcareEmbedding()
     print(embedding.encode(documents)['dense_vecs'][0]@embedding.encode(queries)['dense_vecs'][0].T)
-    print(embedding.encode(documents)['dense_vecs'][1]@embedding.encode(queries)['dense_vecs'][0].T)
+
+    documents = ["Hospitals must ensure the accuracy of patient discharge status coding on Medicaid claims."]
+    queries = ["Hospitals must correctly code whether patients are transferred or discharged, since this affects Medicaid payments."]
+    print(embedding.encode(documents)['dense_vecs'][0]@embedding.encode(queries)['dense_vecs'][0].T)
