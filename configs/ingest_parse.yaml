@@ -1,5 +1,6 @@
 paths:
   raw: data\raw\Childrens Evolution of Care\State\Medicaid Updates #which data folder to parse
   processed: data/processed
+  chunked: data/chunks
 
 input_patterns: ["*.pdf", "*.docx", "*.doc"]

@@ -15,7 +15,9 @@ dependencies = [
   "pytesseract",
   "pdf2image",
   "Pillow",
-  "pdfplumber"
+  "pdfplumber",
+  "sentence-transformers",
+  "nltk"
 ]
 
 [project.optional-dependencies]
