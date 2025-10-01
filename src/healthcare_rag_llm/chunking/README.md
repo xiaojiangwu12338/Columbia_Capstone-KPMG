@@ -43,7 +43,7 @@ the chunked directory defined in `configs/ingest_parse.yaml`.
   "metadata": {
     "source_file": "data/processed/example.json",
     "chunk_index": 0,
-    "similarity_score": 0.78
+    "similarity_score": 0.78 (only for semantic chunking)
   }
 }
 ```
