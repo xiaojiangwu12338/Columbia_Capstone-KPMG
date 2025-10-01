@@ -15,7 +15,7 @@ the chunked directory defined in `configs/ingest_parse.yaml`.
 - **Params:** `chunk_size`, `overlap` (optional).
 - **Output:** `data/chunks/fix_size_chunking_result`.
 
-### 2. Asterisk-Separated (`asterisk_chunking.py`)
+### 2. Asterisk-Separated (`pattern_chunking.py`)
 - Splits when a delimiter (default: ≥10 `*`) is found or when max size is hit.
 - Delimiter is removed in output.
 - **Params:** `delimiter_pattern`, `min_repeat`, `max_chunk_size`.
