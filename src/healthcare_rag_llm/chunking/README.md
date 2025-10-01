@@ -2,8 +2,8 @@
 
 This module provides multiple ways to split parsed documents into smaller chunks
 for embeddings, retrieval, or LLM input.  
-All methods read parsed JSON from `data/processed/` and write results under
-the chunked directory defined in `configs/ingest_parse.yaml`.
+All methods read parsed JSON from and write results under
+the processed and chunked directory defined in `configs/ingest_parse.yaml`.
 
 ---
 
