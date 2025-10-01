@@ -46,6 +46,7 @@ the chunked directory defined in `configs/ingest_parse.yaml`.
     "similarity_score": 0.78
   }
 }
+```
 Configuration
 Paths are set in configs/ingest_parse.yaml:
 
