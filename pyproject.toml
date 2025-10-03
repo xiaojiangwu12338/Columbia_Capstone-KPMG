@@ -23,6 +23,7 @@ dependencies = [
   "sentence-transformers==2.7.0",
   "peft==0.10.0",
   "FlagEmbedding",
+  "nltk"
 ]
 
 [project.optional-dependencies]
@@ -35,4 +36,3 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
