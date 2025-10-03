@@ -23,7 +23,9 @@ dependencies = [
   "sentence-transformers==2.7.0",
   "peft==0.10.0",
   "FlagEmbedding",
-  "nltk"
+  "nltk",
+  "neo4j>=5.17.0",
+  "pandas>=2.0"
 ]
 
 [project.optional-dependencies]
