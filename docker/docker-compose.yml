@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  neo4j:
+    image: neo4j:5.17
+    container_name: healthcare_rag_neo4j
+    ports:
+      - "7474:7474"   # Web page
+      - "7687:7687"   # Bolt connection（Python)
+    env_file:
+      - .env
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+      - neo4j_plugins:/plugins
+volumes:
+  neo4j_data:
+  neo4j_logs:
+  neo4j_plugins:
