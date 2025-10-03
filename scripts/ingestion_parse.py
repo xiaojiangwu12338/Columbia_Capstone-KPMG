@@ -3,8 +3,7 @@ from pathlib import Path
 import argparse
 
 # parsing pipeline: expects only .pdf and .docx (from raw or interim)
-from pipelines.ingest_parse import run_pipeline as parse_pipeline
-
+from healthcare_rag_llm.pipelines.ingest_parse import run_pipeline as parse_pipeline
 
 # scripts/ingestion_data.py
 from pathlib import Path
