@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "healthcare_rag_llm"
 version = "0.1.0"
-description = "Capstone ingestion/parsing pipeline"
+description = "Healthcare policy analysis with LLM and RAG"
 requires-python = ">=3.9"
 dependencies = [
   "PyYAML",
@@ -16,6 +16,13 @@ dependencies = [
   "pdf2image",
   "Pillow",
   "pdfplumber",
+  "accelerate",
+  "torch==2.2.2",
+  "numpy==1.26.4",
+  "transformers==4.40.2",
+  "sentence-transformers==2.7.0",
+  "peft==0.10.0",
+  "FlagEmbedding",
   "sentence-transformers",
   "nltk"
 ]
@@ -30,4 +37,3 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
