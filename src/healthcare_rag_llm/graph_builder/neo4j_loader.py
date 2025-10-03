@@ -9,11 +9,20 @@ load_dotenv("docker/.env")
 class Neo4jConnector:
     def __init__(self, uri=None, user=None, password=None):
         self.uri = uri or os.getenv("NEO4J_URI", "bolt://localhost:7687")
-        self.user = user or os.getenv("NEO4J_USERNAME", "neo4j")
-        self.password = password or os.getenv("NEO4J_PASSWORD")
+
+        # NEO4J_AUTH
+        auth = os.getenv("NEO4J_AUTH")
+        if auth and "/" in auth:
+            user_env, password_env = auth.split("/", 1)
+        else:
+            user_env = os.getenv("NEO4J_USERNAME", "neo4j")
+            password_env = os.getenv("NEO4J_PASSWORD")
+
+        self.user = user or user_env
+        self.password = password or password_env
 
         if not self.password:
-            raise ValueError("ERROR. NEO4J_PASSWORD is not set. Please check your .env file.")
+            raise ValueError("ERROR: Neo4j password not set. Check your .env file.")
 
         self.driver = GraphDatabase.driver(self.uri, auth=(self.user, self.password))
 
@@ -31,10 +40,10 @@ class Neo4jConnector:
             session.run("CREATE CONSTRAINT chunk_id_unique IF NOT EXISTS "
                         "FOR (c:Chunk) REQUIRE c.chunk_id IS UNIQUE")
 
-            # Vector index (BGE-M3 output dim: 1024 )
+            # Vector index (BGE-M3 output dim: 1024 & only dense embedding used for index)
             session.run("""
             CREATE VECTOR INDEX chunk_vec IF NOT EXISTS
-            FOR (c:Chunk) ON (c.embedding)
+            FOR (c:Chunk) ON (c.denseEmbedding)
             OPTIONS {indexConfig: {
               `vector.dimensions`: 1024,
               `vector.similarity_function`: 'cosine'

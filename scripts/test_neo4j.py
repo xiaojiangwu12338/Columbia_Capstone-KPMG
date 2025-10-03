@@ -21,6 +21,10 @@ python scripts/test_neo4j.py
 ```
 docker compose down
 ```
+or reset database
+```
+docker compose down -v
+```
 '''
 
 # test if neo4j connected
