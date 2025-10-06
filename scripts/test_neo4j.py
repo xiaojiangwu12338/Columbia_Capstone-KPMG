@@ -19,10 +19,12 @@ python scripts/test_neo4j.py
 
 4. Shut down the database
 ```
+cd docker
 docker compose down
 ```
 or reset database
 ```
+cd docker
 docker compose down -v
 ```
 '''

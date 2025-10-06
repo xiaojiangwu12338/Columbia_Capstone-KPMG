@@ -1,5 +1,5 @@
 # src/healthcare_rag_llm/graph_builder/queries.py
-from .neo4j_loader import Neo4jConnector
+from neo4j_loader import Neo4jConnector
 from healthcare_rag_llm.embedding.HealthcareEmbedding import HealthcareEmbedding
 
 def query_chunks(query_embedding, top_k=5):
