@@ -42,3 +42,8 @@ data/raw/
 *.secret
 *.key
 *.pem
+
+# Neo4j docker volumes (do not commit runtime data)
+docker/neo4j_data/
+docker/neo4j_logs/
+docker/neo4j_plugins/
