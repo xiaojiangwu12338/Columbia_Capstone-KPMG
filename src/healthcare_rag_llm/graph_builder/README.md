@@ -1,4 +1,3 @@
-'''
 ### Steps
 ## 1. Install Docker
 Download and install Docker Desktop from the official site: 
@@ -76,21 +75,3 @@ Completely remove all stored data, indexes, and settings (start from a clean dat
 cd docker
 docker compose down -v
 ```
-'''
-
-# test if neo4j connected
-from neo4j import GraphDatabase
-import os
-
-# load from .env (can use python-dotenv to automatically load .env in the future)
-uri = os.getenv("NEO4J_URI", "bolt://localhost:7687")
-user = os.getenv("NEO4J_USERNAME", "neo4j")
-password = os.getenv("NEO4J_PASSWORD", "healthragkpmg")
-
-driver = GraphDatabase.driver(uri, auth=(user, password))
-
-with driver.session() as session:
-    result = session.run("RETURN 'Neo4j connected!' AS msg")
-    print(result.single()["msg"])
-
-driver.close()
