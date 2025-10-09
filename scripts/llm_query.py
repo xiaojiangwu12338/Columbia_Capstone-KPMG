@@ -49,7 +49,6 @@ print("Question 7: ", question_7,"\n")
 print(response_7["answer"])
 print("-"*100)
 
-
 question_8 = "What are the key components of the SCN program in the NYHER Waiver?"
 response_8 = response_generator.answer_question(question_8)
 print("Question 8: ", question_8,"\n")

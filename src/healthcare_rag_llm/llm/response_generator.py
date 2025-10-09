@@ -33,7 +33,7 @@ class ResponseGenerator:
     def __init__(self, llm_client: LLMClient):
         """Initialize with a given LLM client."""
         self.llm_client = llm_client
-        self.embedder = HealthcareEmbedding()  # 添加嵌入器
+        self.embedder = HealthcareEmbedding()  # Embedding
 
     def answer_question(self, question: str, top_k: int = 5) -> Dict:
         """
@@ -44,19 +44,19 @@ class ResponseGenerator:
           2. Construct context + prompt
           3. Generate final response using the LLM
         """
-        # 1. 编码查询为向量
+        # 1. Encode query as vector
         query_vec = self.embedder.encode([question])["dense_vecs"][0].tolist()
         
-        # 2. 使用向量进行检索
+        # 2. Retrieve chunks
         retrieved_chunks = query_chunks(query_vec, top_k=top_k)
         
-        # 3. 构建上下文
+        # 3. Context
         context = "\n\n".join(
             [f"[Document ID: {chunk['doc_id']}] -[Chunk ID: {chunk['chunk_id']}]-[pages: {chunk['pages']}] - [Chunk Content: {chunk['text']}]" 
              for i, chunk in enumerate(retrieved_chunks)]
         )
 
-        # 4. 构建用户消息
+        # 4. User message
         user_msg = f"""
 Question:
 {question}
