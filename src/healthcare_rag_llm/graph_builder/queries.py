@@ -1,5 +1,5 @@
 # src/healthcare_rag_llm/graph_builder/queries.py
-from neo4j_loader import Neo4jConnector
+from healthcare_rag_llm.graph_builder.neo4j_loader import Neo4jConnector
 from healthcare_rag_llm.embedding.HealthcareEmbedding import HealthcareEmbedding
 import pandas as pd
 
@@ -16,13 +16,24 @@ def query_chunks(query_embedding, top_k=5):
     """
     connector = Neo4jConnector()
     with connector.driver.session() as session:
+        # result = session.run("""
+        # CALL db.index.vector.queryNodes('chunk_vec', $k, $query_embedding)
+        # YIELD node, score
+        # MATCH (node)<-[:HAS_CHUNK]-(d:Document)
+        # RETURN node.chunk_id AS chunk_id, node.text AS text, node.pages AS pages,
+        #        d.doc_id AS doc_id, d.doc_type AS doc_type,
+        #        d.effective_date AS effective_date,
+        #        d.authority AS authority,
+        #        score
+        # ORDER BY score ASC
+        # """, {"query_embedding": query_embedding, "k": top_k})
+
         result = session.run("""
         CALL db.index.vector.queryNodes('chunk_vec', $k, $query_embedding)
         YIELD node, score
         MATCH (node)<-[:HAS_CHUNK]-(d:Document)
         RETURN node.chunk_id AS chunk_id, node.text AS text, node.pages AS pages,
                d.doc_id AS doc_id, d.doc_type AS doc_type,
-               d.effective_date AS effective_date,
                d.authority AS authority,
                score
         ORDER BY score ASC
