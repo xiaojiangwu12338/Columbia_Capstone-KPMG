@@ -1,7 +1,7 @@
 from healthcare_rag_llm.llm.llm_client import LLMClient
 from healthcare_rag_llm.llm.response_generator import ResponseGenerator
 
-llm_client = LLMClient(api_key="sk-kTA3hKtUZS5oSkdMA4E8741295C947C1B390898aA7Af8fFa", 
+llm_client = LLMClient(api_key="", 
                         model="gpt-5", 
                         provider="openai",
                         base_url = "https://api.bltcy.ai/v1")
