@@ -1,0 +1,17 @@
+{
+    "test1": {
+      "question": "when was covid",
+      "document": {
+        "file1" : [1]
+      },
+      "answer": "started in late 2019"
+    },
+    "test2": {
+      "question": "did covid end",
+      "document": {
+        "file2" : [2, 3], "file3" : [9]
+      },
+      "answer": "almost, but not completely"
+    }
+  }
+  
