@@ -30,8 +30,9 @@ class ResponseGenerator:
       3. Generating the answer using the LLM
     """
 
-    def __init__(self, llm_client: LLMClient):
+    def __init__(self, llm_client: LLMClient,system_prompt: str = SYSTEM_PROMPT):
         """Initialize with a given LLM client."""
+        self.system_prompt = system_prompt
         self.llm_client = llm_client
         self.embedder = HealthcareEmbedding()  # Embedding
 
@@ -76,7 +77,7 @@ Each bullet must have a citation like [doc or doc:page — Mon DD, YYYY].
 
         llm_response = self.llm_client.chat(
             user_prompt=user_msg,
-            system_prompt=SYSTEM_PROMPT
+            system_prompt=self.system_prompt
         )
 
         return {
