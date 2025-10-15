@@ -21,7 +21,7 @@ try:
     HAS_BACKEND = True
 except Exception as e:
     HAS_BACKEND = False
-    st.warning(f"⚠️ Backend import failed: {e}. Mock mode enabled.")
+    # st.warning(f"⚠️ Backend import failed: {e}. Mock mode enabled.")
 
 
 # ============================================================
@@ -142,7 +142,7 @@ with col_send:
 with col_clear:
     if st.button("Clear Chat"):
         st.session_state["history"] = []
-        st.experimental_rerun()
+        st.rerun()
 
 # Display history
 for msg in st.session_state["history"]:
@@ -152,45 +152,52 @@ for msg in st.session_state["history"]:
         st.chat_message("assistant").write(msg["content"])
 
 # New question
-if submit and user_query.strip():
-    # Save user input
-    st.session_state["history"].append({"role": "user", "content": user_query})
+if submit:
+    if not user_query.strip():
+         st.warning("Please enter a question before submitting.")
+    else:
+        # Save user input
+        st.session_state["history"].append({"role": "user", "content": user_query})
+        with st.spinner("Retrieving information..."):
+            try:
+                if rag_pipeline:
+                    # --- Real backend ---
+                    result = rag_pipeline.answer_question(user_query)
+                    answer = result.get("answer", "No answer returned.")
+                    retrieved_docs = result.get("retrieved_docs", [])
 
-    with st.spinner("Retrieving information..."):
-        try:
-            if rag_pipeline:
-                # --- Real backend ---
-                result = rag_pipeline.answer_question(user_query)
-                answer = result.get("answer", "No answer returned.")
-                retrieved_docs = result.get("retrieved_docs", [])
+                    st.success("✅ Answer Retrieved")
+                    st.markdown(f"**Answer:**\n\n{answer}")
 
-                st.success("✅ Answer Retrieved")
-                st.markdown(f"**Answer:**\n\n{answer}")
-
-                st.markdown("### 📚 Retrieved Sources")
-                if retrieved_docs:
-                    for doc in retrieved_docs:
-                        doc_id = doc.get("doc_id", "Unknown")
-                        pages = doc.get("pages", "N/A")
-                        snippet = doc.get("text", "")[:300]
-                        st.markdown(f"- **{doc_id}** (pages {pages})")
-                        st.caption(snippet + "...")
+                    st.markdown("### 📚 Retrieved Sources")
+                    if retrieved_docs:
+                        for doc in retrieved_docs:
+                            doc_id = doc.get("doc_id", "Unknown")
+                            pages = doc.get("pages", "N/A")
+                            snippet = doc.get("text", "")[:300]
+                            st.markdown(f"- **{doc_id}** (pages {pages})")
+                            st.caption(snippet + "...")
+                    else:
+                        st.caption("No source documents retrieved.")
                 else:
-                    st.caption("No source documents retrieved.")
-            else:
-                # --- Mock mode ---
-                st.warning("⚠️ Mock mode: Backend not connected.")
-                st.markdown(
-                    "The assistant is currently running in mock mode without a live RAG backend. "
-                    "Please connect to the backend to generate answers."
-                )
+                    # --- Mock mode ---
+                    answer = (
+                        "⚠️ Mock mode: Backend not connected.\n"
+                        "No grounded answer can be generated. "
+                        "Please connect the backend (RAG pipeline) to enable cited answers."
+                    )
+                    st.warning("⚠️ Mock mode: Backend not connected.")
+                    st.markdown(
+                        "The assistant is currently running in mock mode without a live RAG backend. "
+                        "Please connect to the backend to generate answers."
+                    )
 
-            # Save answers
-            st.session_state["history"].append({"role": "assistant", "content": answer})
-            st.experimental_rerun()
+                # Save answers
+                st.session_state["history"].append({"role": "assistant", "content": answer})
+                st.rerun()
 
-        except Exception as e:
-            st.error(f"Error: {e}")
+            except Exception as e:
+                st.error(f"Error: {e}")
 
 
 # ============================================================
