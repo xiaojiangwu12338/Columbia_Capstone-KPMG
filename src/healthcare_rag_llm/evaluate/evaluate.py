@@ -1,32 +1,30 @@
 # src/healthcare_rag_llm/evaluate.py
-
 import json
-from typing import List
-
+from typing import List, Dict, Any
 
 def evaluate_results(
     tested_result_path: str,
     ground_truth_path: str,
     output_path: str,
-    k_ranks: List[int] = [1, 3]
-) -> None:
+    k_ranks: List[int] = None
+) -> Dict[str, Any]:
     """
-    Evaluate multiple test runs (test_1, test_2, ...) under one hyperparameter setting.
-    Each test corresponds to a single query.
+    Evaluate multiple test runs (test_id_1, test_id_2, ...) for one hyperparameter setting.
+    Each test contains multiple top_k_chunks with metadata.
     """
 
+    # === Load ===
     with open(tested_result_path, "r", encoding="utf-8") as f:
         tested_data = json.load(f)
     with open(ground_truth_path, "r", encoding="utf-8") as f:
         gt_data = json.load(f)
 
-    # For overall statistics
     total_tests = 0
     doc_level_correct = 0
     page_level_correct = 0
+    details = {}
 
-    detailed_results = {}
-
+    # === Loop over each test ===
     for test_id, entry in tested_data.items():
         qid = entry.get("query_id")
         if not qid or qid not in gt_data:
@@ -35,67 +33,61 @@ def evaluate_results(
         total_tests += 1
         gt_entry = gt_data[qid]
 
-        # ground truth
-        gt_docs = set(gt_entry["document"].keys())
-        gt_pages = {f"{d}_{p}" for d, ps in gt_entry["document"].items() for p in ps}
+        # --- Ground Truth ---
+        gt_docs_dict = gt_entry["document"]
+        gt_docs = set(gt_docs_dict.keys())
+        gt_pages = {f"{doc}_{p}" for doc, ps in gt_docs_dict.items() for p in ps}
 
-        # prediction
-        test_docs = set(entry.get("document", {}).keys())
-        test_pages = {f"{d}_{p}" for d, ps in entry.get("document", {}).items() for p in ps}
+        # --- Predicted Docs from top_k_chunks ---
+        top_k_chunks = entry.get("top_k_chunks", [])
+        predicted_docs = set()
+        predicted_pages = set()
 
-        # ===== Document-level evaluation =====
-        # Only when the predicted document contains all ground truth docs is it correct
-        if gt_docs.issubset(test_docs):
+        for chunk in top_k_chunks:
+            doc_id = chunk.get("doc_id")
+            pages = chunk.get("pages", [])
+            if doc_id:
+                predicted_docs.add(doc_id)
+                for p in pages:
+                    predicted_pages.add(f"{doc_id}_{p}")
+
+        # --- Evaluation ---
+        doc_correct = gt_docs.issubset(predicted_docs)
+        page_correct = gt_pages.issubset(predicted_pages)
+
+        if doc_correct:
             doc_level_correct += 1
-            doc_correct = True
-        else:
-            doc_correct = False
-
-        # ===== Page-level evaluation =====
-        # Similarly, the prediction must cover all correct page numbers
-        if gt_pages.issubset(test_pages):
+        if page_correct:
             page_level_correct += 1
-            page_correct = True
-        else:
-            page_correct = False
 
-        detailed_results[test_id] = {
+        # --- Save Detail Record ---
+        details[test_id] = {
             "query_id": qid,
             "long_version_id": entry.get("long_version_id", ""),
             "short_version_id": entry.get("short_version_id", ""),
-            "predicted_docs": list(test_docs),
-            "gt_docs": list(gt_docs),
+            "predicted_docs": list(predicted_docs),
+            "predicted_top_chunks": top_k_chunks,
+            "gt_docs": gt_docs_dict,                     # ✅ 保留完整 doc→pages 映射
             "doc_level_correct": doc_correct,
             "page_level_correct": page_correct
         }
 
-    # ===== Aggregate metrics =====
-    doc_level_acc = round(doc_level_correct / total_tests, 3) if total_tests else 0
-    page_level_acc = round(page_level_correct / total_tests, 3) if total_tests else 0
-
+    # === Summary ===
     summary = {
         "total_tests": total_tests,
         "doc_level_correct": doc_level_correct,
         "page_level_correct": page_level_correct,
-        "doc_level_accuracy": doc_level_acc,
-        "page_level_accuracy": page_level_acc
+        "doc_level_accuracy": round(doc_level_correct / total_tests, 3) if total_tests else 0.0,
+        "page_level_accuracy": round(page_level_correct / total_tests, 3) if total_tests else 0.0,
+        "k_ranks": k_ranks
     }
 
-    output = {
-        "summary": summary,
-        "details": detailed_results
-    }
+    result = {"summary": summary, "details": details}
 
-    # ===== Save =====
+    # === Save ===
     with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(output, f, indent=4, ensure_ascii=False)
+        json.dump(result, f, indent=4, ensure_ascii=False)
 
-    print(f"Evaluation complete. Saved to {output_path}")
-    print(f"Doc-level acc: {doc_level_acc}, Page-level acc: {page_level_acc}")
-
-if __name__ == "__main__":
-    evaluate_results(
-        tested_result_path="data/test_results/test_result_1.json",
-        ground_truth_path="data/testing_queries/testing_query.json",
-        output_path="data/evaluation_results/testing_query_evaluation.json"
-    )
+    print(f"✅ Evaluation complete → {output_path}")
+    print(f"📊 Doc acc: {summary['doc_level_accuracy']}, Page acc: {summary['page_level_accuracy']}")
+    return result

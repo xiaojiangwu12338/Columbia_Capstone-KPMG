@@ -5,21 +5,22 @@ from healthcare_rag_llm.llm.llm_client import LLMClient
 def main():
     # ==== Configuration Section ====
     system_prompt_path = "configs/system_prompt.txt"
-    testing_queries_path = "data/testing_queries/query_covid.json"
+    testing_queries_path = "data/testing_queries/testing_query.json"
     output_dir = "data/test_results"
     version_id = "v1.0-demo"  # name of output JSON file (data/test_results/v1.0-demo.json)
 
     # Embedding and LLM setup
     embedding_method = HealthcareEmbedding
     llm_client = LLMClient(
-        api_key="",                # Add API key if needed
-        provider="ollama",         # e.g., openai, anthropic, ollama
-        model="llama3.2:3b"        # model name used by your LLM provider
+        api_key="sk-kTA3hKtUZS5oSkdMA4E8741295C947C1B390898aA7Af8fFa",                # Add API key if needed
+        provider="openai",         # e.g., openai, anthropic, ollama,
+        base_url="https://api.bltcy.ai/v1",
+        model="gpt-5"        # model name used by your LLM provider
     )
 
     # Retrieval and test parameters
     top_k = 5          # number of chunks to retrieve
-    repeats = 5        # number of test repetitions per question
+    repeats = 1        # number of test repetitions per question
     # ===============================
 
     tester = RAGBatchTester(

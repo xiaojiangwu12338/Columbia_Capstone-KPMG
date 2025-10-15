@@ -1,17 +1,17 @@
 {
-    "test1": {
-      "question": "when was covid",
-      "document": {
-        "file1" : [1]
-      },
-      "answer": "started in late 2019"
+    "Query_1": {
+        "question": "When did redetrmination begin for the COVID-19 Public Health Emergency unwind in New York State",
+        "document": {
+            "mu_no6_mar23_pr.pdf": [2]
+        },
+        "Answer":"The process of redeterminiqation will begin in April of 2023"
     },
-    "test2": {
-      "question": "did covid end",
+    "Query_2": {
+      "question": "When did the public health emergency end?",
       "document": {
-        "file2" : [2, 3], "file3" : [9]
+          "mu_no6_mar23_pr.pdf": [1]
       },
-      "answer": "almost, but not completely"
-    }
+      "Answer":"May 11, 2023: The COVID-19 Public Health Emergency ended"
   }
+}
   

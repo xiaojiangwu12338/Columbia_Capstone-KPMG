@@ -154,8 +154,8 @@ if __name__ == "__main__":
         "Question": "what are the requirements for a referral for enrollment in the childrens waiver?",
         "document": {
             },
-        "Answer": "Children from birth to age 21 may be eligible for certain Medicaid services.\n• Children/youth in foster care will be enrolled in Medicaid Managed Care Plans (MMCPs).\n• Children and Youth Evaluation Service (C-YES) conducts HCBS eligibility determinations and serves as the HCBS care coordination alternative to Health Home care management for Medicaid-enrolled children/youth who decline Health Home care management. To obtain a Referral Packet, call C-YES at 1-833-333-CYES (1-833-333-2937) or toll-free at 1-888-329-1541.\n• Children eligible for NYS Medicaid and Child Health Plus (CHPl
-    },
+        "Answer": "Children from birth to age 21 may be eligible for certain Medicaid services. • Children/youth in foster care will be enrolled in Medicaid Managed Care Plans (MMCPs). • Children and Youth Evaluation Service (C-YES) conducts HCBS eligibility determinations and serves as the HCBS care coordination alternative to Health Home care management for Medicaid-enrolled children/youth who decline Health Home care management. To obtain a Referral Packet, call C-YES at 1-833-333-CYES (1-833-333-2937) or toll-free at 1-888-329-1541. • Children eligible for NYS Medicaid and Child Health Plus (CHPlus) will be given continuous coverage until six years of age, effective January 1, 2025. • Children/youth in the care of Voluntary Foster Care Agencies (VFCAs) or placed in foster homes certified by Local Departments of Social Services (LDSS) will be enrolled in Medicaid Managed Care Plans (MMCPs) on or after July 1, 2021. • For children/youth enrolling in Medicaid managed care, policy requirements for this transition, including continuity of care requirements, 29-I Health Facility rate information, and 29-I Health Facility services guidelines, can be located on the NYS Department of Health’s 29-I Health Facility (VFCA Transition) web page."
+        },
     "test_query_11": {
         "Question": "What are REC services offered to NYS providers?",
         "document": {
