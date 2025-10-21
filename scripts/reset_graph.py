@@ -33,7 +33,8 @@ def reset_graph():
 
 
 if __name__ == "__main__":
-    confirm = input("This will DELETE ALL nodes and relationships in Neo4j. Continue? (y/N): ")
+    #confirm = input("This will DELETE ALL nodes and relationships in Neo4j. Continue? (y/N): ")
+    confirm = "y"
     if confirm.lower() == "y":
         reset_graph()
     else:

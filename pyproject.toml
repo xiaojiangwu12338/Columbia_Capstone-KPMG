@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "healthcare_rag_llm"
 version = "0.1.0"
 description = "Healthcare policy analysis with LLM and RAG"
-requires-python = ">=3.9"
+requires-python = ">=3.9,<3.13"  # Python 3.13 not yet fully supported by PyTorch
 dependencies = [
   "PyYAML",
   "tqdm",
@@ -17,11 +17,15 @@ dependencies = [
   "Pillow",
   "pdfplumber",
   "accelerate",
-  "torch==2.2.2",
-  "numpy==1.26.4",
-  "transformers==4.40.2",
-  "sentence-transformers==2.7.0",
-  "peft==0.10.0",
+  # Note: PyTorch should be installed separately to choose GPU/CPU version
+  # GPU (recommended): pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+  # CPU only: pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+  # See INSTALLATION.md for details
+  "torch>=2.2.0,<3.0.0",  # Support PyTorch 2.2.x - 2.x.x
+  "numpy>=1.24.0,<2.0.0",
+  "transformers>=4.35.0,<5.0.0",
+  "sentence-transformers>=2.5.0,<3.0.0",
+  "peft>=0.10.0,<1.0.0",
   "FlagEmbedding",
   "nltk",
   "neo4j>=5.17.0",

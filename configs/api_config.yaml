@@ -1,0 +1,33 @@
+# configs/api_config.yaml
+api_providers:
+  openai_official:
+    api_key: "your-openai-api-key"
+    base_url: "https://api.openai.com/v1"
+    provider: "openai"
+    
+  bltcy:
+    api_key: "" 
+    base_url: "https://api.bltcy.ai/v1"
+    provider: "openai"
+    
+  anthropic:
+    api_key: "your-anthropic-api-key"
+    base_url: "https://api.anthropic.com"
+    provider: "anthropic"
+
+# Default API configuration
+default_provider: "bltcy"
+
+# Model configuration
+models:
+  gpt-5:
+    provider: "bltcy"
+    max_tokens: 4000
+    
+  gpt-4:
+    provider: "openai_official" 
+    max_tokens: 4000
+    
+  claude-3:
+    provider: "anthropic"
+    max_tokens: 4000
