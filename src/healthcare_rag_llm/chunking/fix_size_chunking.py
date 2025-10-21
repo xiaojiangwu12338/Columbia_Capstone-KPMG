@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 import json
+import csv
+import io
 from typing import List, Dict, Optional
 
 
@@ -15,6 +17,15 @@ def fix_size_chunking(
 ) -> None:
     """
     Chunk each parsed document JSON into fixed-size character windows.
+
+    NEW:
+    - If input JSON includes "tables": [...], each table becomes its own chunk:
+        * pages: [<table.page>]
+        * char_start/char_end: null
+        * chunk_id: "<file_name>::0007::table"
+        * text: CSV-formatted table (RFC 4180; comma; null→empty; embedded newlines preserved)
+    - Output is interleaved in page order, with text chunks before table chunks on the same page.
+
     Results will be written to:
       <chunked_dir>/fix_size_chunking_result/<stem>.chunks.jsonl
     """
@@ -39,7 +50,7 @@ def fix_size_chunking(
                 print(f"[SKIP] {jp.name} (cannot read JSON: {e})")
             continue
 
-        if "error" in meta and meta["error"]:
+        if meta.get("error"):
             if verbose:
                 print(f"[SKIP] {jp.name} (error present: {meta['error']})")
             continue
@@ -48,7 +59,7 @@ def fix_size_chunking(
         full_text: Optional[str] = meta.get("full_text")
         pages: Optional[List[Dict]] = meta.get("pages")
 
-        if not full_text or len(full_text) == 0:
+        if not full_text:
             if verbose:
                 print(f"[SKIP] {jp.name} (empty full_text)")
             continue
@@ -68,38 +79,79 @@ def fix_size_chunking(
                     print(f"[SKIP] {jp.name} (could not map pages)")
                 continue
 
-        # chunk
+        # Build text chunks into a buffer; we’ll interleave with table-chunks by page order.
+        buffered_chunks: List[tuple] = []  # (first_page_for_sort, type_flag, record_dict)
+        # type_flag: 0 = text, 1 = table  (text before table on same page)
         step = chunk_size - overlap
         n = len(full_text)
+        chunk_idx = 0
+        idx = 0
+        while idx < n:
+            c_start = idx
+            c_end = min(idx + chunk_size, n)
+            text = full_text[c_start:c_end]
+            pages_list = _pages_overlapping_span(page_spans, c_start, c_end)
+            first_page = pages_list[0] if pages_list else 10**9
+
+            rec = {
+                "doc_id": file_name,
+                "chunk_id": f"{file_name}::{str(chunk_idx).zfill(4)}",
+                "char_start": c_start,
+                "char_end": c_end,
+                "pages": pages_list,
+                "text": text,
+            }
+            buffered_chunks.append((first_page, 0, rec))
+            chunk_idx += 1
+
+            if c_end == n:
+                break
+            idx += step
+
+        # Convert any tables into CSV chunks and add to buffer.
+        tables = meta.get("tables") or []
+        tables_added = 0
+        for t in tables:
+            page_no = t.get("page")
+            table_data = t.get("table")
+            if not isinstance(page_no, int) or not isinstance(table_data, list):
+                continue
+            csv_text = _table_to_csv(table_data)
+            rec = {
+                "doc_id": file_name,
+                "chunk_id": f"{file_name}::{str(chunk_idx).zfill(4)}::table",
+                "char_start": None,
+                "char_end": None,
+                "pages": [page_no],
+                "text": csv_text,
+            }
+            buffered_chunks.append((page_no, 1, rec))
+            chunk_idx += 1
+            tables_added += 1
+
+        # Sort buffer by page; text before tables within the same page.
+        buffered_chunks.sort(key=lambda x: (x[0], x[1]))
+
         stem = Path(file_name).stem
         out_file = output_dir / f"{stem}.chunks.jsonl"
-        chunks_written = 0
-
         with open(out_file, "w", encoding="utf-8") as out_f:
-            idx = 0
-            chunk_idx = 0
-            while idx < n:
-                c_start = idx
-                c_end = min(idx + chunk_size, n)
-                text = full_text[c_start:c_end]
-                pages_list = _pages_overlapping_span(page_spans, c_start, c_end)
-                rec = {
-                    "doc_id": file_name,
-                    "chunk_id": f"{file_name}::{str(chunk_idx).zfill(4)}",
-                    "char_start": c_start,
-                    "char_end": c_end,
-                    "pages": pages_list,
-                    "text": text,
-                }
+            for _, __, rec in buffered_chunks:
                 out_f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-                chunks_written += 1
-                if c_end == n:
-                    break
-                idx += step
-                chunk_idx += 1
 
         if verbose:
-            print(f"[OK] {jp.name} -> {chunks_written} chunks -> {out_file}")
+            print(f"[OK] {jp.name} -> {len(buffered_chunks)} chunks ({tables_added} table-chunks) -> {out_file}")
+
+
+def _table_to_csv(table_2d: List[List[Optional[str]]]) -> str:
+    """
+    RFC 4180 CSV (comma delimiter). None→"", embedded newlines preserved.
+    """
+    buf = io.StringIO(newline="")
+    writer = csv.writer(buf, dialect="excel", quoting=csv.QUOTE_MINIMAL)
+    for row in table_2d:
+        safe_row = [("" if (cell is None) else str(cell)) for cell in row]
+        writer.writerow(safe_row)
+    return buf.getvalue()
 
 
 # helpers remain the same

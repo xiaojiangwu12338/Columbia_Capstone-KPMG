@@ -3,7 +3,10 @@ from __future__ import annotations
 from pathlib import Path
 import json
 import re
+import csv
+import io
 from typing import List, Dict, Optional, Tuple
+
 
 def asterisk_separate_chunking(
     processed_dir: str,
@@ -21,16 +24,24 @@ def asterisk_separate_chunking(
     - Keep raw text (no normalization).
     - Associate each chunk with the list of page numbers it spans.
 
+    NEW:
+    - If input JSON includes "tables": [...], each table becomes its own chunk:
+        * pages: [<table.page>]
+        * char_start/char_end: null
+        * chunk_id: "<file_name>::0007::table"
+        * text: CSV-formatted table (RFC 4180; comma; null→empty; embedded newlines preserved)
+    - Output is interleaved in page order (text chunks before table chunks on same page).
+
     Output:
       <chunked_dir>/asterisk_separate_chunking_result/<stem>.chunks.jsonl
     Record schema:
       {
         "doc_id": "<file_name>",
-        "chunk_id": "<file_name>::0007",
-        "char_start": <int>,   # inclusive, in original full_text
-        "char_end": <int>,     # exclusive, in original full_text
+        "chunk_id": "<file_name>::0007" or "<file_name>::0008::table",
+        "char_start": <int|null>,   # inclusive, in original full_text
+        "char_end": <int|null>,     # exclusive, in original full_text
         "pages": [<int>, ...],
-        "text": "<substring with all separator runs removed>"
+        "text": "<substring with all separator runs removed>" OR "<csv>"
       }
     """
     processed_dir = Path(processed_dir)
@@ -99,49 +110,97 @@ def asterisk_separate_chunking(
         if last_end < len(full_text):
             segments.append((last_end, len(full_text)))
 
-        # Emit chunks: within each segment, further split by max_chunk_chars (no overlap).
+        # Build text chunks (buffer first; we'll interleave with tables by page order)
+        buffered_chunks: List[Tuple[int, int, Dict]] = []
+        # Tuple: (first_page_for_sort, tie_breaker_int, record_dict)
+        # tie_breaker: 0 for text, 1 for table — so tables come after text for the same page.
+
+        chunk_idx = 0
+        for seg_start, seg_end in segments:
+            seg_len = seg_end - seg_start
+            if seg_len <= 0:
+                continue
+            offset = 0
+            while offset < seg_len:
+                c_start = seg_start + offset
+                c_end = min(c_start + max_chunk_chars, seg_end)
+
+                text = full_text[c_start:c_end]
+                if separator_char in text:
+                    text = sep_re.sub("", text)
+
+                pages_list = _pages_overlapping_span(page_spans, c_start, c_end)
+                first_page = pages_list[0] if pages_list else 10**9  # very large if none (shouldn't happen)
+
+                rec = {
+                    "doc_id": file_name,
+                    "chunk_id": f"{file_name}::{str(chunk_idx).zfill(4)}",
+                    "char_start": c_start,
+                    "char_end": c_end,
+                    "pages": pages_list,
+                    "text": text,
+                }
+                buffered_chunks.append((first_page, 0, rec))
+                chunk_idx += 1
+
+                if c_end >= seg_end:
+                    break
+                offset += max_chunk_chars
+
+        # Build table chunks
+        tables = meta.get("tables") or []
+        tables_added = 0
+        for t in tables:
+            page_no = t.get("page")
+            table_data = t.get("table")
+            if not isinstance(page_no, int) or not isinstance(table_data, list):
+                continue
+
+            csv_text = _table_to_csv(table_data)
+
+            rec = {
+                "doc_id": file_name,
+                "chunk_id": f"{file_name}::{str(chunk_idx).zfill(4)}::table",
+                "char_start": None,
+                "char_end": None,
+                "pages": [page_no],
+                "text": csv_text,
+            }
+            buffered_chunks.append((page_no, 1, rec))
+            chunk_idx += 1
+            tables_added += 1
+
+        # Sort by page order; text (0) before table (1) within same page
+        buffered_chunks.sort(key=lambda x: (x[0], x[1]))
+
+        # Emit all chunks in the chosen order
         stem = Path(file_name).stem
         out_file = output_dir / f"{stem}.chunks.jsonl"
-        chunks_written = 0
         with open(out_file, "w", encoding="utf-8") as out_f:
-            chunk_idx = 0
-            for seg_start, seg_end in segments:
-                seg_len = seg_end - seg_start
-                if seg_len <= 0:
-                    continue
-                offset = 0
-                while offset < seg_len:
-                    c_start = seg_start + offset
-                    c_end = min(c_start + max_chunk_chars, seg_end)
-
-                    # Extract text for the chunk; remove any residual separator runs
-                    text = full_text[c_start:c_end]
-                    if separator_char in text:
-                        text = sep_re.sub("", text)
-
-                    pages_list = _pages_overlapping_span(page_spans, c_start, c_end)
-
-                    rec = {
-                        "doc_id": file_name,
-                        "chunk_id": f"{file_name}::{str(chunk_idx).zfill(4)}",
-                        "char_start": c_start,
-                        "char_end": c_end,
-                        "pages": pages_list,
-                        "text": text,
-                    }
-                    out_f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-                    chunks_written += 1
-                    chunk_idx += 1
-
-                    if c_end >= seg_end:
-                        break
-                    offset += max_chunk_chars
+            for _, __, rec in buffered_chunks:
+                out_f.write(json.dumps(rec, ensure_ascii=False) + "\n")
 
         if verbose:
-            print(f"[OK]  {jp.name} -> {chunks_written} chunks -> {out_file}")
+            print(f"[OK]  {jp.name} -> {len(buffered_chunks)} chunks ({tables_added} table-chunks) -> {out_file}")
 
 
-# --- helpers (reuse the ones already present in your module) ---
+def _table_to_csv(table_2d: List[List[Optional[str]]]) -> str:
+    """
+    Convert a 2D list (rows) into an RFC 4180-compliant CSV string:
+    - Comma delimiter.
+    - Double-quote fields when needed, escaping inner quotes by doubling.
+    - None -> "".
+    - Preserve embedded newlines inside quoted cells.
+    """
+    buf = io.StringIO(newline="")
+    writer = csv.writer(buf, dialect="excel", quoting=csv.QUOTE_MINIMAL)
+    for row in table_2d:
+        safe_row = [("" if (cell is None) else str(cell)) for cell in row]
+        writer.writerow(safe_row)
+    return buf.getvalue()
+
+
+# --- helpers (unchanged) ---
 def _build_page_spans_assuming_double_newlines(
     pages: List[Dict], full_text: str
 ) -> List[Tuple[int, int, int]]:

@@ -1,8 +1,10 @@
-# src/healthcare_rag_llm/chunking/semantic.py
+# src/healthcare_rag_llm/chunking/semantic_chunking.py
 from __future__ import annotations
 
 from pathlib import Path
 import json
+import csv
+import io
 from typing import List, Dict, Optional, Tuple
 
 # NLTK for sentence splitting
@@ -26,7 +28,7 @@ def semantic_chunking(
     verbose: bool = True,
 ) -> None:
     """
-    Embedding-based semantic chunking.
+    Embedding-based semantic chunking with table-as-chunk support.
 
     Steps per document:
       - Segment into units ("sentence" via NLTK or "paragraph" via blank lines).
@@ -35,9 +37,17 @@ def semantic_chunking(
       - Enforce max_chunk_chars by splitting at unit boundaries (no overlap).
       - Map chunk char spans to page numbers.
 
+    NEW:
+      - If input JSON includes "tables": [...], each table becomes its own chunk:
+          * pages: [<table.page>]
+          * char_start/char_end: null
+          * chunk_id: "<file_name>::0007::table"
+          * text: CSV-formatted table (RFC 4180; comma; null→empty; embedded newlines preserved)
+      - Output is interleaved in page order (text chunks before table chunks on the same page).
+
     Output:
       <chunked_dir>/semantic_chunking_result/<stem>.chunks.jsonl
-      Each line (chunk) schema:
+      Each text-chunk line schema:
         {
           "doc_id": "<file_name>",
           "chunk_id": "<file_name>::0007",
@@ -45,8 +55,19 @@ def semantic_chunking(
           "char_end": <int>,
           "pages": [<int>, ...],
           "text": "<chunk text>",
-          "sim_merge_scores": [<float>, ...],   # sims for merges within this chunk
-          "sim_cohesion": <float>               # avg cos sim(unit_vec, chunk_centroid)
+          "sim_merge_scores": [<float>, ...],
+          "sim_cohesion": <float>
+        }
+      Each table-chunk line schema (differences noted):
+        {
+          "doc_id": "<file_name>",
+          "chunk_id": "<file_name>::0008::table",
+          "char_start": null,
+          "char_end": null,
+          "pages": [<int>],
+          "text": "<csv>",
+          "sim_merge_scores": null,
+          "sim_cohesion": null
         }
     """
     processed_dir = Path(processed_dir)
@@ -58,7 +79,7 @@ def semantic_chunking(
         raise ValueError("max_chunk_chars must be > 0")
     if unit not in {"sentence", "paragraph"}:
         raise ValueError("unit must be 'sentence' or 'paragraph'")
-    if similarity_threshold <= 0 or similarity_threshold > 1:
+    if not (0 < similarity_threshold <= 1):
         raise ValueError("similarity_threshold must be in (0, 1].")
 
     # Ensure NLTK punkt is available (for sentence tokenization)
@@ -114,60 +135,88 @@ def semantic_chunking(
 
         # Segment into units (with character spans)
         units, unit_spans = _segment_units(full_text, mode=unit)
-
         if not units:
             if verbose:
                 print(f"[SKIP] {jp.name} (no {unit}s found)")
             continue
 
-        # Embed units (no batching per your request)
+        # Embed units
         embeddings = _embed_units(model, units)
 
         # Merge units semantically
-        chunks_by_units, merge_scores_list = _merge_units_semantically(
+        chunks_by_units, _ = _merge_units_semantically(
             unit_spans, embeddings, similarity_threshold, hysteresis
         )
 
         # Enforce max_chunk_chars by splitting large chunks at unit boundaries
-        finalized_chunks = _enforce_char_limit(
-            chunks_by_units, max_chunk_chars
-        )
+        finalized_chunks = _enforce_char_limit(chunks_by_units, max_chunk_chars)
+
+        # Buffer text chunks for interleaving with table chunks by page order
+        buffered_chunks: List[Tuple[int, int, Dict]] = []  # (first_page, type_flag, record)
+        # type_flag: 0=text, 1=table
+        chunk_idx = 0
+
+        for chunk_units in finalized_chunks:
+            c_start = chunk_units[0][0]
+            c_end = chunk_units[-1][1]
+            text = full_text[c_start:c_end]
+            pages_list = _pages_overlapping_span(page_spans, c_start, c_end)
+            first_page = pages_list[0] if pages_list else 10**9
+
+            # Compute sim metrics for this chunk
+            sim_merge_scores, sim_cohesion = _chunk_similarity_metrics(
+                chunk_units, unit_spans, embeddings
+            )
+
+            rec = {
+                "doc_id": file_name,
+                "chunk_id": f"{file_name}::{str(chunk_idx).zfill(4)}",
+                "char_start": c_start,
+                "char_end": c_end,
+                "pages": pages_list,
+                "text": text,
+                "sim_merge_scores": sim_merge_scores,
+                "sim_cohesion": sim_cohesion,
+            }
+            buffered_chunks.append((first_page, 0, rec))
+            chunk_idx += 1
+
+        # Convert tables (if any) to CSV chunks and add to buffer
+        tables = meta.get("tables") or []
+        tables_added = 0
+        for t in tables:
+            page_no = t.get("page")
+            table_data = t.get("table")
+            if not isinstance(page_no, int) or not isinstance(table_data, list):
+                continue
+
+            csv_text = _table_to_csv(table_data)
+            rec = {
+                "doc_id": file_name,
+                "chunk_id": f"{file_name}::{str(chunk_idx).zfill(4)}::table",
+                "char_start": None,
+                "char_end": None,
+                "pages": [page_no],
+                "text": csv_text,
+                "sim_merge_scores": None,
+                "sim_cohesion": None,
+            }
+            buffered_chunks.append((page_no, 1, rec))
+            chunk_idx += 1
+            tables_added += 1
+
+        # Interleave by page; text before table on the same page
+        buffered_chunks.sort(key=lambda x: (x[0], x[1]))
 
         # Write out JSONL
         stem = Path(file_name).stem
         out_file = output_dir / f"{stem}.chunks.jsonl"
-        chunks_written = 0
         with open(out_file, "w", encoding="utf-8") as out_f:
-            chunk_idx = 0
-            for chunk_units in finalized_chunks:
-                c_start = chunk_units[0][0]
-                c_end = chunk_units[-1][1]
-                text = full_text[c_start:c_end]
-
-                # Compute pages overlapped
-                pages_list = _pages_overlapping_span(page_spans, c_start, c_end)
-
-                # Compute sim metrics for this chunk
-                sim_merge_scores, sim_cohesion = _chunk_similarity_metrics(
-                    chunk_units, unit_spans, embeddings
-                )
-
-                rec = {
-                    "doc_id": file_name,
-                    "chunk_id": f"{file_name}::{str(chunk_idx).zfill(4)}",
-                    "char_start": c_start,
-                    "char_end": c_end,
-                    "pages": pages_list,
-                    "text": text,
-                    "sim_merge_scores": sim_merge_scores,
-                    "sim_cohesion": sim_cohesion,
-                }
+            for _, __, rec in buffered_chunks:
                 out_f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-                chunks_written += 1
-                chunk_idx += 1
 
         if verbose:
-            print(f"[OK]  {jp.name} -> {chunks_written} chunks -> {out_file}")
+            print(f"[OK]  {jp.name} -> {len(buffered_chunks)} chunks ({tables_added} table-chunks) -> {out_file}")
 
 
 # ------------------------- helpers -------------------------
@@ -179,7 +228,7 @@ def _ensure_nltk_punkt() -> None:
         nltk.download("punkt")
 
 
-def _segment_units(full_text: str, mode: str) -> Tuple[List[str], List[Tuple[int, int]]]:
+def _segment_units(full_text: str, mode: str) -> "Tuple[List[str], List[Tuple[int, int]]]":
     """
     Return (units, unit_spans)
       units: list of strings
@@ -193,20 +242,15 @@ def _segment_units(full_text: str, mode: str) -> Tuple[List[str], List[Tuple[int
     spans: List[Tuple[int, int]] = []
 
     if mode == "paragraph":
-        # Split on two or more consecutive newlines
-        # Track spans by scanning forward
-        idx = 0
+        # Split on two or more consecutive newlines; track spans
         n = len(full_text)
         start = 0
         i = 0
         while i < n:
-            # detect paragraph boundary: "\n\n" or more
             if full_text[i] == "\n":
-                # count run
                 j = i
                 while j < n and full_text[j] == "\n":
                     j += 1
-                # if at least two, boundary
                 if (j - i) >= 2:
                     if start < i:
                         unit = full_text[start:i]
@@ -216,19 +260,15 @@ def _segment_units(full_text: str, mode: str) -> Tuple[List[str], List[Tuple[int
                     i = j
                     continue
             i += 1
-        # last paragraph
         if start < n:
             units.append(full_text[start:n])
             spans.append((start, n))
-
     else:  # "sentence"
         sents = sent_tokenize(full_text)
-        # Reconstruct spans by searching sequentially (robust against duplicates)
         cursor = 0
         for s in sents:
             pos = full_text.find(s, cursor)
             if pos == -1:
-                # fallback: skip problematic sentence
                 continue
             start = pos
             end = pos + len(s)
@@ -240,17 +280,16 @@ def _segment_units(full_text: str, mode: str) -> Tuple[List[str], List[Tuple[int
 
 
 def _embed_units(model: SentenceTransformer, units: List[str]) -> np.ndarray:
-    # encode returns a 2D numpy array; ensure normalization to unit length for cosine via dot
     vecs = model.encode(units, normalize_embeddings=True, show_progress_bar=False)
     return np.asarray(vecs, dtype=np.float32)
 
 
 def _merge_units_semantically(
-    unit_spans: List[Tuple[int, int]],
+    unit_spans: "List[Tuple[int, int]]",
     embeddings: np.ndarray,
     threshold: float,
     hysteresis: float,
-) -> Tuple[List[List[Tuple[int, int]]], List[float]]:
+) -> "Tuple[List[List[Tuple[int, int]]], List[float]]":
     """
     Greedy merge: build chunks as lists of unit spans.
     Returns (chunks_by_units, merge_scores_flat) where merge_scores_flat is the list of sims that justified merges.
@@ -261,33 +300,26 @@ def _merge_units_semantically(
     chunks: List[List[Tuple[int, int]]] = []
     merge_scores: List[float] = []
 
-    # First chunk starts with unit 0
     current_units = [unit_spans[0]]
     current_vecs = [embeddings[0]]
     current_centroid = embeddings[0].copy()
 
     for i in range(1, len(unit_spans)):
         v = embeddings[i]
-        # cosine similarity to current centroid (centroid is unit-length because inputs are normalized; re-normalize centroid)
         centroid_norm = current_centroid / (np.linalg.norm(current_centroid) + 1e-12)
         sim = float(np.clip(np.dot(centroid_norm, v), -1.0, 1.0))
 
         if sim >= (threshold - hysteresis):
-            # merge
             current_units.append(unit_spans[i])
             current_vecs.append(v)
-            # update centroid as mean then renormalize next loop
             current_centroid = np.mean(np.vstack(current_vecs), axis=0)
             merge_scores.append(sim)
         else:
-            # finalize current chunk
             chunks.append(current_units)
-            # start new chunk
             current_units = [unit_spans[i]]
             current_vecs = [v]
             current_centroid = v.copy()
 
-    # finalize last chunk
     if current_units:
         chunks.append(current_units)
 
@@ -295,21 +327,19 @@ def _merge_units_semantically(
 
 
 def _enforce_char_limit(
-    chunks_by_units: List[List[Tuple[int, int]]],
+    chunks_by_units: "List[List[Tuple[int, int]]]",
     max_chunk_chars: int,
-) -> List[List[Tuple[int, int]]]:
+) -> "List[List[Tuple[int, int]]]":
     """
     For any chunk whose char span exceeds max_chunk_chars, split it into sub-chunks
     at unit boundaries (no overlap).
     """
     finalized: List[List[Tuple[int, int]]] = []
     for chunk_units in chunks_by_units:
-        # fast path
         if (chunk_units[-1][1] - chunk_units[0][0]) <= max_chunk_chars:
             finalized.append(chunk_units)
             continue
 
-        # split by size
         current: List[Tuple[int, int]] = []
         current_start = None
         for span in chunk_units:
@@ -331,33 +361,45 @@ def _enforce_char_limit(
 
 
 def _chunk_similarity_metrics(
-    chunk_units: List[Tuple[int, int]],
-    unit_spans: List[Tuple[int, int]],
+    chunk_units: "List[Tuple[int, int]]",
+    unit_spans: "List[Tuple[int, int]]",
     embeddings: np.ndarray,
-) -> Tuple[List[float], float]:
+) -> "Tuple[List[float], float]":
     """
     Compute:
       - sim_merge_scores: cosine sims for adjacent units that were merged inside this chunk
       - sim_cohesion: average cosine similarity of all unit vectors to the chunk centroid
     """
-    # Gather indices of units in this chunk
-    # map span -> index; since spans are from segmentation, this lookup is safe/deterministic
     span_to_idx = {span: i for i, span in enumerate(unit_spans)}
     idxs = [span_to_idx[s] for s in chunk_units]
     vecs = embeddings[idxs]
 
-    # merge sims = dot between consecutive unit vectors (already normalized)
     sim_merge_scores: List[float] = []
     for a, b in zip(vecs[:-1], vecs[1:]):
         sim_merge_scores.append(float(np.clip(np.dot(a, b), -1.0, 1.0)))
 
-    # cohesion: centroid similarity
     centroid = np.mean(vecs, axis=0)
     centroid_norm = centroid / (np.linalg.norm(centroid) + 1e-12)
     sims = np.dot(vecs, centroid_norm)
     sim_cohesion = float(np.clip(np.mean(sims), -1.0, 1.0))
 
     return sim_merge_scores, sim_cohesion
+
+
+def _table_to_csv(table_2d: "List[List[Optional[str]]]" ) -> str:
+    """
+    Convert a 2D list (rows) into an RFC 4180-compliant CSV string:
+    - Comma delimiter.
+    - Double-quote fields when needed, escaping inner quotes by doubling.
+    - None -> "".
+    - Preserve embedded newlines inside quoted cells.
+    """
+    buf = io.StringIO(newline="")
+    writer = csv.writer(buf, dialect="excel", quoting=csv.QUOTE_MINIMAL)
+    for row in table_2d:
+        safe_row = [("" if (cell is None) else str(cell)) for cell in row]
+        writer.writerow(safe_row)
+    return buf.getvalue()
 
 
 def _build_page_spans_assuming_double_newlines(
