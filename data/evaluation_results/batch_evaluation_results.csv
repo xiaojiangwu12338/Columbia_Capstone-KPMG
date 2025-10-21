@@ -1,0 +1,4 @@
+version_id,status,chunking_method,chunking_params,top_k,rerank,alpha,llm_model,doc_accuracy,page_accuracy,total_tests,error
+exp_001_semantic_k5_gpt-5,success,semantic,"{""threshold"": 0.85, ""max_chars"": 1500}",5,True,0.3,gpt-5,0.364,0.273,11.0,
+exp_002_fix_size_k5_gpt-5,success,fix_size,"{""chunk_size"": 1200, ""overlap"": 150}",5,True,0.3,gpt-5,0.636,0.545,11.0,
+exp_003_asterisk_k5_gpt-5,failed,asterisk,{},5,True,0.3,gpt-5,,,,"Command '['python', 'scripts/ingest_graph.py', '--chunk_dir', 'data/chunks/asterisk_chunking_result']' returned non-zero exit status 1."

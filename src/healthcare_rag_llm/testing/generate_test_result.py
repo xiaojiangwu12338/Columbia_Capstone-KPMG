@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import json
 import os
+import time
 from typing import Dict, Any, List, Optional
+from tqdm import tqdm
 
 from healthcare_rag_llm.embedding.HealthcareEmbedding import HealthcareEmbedding
 from healthcare_rag_llm.llm.llm_client import LLMClient
@@ -87,44 +89,78 @@ class RAGBatchTester:
         results: Dict[str, Any] = {}
         row_counter = 0
 
-        for query_id, payload in tests.items():
-            question = self._extract_question(payload, query_id)
-            for _ in range(self.repeats):
-                row_counter += 1
-                row_name = f"test_id_{row_counter}"
+        # Calculate total iterations
+        total_iterations = len(tests) * self.repeats
 
-                query_vec = self.embedder.encode([question])["dense_vecs"][0].tolist()
-                retrieved_chunks = query_chunks(query_vec, top_k=self.top_k)
+        # Progress bar with time tracking
+        print(f"\n{'='*60}")
+        print(f"Starting RAG Batch Testing")
+        print(f"Total queries: {len(tests)} | Repeats per query: {self.repeats}")
+        print(f"Total iterations: {total_iterations}")
+        print(f"{'='*60}\n")
 
-                context = self._format_context_chunks(retrieved_chunks)
-                user_msg = self._build_user_message(question, context)
+        start_time = time.time()
 
-                llm_text = self.llm_client.chat(
-                    user_prompt=user_msg,
-                    system_prompt=system_prompt,
-                )
+        with tqdm(total=total_iterations, desc="Processing queries", unit="query") as pbar:
+            for query_id, payload in tests.items():
+                question = self._extract_question(payload, query_id)
+                for _ in range(self.repeats):
+                    row_counter += 1
+                    row_name = f"test_id_{row_counter}"
 
-                # Expect strict JSON text from the LLM: {"answer": <str>, "document": {doc_id: [pages]}}
-                parsed_answer: Optional[str] = None
-                parsed_document: Optional[Dict[str, Any]] = None
-                try:
-                    parsed = json.loads(llm_text)
-                    if isinstance(parsed, dict):
-                        parsed_answer = parsed.get("answer")
-                        parsed_document = parsed.get("document")
-                except Exception:
-                    # If parsing fails, keep raw text in answers and leave document as None
-                    parsed_answer = llm_text
-                    parsed_document = None
+                    # Update progress bar description
+                    pbar.set_description(f"Processing {query_id}")
 
-                results[row_name] = {
-                    "query_id": query_id,
-                    "long_version_id": self.long_version_id,
-                    "short_version_id": self.short_version_id,
-                    "top_k_chunks": retrieved_chunks,
-                    "answers": parsed_answer,
-                    "document": parsed_document,
-                }
+                    query_vec = self.embedder.encode([question])["dense_vecs"][0].tolist()
+                    retrieved_chunks = query_chunks(query_vec, top_k=self.top_k)
+
+                    context = self._format_context_chunks(retrieved_chunks)
+                    user_msg = self._build_user_message(question, context)
+
+                    # Measure LLM call time
+                    llm_start = time.time()
+                    llm_text = self.llm_client.chat(
+                        user_prompt=user_msg,
+                        system_prompt=system_prompt,
+                    )
+                    llm_elapsed = time.time() - llm_start
+
+                    # Update progress bar with LLM timing
+                    pbar.set_postfix({"LLM_time": f"{llm_elapsed:.1f}s"})
+
+                    # Expect strict JSON text from the LLM: {"answer": <str>, "document": {doc_id: [pages]}}
+                    parsed_answer: Optional[str] = None
+                    parsed_document: Optional[Dict[str, Any]] = None
+                    try:
+                        parsed = json.loads(llm_text)
+                        if isinstance(parsed, dict):
+                            parsed_answer = parsed.get("answer")
+                            parsed_document = parsed.get("document")
+                    except Exception:
+                        # If parsing fails, keep raw text in answers and leave document as None
+                        parsed_answer = llm_text
+                        parsed_document = None
+
+                    results[row_name] = {
+                        "query_id": query_id,
+                        "long_version_id": self.long_version_id,
+                        "short_version_id": self.short_version_id,
+                        "top_k_chunks": retrieved_chunks,
+                        "answers": parsed_answer,
+                        "document": parsed_document,
+                    }
+
+                    pbar.update(1)
+
+        elapsed_time = time.time() - start_time
+        avg_time = elapsed_time / total_iterations if total_iterations > 0 else 0
+
+        print(f"\n{'='*60}")
+        print(f"Testing completed!")
+        print(f"Total time: {elapsed_time:.2f}s ({elapsed_time/60:.1f} min)")
+        print(f"Average time per query: {avg_time:.2f}s")
+        print(f"Output saved to: {self.output_path}")
+        print(f"{'='*60}\n")
 
         self._write_json(self.output_path, results)
         return results

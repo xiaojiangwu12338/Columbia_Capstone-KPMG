@@ -4,7 +4,7 @@ from typing import Dict, List
 from healthcare_rag_llm.llm.llm_client import LLMClient
 from healthcare_rag_llm.graph_builder.queries import query_chunks
 from healthcare_rag_llm.embedding.HealthcareEmbedding import HealthcareEmbedding
-
+from healthcare_rag_llm.reranking.reranker import apply_rerank_to_chunks
 
 SYSTEM_PROMPT = """
 You are a careful NYS Medicaid policy assistant used in a compliance workflow.
@@ -30,13 +30,14 @@ class ResponseGenerator:
       3. Generating the answer using the LLM
     """
 
-    def __init__(self, llm_client: LLMClient,system_prompt: str = SYSTEM_PROMPT):
+    def __init__(self, llm_client: LLMClient,system_prompt: str = SYSTEM_PROMPT, use_reranker: bool = True):
         """Initialize with a given LLM client."""
         self.system_prompt = system_prompt
         self.llm_client = llm_client
         self.embedder = HealthcareEmbedding()  # Embedding
+        self.use_reranker = use_reranker
 
-    def answer_question(self, question: str, top_k: int = 5) -> Dict:
+    def answer_question(self, question: str, top_k: int = 5, rerank_top_k: int = 20) -> Dict:
         """
         Full question-answering pipeline.
 
@@ -48,16 +49,30 @@ class ResponseGenerator:
         # 1. Encode query as vector
         query_vec = self.embedder.encode([question])["dense_vecs"][0].tolist()
         
-        # 2. Retrieve chunks
-        retrieved_chunks = query_chunks(query_vec, top_k=top_k)
+        # 2. Retrieve more chunks initially (for reranking)
+        initial_k = rerank_top_k if self.use_reranker else top_k
+        retrieved_chunks = query_chunks(query_vec, top_k=initial_k)
+
+        # 3. Apply reranking if enabled
+        if self.use_reranker and retrieved_chunks:
+            retrieved_chunks = apply_rerank_to_chunks(
+                query=question,
+                chunks=retrieved_chunks,
+                combine_with_dense=True,  
+                alpha=0.3,  
+                text_key="text",
+                dense_score_key="score"
+            )
+        #4 Take top k chunks
+        final_chunks = retrieved_chunks[:top_k]
         
         # 3. Context
         context = "\n\n".join(
             [f"[Document ID: {chunk['doc_id']}] -[Chunk ID: {chunk['chunk_id']}]-[pages: {chunk['pages']}] - [Chunk Content: {chunk['text']}]" 
-             for i, chunk in enumerate(retrieved_chunks)]
+             for chunk in final_chunks]
         )
-
-        # 4. User message
+        
+        # 6. Generate response 
         user_msg = f"""
 Question:
 {question}
@@ -83,5 +98,5 @@ Each bullet must have a citation like [doc or doc:page — Mon DD, YYYY].
         return {
             "question": question,
             "answer": llm_response,
-            "retrieved_docs": retrieved_chunks,
+            "retrieved_docs": final_chunks,
         }

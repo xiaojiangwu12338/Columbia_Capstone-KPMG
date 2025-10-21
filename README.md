@@ -90,6 +90,31 @@ Columbia_Capstone-KPMG/
 * **DO NOT** commit files under `data/` (git will ignore them).
 * If you need to share data: use Google Drive/SharePoint.
 
+## System Requirements
+
+### Python Version
+- **Required**: Python 3.9 - 3.12
+- **Recommended**: Python 3.11
+- **Not supported**: Python 3.13+ (PyTorch compatibility)
+
+### Hardware
+
+#### GPU (Highly Recommended for Performance)
+- **Supported**: NVIDIA GPUs (GTX 10 series and newer)
+  - Examples: RTX 4090, RTX 3080, RTX 2070, GTX 1660
+- **Performance**: 10-20x faster than CPU
+- **Unsupported GPUs**: Automatically fall back to CPU
+
+#### CPU Only (Works but Slower)
+- Any modern multi-core processor
+- 8GB+ RAM recommended
+- Expect longer processing times
+
+**Performance Comparison**:
+- GPU (RTX 2070): ~35 seconds for 5000 chunks
+- CPU (Ryzen 7): ~250-500 seconds for 5000 chunks
+
+📖 **See [INSTALLATION.md](INSTALLATION.md) for detailed requirements and setup instructions.**
 
 ## Git Workflow (Team Rules)
 
@@ -152,7 +177,6 @@ Columbia_Capstone-KPMG/
   cd Columbia_Capstone-KPMG
   python3 -m venv .venv
   source .venv/bin/activate
-  pip install -e .
   ```
 
 * **Windows**
@@ -162,10 +186,27 @@ Columbia_Capstone-KPMG/
   cd Columbia_Capstone-KPMG
   python -m venv .venv
   .\.venv\Scripts\activate
-  pip install -e .
   ```
 
-2. Install system dependencies:
+2. Install PyTorch (GPU support recommended):
+
+  ```bash
+  # Universal installation (works on all systems)
+  pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+
+  # This automatically uses GPU if available, CPU otherwise
+  ```
+
+3. Install other dependencies:
+
+  ```bash
+  pip install -e .
+
+  # Download NLTK data (required for semantic chunking)
+  python -c "import nltk; nltk.download('punkt'); nltk.download('punkt_tab')"
+  ```
+
+4. Install system dependencies:
 
 * **macOS**
 
@@ -184,9 +225,15 @@ Columbia_Capstone-KPMG/
   * [Tesseract OCR](https://github.com/UB-Mannheim/tesseract/wiki)
   * Microsoft Word (via COM) **or** LibreOffice
 
-3. Put sample documents under `data/raw/...`
+5. Verify installation:
 
-4. Sample run:
+  ```bash
+  python -c "import torch; print(f'Device: {\"GPU - \" + torch.cuda.get_device_name(0) if torch.cuda.is_available() else \"CPU\"}')"
+  ```
+
+6. Put sample documents under `data/raw/...`
+
+7. Sample run:
 
 * **macOS/Linux**
 

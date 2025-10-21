@@ -11,6 +11,7 @@ sys.path.append(str(Path(__file__).resolve().parents[1] / "src"))
 
 from healthcare_rag_llm.graph_builder.neo4j_loader import Neo4jConnector
 from healthcare_rag_llm.graph_builder.ingest_chunks import ingest_chunks
+from healthcare_rag_llm.embedding.HealthcareEmbedding import HealthcareEmbedding
 
 def main():
     parser = argparse.ArgumentParser(description="Ingest chunked JSONL files into Neo4j graph.")
@@ -55,12 +56,24 @@ def main():
                 for _, row in df.iterrows()
             }
 
-    # Step 4: ingest every file
-    for file in files:
-        print(f"Ingesting {file} ...")
-        ingest_chunks(str(file), doc_metadata)
+    # Step 4: Initialize embedder once (avoid reloading model for each file)
+    print(f"\n{'='*60}")
+    print(f"Initializing HealthcareEmbedding model (one-time setup)...")
+    print(f"{'='*60}")
+    embedder = HealthcareEmbedding()
+    print(f"Model loaded successfully!\n")
 
-    print("All chunks ingested into Neo4j.")
+    # Step 5: ingest every file (reuse embedder)
+    for idx, file in enumerate(files, 1):
+        print(f"\n{'='*60}")
+        print(f"Processing file {idx}/{len(files)}: {file.name}")
+        print(f"{'='*60}")
+        ingest_chunks(str(file), doc_metadata, embedder=embedder)
+
+    print(f"\n{'='*60}")
+    print(f"All chunks ingested into Neo4j.")
+    print(f"Total files processed: {len(files)}")
+    print(f"{'='*60}")
 
 if __name__ == "__main__":
     main()
