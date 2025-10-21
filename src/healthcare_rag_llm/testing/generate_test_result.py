@@ -55,6 +55,8 @@ class RAGBatchTester:
         llm_client: Optional[LLMClient] = None,
         top_k: int = 5,
         repeats: int = 5,
+        use_rerank: bool = False,
+        rerank_alpha: float = 0.3,
     ) -> None:
         self.system_prompt_path = system_prompt_path
         self.testing_queries_path = testing_queries_path
@@ -63,6 +65,8 @@ class RAGBatchTester:
         self.embedding_method = embedding_method
         self.top_k = int(top_k)
         self.repeats = int(repeats)
+        self.use_rerank = use_rerank
+        self.rerank_alpha = rerank_alpha
 
         # Instantiate embedding and LLM client with defaults if not provided
         self.embedder = self.embedding_method()
@@ -71,6 +75,19 @@ class RAGBatchTester:
             if llm_client is not None
             else LLMClient(api_key="", provider="ollama", model="llama3.2:3b")
         )
+
+        # Initialize reranker if needed
+        self.reranker = None
+        if self.use_rerank:
+            from healthcare_rag_llm.reranking.reranker import Reranker, RerankConfig
+            rerank_config = RerankConfig(
+                combine_with_dense=True,
+                alpha=self.rerank_alpha,
+                text_key="text",
+                dense_score_key="score"
+            )
+            self.reranker = Reranker(config=rerank_config)
+            print(f"[INFO] Reranker initialized with alpha={self.rerank_alpha}")
 
         # Derive identifiers
         embedding_name = self.embedding_method.__name__
@@ -112,7 +129,16 @@ class RAGBatchTester:
                     pbar.set_description(f"Processing {query_id}")
 
                     query_vec = self.embedder.encode([question])["dense_vecs"][0].tolist()
-                    retrieved_chunks = query_chunks(query_vec, top_k=self.top_k)
+
+                    # Retrieve more chunks if reranking (to rerank and then select top_k)
+                    retrieval_k = self.top_k * 3 if self.use_rerank else self.top_k
+                    retrieved_chunks = query_chunks(query_vec, top_k=retrieval_k)
+
+                    # Apply reranking if enabled
+                    if self.use_rerank and self.reranker is not None:
+                        retrieved_chunks = self.reranker.rerank_hits(question, retrieved_chunks)
+                        # Take top_k after reranking
+                        retrieved_chunks = retrieved_chunks[:self.top_k]
 
                     context = self._format_context_chunks(retrieved_chunks)
                     user_msg = self._build_user_message(question, context)

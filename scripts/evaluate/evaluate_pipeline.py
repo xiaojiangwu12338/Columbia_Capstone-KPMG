@@ -175,12 +175,7 @@ class EvaluatePipeline:
                     print(f"  Warning: Failed to remove temporary script {test_script}: {e}")
 
     def _create_test_script(self, config: ExperimentConfig) -> str:
-        """Create temporary test script with environment variable for API key
-
-        Note: Rerank parameters (config.retrieval.rerank, alpha) are defined but not yet
-        used by RAGBatchTester. They will be utilized once reranking is integrated
-        into the testing workflow.
-        """
+        """Create temporary test script with reranking support enabled"""
         # Use environment variable for API key instead of hardcoding
         script_content = f'''import os
 from healthcare_rag_llm.testing.generate_test_result import RAGBatchTester
@@ -198,8 +193,7 @@ def main():
         model="{config.llm.model}"
     )
 
-    # Note: rerank={config.retrieval.rerank}, alpha={config.retrieval.alpha}
-    # will be used once RAGBatchTester supports reranking
+    # Reranking is now integrated!
     tester = RAGBatchTester(
         system_prompt_path="configs/system_prompt.txt",
         testing_queries_path="{self.testing_queries_path}",
@@ -208,7 +202,9 @@ def main():
         embedding_method=HealthcareEmbedding,
         llm_client=llm_client,
         top_k={config.retrieval.top_k},
-        repeats=1
+        repeats=1,
+        use_rerank={str(config.retrieval.rerank)},
+        rerank_alpha={config.retrieval.alpha}
     )
 
     tester.run()
@@ -321,16 +317,27 @@ def main():
     chunking_configs = [
         #ChunkingConfig("semantic", {"threshold": 0.80, "max_chars": 2000}),
         ChunkingConfig("semantic", {"threshold": 0.85, "max_chars": 1500}),
+        ChunkingConfig("semantic", {"threshold": 0.70, "max_chars": 2500}),
+        ChunkingConfig("fix_size", {"chunk_size": 1200, "overlap": 150}),
         ChunkingConfig("fix_size", {"chunk_size": 1200, "overlap": 150}),
         #ChunkingConfig("fix_size", {"chunk_size": 800, "overlap": 100}),
         ChunkingConfig("asterisk", {})
     ]
 
-    # Retrieval configurations
+    # Retrieval configurations - Compare baseline vs reranking with different alphas
     retrieval_configs = [
-        #RetrievalConfig(top_k=3),
-        RetrievalConfig(top_k=5),
-        #RetrievalConfig(top_k=7)
+        # === BASELINE (No Reranking) ===
+        RetrievalConfig(top_k=5, rerank=False, alpha=0.0),
+
+        # === WITH RERANKING (Different Alpha Values) ===
+        # alpha=0.3: More weight on reranker (70% rerank, 30% dense)
+        RetrievalConfig(top_k=5, rerank=True, alpha=0.3),
+
+        # alpha=0.5: Equal weight (50% rerank, 50% dense)
+        RetrievalConfig(top_k=5, rerank=True, alpha=0.5),
+
+        # alpha=0.7: More weight on dense search (30% rerank, 70% dense)
+        RetrievalConfig(top_k=5, rerank=True, alpha=0.7),
     ]
 
     # LLM configurations - Use API configuration manager
@@ -345,7 +352,10 @@ def main():
         for retrieval in retrieval_configs:
             for llm in llm_configs:
                 experiment_id += 1
-                version_id = f"exp_{experiment_id:03d}_{chunking.method}_k{retrieval.top_k}_{llm.model}"
+
+                # Generate descriptive version_id with rerank info
+                rerank_suffix = "noRerank" if not retrieval.rerank else f"rerank_a{retrieval.alpha:.1f}"
+                version_id = f"exp_{experiment_id:03d}_{chunking.method}_k{retrieval.top_k}_{rerank_suffix}_{llm.model}"
 
                 experiments.append(ExperimentConfig(
                     chunking=chunking,
