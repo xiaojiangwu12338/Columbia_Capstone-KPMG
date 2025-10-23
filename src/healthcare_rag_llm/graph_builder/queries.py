@@ -3,105 +3,76 @@ from healthcare_rag_llm.graph_builder.neo4j_loader import Neo4jConnector
 from healthcare_rag_llm.embedding.HealthcareEmbedding import HealthcareEmbedding
 import pandas as pd
 
-# def query_chunks(query_embedding, top_k=5):
-#     """
-#     Query chunks using vector similarity search in Neo4j
-    
-#     Args:
-#         query_embedding: Vector embedding of the query text
-#         top_k: Number of top similar chunks to return (default: 5)
-    
-#     Returns:
-#         List of matching chunks with metadata
-#     """
-#     connector = Neo4jConnector()
-#     with connector.driver.session() as session:
-#         # result = session.run("""
-#         # CALL db.index.vector.queryNodes('chunk_vec', $k, $query_embedding)
-#         # YIELD node, score
-#         # MATCH (node)<-[:HAS_CHUNK]-(d:Document)
-#         # RETURN node.chunk_id AS chunk_id, node.text AS text, node.pages AS pages,
-#         #        d.doc_id AS doc_id, d.doc_type AS doc_type,
-#         #        d.effective_date AS effective_date,
-#         #        d.authority AS authority,
-#         #        score
-#         # ORDER BY score ASC
-#         # """, {"query_embedding": query_embedding, "k": top_k})
-
-#         result = session.run("""
-#         CALL db.index.vector.queryNodes('chunk_vec', $k, $query_embedding)
-#         YIELD node, score
-#         MATCH (node)<-[:HAS_CHUNK]-(d:Document)
-#         RETURN node.chunk_id AS chunk_id, node.text AS text, node.pages AS pages,
-#                d.doc_id AS doc_id, d.doc_type AS doc_type,
-#                d.authority AS authority,
-#                score
-#         ORDER BY score ASC
-#         """, {"query_embedding": query_embedding, "k": top_k})
-#         return result.data()
-
-def query_chunks(query_embedding, top_k=5):
+def query_chunks(query_embedding, top_k=5, include_table=True, include_ocr=True):
     """
-    Vector search over Chunk.denseEmbedding, then walk up to Page/Document/Authority.
+    Vector search over Chunk.denseEmbedding, then traverse to Page, Document, and Authority.
+    Optionally include 'table' or 'ocr' type chunks in the search.
     """
     connector = Neo4jConnector()
     with connector.driver.session() as session:
-        result = session.run("""
+        # Build type filter dynamically
+        type_filter = "WHERE c.type = 'text'"
+        if include_table and include_ocr:
+            type_filter = "WHERE c.type IN ['text', 'table', 'ocr']"
+        elif include_table:
+            type_filter = "WHERE c.type IN ['text', 'table']"
+        elif include_ocr:
+            type_filter = "WHERE c.type IN ['text', 'ocr']"
+
+        query = f"""
         CALL db.index.vector.queryNodes('chunk_vec', $k, $query_embedding)
         YIELD node, score
-        MATCH (node)<-[:HAS_CHUNK]-(p:Page)<-[:CONTAINS]-(d:Document)<-[:ISSUED]-(a:Authority)
+        MATCH (c:Chunk {{chunk_id: node.chunk_id}})
+        {type_filter}
+        OPTIONAL MATCH (p:Page)-[:HAS_CHUNK|HAS_TABLE|HAS_OCR]->(c)
+        OPTIONAL MATCH (p)<-[:CONTAINS]-(d:Document)<-[:ISSUED]-(a:Authority)
         RETURN
-          node.chunk_id   AS chunk_id,
-          node.text       AS text,
-          d.doc_id        AS doc_id,
-          d.title         AS title,
-          d.url           AS url,
-          d.doc_type      AS doc_type,
-          d.effective_date AS effective_date,
-          a.name          AS authority,
-          p.page_no       AS page,
-          score
+            c.chunk_id        AS chunk_id,
+            c.text            AS text,
+            c.type            AS chunk_type,
+            d.doc_id          AS doc_id,
+            d.title           AS title,
+            d.url             AS url,
+            d.doc_type        AS doc_type,
+            d.effective_date  AS effective_date,
+            a.name            AS authority,
+            p.page_no         AS page,
+            score
         ORDER BY score ASC
-        """, {"query_embedding": query_embedding, "k": top_k})
+        """
+
+        result = session.run(query, {"query_embedding": query_embedding, "k": top_k})
         data = result.data()
+
     connector.close()
     return data
 
-def check_match_page_level(gt_doc_ids, gt_page_nos, results,only_highest_score=False):
+def check_match_page_level(gt_doc_ids, gt_page_nos, results, only_highest_score=False):
     """
-    Check if retrieval results match the ground truth documents
-    
-    Args:
-        gt_doc_ids: List of ground truth document IDs
-        gt_page_nos: List of ground truth page numbers
-        results: List of retrieval results from query_chunks
-    
-    Returns:
-        bool or None: True if match, False if no match, None if no ground truth
+    Check if retrieval results match the ground truth documents and pages.
     """
+    if not results:
+        return None
+
     if only_highest_score:
-        results = [result for result in results if result["score"] == max(result["score"] for result in results)]
-    
-    if not gt_doc_ids:  # If no ground truth documents
-        return None  # Return None to indicate cannot evaluate
-    
-    doc_id_results = [result["doc_id"] for result in results]
-    chunk_page_results = [result["pages"] for result in results]
-    # Check document ID matching
-    for i,gt_doc_id in enumerate(gt_doc_ids):
-        if gt_doc_id not in doc_id_results:
+        max_score = max(r["score"] for r in results)
+        results = [r for r in results if r["score"] == max_score]
+
+    if not gt_doc_ids:
+        return None
+
+    # Build helper lookups
+    doc_page_map = {}
+    for r in results:
+        doc_page_map.setdefault(r["doc_id"], set()).add(r.get("page"))
+
+    for i, gt_doc_id in enumerate(gt_doc_ids):
+        if gt_doc_id not in doc_page_map:
             return False
-        p = []
-        for r in results:
-            if r["doc_id"]  == gt_doc_id:
-                for j in r["pages"]:
-                    p.append(j)
-        for gt_p in gt_page_nos[i]:
-            if gt_p not in p:
-                return False
-    
-    # Note: Current query results don't include page field, need to modify query for page matching
-    # For now, only check document matching
+        gt_pages = set(gt_page_nos[i])
+        # Compare with retrieved page numbers
+        if not gt_pages.issubset(doc_page_map[gt_doc_id]):
+            return False
     return True
 
 def check_match_doc_level(gt_doc_ids, results,only_highest_score=False):
@@ -191,8 +162,6 @@ if __name__ == "__main__":
     }       
 }
 
-
-
     # Create results DataFrame
     result_pd = pd.DataFrame(columns=["Query", "Ground Truth", "Match Flag_page_level", "Match Flag_doc_level","Top 5 Results",])
     
@@ -207,19 +176,19 @@ if __name__ == "__main__":
         ground_truth_page_no = list(ground_truth.values())
 
         query_vec = embedder.encode([query])["dense_vecs"][0].tolist()
-        top_5_results = query_chunks(query_vec, top_k=5)
+        top_5_results = query_chunks(query_vec, top_k=5, include_table=True, include_ocr=True)
         
         match_Flag_page_level = check_match_page_level(ground_truth_document, ground_truth_page_no, top_5_results)
         match_Flag_doc_level = check_match_doc_level(ground_truth_document, top_5_results)
         
-
         simplified_results = []
         for i, result in enumerate(top_5_results):
             simplified_results.append({
                 "rank": i + 1,
                 "doc_id": result["doc_id"],
-                "pages": result["pages"],
-                "score": result["score"]
+                "page": result.get("page"),
+                "score": result["score"],
+                "chunk_type": result.get("chunk_type")
             })
 
         new_row = pd.DataFrame({
