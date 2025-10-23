@@ -48,7 +48,6 @@ class HealthcareEmbedding:
         if torch.cuda.is_available():
             gpu_name = torch.cuda.get_device_name(0)
             gpu_memory = torch.cuda.get_device_properties(0).total_memory / (1024**3)
-
             print(f"[GPU] Detected: {gpu_name} ({gpu_memory:.1f} GB VRAM)")
 
             # Check if it's actually an NVIDIA GPU
@@ -62,6 +61,15 @@ class HealthcareEmbedding:
                 use_fp16 = True
             print(f"  Using FP16 precision for faster inference")
             print(f"  Expected performance: ~100-250 chunks/second\n")
+            device = "cuda"
+        elif torch.backends.mps.is_available():
+            print(f"[GPU] Detected Apple Silicon (M1/M2/M3) with Metal Performance Shaders (MPS)")
+            print(f"  PyTorch MPS backend will be used for GPU acceleration.")
+            device = "mps"
+            # Apple MPS not support FP16, keep FP32
+            if use_fp16 is None:
+                use_fp16 = False
+            print(f"  Expected performance: ~40-80 chunks/second\n")
         else:
             print(f"[CPU] No NVIDIA GPU detected, using CPU")
             print(f"  Performance: ~10-20x slower than GPU")
@@ -77,11 +85,11 @@ class HealthcareEmbedding:
             # Auto-disable FP16 for CPU
             if use_fp16 is None:
                 use_fp16 = False
-
+            device = 'cpu'
         # Load the model
         print(f"Loading BGE-M3 model (BAAI/bge-m3)...")
         print(f"  This may take 5-15 seconds on first run...")
-        self.model = BGEM3FlagModel('BAAI/bge-m3', use_fp16=use_fp16)
+        self.model = BGEM3FlagModel('BAAI/bge-m3', use_fp16=use_fp16, device=device)
         print(f"[OK] Model loaded successfully!\n")
     
     def encode(self,text:list[str],return_dense=True,return_sparse=True,return_colbert_vecs=True):
