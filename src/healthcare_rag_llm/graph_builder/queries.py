@@ -3,42 +3,69 @@ from healthcare_rag_llm.graph_builder.neo4j_loader import Neo4jConnector
 from healthcare_rag_llm.embedding.HealthcareEmbedding import HealthcareEmbedding
 import pandas as pd
 
+# def query_chunks(query_embedding, top_k=5):
+#     """
+#     Query chunks using vector similarity search in Neo4j
+    
+#     Args:
+#         query_embedding: Vector embedding of the query text
+#         top_k: Number of top similar chunks to return (default: 5)
+    
+#     Returns:
+#         List of matching chunks with metadata
+#     """
+#     connector = Neo4jConnector()
+#     with connector.driver.session() as session:
+#         # result = session.run("""
+#         # CALL db.index.vector.queryNodes('chunk_vec', $k, $query_embedding)
+#         # YIELD node, score
+#         # MATCH (node)<-[:HAS_CHUNK]-(d:Document)
+#         # RETURN node.chunk_id AS chunk_id, node.text AS text, node.pages AS pages,
+#         #        d.doc_id AS doc_id, d.doc_type AS doc_type,
+#         #        d.effective_date AS effective_date,
+#         #        d.authority AS authority,
+#         #        score
+#         # ORDER BY score ASC
+#         # """, {"query_embedding": query_embedding, "k": top_k})
+
+#         result = session.run("""
+#         CALL db.index.vector.queryNodes('chunk_vec', $k, $query_embedding)
+#         YIELD node, score
+#         MATCH (node)<-[:HAS_CHUNK]-(d:Document)
+#         RETURN node.chunk_id AS chunk_id, node.text AS text, node.pages AS pages,
+#                d.doc_id AS doc_id, d.doc_type AS doc_type,
+#                d.authority AS authority,
+#                score
+#         ORDER BY score ASC
+#         """, {"query_embedding": query_embedding, "k": top_k})
+#         return result.data()
+
 def query_chunks(query_embedding, top_k=5):
     """
-    Query chunks using vector similarity search in Neo4j
-    
-    Args:
-        query_embedding: Vector embedding of the query text
-        top_k: Number of top similar chunks to return (default: 5)
-    
-    Returns:
-        List of matching chunks with metadata
+    Vector search over Chunk.denseEmbedding, then walk up to Page/Document/Authority.
     """
     connector = Neo4jConnector()
     with connector.driver.session() as session:
-        # result = session.run("""
-        # CALL db.index.vector.queryNodes('chunk_vec', $k, $query_embedding)
-        # YIELD node, score
-        # MATCH (node)<-[:HAS_CHUNK]-(d:Document)
-        # RETURN node.chunk_id AS chunk_id, node.text AS text, node.pages AS pages,
-        #        d.doc_id AS doc_id, d.doc_type AS doc_type,
-        #        d.effective_date AS effective_date,
-        #        d.authority AS authority,
-        #        score
-        # ORDER BY score ASC
-        # """, {"query_embedding": query_embedding, "k": top_k})
-
         result = session.run("""
         CALL db.index.vector.queryNodes('chunk_vec', $k, $query_embedding)
         YIELD node, score
-        MATCH (node)<-[:HAS_CHUNK]-(d:Document)
-        RETURN node.chunk_id AS chunk_id, node.text AS text, node.pages AS pages,
-               d.doc_id AS doc_id, d.doc_type AS doc_type,
-               d.authority AS authority,
-               score
+        MATCH (node)<-[:HAS_CHUNK]-(p:Page)<-[:CONTAINS]-(d:Document)<-[:ISSUED]-(a:Authority)
+        RETURN
+          node.chunk_id   AS chunk_id,
+          node.text       AS text,
+          d.doc_id        AS doc_id,
+          d.title         AS title,
+          d.url           AS url,
+          d.doc_type      AS doc_type,
+          d.effective_date AS effective_date,
+          a.name          AS authority,
+          p.page_no       AS page,
+          score
         ORDER BY score ASC
         """, {"query_embedding": query_embedding, "k": top_k})
-        return result.data()
+        data = result.data()
+    connector.close()
+    return data
 
 def check_match_page_level(gt_doc_ids, gt_page_nos, results,only_highest_score=False):
     """
