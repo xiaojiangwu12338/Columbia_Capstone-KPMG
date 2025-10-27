@@ -36,7 +36,7 @@ def query_chunks(query_embedding, top_k=5, include_table=True, include_ocr=True)
             d.doc_type        AS doc_type,
             d.effective_date  AS effective_date,
             a.name            AS authority,
-            p.page_no         AS page,
+            c.pages           AS pages,
             score
         ORDER BY score ASC
         """
