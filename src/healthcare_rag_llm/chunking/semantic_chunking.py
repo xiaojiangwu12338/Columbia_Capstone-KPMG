@@ -5,33 +5,91 @@ import json
 import csv
 import io
 from typing import List, Dict, Optional, Tuple
+import warnings
+
+# Semantic chunking dependencies
+import numpy as np
+import nltk
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
+
+# Ensure NLTK data is available
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt', quiet=True)
+try:
+    nltk.data.find('tokenizers/punkt_tab')
+except LookupError:
+    nltk.download('punkt_tab', quiet=True)
 
 
 def semantic_chunking(
     processed_dir: str,
     chunked_dir: str,
     max_chunk_chars: int = 5000,
+    model_name: str = "sentence-transformers/all-MiniLM-L6-v2",
+    unit: str = "sentence",
+    similarity_threshold: float = 0.80,
+    hysteresis: float = 0.02,
     glob_pattern: str = "*.json",
     verbose: bool = True,
 ) -> None:
     """
-    Semantic-based chunking with sentence or paragraph awareness.
-    - Preserves paragraph and semantic boundaries when possible.
-    - Each chunk <= max_chunk_chars.
-    - Tables become standalone chunks (CSV formatted).
+    Semantic-based chunking using sentence-transformers embeddings.
+
+    Algorithm:
+    1. Tokenize text into sentences or paragraphs (based on 'unit')
+    2. Generate embeddings for each unit using sentence-transformers
+    3. Calculate cosine similarity between adjacent units
+    4. Merge units based on similarity threshold with hysteresis:
+       - similarity > threshold + hysteresis/2: merge
+       - similarity < threshold - hysteresis/2: split
+       - in between: maintain current state (reduces jitter)
+    5. Ensure chunks don't exceed max_chunk_chars
+
+    Args:
+        processed_dir: Directory containing parsed JSON files
+        chunked_dir: Base directory for chunk output
+        max_chunk_chars: Maximum characters per chunk (default: 5000)
+        model_name: Sentence-transformers model name (default: all-MiniLM-L6-v2)
+        unit: Segmentation unit - "sentence" or "paragraph" (default: sentence)
+        similarity_threshold: Cosine similarity threshold for merging (default: 0.80)
+        hysteresis: Similarity hysteresis to reduce jitter (default: 0.02)
+        glob_pattern: Pattern to match input files (default: "*.json")
+        verbose: Print progress information (default: True)
+
+    Output:
+        <chunked_dir>/semantic_chunking_result/<stem>.chunks.jsonl
 
     NEW:
     - OCR fallback merge for page-level text.
     - OCR image chunks from ocr_fallback.
     """
+    # Validate parameters
+    if unit not in ["sentence", "paragraph"]:
+        raise ValueError(f"unit must be 'sentence' or 'paragraph', got '{unit}'")
+    if not 0.0 <= similarity_threshold <= 1.0:
+        raise ValueError(f"similarity_threshold must be in [0, 1], got {similarity_threshold}")
+    if hysteresis < 0:
+        raise ValueError(f"hysteresis must be non-negative, got {hysteresis}")
+
     processed_dir = Path(processed_dir)
     chunked_base = Path(chunked_dir)
     output_dir = chunked_base / "semantic_chunking_result"
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    # Load sentence-transformers model (once for all documents)
+    if verbose:
+        print(f"[INFO] Loading sentence-transformers model: {model_name}")
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")  # Suppress model loading warnings
+        model = SentenceTransformer(model_name)
+
     json_paths = sorted(processed_dir.glob(glob_pattern))
     if verbose:
         print(f"[INFO] Found {len(json_paths)} JSON files in {processed_dir}")
+        print(f"[INFO] Chunking parameters: unit={unit}, threshold={similarity_threshold}, hysteresis={hysteresis}")
 
     for jp in json_paths:
         # Load metadata
@@ -88,34 +146,113 @@ def semantic_chunking(
                 print(f"[SKIP] {jp.name} (empty after OCR merge)")
             continue
 
-        # --- Semantic chunking logic (original part) ---
-        # Example: split on double newlines or semantic cues.
-        paragraphs = [p.strip() for p in full_text.split("\n\n") if p.strip()]
-        chunks: List[str] = []
-        current = ""
-        for para in paragraphs:
-            if len(current) + len(para) + 2 <= max_chunk_chars:
-                current += ("\n\n" if current else "") + para
-            else:
-                if current:
-                    chunks.append(current)
-                current = para
-        if current:
-            chunks.append(current)
+        # --- Semantic chunking logic ---
+        # Step 1: Tokenize full_text into units (sentences or paragraphs) with position tracking
+        if unit == "sentence":
+            # Use NLTK sentence tokenizer with span information
+            units = []
+            unit_spans = []
+            for start, end in nltk.tokenize.punkt.PunktSentenceTokenizer().span_tokenize(full_text):
+                units.append(full_text[start:end])
+                unit_spans.append((start, end))
+        else:  # paragraph
+            # Split on double newlines and track positions
+            units = []
+            unit_spans = []
+            cursor = 0
+            for para in full_text.split("\n\n"):
+                para_stripped = para.strip()
+                if para_stripped:
+                    # Find position in original text
+                    start = full_text.find(para_stripped, cursor)
+                    if start != -1:
+                        end = start + len(para_stripped)
+                        units.append(para_stripped)
+                        unit_spans.append((start, end))
+                        cursor = end
+
+        # Handle edge case: empty or single unit
+        if not units:
+            chunks_with_info = []
+        elif len(units) == 1:
+            chunks_with_info = [{"text": units[0], "start": unit_spans[0][0], "end": unit_spans[0][1]}]
+        else:
+            # Step 2: Generate embeddings for all units
+            if verbose:
+                print(f"  Generating embeddings for {len(units)} {unit}s...")
+            unit_embeddings = model.encode(units, show_progress_bar=False, convert_to_numpy=True)
+
+            # Step 3: Apply semantic chunking with hysteresis
+            chunks_with_info = []
+            current_chunk_units = [units[0]]
+            current_chunk_unit_indices = [0]
+            current_chunk_embeddings = [unit_embeddings[0]]
+
+            upper_threshold = similarity_threshold + hysteresis / 2
+            lower_threshold = similarity_threshold - hysteresis / 2
+
+            for i in range(1, len(units)):
+                # Calculate similarity between current chunk average and next unit
+                current_avg_embedding = np.mean(current_chunk_embeddings, axis=0).reshape(1, -1)
+                next_embedding = unit_embeddings[i].reshape(1, -1)
+                similarity = cosine_similarity(current_avg_embedding, next_embedding)[0][0]
+
+                # Hysteresis-based decision
+                should_merge = similarity > upper_threshold
+                should_split = similarity < lower_threshold
+
+                # Check if adding would exceed max_chunk_chars
+                potential_chunk = " ".join(current_chunk_units + [units[i]])
+                would_exceed_limit = len(potential_chunk) > max_chunk_chars
+
+                if should_split or would_exceed_limit:
+                    # Save current chunk with position info
+                    chunk_start = unit_spans[current_chunk_unit_indices[0]][0]
+                    chunk_end = unit_spans[current_chunk_unit_indices[-1]][1]
+                    chunks_with_info.append({
+                        "text": " ".join(current_chunk_units),
+                        "start": chunk_start,
+                        "end": chunk_end
+                    })
+                    # Start new chunk
+                    current_chunk_units = [units[i]]
+                    current_chunk_unit_indices = [i]
+                    current_chunk_embeddings = [unit_embeddings[i]]
+                else:
+                    # Merge (either high similarity or in hysteresis zone)
+                    current_chunk_units.append(units[i])
+                    current_chunk_unit_indices.append(i)
+                    current_chunk_embeddings.append(unit_embeddings[i])
+
+            # Don't forget the last chunk
+            if current_chunk_units:
+                chunk_start = unit_spans[current_chunk_unit_indices[0]][0]
+                chunk_end = unit_spans[current_chunk_unit_indices[-1]][1]
+                chunks_with_info.append({
+                    "text": " ".join(current_chunk_units),
+                    "start": chunk_start,
+                    "end": chunk_end
+                })
 
         stem = Path(file_name).stem
         out_file = output_dir / f"{stem}.chunks.jsonl"
 
+        # Total length for page estimation
+        total_len = len(full_text)
+
         buffered_chunks: List[Dict] = []
         chunk_idx = 0
-        for text in chunks:
+        for chunk_info in chunks_with_info:
+            # Estimate pages for this chunk span
+            pages_list = _estimate_pages_for_span(pages, chunk_info["start"], chunk_info["end"], total_len)
+
             rec = {
                 "doc_id": file_name,
                 "chunk_id": f"{file_name}::{str(chunk_idx).zfill(4)}",
-                "char_start": None,
-                "char_end": None,
-                "pages": [],  # optional: could map later
-                "text": text,
+                "char_start": chunk_info["start"],
+                "char_end": chunk_info["end"],
+                "pages": pages_list,
+                "text": chunk_info["text"],
                 "chunk_type": "text"
             }
             buffered_chunks.append(rec)
@@ -183,3 +320,26 @@ def _table_to_csv(table_2d: List[List[Optional[str]]]) -> str:
         safe_row = [("" if (cell is None) else str(cell)) for cell in row]
         writer.writerow(safe_row)
     return buf.getvalue()
+
+
+def _estimate_pages_for_span(
+    pages: List[Dict], c_start: int, c_end: int, total_len: int
+) -> List[int]:
+    """
+    Heuristic: map chunk span back to pages based on cumulative text lengths.
+    """
+    out = []
+    cursor = 0
+    for p in pages:
+        page_no = int(p.get("page"))
+        page_text = p.get("text", "") or ""
+        length = len(page_text)
+        page_start = cursor
+        page_end = cursor + length
+        cursor += length + 2  # approximate newline gap
+        if page_end <= c_start:
+            continue
+        if page_start >= c_end:
+            break
+        out.append(page_no)
+    return out

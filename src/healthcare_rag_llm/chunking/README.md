@@ -10,9 +10,17 @@ the processed and chunked directory defined in `configs/ingest_parse.yaml`.
 ## Methods
 
 ### 1. Fixed-Size (`fix_size_chunking.py`)
-- Splits text into fixed-size character chunks.
-- Tracks page numbers spanned.
-- **Params:** `chunk_size`, `overlap` (optional).
+- Splits text into fixed-size character chunks with optional overlap.
+- Tracks page numbers spanned by each chunk.
+- **Params:**
+  - `max_chunk_chars` (int, default: 5000): Maximum characters per chunk
+  - `overlap` (int, default: 0): Number of overlapping characters between consecutive chunks
+  - `glob_pattern` (str, default: "*.json"): File pattern to process
+- **Recommended values:**
+  - `max_chunk_chars=1200, overlap=150` (12.5% overlap for standard documents)
+  - `overlap=0` for baseline with no overlap
+- **OCR Support:** OCR content merged into `full_text` is handled uniformly with overlap.
+- **CLI Usage:** `python scripts/do_fix_size_chunking.py --max-chars 1200 --overlap 150`
 - **Output:** `data/chunks/fix_size_chunking_result`.
 
 ### 2. Asterisk-Separated (`pattern_chunking.py`)

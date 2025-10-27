@@ -1,0 +1,127 @@
+{
+  "metadata": {
+    "test_results_file": "data/test_results/exp_001_semantic_k5_noRerank_gpt-5.json",
+    "ground_truth_file": null,
+    "evaluator_model": "gpt-5",
+    "total_tests": 11
+  },
+  "results": {
+    "test_id_1": {
+      "query": "Test_query_1",
+      "answer": "- \"The Consolidated Appropriations Act of 2023 required states to begin the process of redetermining Medicaid eligibility for its members, which New York State (NYS) began in April 2023.\" [mu_no02_feb25_pr.pdf:3]",
+      "evaluations": {
+        "faithfulness": {
+          "score": 1.0,
+          "reasoning": "The statement is verbatim supported by the source. Chunk 6 (mu_no02_feb25_pr.pdf, page 3) explicitly states that the Consolidated Appropriations Act of 2023 required states to begin redetermining Medicaid eligibility, and that New York State began this process in April 2023. The citation matches the content and page.",
+          "unsupported_claims": []
+        },
+        "answer_relevance": {
+          "score": 0.0,
+          "reasoning": "The query 'Test_query_1' provides no specific topic or question, and the answer discusses Medicaid redeterminations in NYS, which does not align with or address the query. Therefore, it is off-topic and does not answer the question.",
+          "missing_aspects": [
+            "Clarification of what 'Test_query_1' is asking",
+            "Any direct response to the query's subject",
+            "Relevant details tied to the query"
+          ]
+        },
+        "citation_quality": {
+          "score": 1.0,
+          "reasoning": "The citation is properly formatted as [doc_id:page], matches an available chunk (mu_no02_feb25_pr.pdf, page 3), and plausibly supports the full claim. The doc ID and page number are accurate and present in the provided chunks. All claims in the sentence are covered by the single citation.",
+          "issues": []
+        },
+        "completeness": {
+          "score": 0.65,
+          "reasoning": "The answer correctly captures the key point from chunk 5 about the Consolidated Appropriations Act of 2023 and NYS beginning redeterminations in April 2023. However, it omits important context from chunk 4 about the COVID-19 Public Health Emergency pausing annual eligibility reviews and providing continuous coverage, and that the resumption applies to Medicaid, Child Health Plus, and the Essential Plan. It also doesn't mention the communications toolkit or the broader safety-net context from chunk 3. It does not acknowledge any insufficiency of information.",
+          "missing_info": [
+            "During the COVID-19 PHE, NYS paused annual eligibility reviews and provided continuous coverage (chunk 4).",
+            "Resumption of eligibility reviews applies to Medicaid, Child Health Plus, and the Essential Plan (chunk 4).",
+            "Availability of a communications toolkit to help educate consumers on renewals (chunk 4).",
+            "NY State of Health served as a safety net for over 6.5 million New Yorkers during the PHE, enabled by the Affordable Care Act (chunk 3)."
+          ]
+        }
+      },
+      "overall_score": 0.68,
+      "weights_used": {
+        "faithfulness": 0.35,
+        "answer_relevance": 0.25,
+        "citation_quality": 0.2,
+        "completeness": 0.2
+      }
+    },
+    "test_id_2": {
+      "query": "Test_query_2",
+      "answer": "- \"This guidance is intended to clarify the New York State (NYS) Medicaid program telehealth policy, including use of audio-only technology, following the federally declared Coronavirus Disease 2019 (COVID-19) Public Health Emergency (PHE), which ends on May 11, 2023.\" [mu_no3_feb23_speced_pr.pdf:? — February 2023]",
+      "evaluations": {
+        "faithfulness": {
+          "score": 1.0,
+          "reasoning": "The answer is a verbatim quote from Chunk 5, including the specifics that the guidance clarifies NYS Medicaid telehealth policy, includes audio-only technology, and notes the COVID-19 PHE ends on May 11, 2023. The cited document name and date (February 2023) also match the chunk. No additional or inferred information is present.",
+          "unsupported_claims": []
+        },
+        "answer_relevance": {
+          "score": 0.0,
+          "reasoning": "The query is undefined ('Test_query_2') and the answer discusses NYS Medicaid telehealth policy post-COVID PHE, which does not correspond to any identifiable question in the query. It does not address the query, is off-topic, and lacks completeness relative to the unspecified request.",
+          "missing_aspects": [
+            "Clarification of what 'Test_query_2' refers to",
+            "Direct response to the actual question or topic",
+            "Relevant details or evidence tied to the query's intent"
+          ]
+        },
+        "citation_quality": {
+          "score": 0.0,
+          "reasoning": "Failed to parse LLM response: Invalid control character at: line 6 column 60 (char 513)",
+          "error": "Invalid control character at: line 6 column 60 (char 513)",
+          "raw_response": "{\n  \"score\": 0.35,\n  \"reasoning\": \"The citation uses the correct document ID present in the available chunks, but it fails to provide a valid page number and does not follow the expected formatting. The separator and date formatting do not match the specified citation format. While the factual claim is cited to a plausible document, the accuracy cannot be confirmed due to the missing page number.\",\n  \"issues\": [\n    \"Missing page number (uses '?')\",\n    \"Incorrect citation format (does not use t"
+        },
+        "completeness": {
+          "score": 0.35,
+          "reasoning": "The answer quotes a relevant line from the February 2023 telehealth guidance (chunk 5), correctly noting the PHE end date and that the guidance covers audio-only telehealth. However, it ignores other relevant context provided, such as the NY State of Health provider fact sheet on the PHE unwind (chunks 2/3 with URL), the background on the Telehealth Provider Survey (chunk 1), and the ACA-enabled role and coverage scale during the PHE (chunk 4). It also does not acknowledge that additional related information exists or that its coverage is limited.",
+          "missing_info": [
+            "NY State of Health provider fact sheet on 'Unwinding the Public Health Emergency' with the URL (chunks 2 and 3).",
+            "Background on the NYS DOH Telehealth Provider Survey conducted Aug–Oct 2023 (chunk 1).",
+            "Statement that NY State of Health served as a critical safety net for over 6.5 million New Yorkers during the PHE (chunk 4).",
+            "Full context/title of the special edition guidance, including that it covers telephonic services after the PHE and its volume/issue info (chunk 5)."
+          ]
+        }
+      },
+      "overall_score": 0.42,
+      "weights_used": {
+        "faithfulness": 0.35,
+        "answer_relevance": 0.25,
+        "citation_quality": 0.2,
+        "completeness": 0.2
+      }
+    }
+  },
+  "summary": {
+    "faithfulness": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "count": 2
+    },
+    "answer_relevance": {
+      "mean": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "count": 2
+    },
+    "citation_quality": {
+      "mean": 0.5,
+      "min": 0.0,
+      "max": 1.0,
+      "count": 2
+    },
+    "completeness": {
+      "mean": 0.5,
+      "min": 0.35,
+      "max": 0.65,
+      "count": 2
+    },
+    "overall": {
+      "mean": 0.55,
+      "min": 0.42,
+      "max": 0.68,
+      "count": 2
+    }
+  }
+}

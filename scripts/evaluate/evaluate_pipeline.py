@@ -95,22 +95,21 @@ class EvaluatePipeline:
             "--model", params.get("model", "sentence-transformers/all-MiniLM-L6-v2"),
             "--threshold", str(params.get("threshold", 0.80)),
             "--max-chars", str(params.get("max_chars", 2000)),
-            "--unit", params.get("unit", "sentence")
+            "--unit", params.get("unit", "sentence"),
+            "--hysteresis", str(params.get("hysteresis", 0.02))
         ]
         print(f"  Running: {' '.join(cmd)}")
         subprocess.run(cmd, check=True, timeout=self.timeout_chunking)
 
     def _run_fix_size_chunking(self, params: Dict[str, Any]):
-        """Run fix size chunking
-
-        Note: Current implementation uses hardcoded values in do_fix_size_chunking.py
-        Parameters in 'params' dict are not used until script is updated.
-        """
+        """Run fix size chunking with configurable parameters"""
         cmd = [
-            "python", "scripts/do_fix_size_chunking.py"
+            "python", "scripts/do_fix_size_chunking.py",
+            "--max-chars", str(params.get("max_chars", 1200)),
+            "--overlap", str(params.get("overlap", 150)),
+            "--pattern", params.get("pattern", "*.json")
         ]
         print(f"  Running: {' '.join(cmd)}")
-        print(f"  Note: Using hardcoded chunk_size=1200, overlap=150 (params not supported yet)")
         subprocess.run(cmd, check=True, timeout=self.timeout_chunking)
 
     def _run_asterisk_chunking(self, params: Dict[str, Any]):
@@ -315,23 +314,24 @@ def main():
 
     # Chunking method configurations
     chunking_configs = [
+        # Semantic chunking - different thresholds
         #ChunkingConfig("semantic", {"threshold": 0.80, "max_chars": 2000}),
         ChunkingConfig("semantic", {"threshold": 0.85, "max_chars": 1500}),
-        ChunkingConfig("semantic", {"threshold": 0.70, "max_chars": 2500}),
-        ChunkingConfig("fix_size", {"chunk_size": 1200, "overlap": 150}),
-        ChunkingConfig("fix_size", {"chunk_size": 1200, "overlap": 150}),
-        #ChunkingConfig("fix_size", {"chunk_size": 800, "overlap": 100}),
+        # ChunkingConfig("semantic", {"threshold": 0.70, "max_chars": 2500}),
+
+        # Fix-size chunking - test different chunk sizes and overlap values
+        ChunkingConfig("fix_size", {"max_chars": 1200, "overlap": 150}),  # Default recommended
+        #ChunkingConfig("fix_size", {"max_chars": 800, "overlap": 100}),  # Smaller chunks
+        ChunkingConfig("fix_size", {"max_chars": 2000, "overlap": 250}), # Larger chunks
+
+        # Asterisk chunking
         ChunkingConfig("asterisk", {})
     ]
 
     # Retrieval configurations - Compare baseline vs reranking with different alphas
     retrieval_configs = [
         # === BASELINE (No Reranking) ===
-        RetrievalConfig(top_k=5, rerank=False, alpha=0.0),
-
-        # === WITH RERANKING (Different Alpha Values) ===
-        # alpha=0.3: More weight on reranker (70% rerank, 30% dense)
-        RetrievalConfig(top_k=5, rerank=True, alpha=0.3),
+        # RetrievalConfig(top_k=5, rerank=False, alpha=0.0),
 
         # alpha=0.5: Equal weight (50% rerank, 50% dense)
         RetrievalConfig(top_k=5, rerank=True, alpha=0.5),

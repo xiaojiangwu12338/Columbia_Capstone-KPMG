@@ -11,13 +11,25 @@ def fix_size_chunking(
     processed_dir: str,
     chunked_dir: str,
     max_chunk_chars: int = 5000,
+    overlap: int = 0,
     glob_pattern: str = "*.json",
     verbose: bool = True,
 ) -> None:
     """
-    Fixed-size chunking (no overlap).
+    Fixed-size chunking with optional overlap.
     - Each chunk has at most max_chunk_chars characters.
+    - Chunks overlap by 'overlap' characters (default: 0 for no overlap).
+    - overlap must be less than max_chunk_chars to prevent infinite loops.
     - Table data from metadata["tables"] are exported as separate chunks (CSV-formatted).
+    - OCR content merged into full_text is handled uniformly with overlap.
+
+    Args:
+        processed_dir: Directory containing parsed JSON files
+        chunked_dir: Base directory for chunk output
+        max_chunk_chars: Maximum characters per chunk (default: 5000)
+        overlap: Number of overlapping characters between consecutive chunks (default: 0)
+        glob_pattern: Pattern to match input files (default: "*.json")
+        verbose: Print progress information (default: True)
 
     Output:
       <chunked_dir>/fix_size_chunking_result/<stem>.chunks.jsonl
@@ -32,6 +44,12 @@ def fix_size_chunking(
         "chunk_type": "text" or "table" or "ocr_image"   # NEW
       }
     """
+    # Validate parameters
+    if overlap < 0:
+        raise ValueError(f"overlap must be non-negative, got {overlap}")
+    if overlap >= max_chunk_chars:
+        raise ValueError(f"overlap ({overlap}) must be less than max_chunk_chars ({max_chunk_chars})")
+
     processed_dir = Path(processed_dir)
     chunked_base = Path(chunked_dir)
     output_dir = chunked_base / "fix_size_chunking_result"
@@ -39,7 +57,9 @@ def fix_size_chunking(
 
     json_paths = sorted(processed_dir.glob(glob_pattern))
     if verbose:
+        overlap_info = f" with overlap={overlap}" if overlap > 0 else ""
         print(f"[INFO] Found {len(json_paths)} JSON files in {processed_dir}")
+        print(f"[INFO] Chunking parameters: max_chunk_chars={max_chunk_chars}{overlap_info}")
 
     for jp in json_paths:
         # Load parsed metadata
@@ -122,7 +142,13 @@ def fix_size_chunking(
             }
             buffered_chunks.append(rec)
             chunk_idx += 1
-            cursor = c_end
+
+            # Apply overlap: move cursor back by overlap amount
+            cursor = c_end - overlap
+
+            # Safety check: ensure forward progress to prevent infinite loop
+            if cursor <= c_start:
+                cursor = c_start + max(1, max_chunk_chars // 2)
 
         # --- Table chunks ---
         tables = meta.get("tables") or []
