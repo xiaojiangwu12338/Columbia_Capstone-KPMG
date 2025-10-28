@@ -2,9 +2,9 @@
     "summary": {
         "total_tests": 11,
         "doc_level_correct": 5,
-        "page_level_correct": 0,
+        "page_level_correct": 4,
         "doc_level_accuracy": 0.455,
-        "page_level_accuracy": 0.0,
+        "page_level_accuracy": 0.364,
         "k_ranks": null
     },
     "details": {
@@ -14,10 +14,10 @@
             "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
             "predicted_docs": [
                 "mu_no6_mar23_pr.pdf",
-                "mu_no7_jun22_pr.pdf",
-                "mu_no3_mar22_pr.pdf",
                 "mu_no02_feb25_pr.pdf",
-                "mu_no8_aug24_pr.pdf"
+                "mu_no8_aug24_pr.pdf",
+                "mu_no3_mar22_pr.pdf",
+                "mu_no7_jun22_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -30,7 +30,10 @@
                     "doc_type": "PDF",
                     "effective_date": "2024-08-01",
                     "authority": "New York State Department of Health",
-                    "page": 11,
+                    "pages": [
+                        10,
+                        11
+                    ],
                     "score": 0.7941175699234009
                 },
                 {
@@ -43,7 +46,10 @@
                     "doc_type": "PDF",
                     "effective_date": "2024-08-01",
                     "authority": "New York State Department of Health",
-                    "page": 10,
+                    "pages": [
+                        10,
+                        11
+                    ],
                     "score": 0.7941175699234009
                 },
                 {
@@ -56,7 +62,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2022-03-01",
                     "authority": "New York State Department of Health",
-                    "page": 12,
+                    "pages": [
+                        12
+                    ],
                     "score": 0.7946577668190002
                 },
                 {
@@ -69,7 +77,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2023-03-01",
                     "authority": "New York State Department of Health",
-                    "page": 1,
+                    "pages": [
+                        1
+                    ],
                     "score": 0.80661541223526
                 },
                 {
@@ -82,7 +92,10 @@
                     "doc_type": "PDF",
                     "effective_date": "2025-02-01",
                     "authority": "New York State Department of Health",
-                    "page": 4,
+                    "pages": [
+                        3,
+                        4
+                    ],
                     "score": 0.8162845373153687
                 },
                 {
@@ -95,7 +108,10 @@
                     "doc_type": "PDF",
                     "effective_date": "2025-02-01",
                     "authority": "New York State Department of Health",
-                    "page": 3,
+                    "pages": [
+                        3,
+                        4
+                    ],
                     "score": 0.8162845373153687
                 },
                 {
@@ -108,7 +124,10 @@
                     "doc_type": "PDF",
                     "effective_date": "2022-06-01",
                     "authority": "New York State Department of Health",
-                    "page": 10,
+                    "pages": [
+                        9,
+                        10
+                    ],
                     "score": 0.8187350034713745
                 },
                 {
@@ -121,7 +140,10 @@
                     "doc_type": "PDF",
                     "effective_date": "2022-06-01",
                     "authority": "New York State Department of Health",
-                    "page": 9,
+                    "pages": [
+                        9,
+                        10
+                    ],
                     "score": 0.8187350034713745
                 }
             ],
@@ -131,18 +153,18 @@
                 ]
             },
             "doc_level_correct": true,
-            "page_level_correct": false
+            "page_level_correct": true
         },
         "test_id_2": {
             "query_id": "Test_query_2",
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
             "predicted_docs": [
-                "mu_no1_jan24_pr.pdf",
                 "mu_no3_mar24_pr.pdf",
-                "mu_no7_jun22_pr.pdf",
+                "mu_no3_feb23_speced_pr.pdf",
+                "mu_no1_jan24_pr.pdf",
                 "mu_no3_mar22_pr.pdf",
-                "mu_no3_feb23_speced_pr.pdf"
+                "mu_no7_jun22_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -155,7 +177,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2024-03-01",
                     "authority": "New York State Department of Health",
-                    "page": 12,
+                    "pages": [
+                        12
+                    ],
                     "score": 0.7555136680603027
                 },
                 {
@@ -168,7 +192,10 @@
                     "doc_type": "PDF",
                     "effective_date": "2024-01-01",
                     "authority": "New York State Department of Health",
-                    "page": 4,
+                    "pages": [
+                        3,
+                        4
+                    ],
                     "score": 0.7605358362197876
                 },
                 {
@@ -181,7 +208,10 @@
                     "doc_type": "PDF",
                     "effective_date": "2024-01-01",
                     "authority": "New York State Department of Health",
-                    "page": 3,
+                    "pages": [
+                        3,
+                        4
+                    ],
                     "score": 0.7605358362197876
                 },
                 {
@@ -194,7 +224,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2022-03-01",
                     "authority": "New York State Department of Health",
-                    "page": 12,
+                    "pages": [
+                        12
+                    ],
                     "score": 0.7624621391296387
                 },
                 {
@@ -207,7 +239,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2023-02-01",
                     "authority": "New York State Department of Health",
-                    "page": 1,
+                    "pages": [
+                        1
+                    ],
                     "score": 0.771368145942688
                 },
                 {
@@ -220,7 +254,10 @@
                     "doc_type": "PDF",
                     "effective_date": "2022-06-01",
                     "authority": "New York State Department of Health",
-                    "page": 10,
+                    "pages": [
+                        9,
+                        10
+                    ],
                     "score": 0.7767138481140137
                 },
                 {
@@ -233,7 +270,10 @@
                     "doc_type": "PDF",
                     "effective_date": "2022-06-01",
                     "authority": "New York State Department of Health",
-                    "page": 9,
+                    "pages": [
+                        9,
+                        10
+                    ],
                     "score": 0.7767138481140137
                 }
             ],
@@ -264,7 +304,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2022-02-01",
                     "authority": "New York State Department of Health",
-                    "page": 3,
+                    "pages": [
+                        3
+                    ],
                     "score": 0.7764256000518799
                 },
                 {
@@ -277,7 +319,10 @@
                     "doc_type": "PDF",
                     "effective_date": "2024-04-01",
                     "authority": "New York State Department of Health",
-                    "page": 4,
+                    "pages": [
+                        3,
+                        4
+                    ],
                     "score": 0.7830297350883484
                 },
                 {
@@ -290,7 +335,10 @@
                     "doc_type": "PDF",
                     "effective_date": "2024-04-01",
                     "authority": "New York State Department of Health",
-                    "page": 3,
+                    "pages": [
+                        3,
+                        4
+                    ],
                     "score": 0.7830297350883484
                 },
                 {
@@ -303,7 +351,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2024-04-01",
                     "authority": "New York State Department of Health",
-                    "page": 4,
+                    "pages": [
+                        4
+                    ],
                     "score": 0.7909469604492188
                 },
                 {
@@ -316,7 +366,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2024-04-01",
                     "authority": "New York State Department of Health",
-                    "page": 5,
+                    "pages": [
+                        5
+                    ],
                     "score": 0.8081470727920532
                 },
                 {
@@ -329,7 +381,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2024-04-01",
                     "authority": "New York State Department of Health",
-                    "page": 5,
+                    "pages": [
+                        5
+                    ],
                     "score": 0.8235000967979431
                 }
             ],
@@ -339,15 +393,15 @@
                 ]
             },
             "doc_level_correct": true,
-            "page_level_correct": false
+            "page_level_correct": true
         },
         "test_id_4": {
             "query_id": "Test_query_4",
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
             "predicted_docs": [
-                "mu_no07_jun21_speced_telehealth_pr.pdf",
                 "mu_no13_nov21_pr.pdf",
+                "mu_no07_jun21_speced_telehealth_pr.pdf",
                 "mu_no2_feb22_pr.pdf"
             ],
             "predicted_top_chunks": [
@@ -361,7 +415,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2021-06-01",
                     "authority": "New York State Department of Health",
-                    "page": 11,
+                    "pages": [
+                        11
+                    ],
                     "score": 0.8300448060035706
                 },
                 {
@@ -374,7 +430,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2022-02-01",
                     "authority": "New York State Department of Health",
-                    "page": 6,
+                    "pages": [
+                        6
+                    ],
                     "score": 0.8525605797767639
                 },
                 {
@@ -387,7 +445,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2021-11-01",
                     "authority": "New York State Department of Health",
-                    "page": 6,
+                    "pages": [
+                        6
+                    ],
                     "score": 0.8572239875793457
                 },
                 {
@@ -400,7 +460,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2022-02-01",
                     "authority": "New York State Department of Health",
-                    "page": 6,
+                    "pages": [
+                        6
+                    ],
                     "score": 0.8847835063934326
                 },
                 {
@@ -413,7 +475,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2021-11-01",
                     "authority": "New York State Department of Health",
-                    "page": 6,
+                    "pages": [
+                        6
+                    ],
                     "score": 0.888408899307251
                 }
             ],
@@ -430,10 +494,10 @@
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
             "predicted_docs": [
-                "mu_no2_jan23_pr.pdf",
-                "mu_no01_jan25_pr.pdf",
-                "mu_no4_mar23_speced_pr.pdf",
                 "mu_no02_feb25_pr.pdf",
+                "mu_no01_jan25_pr.pdf",
+                "mu_no2_jan23_pr.pdf",
+                "mu_no4_mar23_speced_pr.pdf",
                 "mu_no1_jan23_speced_pr.pdf"
             ],
             "predicted_top_chunks": [
@@ -447,7 +511,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2025-02-01",
                     "authority": "New York State Department of Health",
-                    "page": 2,
+                    "pages": [
+                        2
+                    ],
                     "score": 0.7881076335906982
                 },
                 {
@@ -460,7 +526,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2025-01-01",
                     "authority": "New York State Department of Health",
-                    "page": 2,
+                    "pages": [
+                        2
+                    ],
                     "score": 0.7881076335906982
                 },
                 {
@@ -473,7 +541,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2023-03-01",
                     "authority": "New York State Department of Health",
-                    "page": 2,
+                    "pages": [
+                        2
+                    ],
                     "score": 0.7888323068618774
                 },
                 {
@@ -486,7 +556,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2023-01-01",
                     "authority": "New York State Department of Health",
-                    "page": 2,
+                    "pages": [
+                        2
+                    ],
                     "score": 0.7888323068618774
                 },
                 {
@@ -499,7 +571,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2023-01-01",
                     "authority": "New York State Department of Health",
-                    "page": 2,
+                    "pages": [
+                        2
+                    ],
                     "score": 0.7888323068618774
                 }
             ],
@@ -522,8 +596,8 @@
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
             "predicted_docs": [
-                "mu_no13_nov21_pr.pdf",
                 "mu_no5_may22_speced_pr.pdf",
+                "mu_no13_nov21_pr.pdf",
                 "mu_no07_jun19_pr.pdf"
             ],
             "predicted_top_chunks": [
@@ -537,7 +611,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2021-11-01",
                     "authority": "New York State Department of Health",
-                    "page": 12,
+                    "pages": [
+                        12
+                    ],
                     "score": 0.7850116491317749
                 },
                 {
@@ -550,7 +626,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2022-05-01",
                     "authority": "New York State Department of Health",
-                    "page": 7,
+                    "pages": [
+                        7
+                    ],
                     "score": 0.7938271164894104
                 },
                 {
@@ -563,7 +641,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2019-06-01",
                     "authority": "New York State Department of Health",
-                    "page": 9,
+                    "pages": [
+                        9
+                    ],
                     "score": 0.79668790102005
                 },
                 {
@@ -576,7 +656,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2022-05-01",
                     "authority": "New York State Department of Health",
-                    "page": 6,
+                    "pages": [
+                        6
+                    ],
                     "score": 0.8096016049385071
                 },
                 {
@@ -589,7 +671,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2019-06-01",
                     "authority": "New York State Department of Health",
-                    "page": 9,
+                    "pages": [
+                        9
+                    ],
                     "score": 0.8233768939971924
                 }
             ],
@@ -599,15 +683,15 @@
                 ]
             },
             "doc_level_correct": true,
-            "page_level_correct": false
+            "page_level_correct": true
         },
         "test_id_7": {
             "query_id": "Test_query_7",
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
             "predicted_docs": [
-                "mu_no06_may21_pr.pdf",
-                "mu_no17_dec20_speced_pr.pdf"
+                "mu_no17_dec20_speced_pr.pdf",
+                "mu_no06_may21_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -620,7 +704,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2020-12-01",
                     "authority": "New York State Department of Health",
-                    "page": 6,
+                    "pages": [
+                        6
+                    ],
                     "score": 0.7921497225761414
                 },
                 {
@@ -633,7 +719,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2020-12-01",
                     "authority": "New York State Department of Health",
-                    "page": 5,
+                    "pages": [
+                        5
+                    ],
                     "score": 0.8010482788085938
                 },
                 {
@@ -646,7 +734,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2020-12-01",
                     "authority": "New York State Department of Health",
-                    "page": 3,
+                    "pages": [
+                        3
+                    ],
                     "score": 0.8010482788085938
                 },
                 {
@@ -659,7 +749,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2020-12-01",
                     "authority": "New York State Department of Health",
-                    "page": 7,
+                    "pages": [
+                        7
+                    ],
                     "score": 0.8010482788085938
                 },
                 {
@@ -672,7 +764,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2021-05-01",
                     "authority": "New York State Department of Health",
-                    "page": 1,
+                    "pages": [
+                        1
+                    ],
                     "score": 0.8111650943756104
                 }
             ],
@@ -692,8 +786,8 @@
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
             "predicted_docs": [
-                "mu_no05_may25_pr.pdf",
-                "mu_no02_feb25_pr.pdf"
+                "mu_no02_feb25_pr.pdf",
+                "mu_no05_may25_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -706,7 +800,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2025-02-01",
                     "authority": "New York State Department of Health",
-                    "page": 3,
+                    "pages": [
+                        3
+                    ],
                     "score": 0.7564464807510376
                 },
                 {
@@ -719,7 +815,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2025-05-01",
                     "authority": "New York State Department of Health",
-                    "page": 5,
+                    "pages": [
+                        5
+                    ],
                     "score": 0.7571711540222168
                 },
                 {
@@ -732,7 +830,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2025-02-01",
                     "authority": "New York State Department of Health",
-                    "page": 3,
+                    "pages": [
+                        3
+                    ],
                     "score": 0.7724332213401794
                 },
                 {
@@ -745,7 +845,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2025-05-01",
                     "authority": "New York State Department of Health",
-                    "page": 7,
+                    "pages": [
+                        7
+                    ],
                     "score": 0.7724332213401794
                 },
                 {
@@ -758,7 +860,10 @@
                     "doc_type": "PDF",
                     "effective_date": "2025-02-01",
                     "authority": "New York State Department of Health",
-                    "page": 3,
+                    "pages": [
+                        2,
+                        3
+                    ],
                     "score": 0.8265892863273621
                 },
                 {
@@ -771,7 +876,10 @@
                     "doc_type": "PDF",
                     "effective_date": "2025-02-01",
                     "authority": "New York State Department of Health",
-                    "page": 2,
+                    "pages": [
+                        2,
+                        3
+                    ],
                     "score": 0.8265892863273621
                 }
             ],
@@ -781,17 +889,17 @@
                 ]
             },
             "doc_level_correct": true,
-            "page_level_correct": false
+            "page_level_correct": true
         },
         "test_id_9": {
             "query_id": "Test_query_9",
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
             "predicted_docs": [
-                "mu_no03_mar25 (2).pdf",
+                "mu_no06_jun25_pr.pdf",
                 "mu_no01_jan25_pr.pdf",
                 "mu_no03_mar25 (1).pdf",
-                "mu_no06_jun25_pr.pdf"
+                "mu_no03_mar25 (2).pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -804,7 +912,9 @@
                     "doc_type": "PDF",
                     "effective_date": "",
                     "authority": "Unknown",
-                    "page": 1,
+                    "pages": [
+                        1
+                    ],
                     "score": 0.78807532787323
                 },
                 {
@@ -817,7 +927,9 @@
                     "doc_type": "PDF",
                     "effective_date": "",
                     "authority": "Unknown",
-                    "page": 1,
+                    "pages": [
+                        1
+                    ],
                     "score": 0.78807532787323
                 },
                 {
@@ -830,7 +942,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2025-06-01",
                     "authority": "New York State Department of Health",
-                    "page": 1,
+                    "pages": [
+                        1
+                    ],
                     "score": 0.7935742139816284
                 },
                 {
@@ -843,7 +957,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2025-01-01",
                     "authority": "New York State Department of Health",
-                    "page": 8,
+                    "pages": [
+                        8
+                    ],
                     "score": 0.7964352965354919
                 },
                 {
@@ -856,7 +972,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2025-06-01",
                     "authority": "New York State Department of Health",
-                    "page": 3,
+                    "pages": [
+                        3
+                    ],
                     "score": 0.7987071871757507
                 }
             ],
@@ -873,10 +991,10 @@
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
             "predicted_docs": [
-                "mu_no04_mar19_pr.pdf",
                 "mu_no05_apr21_pr.pdf",
-                "mu_no03_mar21_pr.pdf",
-                "mu_no8_aug24_pr.pdf"
+                "mu_no04_mar19_pr.pdf",
+                "mu_no8_aug24_pr.pdf",
+                "mu_no03_mar21_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -889,7 +1007,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2021-03-01",
                     "authority": "New York State Department of Health",
-                    "page": 6,
+                    "pages": [
+                        6
+                    ],
                     "score": 0.7664186358451843
                 },
                 {
@@ -902,7 +1022,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2019-03-01",
                     "authority": "New York State Department of Health",
-                    "page": 8,
+                    "pages": [
+                        8
+                    ],
                     "score": 0.7681924700737
                 },
                 {
@@ -915,7 +1037,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2024-08-01",
                     "authority": "New York State Department of Health",
-                    "page": 8,
+                    "pages": [
+                        8
+                    ],
                     "score": 0.7682859897613525
                 },
                 {
@@ -928,7 +1052,10 @@
                     "doc_type": "PDF",
                     "effective_date": "2021-04-01",
                     "authority": "New York State Department of Health",
-                    "page": 13,
+                    "pages": [
+                        12,
+                        13
+                    ],
                     "score": 0.7750475406646729
                 },
                 {
@@ -941,7 +1068,10 @@
                     "doc_type": "PDF",
                     "effective_date": "2021-04-01",
                     "authority": "New York State Department of Health",
-                    "page": 12,
+                    "pages": [
+                        12,
+                        13
+                    ],
                     "score": 0.7750475406646729
                 },
                 {
@@ -954,7 +1084,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2019-03-01",
                     "authority": "New York State Department of Health",
-                    "page": 8,
+                    "pages": [
+                        8
+                    ],
                     "score": 0.7913430333137512
                 }
             ],
@@ -977,11 +1109,11 @@
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
             "predicted_docs": [
-                "mu_no06_may19_pr.pdf",
                 "mu_no04_mar19_pr.pdf",
-                "mu_no07_jun19_pr.pdf",
+                "mu_no06_may19_pr.pdf",
+                "mu_no08_jul19_pr.pdf",
                 "mu_no05_apr19_pr.pdf",
-                "mu_no08_jul19_pr.pdf"
+                "mu_no07_jun19_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -994,7 +1126,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2019-04-01",
                     "authority": "New York State Department of Health",
-                    "page": 11,
+                    "pages": [
+                        11
+                    ],
                     "score": 0.8721897602081299
                 },
                 {
@@ -1007,7 +1141,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2019-05-01",
                     "authority": "New York State Department of Health",
-                    "page": 10,
+                    "pages": [
+                        10
+                    ],
                     "score": 0.8721897602081299
                 },
                 {
@@ -1020,7 +1156,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2019-06-01",
                     "authority": "New York State Department of Health",
-                    "page": 10,
+                    "pages": [
+                        10
+                    ],
                     "score": 0.8721897602081299
                 },
                 {
@@ -1033,7 +1171,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2019-07-01",
                     "authority": "New York State Department of Health",
-                    "page": 10,
+                    "pages": [
+                        10
+                    ],
                     "score": 0.8721897602081299
                 },
                 {
@@ -1046,7 +1186,9 @@
                     "doc_type": "PDF",
                     "effective_date": "2019-03-01",
                     "authority": "New York State Department of Health",
-                    "page": 11,
+                    "pages": [
+                        11
+                    ],
                     "score": 0.8721897602081299
                 }
             ],

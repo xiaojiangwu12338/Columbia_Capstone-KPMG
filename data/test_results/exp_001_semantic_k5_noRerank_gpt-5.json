@@ -1,0 +1,1142 @@
+{
+  "test_id_1": {
+    "query_id": "Test_query_1",
+    "query_content": "When did redetrmination begin for the COVID-19 Public Health Emergency unwind in New York State",
+    "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
+    "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
+    "top_k_chunks": [
+      {
+        "chunk_id": "mu_no8_aug24_pr.pdf::0138",
+        "text": "10\n\nNew York State Medicaid Coverage for Coronavirus Disease 2019\nVaccines for Eligible Vaccine For Children Program Members\nat the Pharmacy\nEffective January 1, 2025, with the expiration of the Public Health Emergency (PHE) and provisions in the\nPublic Readiness and Emergency Preparedness (PREP) Act, New York State (NYS) Medicaid will revert to\npre-pandemic processing of vaccines for NYS Medicaid members younger than 19 years of age.",
+        "chunk_type": "text",
+        "doc_id": "mu_no8_aug24_pr.pdf",
+        "title": "New York State Medicaid Update August 2024 Volume 40 Number 8",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no8_aug24_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2024-08-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          10,
+          11
+        ],
+        "score": 0.7941175699234009
+      },
+      {
+        "chunk_id": "mu_no8_aug24_pr.pdf::0138",
+        "text": "10\n\nNew York State Medicaid Coverage for Coronavirus Disease 2019\nVaccines for Eligible Vaccine For Children Program Members\nat the Pharmacy\nEffective January 1, 2025, with the expiration of the Public Health Emergency (PHE) and provisions in the\nPublic Readiness and Emergency Preparedness (PREP) Act, New York State (NYS) Medicaid will revert to\npre-pandemic processing of vaccines for NYS Medicaid members younger than 19 years of age.",
+        "chunk_type": "text",
+        "doc_id": "mu_no8_aug24_pr.pdf",
+        "title": "New York State Medicaid Update August 2024 Volume 40 Number 8",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no8_aug24_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2024-08-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          10,
+          11
+        ],
+        "score": 0.7941175699234009
+      },
+      {
+        "chunk_id": "mu_no3_mar22_pr.pdf::0149",
+        "text": "Enabled by the\nAffordable Care Act, NY State of Health has served as a critical safety net for over 6.5 million New Yorkers\nduring the Coronavirus Disease 2019 (COVID-19) Public Health Emergency (PHE).",
+        "chunk_type": "text",
+        "doc_id": "mu_no3_mar22_pr.pdf",
+        "title": "New York State Medicaid Update March 2022 Volume 38 Number 3",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no3_mar22_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2022-03-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          12
+        ],
+        "score": 0.7946577668190002
+      },
+      {
+        "chunk_id": "mu_no6_mar23_pr.pdf::0000",
+        "text": "March 2023\nVolume 39 | Number 6\nNew York State to Resume Eligibility Reviews for Medicaid, Child\nHealth Plus and the Essential Plan; Communications Tool Kit\nAvailable to Help Educate Consumers on How to Renew Insurance\nFor the duration of the federal Coronavirus Disease 2019 (COVID-19) Public Health Emergency (PHE), New\nYork State (NYS) was authorized to protect New Yorkers by pausing annual eligibility reviews and providing\ncontinuous coverage for Medicaid, Child Health Plus (CHP) and the Essential Plan (EP) members/enrollees.",
+        "chunk_type": "text",
+        "doc_id": "mu_no6_mar23_pr.pdf",
+        "title": "New York State Medicaid Update March 2023 Volume 39 Number 6",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no6_mar23_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2023-03-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          1
+        ],
+        "score": 0.80661541223526
+      },
+      {
+        "chunk_id": "mu_no02_feb25_pr.pdf::0033",
+        "text": "3\n\nPublic Health Emergency Unwind\nThe Consolidated Appropriations Act of 2023 required states to begin the process of redetermining Medicaid\neligibility for its members, which New York State (NYS) began in April 2023.",
+        "chunk_type": "text",
+        "doc_id": "mu_no02_feb25_pr.pdf",
+        "title": "New York State Medicaid Update February 2025 Volume 41 Number 2",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no02_feb25_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2025-02-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          3,
+          4
+        ],
+        "score": 0.8162845373153687
+      },
+      {
+        "chunk_id": "mu_no02_feb25_pr.pdf::0033",
+        "text": "3\n\nPublic Health Emergency Unwind\nThe Consolidated Appropriations Act of 2023 required states to begin the process of redetermining Medicaid\neligibility for its members, which New York State (NYS) began in April 2023.",
+        "chunk_type": "text",
+        "doc_id": "mu_no02_feb25_pr.pdf",
+        "title": "New York State Medicaid Update February 2025 Volume 41 Number 2",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no02_feb25_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2025-02-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          3,
+          4
+        ],
+        "score": 0.8162845373153687
+      },
+      {
+        "chunk_id": "mu_no7_jun22_pr.pdf::0098",
+        "text": "9\n\nUnwinding from the COVID-19 Public Health Emergency:\nNew York State Department of Health Shares Strategy to Help\nConsumers Maintain Coverage\nIn early 2020, the United States Department of Health and Human Services (HHS) declared a Public Health\nEmergency (PHE) in response to the Coronavirus Disease 2019 (COVID-19) pandemic, allowing New York\n(NY) residents enrolled in Medicaid, Child Health Plus (CHP), and the Essential Plan (EP) to keep their\ncoverage without requiring an annual eligibility review.",
+        "chunk_type": "text",
+        "doc_id": "mu_no7_jun22_pr.pdf",
+        "title": "New York State Medicaid Update June 2022 Volume 38 Number 7",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no7_jun22_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2022-06-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          9,
+          10
+        ],
+        "score": 0.8187350034713745
+      },
+      {
+        "chunk_id": "mu_no7_jun22_pr.pdf::0098",
+        "text": "9\n\nUnwinding from the COVID-19 Public Health Emergency:\nNew York State Department of Health Shares Strategy to Help\nConsumers Maintain Coverage\nIn early 2020, the United States Department of Health and Human Services (HHS) declared a Public Health\nEmergency (PHE) in response to the Coronavirus Disease 2019 (COVID-19) pandemic, allowing New York\n(NY) residents enrolled in Medicaid, Child Health Plus (CHP), and the Essential Plan (EP) to keep their\ncoverage without requiring an annual eligibility review.",
+        "chunk_type": "text",
+        "doc_id": "mu_no7_jun22_pr.pdf",
+        "title": "New York State Medicaid Update June 2022 Volume 38 Number 7",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no7_jun22_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2022-06-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          9,
+          10
+        ],
+        "score": 0.8187350034713745
+      }
+    ],
+    "answers": "- \"The Consolidated Appropriations Act of 2023 required states to begin the process of redetermining Medicaid eligibility for its members, which New York State (NYS) began in April 2023.\" [mu_no02_feb25_pr.pdf:3]",
+    "document": {
+      "mu_no02_feb25_pr.pdf": [
+        3
+      ]
+    }
+  },
+  "test_id_2": {
+    "query_id": "Test_query_2",
+    "query_content": "When did the public health emergency end?",
+    "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
+    "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
+    "top_k_chunks": [
+      {
+        "chunk_id": "mu_no3_mar24_pr.pdf::0148",
+        "text": "Background\nIn order to better understand NYS health care provider perspectives on telehealth during and after the\nCoronavirus Disease 2019 (COVID-19) public health emergency (PHE), NYS DOH conducted the Telehealth\nProvider Survey, which was active from August 2023 to October 2023.",
+        "chunk_type": "text",
+        "doc_id": "mu_no3_mar24_pr.pdf",
+        "title": "New York State Medicaid Update March 2024 Volume 40 Number 3",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no3_mar24_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2024-03-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          12
+        ],
+        "score": 0.7555136680603027
+      },
+      {
+        "chunk_id": "mu_no1_jan24_pr.pdf::0033",
+        "text": "3\n\nNY State of Health Public Health Emergency Unwind Fact Sheet\nfor Providers Now Available\nNY State of Health, the New York State (NYS) official health plan marketplace (Marketplace), released a\nprovider fact sheet titled Unwinding the Public Health Emergency, located at: https://info.nystateofhealth.ny\n.gov/provider-fact-sheet, with guidance on assisting patients who may be affected by the public health\nemergency (PHE) unwind.",
+        "chunk_type": "text",
+        "doc_id": "mu_no1_jan24_pr.pdf",
+        "title": "New York State Medicaid Update January 2024 Volume 40 Number 1",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no1_jan24_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2024-01-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          3,
+          4
+        ],
+        "score": 0.7605358362197876
+      },
+      {
+        "chunk_id": "mu_no1_jan24_pr.pdf::0033",
+        "text": "3\n\nNY State of Health Public Health Emergency Unwind Fact Sheet\nfor Providers Now Available\nNY State of Health, the New York State (NYS) official health plan marketplace (Marketplace), released a\nprovider fact sheet titled Unwinding the Public Health Emergency, located at: https://info.nystateofhealth.ny\n.gov/provider-fact-sheet, with guidance on assisting patients who may be affected by the public health\nemergency (PHE) unwind.",
+        "chunk_type": "text",
+        "doc_id": "mu_no1_jan24_pr.pdf",
+        "title": "New York State Medicaid Update January 2024 Volume 40 Number 1",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no1_jan24_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2024-01-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          3,
+          4
+        ],
+        "score": 0.7605358362197876
+      },
+      {
+        "chunk_id": "mu_no3_mar22_pr.pdf::0149",
+        "text": "Enabled by the\nAffordable Care Act, NY State of Health has served as a critical safety net for over 6.5 million New Yorkers\nduring the Coronavirus Disease 2019 (COVID-19) Public Health Emergency (PHE).",
+        "chunk_type": "text",
+        "doc_id": "mu_no3_mar22_pr.pdf",
+        "title": "New York State Medicaid Update March 2022 Volume 38 Number 3",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no3_mar22_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2022-03-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          12
+        ],
+        "score": 0.7624621391296387
+      },
+      {
+        "chunk_id": "mu_no3_feb23_speced_pr.pdf::0000",
+        "text": "February 2023\nVolume 39 | Number 3\nSpecial Edition\nComprehensive Guidance Regarding Use of Telehealth including\nTelephonic Services After the Coronavirus Disease 2019 Public\nHealth Emergency\nUpdates are highlighted in yellow\nThis guidance is intended to clarify the New York State (NYS) Medicaid program telehealth policy, including\nuse of audio-only technology, following the federally declared Coronavirus Disease 2019 (COVID-19) Public\nHealth Emergency (PHE), which ends on May 11, 2023.",
+        "chunk_type": "text",
+        "doc_id": "mu_no3_feb23_speced_pr.pdf",
+        "title": "Medicaid Update Special Edition Part Two: NYRx Pharmacy Benefit Transition Medicaid Update Volume 39 Number 1",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no3_feb23_speced_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2023-02-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          1
+        ],
+        "score": 0.771368145942688
+      },
+      {
+        "chunk_id": "mu_no7_jun22_pr.pdf::0098",
+        "text": "9\n\nUnwinding from the COVID-19 Public Health Emergency:\nNew York State Department of Health Shares Strategy to Help\nConsumers Maintain Coverage\nIn early 2020, the United States Department of Health and Human Services (HHS) declared a Public Health\nEmergency (PHE) in response to the Coronavirus Disease 2019 (COVID-19) pandemic, allowing New York\n(NY) residents enrolled in Medicaid, Child Health Plus (CHP), and the Essential Plan (EP) to keep their\ncoverage without requiring an annual eligibility review.",
+        "chunk_type": "text",
+        "doc_id": "mu_no7_jun22_pr.pdf",
+        "title": "New York State Medicaid Update June 2022 Volume 38 Number 7",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no7_jun22_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2022-06-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          9,
+          10
+        ],
+        "score": 0.7767138481140137
+      },
+      {
+        "chunk_id": "mu_no7_jun22_pr.pdf::0098",
+        "text": "9\n\nUnwinding from the COVID-19 Public Health Emergency:\nNew York State Department of Health Shares Strategy to Help\nConsumers Maintain Coverage\nIn early 2020, the United States Department of Health and Human Services (HHS) declared a Public Health\nEmergency (PHE) in response to the Coronavirus Disease 2019 (COVID-19) pandemic, allowing New York\n(NY) residents enrolled in Medicaid, Child Health Plus (CHP), and the Essential Plan (EP) to keep their\ncoverage without requiring an annual eligibility review.",
+        "chunk_type": "text",
+        "doc_id": "mu_no7_jun22_pr.pdf",
+        "title": "New York State Medicaid Update June 2022 Volume 38 Number 7",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no7_jun22_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2022-06-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          9,
+          10
+        ],
+        "score": 0.7767138481140137
+      }
+    ],
+    "answers": "- \"following the federally declared Coronavirus Disease 2019 (COVID-19) Public Health Emergency (PHE), which ends on May 11, 2023.\" [mu_no3_feb23_speced_pr.pdf:1 — February 2023]",
+    "document": {
+      "mu_no3_feb23_speced_pr.pdf": [
+        1
+      ]
+    }
+  },
+  "test_id_3": {
+    "query_id": "Test_query_3",
+    "query_content": "When submitting a claim for Brixandi, how many units should be indicated on the claim?",
+    "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
+    "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
+    "top_k_chunks": [
+      {
+        "chunk_id": "mu_no2_feb22_pr.pdf::0020",
+        "text": "• “D1354” should be indicated on one claim line with the number of units performed.",
+        "chunk_type": "text",
+        "doc_id": "mu_no2_feb22_pr.pdf",
+        "title": "New York State Medicaid Update February 2022 Volume 38 Number 2",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no2_feb22_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2022-02-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          3
+        ],
+        "score": 0.7764256000518799
+      },
+      {
+        "chunk_id": "mu_no4_apr24_pr.pdf::0033",
+        "text": "3\n\nPractitioner Administered Drug Update:\nBrixadi™ Billing Guidance\nEffective April 1, 2024, for New York State (NYS) Medicaid fee-for-service (FFS), practitioners must submit\na claim for BrixadiTM with a unit of “1” when the drug is administered in a medical office.",
+        "chunk_type": "text",
+        "doc_id": "mu_no4_apr24_pr.pdf",
+        "title": "New York State Medicaid Update April 2024 Volume 40 Number 4",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no4_apr24_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2024-04-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          3,
+          4
+        ],
+        "score": 0.7830297350883484
+      },
+      {
+        "chunk_id": "mu_no4_apr24_pr.pdf::0033",
+        "text": "3\n\nPractitioner Administered Drug Update:\nBrixadi™ Billing Guidance\nEffective April 1, 2024, for New York State (NYS) Medicaid fee-for-service (FFS), practitioners must submit\na claim for BrixadiTM with a unit of “1” when the drug is administered in a medical office.",
+        "chunk_type": "text",
+        "doc_id": "mu_no4_apr24_pr.pdf",
+        "title": "New York State Medicaid Update April 2024 Volume 40 Number 4",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no4_apr24_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2024-04-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          3,
+          4
+        ],
+        "score": 0.7830297350883484
+      },
+      {
+        "chunk_id": "mu_no4_apr24_pr.pdf::0038",
+        "text": "Please note: When completing sections pertaining to National Drug Code (NDC),\nall formulations of BrixadiTM must be submitted with a value of “1” as the HCPCS unit quantity and the\nvolumetric quantity administered in milliliters.",
+        "chunk_type": "text",
+        "doc_id": "mu_no4_apr24_pr.pdf",
+        "title": "New York State Medicaid Update April 2024 Volume 40 Number 4",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no4_apr24_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2024-04-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          4
+        ],
+        "score": 0.7909469604492188
+      },
+      {
+        "chunk_id": "mu_no4_apr24_pr.pdf::0044",
+        "text": "All claims for BrixadiTM will be entered as milliliters or “ml”.",
+        "chunk_type": "text",
+        "doc_id": "mu_no4_apr24_pr.pdf",
+        "title": "New York State Medicaid Update April 2024 Volume 40 Number 4",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no4_apr24_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2024-04-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          5
+        ],
+        "score": 0.8081470727920532
+      },
+      {
+        "chunk_id": "mu_no4_apr24_pr.pdf::0050",
+        "text": "24I: Days or Units\nEnter a value of “1” for all BrixadiTM claims.",
+        "chunk_type": "text",
+        "doc_id": "mu_no4_apr24_pr.pdf",
+        "title": "New York State Medicaid Update April 2024 Volume 40 Number 4",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no4_apr24_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2024-04-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          5
+        ],
+        "score": 0.8235000967979431
+      }
+    ],
+    "answers": "- \"Effective April 1, 2024, for New York State (NYS) Medicaid fee-for-service (FFS), practitioners must submit a claim for BrixadiTM with a unit of “1” when the drug is administered in a medical office.\" [mu_no4_apr24_pr.pdf:3 — April 1, 2024]\n- \"Please note: When completing sections pertaining to National Drug Code (NDC), all formulations of BrixadiTM must be submitted with a value of “1” as the HCPCS unit quantity and the volumetric quantity administered in milliliters.\" [mu_no4_apr24_pr.pdf:4 — ]\n- \"24I: Days or Units Enter a value of “1” for all BrixadiTM claims.\" [mu_no4_apr24_pr.pdf:5 — ]",
+    "document": {
+      "mu_no4_apr24_pr.pdf": [
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "test_id_4": {
+    "query_id": "Test_query_4",
+    "query_content": "What rate codes should FQHCs use to bill for audio only telehealth?",
+    "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
+    "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
+    "top_k_chunks": [
+      {
+        "chunk_id": "mu_no07_jun21_speced_telehealth_pr.pdf::0155",
+        "text": "FQHCs That Have Not \"Opted Into\" APGs - FQHC Originating Sites:\na. Consistent with Medicaid telehealth guidance issued in February 2019, when services are\nprovided via telemedicine to a patient located at an FQHC originating site, the originating site\nmay bill only the FQHC off-site services rate code (“4012”) to recoup administrative expenses\nassociated with the telemedicine encounter. b. When a separate and distinct medical service, unrelated to the telemedicine encounter, is\nprovided by a qualified practitioner at the FQHC originating site, the originating site may bill\nthe Prospective Payment System (PPS) rate in addition to the FQHC off-site services rate code\n(“4012”).",
+        "chunk_type": "text",
+        "doc_id": "mu_no07_jun21_speced_telehealth_pr.pdf",
+        "title": "New York State Medicaid Update June 2021 Volume 37 Number 7",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2021/docs/mu_no07_jun21_speced_telehealth_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2021-06-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          11
+        ],
+        "score": 0.8300448060035706
+      },
+      {
+        "chunk_id": "mu_no2_feb22_pr.pdf::0061",
+        "text": "• Other qualified rate-based providers listed above should bill using rate code “5521” with CPT code\n“99429” appended with the GQ modifier to indicate the service was provided via audio-only\n(telephonic) telehealth.",
+        "chunk_type": "text",
+        "doc_id": "mu_no2_feb22_pr.pdf",
+        "title": "New York State Medicaid Update February 2022 Volume 38 Number 2",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no2_feb22_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2022-02-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          6
+        ],
+        "score": 0.8525605797767639
+      },
+      {
+        "chunk_id": "mu_no13_nov21_pr.pdf::0060",
+        "text": "The other rate-based providers listed above should bill using rate code “5521” with CPT code “99429”\nappended with the GQ modifier to indicate the service was provided via audio-only (telephonic) telehealth.",
+        "chunk_type": "text",
+        "doc_id": "mu_no13_nov21_pr.pdf",
+        "title": "New York State Medicaid Update November 2021 Volume 37 Number 13",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2021/docs/mu_no13_nov21_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2021-11-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          6
+        ],
+        "score": 0.8572239875793457
+      },
+      {
+        "chunk_id": "mu_no2_feb22_pr.pdf::0062",
+        "text": "• FQHCs should bill the off-site rate code “4012” with CPT code “99429” appended with the GQ\nmodifier to indicate the service was provided via audio-only (telephonic) telehealth.",
+        "chunk_type": "text",
+        "doc_id": "mu_no2_feb22_pr.pdf",
+        "title": "New York State Medicaid Update February 2022 Volume 38 Number 2",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no2_feb22_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2022-02-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          6
+        ],
+        "score": 0.8847835063934326
+      },
+      {
+        "chunk_id": "mu_no13_nov21_pr.pdf::0061",
+        "text": "FQHCs should bill the off-site rate code “4012” with CPT code “99429” appended with the GQ modifier to\nindicate the service was provided via audio-only (telephonic) telehealth.",
+        "chunk_type": "text",
+        "doc_id": "mu_no13_nov21_pr.pdf",
+        "title": "New York State Medicaid Update November 2021 Volume 37 Number 13",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2021/docs/mu_no13_nov21_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2021-11-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          6
+        ],
+        "score": 0.888408899307251
+      }
+    ],
+    "answers": "- \"FQHCs should bill the off-site rate code “4012” with CPT code “99429” appended with the GQ modifier to indicate the service was provided via audio-only (telephonic) telehealth.\" [mu_no2_feb22_pr.pdf:6]\n- \"FQHCs should bill the off-site rate code “4012” with CPT code “99429” appended with the GQ modifier to indicate the service was provided via audio-only (telephonic) telehealth.\" [mu_no13_nov21_pr.pdf:6]",
+    "document": {
+      "mu_no2_feb22_pr.pdf": [
+        6
+      ],
+      "mu_no13_nov21_pr.pdf": [
+        6
+      ]
+    }
+  },
+  "test_id_5": {
+    "query_id": "Test_query_5",
+    "query_content": "Give me a chronological list of the commissioners and what year they first appeared in the medicaid updates.",
+    "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
+    "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
+    "top_k_chunks": [
+      {
+        "chunk_id": "mu_no02_feb25_pr.pdf::0012",
+        "text": "Commissioner\nNew York State\nDepartment of Health\nAmir Bassiri\nMedicaid Director\nOffice of Health Insurance Programs\nThe Medicaid Update is a monthly publication of the New York State Department of Health.",
+        "chunk_type": "text",
+        "doc_id": "mu_no02_feb25_pr.pdf",
+        "title": "New York State Medicaid Update February 2025 Volume 41 Number 2",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no02_feb25_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2025-02-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          2
+        ],
+        "score": 0.7881076335906982
+      },
+      {
+        "chunk_id": "mu_no01_jan25_pr.pdf::0013",
+        "text": "Commissioner\nNew York State\nDepartment of Health\nAmir Bassiri\nMedicaid Director\nOffice of Health Insurance Programs\nThe Medicaid Update is a monthly publication of the New York State Department of Health.",
+        "chunk_type": "text",
+        "doc_id": "mu_no01_jan25_pr.pdf",
+        "title": "New York State Medicaid Update January 2025 Volume 41 Number 1",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no01_jan25_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2025-01-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          2
+        ],
+        "score": 0.7881076335906982
+      },
+      {
+        "chunk_id": "mu_no4_mar23_speced_pr.pdf::0006",
+        "text": "Acting Commissioner\nNew York State\nDepartment of Health\nAmir Bassiri\nMedicaid Director\nOffice of Health Insurance Programs\nThe Medicaid Update is a monthly publication of the New York State Department of Health.",
+        "chunk_type": "text",
+        "doc_id": "mu_no4_mar23_speced_pr.pdf",
+        "title": "Medicaid Update Special Edition Part Three: NYRx Pharmacy Benefit Transition Volume 39 Number 4",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no4_mar23_speced_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2023-03-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          2
+        ],
+        "score": 0.7888323068618774
+      },
+      {
+        "chunk_id": "mu_no1_jan23_speced_pr.pdf::0010",
+        "text": "Acting Commissioner\nNew York State\nDepartment of Health\nAmir Bassiri\nMedicaid Director\nOffice of Health Insurance Programs\nThe Medicaid Update is a monthly publication of the New York State Department of Health.",
+        "chunk_type": "text",
+        "doc_id": "mu_no1_jan23_speced_pr.pdf",
+        "title": "Medicaid Update Special Edition Part Two: NYRx Pharmacy Benefit Transition",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no1_jan23_speced_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2023-01-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          2
+        ],
+        "score": 0.7888323068618774
+      },
+      {
+        "chunk_id": "mu_no2_jan23_pr.pdf::0014",
+        "text": "Acting Commissioner\nNew York State\nDepartment of Health\nAmir Bassiri\nMedicaid Director\nOffice of Health Insurance Programs\nThe Medicaid Update is a monthly publication of the New York State Department of Health.",
+        "chunk_type": "text",
+        "doc_id": "mu_no2_jan23_pr.pdf",
+        "title": "New York State Medicaid Update January 2023 Volume 39 Number 2",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no2_jan23_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2023-01-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          2
+        ],
+        "score": 0.7888323068618774
+      }
+    ],
+    "answers": "- Insufficient grounded evidence in the provided documents to answer. Missing: The Commissioner names and the year each first appeared are not present in the provided excerpts; only titles are shown without names, e.g., \"Commissioner New York State Department of Health\" [mu_no01_jan25_pr.pdf:2] and \"Acting Commissioner New York State Department of Health\" [mu_no1_jan23_speced_pr.pdf:2]. The excerpts also show the Medicaid Director line, e.g., \"Amir Bassiri Medicaid Director Office of Health Insurance Programs\" [mu_no01_jan25_pr.pdf:2], which does not provide the Commissioner's name.",
+    "document": {
+      "mu_no01_jan25_pr.pdf": [
+        2
+      ],
+      "mu_no1_jan23_speced_pr.pdf": [
+        2
+      ]
+    }
+  },
+  "test_id_6": {
+    "query_id": "Test_query_6",
+    "query_content": "What are the requirements for appointment scheduling in the medicaid model contract for urgent care?",
+    "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
+    "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
+    "top_k_chunks": [
+      {
+        "chunk_id": "mu_no13_nov21_pr.pdf::0149",
+        "text": "Any ambulance service that has\nbeen approved to participate in both the CMS ET3 model and the NYS DOH parallel model may begin billing\nfor ET3 services provided to Medicaid enrollees for dates of service on and after November 24, 2021.",
+        "chunk_type": "text",
+        "doc_id": "mu_no13_nov21_pr.pdf",
+        "title": "New York State Medicaid Update November 2021 Volume 37 Number 13",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2021/docs/mu_no13_nov21_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2021-11-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          12
+        ],
+        "score": 0.7850116491317749
+      },
+      {
+        "chunk_id": "mu_no5_may22_speced_pr.pdf::0092",
+        "text": "What mode(s) of assessment and clinical appointment are available to individuals?",
+        "chunk_type": "text",
+        "doc_id": "mu_no5_may22_speced_pr.pdf",
+        "title": "Medicaid Update Special Edition Medicaid Update Volume 38 Number 5",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no5_may22_speced_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2022-05-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          7
+        ],
+        "score": 0.7938271164894104
+      },
+      {
+        "chunk_id": "mu_no07_jun19_pr.pdf::0137",
+        "text": "Please Note: Providers are required to schedule appointments in accordance with appointment and availability\nstandards noted above to be determined compliant with access to care requirements when contacted by an\nMMC Plan member.",
+        "chunk_type": "text",
+        "doc_id": "mu_no07_jun19_pr.pdf",
+        "title": "New York State Medicaid Update June 2019 Volume 35 Number 7",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2019/jun19_mu.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2019-06-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          9
+        ],
+        "score": 0.79668790102005
+      },
+      {
+        "chunk_id": "mu_no5_may22_speced_pr.pdf::0088",
+        "text": "What is the timeline for the non-expedited assessment scheduling (assuming individual has\nactive Medicaid)?",
+        "chunk_type": "text",
+        "doc_id": "mu_no5_may22_speced_pr.pdf",
+        "title": "Medicaid Update Special Edition Medicaid Update Volume 38 Number 5",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no5_may22_speced_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2022-05-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          6
+        ],
+        "score": 0.8096016049385071
+      },
+      {
+        "chunk_id": "mu_no07_jun19_pr.pdf::0128",
+        "text": "New York State routinely completes surveillance activities to evaluate compliance with the following\nappointment availability standards, (Medicaid Model Contract 15.2, Appointment Availability Standards):\n• For urgent care: within twenty-four (24) hours of request.",
+        "chunk_type": "text",
+        "doc_id": "mu_no07_jun19_pr.pdf",
+        "title": "New York State Medicaid Update June 2019 Volume 35 Number 7",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2019/jun19_mu.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2019-06-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          9
+        ],
+        "score": 0.8233768939971924
+      }
+    ],
+    "answers": "- New York State routinely completes surveillance activities to evaluate compliance with the following appointment availability standards, (Medicaid Model Contract 15.2, Appointment Availability Standards): • For urgent care: within twenty-four (24) hours of request. [mu_no07_jun19_pr.pdf:9]\n- Please Note: Providers are required to schedule appointments in accordance with appointment and availability standards noted above to be determined compliant with access to care requirements when contacted by an MMC Plan member. [mu_no07_jun19_pr.pdf:9]",
+    "document": {
+      "mu_no07_jun19_pr.pdf": [
+        9
+      ]
+    }
+  },
+  "test_id_7": {
+    "query_id": "Test_query_7",
+    "query_content": "When did the pharmacy carve out occur?",
+    "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
+    "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
+    "top_k_chunks": [
+      {
+        "chunk_id": "mu_no17_dec20_speced_pr.pdf::0084",
+        "text": "****************************************************************************************************************\nSpecial Edition – Part One: Pharmacy Carve-Out New York State Medicaid Update pg.",
+        "chunk_type": "text",
+        "doc_id": "mu_no17_dec20_speced_pr.pdf",
+        "title": "Medicaid Update Special Edition Part One: Pharmacy Carve-Out",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2020/docs/mu_no17_dec20_speced_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2020-12-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          6
+        ],
+        "score": 0.7921497225761414
+      },
+      {
+        "chunk_id": "mu_no17_dec20_speced_pr.pdf::0080",
+        "text": "Special Edition – Part One: Pharmacy Carve-Out New York State Medicaid Update pg.",
+        "chunk_type": "text",
+        "doc_id": "mu_no17_dec20_speced_pr.pdf",
+        "title": "Medicaid Update Special Edition Part One: Pharmacy Carve-Out",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2020/docs/mu_no17_dec20_speced_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2020-12-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          5
+        ],
+        "score": 0.8010482788085938
+      },
+      {
+        "chunk_id": "mu_no17_dec20_speced_pr.pdf::0030",
+        "text": "Special Edition – Part One: Pharmacy Carve-Out New York State Medicaid Update pg.",
+        "chunk_type": "text",
+        "doc_id": "mu_no17_dec20_speced_pr.pdf",
+        "title": "Medicaid Update Special Edition Part One: Pharmacy Carve-Out",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2020/docs/mu_no17_dec20_speced_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2020-12-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          3
+        ],
+        "score": 0.8010482788085938
+      },
+      {
+        "chunk_id": "mu_no17_dec20_speced_pr.pdf::0095",
+        "text": "Special Edition – Part One: Pharmacy Carve-Out New York State Medicaid Update pg.",
+        "chunk_type": "text",
+        "doc_id": "mu_no17_dec20_speced_pr.pdf",
+        "title": "Medicaid Update Special Edition Part One: Pharmacy Carve-Out",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2020/docs/mu_no17_dec20_speced_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2020-12-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          7
+        ],
+        "score": 0.8010482788085938
+      },
+      {
+        "chunk_id": "mu_no06_may21_pr.pdf::0001",
+        "text": "This article provides\ninformation regarding this two-year delay and reiterates important policies the NYS Department of Health\n(Department) will continue implementing as well as promoting in preparation for the April 1, 2023 pharmacy\ncarve-out implementation date.",
+        "chunk_type": "text",
+        "doc_id": "mu_no06_may21_pr.pdf",
+        "title": "New York State Medicaid Update May 2021 Volume 37 Number 6",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2021/docs/mu_no06_may21_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2021-05-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          1
+        ],
+        "score": 0.8111650943756104
+      }
+    ],
+    "answers": "April 1, 2023",
+    "document": {
+      "mu_no06_may21_pr.pdf": [
+        1
+      ]
+    }
+  },
+  "test_id_8": {
+    "query_id": "Test_query_8",
+    "query_content": "What are the key components of the SCN program in the NYHER Waiver?",
+    "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
+    "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
+    "top_k_chunks": [
+      {
+        "chunk_id": "mu_no02_feb25_pr.pdf::0015",
+        "text": "SCNs will help address health\ndisparities and social needs by connecting NYS Medicaid members to nutritional services, housing supports,\ntransportation, and other social services that can impact the health of an individual.",
+        "chunk_type": "text",
+        "doc_id": "mu_no02_feb25_pr.pdf",
+        "title": "New York State Medicaid Update February 2025 Volume 41 Number 2",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no02_feb25_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2025-02-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          3
+        ],
+        "score": 0.7564464807510376
+      },
+      {
+        "chunk_id": "mu_no05_may25_pr.pdf::0054",
+        "text": "The following program\nchanges are forthcoming:\n• SCN referral workflow attestations will transition to the NCQA PCMH application/renewal system, after\nwhich attestations will no longer be collected directly by the NYS DOH via survey.",
+        "chunk_type": "text",
+        "doc_id": "mu_no05_may25_pr.pdf",
+        "title": "New York State Medicaid Update May 2025 Volume 41 Number 5",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no05_may25_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2025-05-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          5
+        ],
+        "score": 0.7571711540222168
+      },
+      {
+        "chunk_id": "mu_no02_feb25_pr.pdf::0027",
+        "text": "• Questions related to SCNs should be directed to NYHER@health.ny.gov.",
+        "chunk_type": "text",
+        "doc_id": "mu_no02_feb25_pr.pdf",
+        "title": "New York State Medicaid Update February 2025 Volume 41 Number 2",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no02_feb25_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2025-02-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          3
+        ],
+        "score": 0.7724332213401794
+      },
+      {
+        "chunk_id": "mu_no05_may25_pr.pdf::0074",
+        "text": "• Questions related to SCNs should be directed to NYHER@health.ny.gov.",
+        "chunk_type": "text",
+        "doc_id": "mu_no05_may25_pr.pdf",
+        "title": "New York State Medicaid Update May 2025 Volume 41 Number 5",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no05_may25_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2025-05-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          7
+        ],
+        "score": 0.7724332213401794
+      },
+      {
+        "chunk_id": "mu_no02_feb25_pr.pdf::0014",
+        "text": "2\n\nAll Providers\nSCN Program\nThe SCN program is part of the 1115 New York Health Equity Reform Waiver.",
+        "chunk_type": "text",
+        "doc_id": "mu_no02_feb25_pr.pdf",
+        "title": "New York State Medicaid Update February 2025 Volume 41 Number 2",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no02_feb25_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2025-02-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          2,
+          3
+        ],
+        "score": 0.8265892863273621
+      },
+      {
+        "chunk_id": "mu_no02_feb25_pr.pdf::0014",
+        "text": "2\n\nAll Providers\nSCN Program\nThe SCN program is part of the 1115 New York Health Equity Reform Waiver.",
+        "chunk_type": "text",
+        "doc_id": "mu_no02_feb25_pr.pdf",
+        "title": "New York State Medicaid Update February 2025 Volume 41 Number 2",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no02_feb25_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2025-02-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          2,
+          3
+        ],
+        "score": 0.8265892863273621
+      }
+    ],
+    "answers": "- \"The SCN program is part of the 1115 New York Health Equity Reform Waiver.\" [mu_no02_feb25_pr.pdf:2]\n- \"SCNs will help address health disparities and social needs by connecting NYS Medicaid members to nutritional services, housing supports, transportation, and other social services that can impact the health of an individual.\" [mu_no02_feb25_pr.pdf:3]\n- \"• SCN referral workflow attestations will transition to the NCQA PCMH application/renewal system, after which attestations will no longer be collected directly by the NYS DOH via survey.\" [mu_no05_may25_pr.pdf:5]",
+    "document": {
+      "mu_no02_feb25_pr.pdf": [
+        2,
+        3
+      ],
+      "mu_no05_may25_pr.pdf": [
+        5
+      ]
+    }
+  },
+  "test_id_9": {
+    "query_id": "Test_query_9",
+    "query_content": "What constitutes RRP referral requirements?",
+    "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
+    "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
+    "top_k_chunks": [
+      {
+        "chunk_id": "mu_no03_mar25 (2).pdf::0117",
+        "text": "The RRP may restrict the NYS Medicaid member\nto care provided by, or referred by, a primary care provider, inpatient hospital, and/or primary pharmacy.",
+        "chunk_type": "text",
+        "doc_id": "mu_no03_mar25 (2).pdf",
+        "title": "",
+        "url": "",
+        "doc_type": "PDF",
+        "effective_date": "",
+        "authority": "Unknown",
+        "pages": [
+          1
+        ],
+        "score": 0.78807532787323
+      },
+      {
+        "chunk_id": "mu_no03_mar25 (1).pdf::0117",
+        "text": "The RRP may restrict the NYS Medicaid member\nto care provided by, or referred by, a primary care provider, inpatient hospital, and/or primary pharmacy.",
+        "chunk_type": "text",
+        "doc_id": "mu_no03_mar25 (1).pdf",
+        "title": "",
+        "url": "",
+        "doc_type": "PDF",
+        "effective_date": "",
+        "authority": "Unknown",
+        "pages": [
+          1
+        ],
+        "score": 0.78807532787323
+      },
+      {
+        "chunk_id": "mu_no06_jun25_pr.pdf::0007",
+        "text": "The RRP may restrict the NYS Medicaid member to care\nprovided or referred by a primary care provider (PCP), inpatient hospital, and/or primary pharmacy.",
+        "chunk_type": "text",
+        "doc_id": "mu_no06_jun25_pr.pdf",
+        "title": "New York State Medicaid Update June 2025 Volume 41 Number 6",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no06_jun25_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2025-06-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          1
+        ],
+        "score": 0.7935742139816284
+      },
+      {
+        "chunk_id": "mu_no01_jan25_pr.pdf::0100",
+        "text": "The RRP may\nrestrict the recipient to care provided by a PCP, inpatient hospital, and/or primary pharmacy.",
+        "chunk_type": "text",
+        "doc_id": "mu_no01_jan25_pr.pdf",
+        "title": "New York State Medicaid Update January 2025 Volume 41 Number 1",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no01_jan25_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2025-01-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          8
+        ],
+        "score": 0.7964352965354919
+      },
+      {
+        "chunk_id": "mu_no06_jun25_pr.pdf::0015",
+        "text": "Medical services should be provided by or coordinated by the designated RRP provider.",
+        "chunk_type": "text",
+        "doc_id": "mu_no06_jun25_pr.pdf",
+        "title": "New York State Medicaid Update June 2025 Volume 41 Number 6",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no06_jun25_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2025-06-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          3
+        ],
+        "score": 0.7987071871757507
+      }
+    ],
+    "answers": "- \"The RRP may restrict the NYS Medicaid member to care provided or referred by a primary care provider (PCP), inpatient hospital, and/or primary pharmacy.\" [mu_no06_jun25_pr.pdf:1]\n- \"Medical services should be provided by or coordinated by the designated RRP provider.\" [mu_no06_jun25_pr.pdf:3]",
+    "document": {
+      "mu_no06_jun25_pr.pdf": [
+        1,
+        3
+      ]
+    }
+  },
+  "test_id_10": {
+    "query_id": "Test_query_10",
+    "query_content": "what are the requirements for a referral for enrollment in the childrens waiver?",
+    "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
+    "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
+    "top_k_chunks": [
+      {
+        "chunk_id": "mu_no03_mar21_pr.pdf::0066",
+        "text": "Federal regulations require NYS Medicaid enrollment for these prescribers.",
+        "chunk_type": "text",
+        "doc_id": "mu_no03_mar21_pr.pdf",
+        "title": "New York State Medicaid Update March 2021 Volume 37 Number 3",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2021/docs/mu_no03_mar21_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2021-03-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          6
+        ],
+        "score": 0.7664186358451843
+      },
+      {
+        "chunk_id": "mu_no04_mar19_pr.pdf::0099",
+        "text": "*To access HCBS, NYS must also determine that there is capacity to serve the child and the child must be\nenrolled in Medicaid.",
+        "chunk_type": "text",
+        "doc_id": "mu_no04_mar19_pr.pdf",
+        "title": "New York State Medicaid Update March 2019 Volume 35 Number 4",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2019/mar19_mu.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2019-03-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          8
+        ],
+        "score": 0.7681924700737
+      },
+      {
+        "chunk_id": "mu_no8_aug24_pr.pdf::0115",
+        "text": "Additionally,\nchildhood vaccine counseling may be provided:\n• as a stand-alone service when all the criteria specified in this guidance are met and documented;\n• in addition to an Evaluation and Management (E&M) or Well-Child Visit when all the criteria of the\nvaccine counseling visit specified in this guidance are met and documented;\n• in addition to all necessary components of the E&M/Well-Child visit;\n• whether or not a recommended vaccine is administered, or vaccine administration is billed for, during\nthe encounter; and\n• for up to six counseling visits per NYS Medicaid member, per year, for NYS members zero years of\nage through 18 years of age, when they have not received the ACIP-recommended doses and does\nnot have an appointment to receive the recommended dose.",
+        "chunk_type": "text",
+        "doc_id": "mu_no8_aug24_pr.pdf",
+        "title": "New York State Medicaid Update August 2024 Volume 40 Number 8",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no8_aug24_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2024-08-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          8
+        ],
+        "score": 0.7682859897613525
+      },
+      {
+        "chunk_id": "mu_no05_apr21_pr.pdf::0120",
+        "text": "12\n\nMedicaid fee-for-service (FFS) will require prior authorization (PA) for most medically necessary therapy visits,\nunless the member receiving the service meets one or more of the criteria listed below:\n• Children from birth to age 21 (until their 21st birthday)\n• Members with developmental disabilities (members with restriction/exception code \"95\" on file)\n• Members with a traumatic brain injury (TBI) [members with TBI* (use procedure code modifier ST on\nclaims) or restriction/exception code \"81\" on file]\n• Members with both Medicare Part B and Medicaid (dually eligible) when the service is covered by\nMedicare\n• Members receiving rehabilitation services as a hospital inpatient\n• Members receiving rehabilitation services in a nursing home in which they reside\n• Members receiving rehabilitation services provided by a certified home health agency (CHHA)\n*TBI as defined in Public Health Law Article 27-cc: §2741.",
+        "chunk_type": "text",
+        "doc_id": "mu_no05_apr21_pr.pdf",
+        "title": "New York State Medicaid Update April 2021 Volume 37 Number 5",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2021/docs/mu_no05_apr21_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2021-04-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          12,
+          13
+        ],
+        "score": 0.7750475406646729
+      },
+      {
+        "chunk_id": "mu_no05_apr21_pr.pdf::0120",
+        "text": "12\n\nMedicaid fee-for-service (FFS) will require prior authorization (PA) for most medically necessary therapy visits,\nunless the member receiving the service meets one or more of the criteria listed below:\n• Children from birth to age 21 (until their 21st birthday)\n• Members with developmental disabilities (members with restriction/exception code \"95\" on file)\n• Members with a traumatic brain injury (TBI) [members with TBI* (use procedure code modifier ST on\nclaims) or restriction/exception code \"81\" on file]\n• Members with both Medicare Part B and Medicaid (dually eligible) when the service is covered by\nMedicare\n• Members receiving rehabilitation services as a hospital inpatient\n• Members receiving rehabilitation services in a nursing home in which they reside\n• Members receiving rehabilitation services provided by a certified home health agency (CHHA)\n*TBI as defined in Public Health Law Article 27-cc: §2741.",
+        "chunk_type": "text",
+        "doc_id": "mu_no05_apr21_pr.pdf",
+        "title": "New York State Medicaid Update April 2021 Volume 37 Number 5",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2021/docs/mu_no05_apr21_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2021-04-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          12,
+          13
+        ],
+        "score": 0.7750475406646729
+      },
+      {
+        "chunk_id": "mu_no04_mar19_pr.pdf::0097",
+        "text": "Referring a Child who is not Enrolled in Medicaid for HCBS Eligibility Determination\nTo obtain a Referral Packet, which is used to collect information about the child’s medical history and includes\nconsent forms, instructions, and general information about children’s HCBS, providers and individuals should\ncall C-YES at: 1-833-333-CYES (1-833-333-2937) or toll-free at 1-888-329-1541.",
+        "chunk_type": "text",
+        "doc_id": "mu_no04_mar19_pr.pdf",
+        "title": "New York State Medicaid Update March 2019 Volume 35 Number 4",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2019/mar19_mu.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2019-03-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          8
+        ],
+        "score": 0.7913430333137512
+      }
+    ],
+    "answers": "- \"Referring a Child who is not Enrolled in Medicaid for HCBS Eligibility Determination To obtain a Referral Packet, which is used to collect information about the child’s medical history and includes consent forms, instructions, and general information about children’s HCBS, providers and individuals should call C-YES at: 1-833-333-CYES (1-833-333-2937) or toll-free at 1-888-329-1541.\" [mu_no04_mar19_pr.pdf:8 — Mar 2019]\n- \"*To access HCBS, NYS must also determine that there is capacity to serve the child and the child must be enrolled in Medicaid.*\" [mu_no04_mar19_pr.pdf:8 — Mar 2019]",
+    "document": {
+      "mu_no04_mar19_pr.pdf": [
+        8
+      ]
+    }
+  },
+  "test_id_11": {
+    "query_id": "Test_query_11",
+    "query_content": "What are REC services offered to NYS providers?",
+    "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
+    "short_version_id": "exp_001_semantic_k5_noRerank_gpt-5",
+    "top_k_chunks": [
+      {
+        "chunk_id": "mu_no05_apr19_pr.pdf::0203",
+        "text": "NYS RECs offer free assistance for all practices and providers located within New York.",
+        "chunk_type": "text",
+        "doc_id": "mu_no05_apr19_pr.pdf",
+        "title": "New York State Medicaid Update April 2019 Volume 35 Number 5",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2019/apr19_mu.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2019-04-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          11
+        ],
+        "score": 0.8721897602081299
+      },
+      {
+        "chunk_id": "mu_no06_may19_pr.pdf::0134",
+        "text": "NYS RECs offer free assistance\nfor all practices and providers located within New York.",
+        "chunk_type": "text",
+        "doc_id": "mu_no06_may19_pr.pdf",
+        "title": "New York State Medicaid Update May 2019 Volume 35 Number 6",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2019/may19_mu.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2019-05-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          10
+        ],
+        "score": 0.8721897602081299
+      },
+      {
+        "chunk_id": "mu_no07_jun19_pr.pdf::0155",
+        "text": "NYS RECs offer free assistance\nfor all practices and providers located within New York.",
+        "chunk_type": "text",
+        "doc_id": "mu_no07_jun19_pr.pdf",
+        "title": "New York State Medicaid Update June 2019 Volume 35 Number 7",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2019/jun19_mu.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2019-06-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          10
+        ],
+        "score": 0.8721897602081299
+      },
+      {
+        "chunk_id": "mu_no08_jul19_pr.pdf::0149",
+        "text": "NYS RECs offer free\nassistance for all practices and providers located within New York.",
+        "chunk_type": "text",
+        "doc_id": "mu_no08_jul19_pr.pdf",
+        "title": "New York State Medicaid Update July 2019 Volume 35 Number 8",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2019/jul19_mu.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2019-07-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          10
+        ],
+        "score": 0.8721897602081299
+      },
+      {
+        "chunk_id": "mu_no04_mar19_pr.pdf::0150",
+        "text": "NYS RECs offer free assistance\nfor all practices and providers located within New York.",
+        "chunk_type": "text",
+        "doc_id": "mu_no04_mar19_pr.pdf",
+        "title": "New York State Medicaid Update March 2019 Volume 35 Number 4",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2019/mar19_mu.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2019-03-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          11
+        ],
+        "score": 0.8721897602081299
+      }
+    ],
+    "answers": "- \"NYS RECs offer free assistance for all practices and providers located within New York.\" [mu_no04_mar19_pr.pdf:11]\n- \"NYS RECs offer free assistance for all practices and providers located within New York.\" [mu_no05_apr19_pr.pdf:11]\n- \"NYS RECs offer free assistance\nfor all practices and providers located within New York.\" [mu_no06_may19_pr.pdf:10]\n- \"NYS RECs offer free assistance\nfor all practices and providers located within New York.\" [mu_no07_jun19_pr.pdf:10]\n- \"NYS RECs offer free\nassistance for all practices and providers located within New York.\" [mu_no08_jul19_pr.pdf:10]",
+    "document": {
+      "mu_no04_mar19_pr.pdf": [
+        11
+      ],
+      "mu_no05_apr19_pr.pdf": [
+        11
+      ],
+      "mu_no06_may19_pr.pdf": [
+        10
+      ],
+      "mu_no07_jun19_pr.pdf": [
+        10
+      ],
+      "mu_no08_jul19_pr.pdf": [
+        10
+      ]
+    }
+  }
+}

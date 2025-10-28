@@ -1,0 +1,168 @@
+{
+  "metadata": {
+    "test_results_file": "data/test_results/v1.0-demo.json",
+    "ground_truth_file": null,
+    "evaluator_model": "gpt-5",
+    "total_tests": 11
+  },
+  "results": {
+    "test_id_1": {
+      "query": "When did redetrmination begin for the COVID-19 Public Health Emergency unwind in New York State",
+      "answer": "- \"The Consolidated Appropriations Act of 2023 required states to begin the process of redetermining Medicaid eligibility for its members, which New York State (NYS) began in April 2023. This process is also referred to as the Public Health Emergency Unwind.\" [mu_no02_feb25_pr.pdf:3 — February 2025]",
+      "evaluations": {
+        "faithfulness": {
+          "score": 1.0,
+          "reasoning": "The answer precisely matches the information in the provided sources. Chunk 9/10 (February 2025 Medicaid Update) explicitly states that the Consolidated Appropriations Act of 2023 required states to start redetermining Medicaid eligibility, that New York State began in April 2023, and that this process is referred to as the Public Health Emergency Unwind.",
+          "unsupported_claims": []
+        },
+        "answer_relevance": {
+          "score": 1.0,
+          "reasoning": "The answer directly addresses the question by stating that redeterminations in New York State began in April 2023 and clarifies that this was part of the Public Health Emergency unwind. It stays on topic and provides sufficient context without introducing irrelevant information.",
+          "missing_aspects": []
+        },
+        "citation_quality": {
+          "score": 0.8,
+          "reasoning": "The cited document ID exists among the available chunks, and a single citation plausibly supports all claims. However, the citation formatting does not match the expected format (uses an em dash instead of the specified separator), and the exact page number cannot be verified from the provided chunk list. Despite these minor issues, the citation is generally appropriate.",
+          "issues": [
+            "Citation uses an em dash instead of the expected separator character between page and date",
+            "Page number accuracy cannot be verified from available chunks",
+            "Date formatting may not match the expected citation format"
+          ]
+        },
+        "completeness": {
+          "score": 0.4,
+          "reasoning": "The answer correctly notes that the Consolidated Appropriations Act of 2023 triggered the resumption of Medicaid redeterminations, which matches the provided context. However, it gives a specific start month (April 2023) not supported by the available chunks and cites an external February 2025 document not in the provided context. The chunks indicate the process began in Spring 2023 and was already underway by May 2023, with renewal notices going out and deadlines ranging from June 30, 2023 through May 31, 2024. These relevant details were not included.",
+          "missing_info": [
+            "Redeterminations/renewals began in Spring 2023 (per March 2023 update).",
+            "By May 2023, the renewal process was underway; members with June 30 coverage end dates had already received renewal notices.",
+            "Deadlines for action ranged from June 30, 2023 through May 31, 2024."
+          ]
+        }
+      },
+      "overall_score": 0.84,
+      "weights_used": {
+        "faithfulness": 0.35,
+        "answer_relevance": 0.25,
+        "citation_quality": 0.2,
+        "completeness": 0.2
+      }
+    },
+    "test_id_2": {
+      "query": "When did the public health emergency end?",
+      "answer": "Insufficient grounded evidence in the provided documents to answer.\n- \"Additional details about this timeline will be delivered when HHS announces the end date of the PHE.\" [mu_no7_jun22_pr.pdf:9 — June 2022]\n- \"The Notifications of Enforcement Discretion issued by the U.S. Department of Health and Human Services’ Office for Civil Rights (OCR) expired with the end of the COVID-19 PHE. OCR is providing a 90-calendar day transition period for providers to comply with Health Insurance Portability and Accountability Act (HIPAA) rules in their provision of telehealth. The transition period expires on August 9, 2023.\" [mu_no3_feb23_speced_pr.pdf:7]\n- Missing information: An explicit statement of the exact date the COVID-19 Public Health Emergency ended. \"Additional details about this timeline will be delivered when HHS announces the end date of the PHE.\" [mu_no7_jun22_pr.pdf:9 — June 2022]",
+      "evaluations": {
+        "faithfulness": {
+          "score": 1.0,
+          "reasoning": "The answer does not assert an end date and explicitly states that the provided documents lack an explicit statement of the exact end date, which is consistent with the source chunks. It supports this by quoting relevant passages: (1) the June 2022 document noting details would be provided when HHS announces the end date, and (2) the Feb 2023 document describing the HIPAA transition period ending August 9, 2023 and that OCR’s notifications expired with the end of the PHE, without giving the exact end date. All quoted content matches the chunks, and no unsupported claims or inferences are made.",
+          "unsupported_claims": []
+        },
+        "answer_relevance": {
+          "score": 0.35,
+          "reasoning": "The answer stays on topic and acknowledges the need for an explicit end date, but it does not provide the date requested. It mainly states a lack of evidence and offers related context (HIPAA transition period), which is relevant but does not directly answer the question.",
+          "missing_aspects": [
+            "The exact date the public health emergency ended"
+          ]
+        },
+        "citation_quality": {
+          "score": 0.6,
+          "reasoning": "The citations point to existing documents in the available chunks and appear to support the quoted statements, but there are notable formatting and verification issues. The entries that include dates use an em dash with a month/year instead of the required delimiter and format. Page numbers cannot be verified against the provided chunks (which list page=?), so accuracy of page references is uncertain.",
+          "issues": [
+            "Incorrect citation formatting for entries with dates (used '— June 2022' instead of the expected '[doc_id:page \u0014 date]')",
+            "Page numbers cannot be verified against available chunks (pages are listed as '?'), making page accuracy uncertain",
+            "Redundant citation repeated; while not inherently wrong, it does not improve clarity",
+            "Overall compliance with the expected citation format is inconsistent"
+          ]
+        },
+        "completeness": {
+          "score": 0.4,
+          "reasoning": "The answer acknowledges that the exact end date is not explicitly stated in the provided context and cites the OCR HIPAA transition period detail from Chunk 1. However, it fails to use that detail to infer the date (90-day transition ending August 9, 2023 implies the PHE ended May 11, 2023). It also references a document not included in the available chunks and does not incorporate other relevant timeline context. Overall, it misses the key inference needed to directly answer the question.",
+          "missing_info": [
+            "Inference from Chunk 1 that a 90-day transition period ending August 9, 2023 indicates the PHE ended on May 11, 2023",
+            "Avoidance of reliance on out-of-scope documents not in the provided chunks"
+          ]
+        }
+      },
+      "overall_score": 0.637,
+      "weights_used": {
+        "faithfulness": 0.35,
+        "answer_relevance": 0.25,
+        "citation_quality": 0.2,
+        "completeness": 0.2
+      }
+    },
+    "test_id_3": {
+      "query": "When submitting a claim for Brixandi, how many units should be indicated on the claim?",
+      "answer": "1 unit",
+      "evaluations": {
+        "faithfulness": {
+          "score": 1.0,
+          "reasoning": "The source clearly states that practitioners must submit a claim for Brixadi with a unit of '1' and that for all Brixadi claims, the Days or Units field should be entered as '1'. Therefore, the answer '1 unit' is fully supported.",
+          "unsupported_claims": []
+        },
+        "answer_relevance": {
+          "score": 1.0,
+          "reasoning": "The answer directly and concisely states the number of units to indicate on the claim for Brixandi, staying on topic and providing a complete response without extraneous information.",
+          "missing_aspects": []
+        },
+        "citation_quality": {
+          "score": 0.0,
+          "reasoning": "No citations were provided to evaluate. Without any visible citations, we cannot assess formatting, whether the cited documents/pages exist in the available chunks, or the accuracy of page numbers and doc IDs. As a result, all factual claims appear uncited.",
+          "issues": [
+            "No citations present in the answer",
+            "Expected citation format not used",
+            "Unable to verify documents/pages against available chunks",
+            "Factual claims are not supported by citations"
+          ]
+        },
+        "completeness": {
+          "score": 0.85,
+          "reasoning": "The answer correctly states that the claim should indicate 1 unit, which aligns with the guidance for Brixadi. However, it omits relevant context from the source: this applies to NYS Medicaid FFS claims, it refers to the HCPCS unit quantity for all formulations (J0577 and J0578), and that volumetric NDC quantity should be reported in milliliters separately.",
+          "missing_info": [
+            "Applies specifically to New York State Medicaid fee-for-service claims",
+            "Refers to HCPCS unit quantity of 1 for all Brixadi formulations (J0577 and J0578)",
+            "NDC quantity should be reported separately in milliliters"
+          ]
+        }
+      },
+      "overall_score": 0.77,
+      "weights_used": {
+        "faithfulness": 0.35,
+        "answer_relevance": 0.25,
+        "citation_quality": 0.2,
+        "completeness": 0.2
+      }
+    }
+  },
+  "summary": {
+    "faithfulness": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "count": 3
+    },
+    "answer_relevance": {
+      "mean": 0.783,
+      "min": 0.35,
+      "max": 1.0,
+      "count": 3
+    },
+    "citation_quality": {
+      "mean": 0.467,
+      "min": 0.0,
+      "max": 0.8,
+      "count": 3
+    },
+    "completeness": {
+      "mean": 0.55,
+      "min": 0.4,
+      "max": 0.85,
+      "count": 3
+    },
+    "overall": {
+      "mean": 0.749,
+      "min": 0.637,
+      "max": 0.84,
+      "count": 3
+    }
+  }
+}

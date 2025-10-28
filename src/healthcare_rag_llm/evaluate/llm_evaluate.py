@@ -233,7 +233,7 @@ TASK:
 Evaluate if the ANSWER provides complete information from the available context to address the query.
 
 EVALUATION CRITERIA:
-1. Does the answer use all relevant information from chunks?
+1. Does the answer effectively use all necessary and relevant information from the provided chunks (not necessarily every chunk)?
 2. Are important details from chunks included?
 3. Is critical context provided?
 4. Does it acknowledge when information is insufficient?
@@ -389,13 +389,23 @@ Respond in JSON format:
             Parsed JSON dict or error dict
         """
         try:
-            # Try to find JSON in the response
-            start_idx = response.find('{')
-            end_idx = response.rfind('}') + 1
+            # Step 1: Clean control characters (keep newlines for structure)
+            cleaned_response = response.replace('\t', ' ').replace('\r', '')
+
+            # Step 2: Try to find JSON in the response
+            start_idx = cleaned_response.find('{')
+            end_idx = cleaned_response.rfind('}') + 1
 
             if start_idx != -1 and end_idx > start_idx:
-                json_str = response[start_idx:end_idx]
-                result = json.loads(json_str)
+                json_str = cleaned_response[start_idx:end_idx]
+
+                # Step 3: Try parsing with standard json.loads
+                try:
+                    result = json.loads(json_str)
+                except json.JSONDecodeError as e:
+                    # Step 4: Try non-strict mode if standard parsing fails
+                    print(f"  Standard JSON parsing failed for {metric_name}, trying strict=False...")
+                    result = json.loads(json_str, strict=False)
 
                 # Validate required fields
                 if "score" not in result:
@@ -415,7 +425,7 @@ Respond in JSON format:
                 "score": 0.0,
                 "reasoning": f"Failed to parse LLM response: {str(e)}",
                 "error": str(e),
-                "raw_response": response[:500]
+                "raw_response": response  # Save full response for debugging (no limit)
             }
 
 

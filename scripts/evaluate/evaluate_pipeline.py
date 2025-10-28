@@ -45,7 +45,13 @@ class EvaluatePipeline:
                  output_dir: str = "data/evaluation_results",
                  timeout_chunking: int = 1800,  # 30 minutes for chunking
                  timeout_ingest: int = 3600,    # 1 hour for Neo4j ingestion
-                 timeout_test: int = 1800       # 30 minutes for testing
+                 timeout_test: int = 1800,      # 30 minutes for testing
+                 # === LLM Evaluation Parameters ===
+                 enable_llm_eval: bool = False,          # Enable LLM-based evaluation
+                 llm_eval_model: str = "gpt-5",          # Model for evaluation
+                 llm_eval_provider: str = None,          # API provider (None = use default)
+                 llm_eval_limit: Optional[int] = None,   # Limit number of tests to evaluate (None = all)
+                 llm_eval_timeout: int = 3600            # Timeout for LLM evaluation (seconds)
                  ):
         self.testing_queries_path = testing_queries_path
         self.output_dir = Path(output_dir)
@@ -59,6 +65,34 @@ class EvaluatePipeline:
         self.timeout_chunking = timeout_chunking
         self.timeout_ingest = timeout_ingest
         self.timeout_test = timeout_test
+
+        # LLM Evaluation settings
+        self.enable_llm_eval = enable_llm_eval
+        self.llm_eval_limit = llm_eval_limit
+        self.llm_eval_timeout = llm_eval_timeout
+        self.llm_eval_client = None
+
+        if self.enable_llm_eval:
+            # Create LLM evaluation output directory
+            Path("data/llm_eval_results").mkdir(parents=True, exist_ok=True)
+
+            # Initialize LLM client for evaluation
+            from healthcare_rag_llm.utils.api_config import load_api_config
+            from healthcare_rag_llm.llm.llm_client import LLMClient
+
+            config = load_api_config()
+            provider_name = llm_eval_provider or config.get("default_provider", "bltcy")
+            provider_config = config["api_providers"][provider_name]
+
+            self.llm_eval_client = LLMClient(
+                api_key=provider_config["api_key"],
+                base_url=provider_config.get("base_url"),
+                model=llm_eval_model,
+                provider=provider_config.get("provider", "openai")
+            )
+            print(f"[LLM Eval] Initialized with model={llm_eval_model}, provider={provider_name}")
+            if self.llm_eval_limit:
+                print(f"[LLM Eval] Will evaluate only first {self.llm_eval_limit} tests per experiment")
 
     def run_experiment(self, experiment_config: ExperimentConfig):  # Fix: Use correct parameter name
         # Run single experiment
@@ -219,19 +253,97 @@ if __name__ == "__main__":
         return script_path
 
     def _evaluate_results(self, version_id: str, test_results: Dict[str, Any]) -> Dict[str, Any]:
-        """Evaluate test results"""
+        """Run both traditional and LLM-based evaluation"""
         print(f"Evaluating results: {version_id}")
 
+        # === 1. Traditional Evaluation (always run) ===
         from healthcare_rag_llm.evaluate.evaluate import evaluate_results
 
         result_path = f"data/test_results/{version_id}.json"
-        output_path = f"{self.output_dir}/{version_id}_evaluation.json"
+        trad_output_path = f"{self.output_dir}/{version_id}_evaluation.json"
 
-        return evaluate_results(
+        traditional_results = evaluate_results(
             tested_result_path=result_path,
             ground_truth_path=self.testing_queries_path,
-            output_path=output_path
+            output_path=trad_output_path
         )
+
+        # === 2. LLM Evaluation (optional) ===
+        llm_results = None
+        if self.enable_llm_eval:
+            print(f"  Running LLM-based evaluation...")
+            llm_results = self._run_llm_evaluation(version_id, result_path)
+
+        # === 3. Return combined results ===
+        return {
+            "traditional": traditional_results,
+            "llm_based": llm_results
+        }
+
+    def _run_llm_evaluation(self, version_id: str, result_path: str) -> Optional[Dict[str, Any]]:
+        """
+        Run LLM-based evaluation on test results.
+
+        Args:
+            version_id: Experiment version ID
+            result_path: Path to test results JSON
+
+        Returns:
+            LLM evaluation results dict, or None if failed
+        """
+        try:
+            from healthcare_rag_llm.evaluate.llm_evaluate import evaluate_test_results
+
+            llm_output_path = f"data/llm_eval_results/{version_id}_llm_evaluation.json"
+
+            print(f"    Model: {self.llm_eval_client.model}")
+            if self.llm_eval_limit:
+                print(f"    Evaluating first {self.llm_eval_limit} tests only")
+
+            llm_results = evaluate_test_results(
+                test_results_path=result_path,
+                output_path=llm_output_path,
+                llm_client=self.llm_eval_client,
+                ground_truth_path=self.testing_queries_path,
+                limit=self.llm_eval_limit
+            )
+
+            print(f"    LLM evaluation complete: {llm_output_path}")
+            return llm_results
+
+        except Exception as e:
+            print(f"    Warning: LLM evaluation failed: {e}")
+            import traceback
+            traceback.print_exc()
+            return None
+
+    def _extract_llm_metrics(self, llm_results: Optional[Dict[str, Any]]) -> Dict[str, Any]:
+        """
+        Extract LLM evaluation metrics for CSV export.
+
+        Args:
+            llm_results: LLM evaluation results dict or None
+
+        Returns:
+            Dictionary with LLM metric columns
+        """
+        if llm_results is None or "summary" not in llm_results:
+            return {
+                "llm_faithfulness_mean": None,
+                "llm_answer_relevance_mean": None,
+                "llm_citation_quality_mean": None,
+                "llm_completeness_mean": None,
+                "llm_overall_mean": None
+            }
+
+        summary = llm_results["summary"]
+        return {
+            "llm_faithfulness_mean": summary.get("faithfulness", {}).get("mean"),
+            "llm_answer_relevance_mean": summary.get("answer_relevance", {}).get("mean"),
+            "llm_citation_quality_mean": summary.get("citation_quality", {}).get("mean"),
+            "llm_completeness_mean": summary.get("completeness", {}).get("mean"),
+            "llm_overall_mean": summary.get("overall", {}).get("mean")
+        }
 
     def run_batch_experiments(self, configs: List[ExperimentConfig]) -> pd.DataFrame:
         """Run batch experiments with progress tracking and robust error handling"""
@@ -255,9 +367,12 @@ if __name__ == "__main__":
                     "rerank": config.retrieval.rerank,
                     "alpha": config.retrieval.alpha,
                     "llm_model": config.llm.model,
-                    "doc_accuracy": result["evaluation_results"]["summary"]["doc_level_accuracy"],
-                    "page_accuracy": result["evaluation_results"]["summary"]["page_level_accuracy"],
-                    "total_tests": result["evaluation_results"]["summary"]["total_tests"],
+                    # Traditional metrics
+                    "doc_accuracy": result["evaluation_results"]["traditional"]["summary"]["doc_level_accuracy"],
+                    "page_accuracy": result["evaluation_results"]["traditional"]["summary"]["page_level_accuracy"],
+                    "total_tests": result["evaluation_results"]["traditional"]["summary"]["total_tests"],
+                    # LLM metrics (if enabled)
+                    **self._extract_llm_metrics(result["evaluation_results"]["llm_based"]),
                     "error": None
                 })
                 print(f"✓ Experiment {config.version_id} completed successfully")
@@ -296,9 +411,16 @@ if __name__ == "__main__":
             "rerank": config.retrieval.rerank,
             "alpha": config.retrieval.alpha,
             "llm_model": config.llm.model,
+            # Traditional metrics
             "doc_accuracy": None,
             "page_accuracy": None,
             "total_tests": None,
+            # LLM metrics
+            "llm_faithfulness_mean": None,
+            "llm_answer_relevance_mean": None,
+            "llm_citation_quality_mean": None,
+            "llm_completeness_mean": None,
+            "llm_overall_mean": None,
             "error": error_msg
         }
 
@@ -315,9 +437,9 @@ def main():
     # Chunking method configurations
     chunking_configs = [
         # Semantic chunking - different thresholds
-        #ChunkingConfig("semantic", {"threshold": 0.80, "max_chars": 2000}),
+        # ChunkingConfig("semantic", {"threshold": 0.80, "max_chars": 2000}),
         ChunkingConfig("semantic", {"threshold": 0.85, "max_chars": 1500}),
-        # ChunkingConfig("semantic", {"threshold": 0.70, "max_chars": 2500}),
+        ChunkingConfig("semantic", {"threshold": 0.70, "max_chars": 2500}),
 
         # Fix-size chunking - test different chunk sizes and overlap values
         ChunkingConfig("fix_size", {"max_chars": 1200, "overlap": 150}),  # Default recommended
@@ -331,13 +453,13 @@ def main():
     # Retrieval configurations - Compare baseline vs reranking with different alphas
     retrieval_configs = [
         # === BASELINE (No Reranking) ===
-        # RetrievalConfig(top_k=5, rerank=False, alpha=0.0),
+        RetrievalConfig(top_k=5, rerank=False, alpha=0.0),
 
         # alpha=0.5: Equal weight (50% rerank, 50% dense)
         RetrievalConfig(top_k=5, rerank=True, alpha=0.5),
 
         # alpha=0.7: More weight on dense search (30% rerank, 70% dense)
-        RetrievalConfig(top_k=5, rerank=True, alpha=0.7),
+        # RetrievalConfig(top_k=5, rerank=True, alpha=0.7),
     ]
 
     # LLM configurations - Use API configuration manager
@@ -365,7 +487,12 @@ def main():
                 ))
 
     # Run batch experiments
-    pipeline = EvaluatePipeline()
+    # === Enable LLM Evaluation ===
+    pipeline = EvaluatePipeline(
+        enable_llm_eval=True,           
+        llm_eval_model="gpt-5",        
+        llm_eval_limit=None
+    )
     print(f"\n{'='*80}")
     print(f"Total experiments to run: {len(experiments)}")
     print(f"{'='*80}\n")
@@ -399,6 +526,20 @@ def main():
         print(f"  - Chunking: {best_page_acc['chunking_method']}")
         print(f"  - Top-K: {best_page_acc['top_k']}")
         print(f"  - Model: {best_page_acc['llm_model']}")
+
+        # === LLM Evaluation Best Results (if enabled) ===
+        if 'llm_overall_mean' in successful_df.columns and successful_df['llm_overall_mean'].notna().any():
+            best_llm = successful_df.loc[successful_df['llm_overall_mean'].idxmax()]
+            print()
+            print(f"Best LLM overall score: {best_llm['version_id']}")
+            print(f"  - LLM Overall: {best_llm['llm_overall_mean']:.3f}")
+            print(f"  - Faithfulness: {best_llm['llm_faithfulness_mean']:.3f}")
+            print(f"  - Answer Relevance: {best_llm['llm_answer_relevance_mean']:.3f}")
+            print(f"  - Citation Quality: {best_llm['llm_citation_quality_mean']:.3f}")
+            print(f"  - Completeness: {best_llm['llm_completeness_mean']:.3f}")
+            print(f"  - Chunking: {best_llm['chunking_method']}")
+            print(f"  - Top-K: {best_llm['top_k']}")
+
         print(f"{'='*80}")
 
         # Show success/failure statistics
