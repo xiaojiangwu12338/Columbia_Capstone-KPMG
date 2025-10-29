@@ -131,33 +131,35 @@ if "history" not in st.session_state:
     st.session_state["history"] = []  # per history: {"role": "user"/"assistant", "content": "..."}
     
 # Input
-user_query = st.text_input(
-    "🔍 Ask a Question:",
-    placeholder="e.g. When did redetermination begin for the COVID-19 Public Health Emergency unwind in New York State?"
-)
+# user_query = st.text_input(
+#     "🔍 Ask a Question:",
+#     placeholder="e.g. When did redetermination begin for the COVID-19 Public Health Emergency unwind in New York State?",
+#     key="input_box"
+# )
+# NEW: clear input
+with st.form("ask_form", clear_on_submit=True):
+    user_query = st.text_input(
+        "🔍 Ask a Question:",
+        placeholder="e.g. When did redetermination begin for the COVID-19 Public Health Emergency unwind in New York State?"
+    )
+    col1, col2 = st.columns([1, 1])
+    with col1:
+        submitted = st.form_submit_button("Submit")
+    with col2:
+        cleared = st.form_submit_button("Clear Chat")
 
-col_send, col_clear = st.columns([1, 1])
-with col_send:
-    submit = st.button("Submit")
-with col_clear:
-    if st.button("Clear Chat"):
-        st.session_state["history"] = []
-        st.rerun()
-
-# Display history
-for msg in st.session_state["history"]:
-    if msg["role"] == "user":
-        st.chat_message("user").write(msg["content"])
-    else:
-        st.chat_message("assistant").write(msg["content"])
+if cleared:
+    st.session_state["history"] = []
+    st.rerun()
 
 # New question
-if submit:
+if submitted:
     if not user_query.strip():
          st.warning("Please enter a question before submitting.")
     else:
         # Save user input
         st.session_state["history"].append({"role": "user", "content": user_query})
+
         with st.spinner("Retrieving information..."):
             try:
                 if rag_pipeline:
@@ -199,6 +201,13 @@ if submit:
             except Exception as e:
                 st.error(f"Error: {e}")
 
+# Display history
+# NEW: reversed sequence
+for msg in reversed(st.session_state["history"]):
+    if msg["role"] == "user":
+        st.chat_message("user").write(msg["content"])
+    else:
+        st.chat_message("assistant").write(msg["content"])
 
 # ============================================================
 # ========== FOOTER ==========================================
