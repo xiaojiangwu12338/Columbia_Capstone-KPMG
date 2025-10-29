@@ -1,79 +1,83 @@
-# scripts/ingest_graph.py
-'''
-python scripts/ingest_graph.py --chunk_dir data/chunks/asterisk_separate_chunking_result
-'''
+"""
+Run command:
+python scripts/ingest_graph.py --chunk_dir data/chunks/asterisk_separate_chunking_result \
+    --meta_file data/metadata/metadata_filled.csv
+"""
+
 import argparse
-import os
 import sys
 from pathlib import Path
+import pandas as pd
 
 sys.path.append(str(Path(__file__).resolve().parents[1] / "src"))
-
 from healthcare_rag_llm.graph_builder.neo4j_loader import Neo4jConnector
 from healthcare_rag_llm.graph_builder.ingest_chunks import ingest_chunks
-from healthcare_rag_llm.embedding.HealthcareEmbedding import HealthcareEmbedding
+
+def load_metadata(meta_path: Path):
+    """
+    Read metadata_filled.csv into a dict keyed by file_name (doc_id).
+    Columns expected:
+        authority_name, authority_abbr, doc_title,
+        file_name, source_url, effective_date, doc_type
+    """
+    mapping = {}
+    if not meta_path.exists():
+        print(f"[WARN] Metadata file not found: {meta_path}")
+        return mapping
+
+    with open(meta_path, "r", encoding="utf-8-sig") as f:
+        import csv
+        reader = csv.DictReader(f)
+        for row in reader:
+            doc_id = row.get("file_name", "").strip()
+            if not doc_id:
+                continue
+            mapping[doc_id] = {
+                "authority": row.get("authority_name", "").strip() or "Unknown",
+                "authority_abbr": row.get("authority_abbr", "").strip(),
+                "title": row.get("doc_title", "").strip(),
+                "url": row.get("source_url", "").strip(),
+                "effective_date": row.get("effective_date", "").strip(),
+                "doc_type": row.get("doc_type", "").strip().upper() or "PDF",
+            }
+
+    print(f"[INFO] Loaded {len(mapping)} metadata rows from {meta_path}")
+    # sample = list(mapping.items())[:2]
+    # print("  Examples:", sample)
+    return mapping
+
 
 def main():
     parser = argparse.ArgumentParser(description="Ingest chunked JSONL files into Neo4j graph.")
-    parser.add_argument("--chunk_dir", type=str, required=True,
-                        help="Directory containing .chunks.jsonl files")
-    parser.add_argument("--meta_file", type=str, default=None,
-                        help="Optional metadata JSON/CSV file for documents")
+    parser.add_argument("--chunk_dir", required=True,
+                        help="Directory containing *.chunks.jsonl (or a single .chunks.jsonl file)")
+    parser.add_argument("--meta_file", default="data/metadata/metadata_filled.csv",
+                        help="Metadata CSV path")
     args = parser.parse_args()
 
-    chunk_dir = Path(args.chunk_dir)
-    if not chunk_dir.exists():
-        print(f"Directory not found: {chunk_dir}")
-        sys.exit(1)
-
-    # Step 1: initialize schema
+    # Schema init
     connector = Neo4jConnector()
     connector.init_schema()
     connector.close()
 
-    # Step 2: iterate all chunks.jsonl files
-    files = list(chunk_dir.glob("*.chunks.jsonl"))
+    meta = load_metadata(Path(args.meta_file))
+
+    cpath = Path(args.chunk_dir)
+    files = []
+    if cpath.is_file() and cpath.suffix == ".jsonl":
+        files = [cpath]
+    else:
+        files = list(cpath.glob("*.chunks.jsonl"))
+
     if not files:
-        print(f"No .chunks.jsonl files found in {chunk_dir}")
-        sys.exit(0)
+        print(f"[WARN] No .chunks.jsonl files found in {cpath}")
+        return
 
-    # Step 3: optional metadata
-    doc_metadata = {}
-    if args.meta_file:
-        if args.meta_file.endswith(".json"):
-            import json
-            with open(args.meta_file, "r", encoding="utf-8") as f:
-                doc_metadata = json.load(f)
-        elif args.meta_file.endswith(".csv"):
-            import pandas as pd
-            df = pd.read_csv(args.meta_file)
-            doc_metadata = {
-                row["doc_id"]: {
-                    "authority": row.get("authority"),
-                    "doc_type": row.get("doc_type"),
-                    "effective_date": row.get("effective_date")
-                }
-                for _, row in df.iterrows()
-            }
+    for fp in files:
+        print(f"Ingesting {fp} ...")
+        ingest_chunks(str(fp), doc_metadata=meta, batch_size=50)
 
-    # Step 4: Initialize embedder once (avoid reloading model for each file)
-    print(f"\n{'='*60}")
-    print(f"Initializing HealthcareEmbedding model (one-time setup)...")
-    print(f"{'='*60}")
-    embedder = HealthcareEmbedding()
-    print(f"Model loaded successfully!\n")
-
-    # Step 5: ingest every file (reuse embedder)
-    for idx, file in enumerate(files, 1):
-        print(f"\n{'='*60}")
-        print(f"Processing file {idx}/{len(files)}: {file.name}")
-        print(f"{'='*60}")
-        ingest_chunks(str(file), doc_metadata, embedder=embedder)
-
-    print(f"\n{'='*60}")
-    print(f"All chunks ingested into Neo4j.")
-    print(f"Total files processed: {len(files)}")
-    print(f"{'='*60}")
+    print("✅ All chunks ingested into Neo4j.")
 
 if __name__ == "__main__":
     main()

@@ -62,3 +62,21 @@ class APIConfigManager:
     def list_available_models(self) -> list:
         """List all available models"""
         return list(self._config.get("models", {}).keys())
+
+
+def load_api_config(config_path: str = "configs/api_config.yaml") -> Dict[str, Any]:
+    """
+    Convenience function to load API config as dictionary.
+
+    Args:
+        config_path: Path to API config YAML file
+
+    Returns:
+        Dictionary containing API configuration
+    """
+    config_path = Path(config_path)
+    if not config_path.exists():
+        raise FileNotFoundError(f"API configuration file not found: {config_path}")
+
+    with open(config_path, 'r', encoding='utf-8') as f:
+        return yaml.safe_load(f)

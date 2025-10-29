@@ -21,7 +21,15 @@ Users can ask questions such as:
 and receive grounded, cited answers from authoritative Medicaid documents.
 
 ---
+            
+### 🔗 GitHub Repository
+[![GitHub](https://img.shields.io/badge/GitHub-Columbia__Capstone--KPMG-blue?logo=github)](https://github.com/xiaojiangwu12338/Columbia_Capstone-KPMG)
 
+Full project code and documentation can be found on GitHub:  
+👉 [https://github.com/xiaojiangwu12338/Columbia_Capstone-KPMG](https://github.com/xiaojiangwu12338/Columbia_Capstone-KPMG)
+
+---
+            
 ### 👥 Team Members
 - **Ruoheng Du**
 - **Xiaojiang Wu**

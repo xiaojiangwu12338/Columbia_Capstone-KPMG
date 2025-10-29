@@ -169,6 +169,7 @@ class RAGBatchTester:
 
                     results[row_name] = {
                         "query_id": query_id,
+                        "query_content":question,
                         "long_version_id": self.long_version_id,
                         "short_version_id": self.short_version_id,
                         "top_k_chunks": retrieved_chunks,

@@ -3,7 +3,7 @@ import os
 from neo4j import GraphDatabase
 from dotenv import load_dotenv
 
-# docker/.env
+# Load Docker .env
 load_dotenv("docker/.env")
 
 class Neo4jConnector:
@@ -30,9 +30,11 @@ class Neo4jConnector:
         self.driver.close()
 
     def init_schema(self):
-        """Create uniqueness constraints and vector index"""
+        """Initialize Neo4j constraints and vector index"""
         with self.driver.session() as session:
             # Unique constraints
+            session.run("CREATE CONSTRAINT authority_name_unique IF NOT EXISTS "
+                        "FOR (a:Authority) REQUIRE a.name IS UNIQUE")
             session.run("CREATE CONSTRAINT doc_id_unique IF NOT EXISTS "
                         "FOR (d:Document) REQUIRE d.doc_id IS UNIQUE")
             session.run("CREATE CONSTRAINT page_uid_unique IF NOT EXISTS "
@@ -40,7 +42,7 @@ class Neo4jConnector:
             session.run("CREATE CONSTRAINT chunk_id_unique IF NOT EXISTS "
                         "FOR (c:Chunk) REQUIRE c.chunk_id IS UNIQUE")
 
-            # Vector index (BGE-M3 output dim: 1024 & only dense embedding used for index)
+            # Vector index for dense embedding (BGE-M3 → 1024 dims)
             session.run("""
             CREATE VECTOR INDEX chunk_vec IF NOT EXISTS
             FOR (c:Chunk) ON (c.denseEmbedding)
@@ -49,4 +51,4 @@ class Neo4jConnector:
               `vector.similarity_function`: 'cosine'
             }}
             """)
-            print("Neo4j schema initialized.")
+            print("✅ Neo4j schema initialized (Authority, Document, Page, Chunk, vector index).")
