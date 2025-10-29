@@ -1,6 +1,6 @@
 # src/healthcare_rag_llm/llm/response_generator.py
 
-from typing import Dict, List
+from typing import Dict, List, Optional
 from healthcare_rag_llm.llm.llm_client import LLMClient
 from healthcare_rag_llm.graph_builder.queries import query_chunks
 from healthcare_rag_llm.embedding.HealthcareEmbedding import HealthcareEmbedding
@@ -37,7 +37,7 @@ class ResponseGenerator:
         self.embedder = HealthcareEmbedding()  # Embedding
         self.use_reranker = use_reranker
 
-    def answer_question(self, question: str, top_k: int = 5, rerank_top_k: int = 20) -> Dict:
+    def answer_question(self, question: str, top_k: int = 5, rerank_top_k: int = 20, history: Optional[List[Dict]] = None) -> Dict:
         """
         Full question-answering pipeline.
 
@@ -90,10 +90,18 @@ Output sections (exactly):
 Each bullet must have a citation like [doc or doc:page — Mon DD, YYYY].
 """.strip()
 
-        llm_response = self.llm_client.chat(
-            user_prompt=user_msg,
-            system_prompt=self.system_prompt
-        )
+        # llm_response = self.llm_client.chat(
+        #     user_prompt=user_msg,
+        #     system_prompt=self.system_prompt
+        # )
+        messages = []
+        if self.system_prompt:
+            messages.append({"role": "system", "content": self.system_prompt})
+        if history:
+            messages.extend(history)   # NEW: add history
+        messages.append({"role": "user", "content": user_msg})
+
+        llm_response = self.llm_client.chat(messages=messages)
 
         return {
             "question": question,
