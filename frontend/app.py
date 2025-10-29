@@ -2,6 +2,7 @@ import streamlit as st
 from PIL import Image
 from pathlib import Path
 import sys
+import streamlit.components.v1 as components
 
 # ============================================================
 # ========== PATH SETUP ======================================
@@ -23,11 +24,9 @@ except Exception as e:
     HAS_BACKEND = False
     # st.warning(f"⚠️ Backend import failed: {e}. Mock mode enabled.")
 
-
 # ============================================================
 # ========== STREAMLIT PAGE CONFIG ===========================
 # ============================================================
-
 # Paths
 ROOT_DIR = Path(__file__).parent
 ASSETS_DIR = ROOT_DIR / "assets"
@@ -78,88 +77,129 @@ def load_rag_pipeline():
 rag_pipeline = load_rag_pipeline()
 
 # ============================================================
-# ========== CHAT MODE (Single Q&A) ==========================
-# ============================================================
-# st.markdown("### 🔍 Ask a Question")
-# user_query = st.text_area(
-#     "Enter your question here:",
-#     placeholder="e.g. When did redetermination begin for the COVID-19 Public Health Emergency unwind in New York State?"
-# )
-
-# if st.button("Submit"):
-#     if not user_query.strip():
-#         st.warning("Please enter a question before submitting.")
-#     else:
-#         with st.spinner("Retrieving information..."):
-#             try:
-#                 if rag_pipeline:
-#                     # --- Real backend mode ---
-#                     result = rag_pipeline.answer_question(user_query)
-#                     answer = result.get("answer", "No answer returned.")
-#                     retrieved_docs = result.get("retrieved_docs", [])
-
-#                     st.success("✅ Answer Retrieved")
-#                     st.markdown(f"**Answer:**\n\n{answer}")
-
-#                     st.markdown("### 📚 Retrieved Sources")
-#                     if retrieved_docs:
-#                         for doc in retrieved_docs:
-#                             doc_id = doc.get("doc_id", "Unknown")
-#                             pages = doc.get("pages", "N/A")
-#                             snippet = doc.get("text", "")[:300]
-#                             st.markdown(f"- **{doc_id}** (pages {pages})")
-#                             st.caption(snippet + "...")
-#                     else:
-#                         st.caption("No source documents retrieved.")
-#                 else:
-#                     # --- Mock mode (no backend) ---
-#                     st.warning("⚠️ Mock mode: Backend not connected.")
-#                     st.markdown(
-#                         "The assistant is currently running in mock mode without a live RAG backend. "
-#                         "Please connect to the backend to generate answers."
-#                     )
-
-#             except Exception as e:
-#                 st.error(f"Error: {e}")
-
-# ============================================================
 # ========== CHAT MODE (Multiple Q&A) ========================
 # ============================================================
-
 # Initialize history
 if "history" not in st.session_state:
-    st.session_state["history"] = []  # per history: {"role": "user"/"assistant", "content": "..."}
-    
-# Input
-# user_query = st.text_input(
-#     "🔍 Ask a Question:",
-#     placeholder="e.g. When did redetermination begin for the COVID-19 Public Health Emergency unwind in New York State?",
-#     key="input_box"
-# )
-# NEW: clear input
-with st.form("ask_form", clear_on_submit=True):
-    user_query = st.text_input(
-        "🔍 Ask a Question:",
-        placeholder="e.g. When did redetermination begin for the COVID-19 Public Health Emergency unwind in New York State?"
-    )
-    col1, col2 = st.columns([1, 1])
-    with col1:
-        submitted = st.form_submit_button("Submit")
-    with col2:
-        cleared = st.form_submit_button("Clear Chat")
+    st.session_state["history"] = []  # [{"role": "user"/"assistant", "content": "..."}]
 
+# Container: display history (natural order)
+chat_container = st.container()
+
+# ============================================================
+# ========== DISPLAY CHAT HISTORY (layout) ===================
+# ============================================================
+st.markdown(
+    """
+    <style>
+    /* container */
+    .chat-container { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1rem; font-size: 15px; }
+
+    /* chat row */
+    .chat-row { display: flex; align-items: flex-start; }
+    .chat-row.user { justify-content: flex-end; }
+
+    /* chat bubble */
+    .chat-bubble {
+        max-width: 70%;
+        padding: 0.7rem 1rem;
+        border-radius: 1rem;
+        line-height: 1.6;
+        word-wrap: break-word;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .chat-bubble.assistant {
+        background-color: #F4F4F4;
+        border: 1px solid #E0E0E0;
+        color: #000;
+        border-top-left-radius: 0.3rem;
+    }
+    .chat-bubble.user {
+        background-color: #DCF2FF;
+        border: 1px solid #CDE9FF;
+        color: #000;
+        border-top-right-radius: 0.3rem;
+    }
+
+    /* avatar */
+    .avatar {
+        width: 36px; height: 36px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 18px; font-weight: bold;
+        background-color: #E5E7EB;
+        margin: 0 0.5rem;
+    }
+    .avatar.user { background-color: #CDE9FF; }
+
+    /* font */
+    input, button, label, div[data-testid="stMarkdownContainer"] {
+        font-size: 15px !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Load history
+st.markdown('<div class="chat-container">', unsafe_allow_html=True)
+for msg in st.session_state["history"]:
+    role = msg["role"]
+    text = msg["content"]
+
+    if role == "assistant":
+        st.markdown(
+            f"""
+            <div class="chat-row assistant">
+                <div class="avatar assistant">🤔</div>
+                <div class="chat-bubble assistant">{text}</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    else:
+        st.markdown(
+            f"""
+            <div class="chat-row user">
+                <div class="chat-bubble user">{text}</div>
+                <div class="avatar user">👤</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+st.markdown('</div>', unsafe_allow_html=True)
+
+# ============================================================
+# ========== INPUT AREA (two-line layout) ====================
+# ============================================================
+with st.container():
+    st.markdown('<div class="input-box">', unsafe_allow_html=True)
+
+    with st.form("chat_form", clear_on_submit=True):
+        user_query = st.text_input(
+            "💬 **Ask a Question:**",
+            placeholder="e.g. When did redetermination begin for the COVID-19 Public Health Emergency unwind in New York State?",
+        )
+
+        col1, col2 = st.columns([1, 1])
+        with col1:
+            submitted = st.form_submit_button("📤 Submit", use_container_width=True)
+        with col2:
+            cleared = st.form_submit_button("🧹 Clear Chat", use_container_width=True)
+
+    st.markdown('</div>', unsafe_allow_html=True)
+
+# Clear logic
 if cleared:
     st.session_state["history"] = []
     st.rerun()
 
-# New question
+# Submit logic
 if submitted:
     if not user_query.strip():
-         st.warning("Please enter a question before submitting.")
+        st.warning("Please enter a question before submitting.")
     else:
-        # Save user input
         st.session_state["history"].append({"role": "user", "content": user_query})
-
         with st.spinner("Retrieving information..."):
             try:
                 if rag_pipeline:
@@ -188,26 +228,17 @@ if submitted:
                         "No grounded answer can be generated. "
                         "Please connect the backend (RAG pipeline) to enable cited answers."
                     )
-                    st.warning("⚠️ Mock mode: Backend not connected.")
-                    st.markdown(
-                        "The assistant is currently running in mock mode without a live RAG backend. "
-                        "Please connect to the backend to generate answers."
-                    )
+                    # st.warning("⚠️ Mock mode: Backend not connected.")
+                    # st.markdown(
+                    #     "The assistant is currently running in mock mode without a live RAG backend. "
+                    #     "Please connect to the backend to generate answers."
+                    # )
 
-                # Save answers
                 st.session_state["history"].append({"role": "assistant", "content": answer})
                 st.rerun()
 
             except Exception as e:
                 st.error(f"Error: {e}")
-
-# Display history
-# NEW: reversed sequence
-for msg in reversed(st.session_state["history"]):
-    if msg["role"] == "user":
-        st.chat_message("user").write(msg["content"])
-    else:
-        st.chat_message("assistant").write(msg["content"])
 
 # ============================================================
 # ========== FOOTER ==========================================
