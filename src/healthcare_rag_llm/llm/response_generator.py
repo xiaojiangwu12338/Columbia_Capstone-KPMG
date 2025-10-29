@@ -30,12 +30,13 @@ class ResponseGenerator:
       3. Generating the answer using the LLM
     """
 
-    def __init__(self, llm_client: LLMClient,system_prompt: str = SYSTEM_PROMPT, use_reranker: bool = True):
+    def __init__(self, llm_client: LLMClient,system_prompt: str = SYSTEM_PROMPT, use_reranker: bool = True, filter_extractor=None):
         """Initialize with a given LLM client."""
         self.system_prompt = system_prompt
         self.llm_client = llm_client
         self.embedder = HealthcareEmbedding()  # Embedding
         self.use_reranker = use_reranker
+        self.filter_extractor = filter_extractor
 
     def answer_question(self, question: str, top_k: int = 5, rerank_top_k: int = 20, history: Optional[List[Dict]] = None) -> Dict:
         """
@@ -46,12 +47,25 @@ class ResponseGenerator:
           2. Construct context + prompt
           3. Generate final response using the LLM
         """
+        # 0. Smart filter
+        filters = self.filter_extractor.extract(question) if self.filter_extractor else {}
+
         # 1. Encode query as vector
         query_vec = self.embedder.encode([question])["dense_vecs"][0].tolist()
         
         # 2. Retrieve more chunks initially (for reranking)
         initial_k = rerank_top_k if self.use_reranker else top_k
-        retrieved_chunks = query_chunks(query_vec, top_k=initial_k)
+        # retrieved_chunks = query_chunks(query_vec, top_k=initial_k)
+        retrieved_chunks = query_chunks(
+            query_vec,
+            top_k=initial_k,
+            authority_names=filters.get("authority_names"),
+            doc_titles=filters.get("doc_titles"),
+            doc_types=filters.get("doc_types"),
+            min_effective_date=filters.get("min_effective_date"),
+            max_effective_date=filters.get("max_effective_date"),
+            keywords=filters.get("keywords")
+        )
 
         # 3. Apply reranking if enabled
         if self.use_reranker and retrieved_chunks:

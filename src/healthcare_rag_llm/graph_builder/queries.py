@@ -3,7 +3,18 @@ from healthcare_rag_llm.graph_builder.neo4j_loader import Neo4jConnector
 from healthcare_rag_llm.embedding.HealthcareEmbedding import HealthcareEmbedding
 import pandas as pd
 
-def query_chunks(query_embedding, top_k=5, include_table=True, include_ocr=True):
+def query_chunks(
+    query_embedding,
+    top_k=5,
+    include_table=True,
+    include_ocr=True,
+    authority_names=None,
+    doc_titles=None,
+    doc_types=None,
+    min_effective_date=None,
+    max_effective_date=None,
+    keywords=None
+):
     """
     Vector search over Chunk.denseEmbedding, then traverse to Page, Document, and Authority.
     Optionally include 'table' or 'ocr' type chunks in the search.
@@ -19,6 +30,15 @@ def query_chunks(query_embedding, top_k=5, include_table=True, include_ocr=True)
         elif include_ocr:
             type_filter = "WHERE c.type IN ['text', 'ocr']"
 
+        extra_where = """
+        WHERE
+          ($authority_names IS NULL OR a.name IN $authority_names)
+          AND ($doc_titles IS NULL OR d.title IN $doc_titles)
+          AND ($doc_types IS NULL OR d.doc_type IN $doc_types)
+          AND ($min_effective_date IS NULL OR d.effective_date >= $min_effective_date)
+          AND ($max_effective_date IS NULL OR d.effective_date <= $max_effective_date)
+        """
+
         query = f"""
         CALL db.index.vector.queryNodes('chunk_vec', $k, $query_embedding)
         YIELD node, score
@@ -26,6 +46,7 @@ def query_chunks(query_embedding, top_k=5, include_table=True, include_ocr=True)
         {type_filter}
         OPTIONAL MATCH (p:Page)-[:HAS_CHUNK|HAS_TABLE|HAS_OCR]->(c)
         OPTIONAL MATCH (p)<-[:CONTAINS]-(d:Document)<-[:ISSUED]-(a:Authority)
+        {extra_where}
         RETURN
             c.chunk_id        AS chunk_id,
             c.text            AS text,
@@ -40,8 +61,16 @@ def query_chunks(query_embedding, top_k=5, include_table=True, include_ocr=True)
             score
         ORDER BY score ASC
         """
-
-        result = session.run(query, {"query_embedding": query_embedding, "k": top_k})
+        params = {
+            "query_embedding": query_embedding,
+            "k": top_k,
+            "authority_names": authority_names,
+            "doc_titles": doc_titles,
+            "doc_types": doc_types,
+            "min_effective_date": min_effective_date,
+            "max_effective_date": max_effective_date,
+        }
+        result = session.run(query, params)
         data = result.data()
 
     connector.close()

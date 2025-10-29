@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 from pathlib import Path
 import sys
-import streamlit.components.v1 as components
+from healthcare_rag_llm.filters.load_metadata import build_filter_extractor
 
 # ============================================================
 # ========== PATH SETUP ======================================
@@ -72,7 +72,8 @@ def load_rag_pipeline():
         provider="openai",
         base_url="https://api.bltcy.ai/v1"
     )
-    return ResponseGenerator(llm_client)
+    filter_extractor = build_filter_extractor()
+    return ResponseGenerator(llm_client,filter_extractor=filter_extractor)
 
 rag_pipeline = load_rag_pipeline()
 
