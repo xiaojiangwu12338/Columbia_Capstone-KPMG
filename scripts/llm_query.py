@@ -1,12 +1,15 @@
 from healthcare_rag_llm.llm.llm_client import LLMClient
 from healthcare_rag_llm.llm.response_generator import ResponseGenerator
+from healthcare_rag_llm.filters.load_metadata import build_filter_extractor
 
 llm_client = LLMClient(api_key="", 
                         model="gpt-5", 
                         provider="openai",
                         base_url = "https://api.bltcy.ai/v1")
 
-response_generator = ResponseGenerator(llm_client)
+filter_extractor = build_filter_extractor()
+
+response_generator = ResponseGenerator(llm_client,filter_extractor=filter_extractor)
 qustion_1 = "When did redetrmination begin for the COVID-19 Public Health Emergency unwind in New York State"
 response_1 = response_generator.answer_question(qustion_1)
 print("Question 1: ", qustion_1,"\n")

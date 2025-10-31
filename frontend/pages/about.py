@@ -44,10 +44,3 @@ Full project code and documentation can be found on GitHub:
 
 © 2025 Columbia DSI x KPMG | For educational use only.
 """)
-
-# ### ⚙️ Technologies
-# - **LLM & RAG Pipeline:** Retrieval, Reranking, Context Construction  
-# - **Knowledge Graph:** Neo4j  
-# - **Embedding:** BGE-M3  
-# - **Frontend:** Streamlit UI  
-# - **Backend Integration:** Python API (LLMClient, ResponseGenerator)

@@ -67,7 +67,7 @@ def evaluate_results(
             "short_version_id": entry.get("short_version_id", ""),
             "predicted_docs": list(predicted_docs),
             "predicted_top_chunks": top_k_chunks,
-            "gt_docs": gt_docs_dict,                     # ✅ 保留完整 doc→pages 映射
+            "gt_docs": gt_docs_dict,                     # keep doc→pages
             "doc_level_correct": doc_correct,
             "page_level_correct": page_correct
         }
