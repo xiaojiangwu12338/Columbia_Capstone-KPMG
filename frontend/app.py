@@ -18,7 +18,8 @@ sys.path.append(str(SRC_DIR))  # allow import from src/
 # ============================================================
 try:
     from healthcare_rag_llm.llm.llm_client import LLMClient
-    from healthcare_rag_llm.llm.response_generator import ResponseGenerator
+    #from healthcare_rag_llm.llm.response_generator import ResponseGenerator
+    from healthcare_rag_llm.llm.response_gen_json import ResponseGenerator
     HAS_BACKEND = True
 except Exception as e:
     HAS_BACKEND = False
@@ -67,7 +68,7 @@ def load_rag_pipeline():
     if not HAS_BACKEND:
         return None
     llm_client = LLMClient(
-        api_key="",  # API key
+        api_key="sk-kTA3hKtUZS5oSkdMA4E8741295C947C1B390898aA7Af8fFa",  # API key
         model="gpt-5",
         provider="openai",
         base_url="https://api.bltcy.ai/v1"
