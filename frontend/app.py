@@ -18,7 +18,8 @@ sys.path.append(str(SRC_DIR))  # allow import from src/
 # ============================================================
 try:
     from healthcare_rag_llm.llm.llm_client import LLMClient
-    from healthcare_rag_llm.llm.response_generator import ResponseGenerator
+    #from healthcare_rag_llm.llm.response_generator import ResponseGenerator
+    from healthcare_rag_llm.llm.guardrail_response_wrapper import ResponseGenerator
     HAS_BACKEND = True
 except Exception as e:
     HAS_BACKEND = False
