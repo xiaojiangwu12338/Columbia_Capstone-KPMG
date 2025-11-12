@@ -12,7 +12,16 @@ from healthcare_rag_llm.utils.prompt_config import load_system_prompt
 from healthcare_rag_llm.llm.response_gen_json import ResponseGenerator as BaseResponseGenerator
 
 
-REJECTION_MESSAGE = "Please only enter healthcare policy related questions."
+REJECTION_MESSAGE = (
+    "This assistant is intended to support inquiries related to healthcare policy, "
+    "program administration, and regulatory guidance, based on official publications "
+    "and initiatives of the New York State Department of Health and other state-administered programs. "
+    "It does not provide clinical, technical, or general advice beyond that scope. "
+    "We encourage you to restate your question with a clear healthcare policy or program focus — "
+    "for example, topics such as Medicaid coverage, waiver programs, provider enrollment, "
+    "or compliance requirements."
+)
+
 CLASSIFIER_SYSTEM_PROMPT = (
     "You are a strict classifier. "
     "Answer ONLY 'YES' or 'NO' (uppercase, no punctuation). "
