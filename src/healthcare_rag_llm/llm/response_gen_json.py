@@ -22,6 +22,9 @@ Rules:
 3) Keep dates, codes, dollar figures, NCPDP fields, and policy names exactly as written.
 4) Be concise and decision-ready.
 5) If timing is relevant, highlight lines starting with "Effective".
+6) Do not only give short answer.The Answer you give should be one or more complete sentences. 
+   - Good example: "The redetermination process began in April 2023, as required by the Consolidated Appropriations Act of 2023."
+   - Bad example: "April 2023."
 """
 
 # --------------------------------------------------------------------
@@ -170,15 +173,16 @@ def _format_pages(pages_val: Any) -> str:
 def _format_answer_json(data: Dict[str, Any],
     chunks: List[Dict[str, Any]],
     meta_idx: Dict[str, Dict[str, str]],
-) -> Tuple[str, str]:
+) -> Tuple[str, Dict]:
     answer = data["answer"].strip()
 
-    lines: List[str] = []
-    any_ev = False
+    evidence_dict = {}
+
     for i in range(1, 6):
         if data[f"chunk{i}"] != 1:
             continue
-
+        dict_key_name = f"evidence{i}"
+        evidence_dict[dict_key_name] = {}
         src_chunk = chunks[i - 1] if i - 1 < len(chunks) else {}
         meta_row = _lookup_metadata_for_chunk(src_chunk, meta_idx)
 
@@ -202,26 +206,33 @@ def _format_answer_json(data: Dict[str, Any],
         if not quote:
             continue
 
-        any_ev = True
+        # any_ev = True
         # "<doc_title>, page 3, 4:"  (omit pages if unavailable)
-        header_suffix = f", {pages_part}:" if pages_part else ":"
-        lines.append(f"{doc_title}{header_suffix}")
-        lines.append(quote)
+        header_suffix = f", {pages_part}" if pages_part else ":"
+        evidence_dict[dict_key_name]["doc_info"] = doc_title + header_suffix
+        evidence_dict[dict_key_name]["quote"] = quote
+        
 
         # "effective on <date>: <url>" if present
         src_url = meta_row.get("source_url") if meta_row else ""
         eff_date = meta_row.get("effective_date") if meta_row else ""
-        if eff_date or src_url:
-            eff_label = eff_date if eff_date else "N/A"
-            url_label = src_url if src_url else "N/A"
-            lines.append(f"effective on {eff_label}: {url_label}")
+        if eff_date:
+            evidence_dict[dict_key_name]['publish_date'] = eff_date
+        else:
+            evidence_dict[dict_key_name]['publish_date'] = "N/A"
+        
+        if src_url:
+            evidence_dict[dict_key_name]["url"] = src_url
+        else:
+            evidence_dict[dict_key_name]["url"] = "N/A"
 
-    if not any_ev:
-        lines.append("(none)")
+
+    # if not any_ev:
+    #     lines.append("(none)")
 
     # Guarantee exactly one blank line between the Answer block and "Evidence:"
-    evidence_text = "\n".join(lines)
-    return answer, evidence_text
+    
+    return answer, evidence_dict
 
 
 
@@ -431,7 +442,7 @@ class ResponseGenerator:
         json_contract = """
 Return ONLY valid JSON with EXACTLY these fields (no extra keys, no trailing text):
 {
-  "answer": "<string>",
+  "answer": "<complete sentence(s) answering the question>",
   "chunk1": 0|1,
   "chunk1string": "<verbatim quote from CHUNK1 if used, else empty string>",
   "chunk2": 0|1,
@@ -524,11 +535,11 @@ Previous output (verbatim):
 
         # 7) Manual view (doc_title + pages + effective date + url), with a forced blank line before "Evidence:"
         #manual_view = _format_manual_view(parsed, final_chunks, self._metadata_index)
-        answer, evidence_text = _format_answer_json(parsed, final_chunks, self._metadata_index)
+        answer, evidence_dict = _format_answer_json(parsed, final_chunks, self._metadata_index)
         # 8) Return shape identical to response_generator.py
         return {
             "question": question,
             "answer": answer,
-            "evidence_text": evidence_text,
+            "evidence_dict": evidence_dict,
             "retrieved_docs": final_chunks,
         }

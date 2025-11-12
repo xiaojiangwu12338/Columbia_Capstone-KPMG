@@ -81,6 +81,51 @@ def load_rag_pipeline():
     filter_extractor = build_filter_extractor()
     return ResponseGenerator(llm_client,filter_extractor=filter_extractor)
 
+
+def format_evidence_dict(evidence_dict):
+    """format evidence_dict as HTML list"""
+    if not evidence_dict:
+        return "No evidence returned."
+    
+    html_lines = []
+    for i, (key, ev) in enumerate(evidence_dict.items(), 1):
+        doc_info = ev.get("doc_info", "Unknown")
+        quote = ev.get("quote", "")
+        publish_date = ev.get("publish_date", "N/A")
+        url = ev.get("url", "N/A")
+        
+        # 每个 evidence 作为一个列表项
+        html_lines.append(f"""
+<div style="margin-bottom: 1rem; padding: 0.5rem; border-left: 3px solid #4A90E2;">
+<b>{doc_info}, Published on {publish_date}: <a href="{url}" target="_blank" style="color: #4A90E2;">{url}</a></b><br>
+{quote}
+</div>
+        """)
+    
+    return "".join(html_lines)
+
+
+def format_retrieved_docs(retrieved_docs):
+    """format retrieved_docs as HTML list"""
+    if not retrieved_docs:
+        return ""
+    
+    html_lines = []
+    for doc in retrieved_docs:
+        doc_id = doc.get("doc_id", "Unknown")
+        pages = str(doc.get("pages", "N/A"))
+        snippet = doc.get("text", "")[:300]
+        
+        html_lines.append(f"""
+<li style="margin-bottom: 0.5rem;">
+<strong>{doc_id}</strong> (pages {pages})
+<br>
+<span style="color: #666; font-size: 0.9em;">{snippet}...</span>
+</li>
+        """)
+    
+    return "".join(html_lines)
+
 rag_pipeline = load_rag_pipeline()
 
 # ============================================================
@@ -153,33 +198,29 @@ st.markdown('<div class="chat-container">', unsafe_allow_html=True)
 for msg in st.session_state["history"]:
     role = msg["role"]
     text = msg["content"]
-    evidence_text = msg.get("evidence_text", "No evidence returned.")
+    evidence_dict = msg.get("evidence_dict", {})
 
     if role == "assistant":
-        if "retrieved_docs" in msg and msg.get("retrieved_docs"): 
+        formatted_evidence = format_evidence_dict(evidence_dict)
+        if "retrieved_docs" in msg and msg.get("retrieved_docs"):
+            formatted_sources = format_retrieved_docs(msg["retrieved_docs"])
+            
             display_content = f"""
 <div class="chat-row assistant">
-    <div class="avatar assistant">🤔</div>
-    <div class="chat-bubble assistant">
-    <b>Answer:</b> {text}
-     <br><br>
-     <b>Evidence:</b> {evidence_text}
-        <br><br>
-        <strong>📚 Retrieved Sources:</strong>
-        <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+<div class="avatar assistant">🤔</div>
+<div class="chat-bubble assistant">
+<b>Answer:</b> {text}
+<br><br>
+<b>Evidence:</b><br>
+{formatted_evidence}
+<br>
+<strong>📚 Retrieved Sources:</strong>
+<ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+{formatted_sources}
+</ul>
+</div>
+</div>
 """
-            for doc in msg["retrieved_docs"]:
-                doc_id = doc.get("doc_id", "Unknown")
-                pages = str(doc.get("pages", "N/A"))
-                snippet = doc.get("text", "")[:300]
-                display_content += f"""
-<li style="margin-bottom: 0.5rem;">
-    <strong>{doc_id}</strong> (pages {pages})
-    <br>
-    <span style="color: #666; font-size: 0.9em;">{snippet}...</span>
-</li>
-                """
-            display_content += f"""</ul></div></div>"""
             st.markdown(display_content, unsafe_allow_html=True)
         else:
             st.markdown(
@@ -189,7 +230,8 @@ for msg in st.session_state["history"]:
 <div class="chat-bubble assistant">
 <b>Answer:</b> {text}
 <br><br>
-<b>Evidence:</b> {evidence_text}
+<b>Evidence:</b><br>
+{formatted_evidence}
 </div>
 </div>
 """,
@@ -248,7 +290,7 @@ if submitted:
                     # --- Real backend ---
                     result = rag_pipeline.answer_question(user_query)
                     answer = result.get("answer", "No answer returned.")
-                    evidence_text = result.get("evidence_text", "No evidence returned.")
+                    evidence_dict = result.get("evidence_dict", {})
                     retrieved_docs = result.get("retrieved_docs", [])
                 else:
                     # --- Mock mode ---
@@ -266,7 +308,7 @@ if submitted:
                 st.session_state["history"].append({
                                                         "role": "assistant", 
                                                         "content": answer,
-                                                        "evidence_text": evidence_text,
+                                                        "evidence_dict": evidence_dict,
                                                         "retrieved_docs": retrieved_docs  # 
                                                     })
                 st.rerun()
