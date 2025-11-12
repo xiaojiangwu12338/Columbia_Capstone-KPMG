@@ -21,42 +21,52 @@ class LLMClient:
         else:
             raise ValueError("Unsupported provider: choose 'openai', 'gemini', or 'ollama'")
 
-    def chat(self, user_prompt: str, system_prompt: str = None, messages: list = None) -> str:
-        if self.provider == "openai":
-            if messages is None:
-                messages = []
-                if system_prompt:
-                    messages.append({"role": "system", "content": system_prompt})
-                messages.append({"role": "user", "content": user_prompt})
-            
-            resp = self.client.chat.completions.create(
-                model=self.model,
-                messages=messages
-            )
-            return resp.choices[0].message.content
+    def chat(self, user_prompt: str = None, system_prompt: str = None, messages: list = None) -> str:
 
-        elif self.provider == "gemini":
-            if messages:
+        if messages is not None:
+            if self.provider == "openai":
+                resp = self.client.chat.completions.create(
+                    model=self.model,
+                    messages=messages
+                )
+                return resp.choices[0].message.content
+            elif self.provider == "gemini":
                 conversation = "\n".join([f"{m['role'].capitalize()}: {m['content']}" for m in messages])
-            else:
-                conversation = (system_prompt + "\n" if system_prompt else "") + user_prompt
-            resp = self.client.generate_content(conversation)
-            return resp.text
+                resp = self.client.generate_content(conversation)
+                return resp.text
+            elif self.provider == "ollama":
+                url = f"{self.ollama_url}/api/chat"
+                payload = {"model": self.model, "messages": messages, "stream": False}
+                r = self.session.post(url, json=payload, timeout=60)
+                r.raise_for_status()
+                data = r.json()
+                return data["message"]["content"]
+        else:
+            if self.provider == "openai":
+                messages = []
+                if system_prompt:
+                    messages.append({"role": "system", "content": system_prompt})
+                if user_prompt:
+                    messages.append({"role": "user", "content": user_prompt})
+                resp = self.client.chat.completions.create(model=self.model, messages=messages)
+                return resp.choices[0].message.content
 
-        elif self.provider == "ollama":
-            if messages is None:
+            elif self.provider == "gemini":
+                conversation = (system_prompt + "\n" if system_prompt else "") + user_prompt
+                resp = self.client.generate_content(conversation)
+                return resp.text
+
+            elif self.provider == "ollama":
                 messages = []
                 if system_prompt:
                     messages.append({"role": "system", "content": system_prompt})
                 messages.append({"role": "user", "content": user_prompt})
-
-            url = f"{self.ollama_url}/api/chat"
-            payload = {"model": self.model, "messages": messages, "stream": False}
-            r = self.session.post(url, json=payload, timeout=60)
-            r.raise_for_status()
-            data = r.json()
-            # Expected: {"message": {"role": "assistant", "content": "..."} , "done": true, ...}
-            return data["message"]["content"]
+                url = f"{self.ollama_url}/api/chat"
+                payload = {"model": self.model, "messages": messages, "stream": False}
+                r = self.session.post(url, json=payload, timeout=60)
+                r.raise_for_status()
+                data = r.json()
+                return data["message"]["content"]
 
 """
 sample usage: 

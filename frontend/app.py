@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 from pathlib import Path
 import sys
-import streamlit.components.v1 as components
+from healthcare_rag_llm.filters.load_metadata import build_filter_extractor
 
 # ============================================================
 # ========== PATH SETUP ======================================
@@ -66,13 +66,17 @@ with st.expander("📜 Disclaimer & About", expanded=True):
 def load_rag_pipeline():
     if not HAS_BACKEND:
         return None
+    from healthcare_rag_llm.utils.api_config import APIConfigManager
+    api_config_manager = APIConfigManager()
+    api_config_default = api_config_manager.get_default_config()
     llm_client = LLMClient(
-        api_key="",  # API key
+        api_key=api_config_default.api_key,  # API key
         model="gpt-5",
-        provider="openai",
-        base_url="https://api.bltcy.ai/v1"
+        provider=api_config_default.provider,
+        base_url=api_config_default.base_url
     )
-    return ResponseGenerator(llm_client)
+    filter_extractor = build_filter_extractor()
+    return ResponseGenerator(llm_client,filter_extractor=filter_extractor)
 
 rag_pipeline = load_rag_pipeline()
 
@@ -192,6 +196,11 @@ with st.container():
 # Clear logic
 if cleared:
     st.session_state["history"] = []
+    if rag_pipeline:
+        try:
+            rag_pipeline.chat_history.clear()
+        except Exception as e:
+            st.error(f"Error clearing chat history: {e}")
     st.rerun()
 
 # Submit logic
@@ -199,12 +208,12 @@ if submitted:
     if not user_query.strip():
         st.warning("Please enter a question before submitting.")
     else:
-        st.session_state["history"].append({"role": "user", "content": user_query})
+        # st.session_state["history"].append({"role": "user", "content": user_query})
         with st.spinner("Retrieving information..."):
             try:
                 if rag_pipeline:
                     # --- Real backend ---
-                    result = rag_pipeline.answer_question(user_query, history=st.session_state["history"])
+                    result = rag_pipeline.answer_question(user_query)
                     answer = result.get("answer", "No answer returned.")
                     retrieved_docs = result.get("retrieved_docs", [])
 
@@ -233,12 +242,31 @@ if submitted:
                     #     "The assistant is currently running in mock mode without a live RAG backend. "
                     #     "Please connect to the backend to generate answers."
                     # )
-
+                st.session_state["history"].append({"role": "user", "content": user_query})
                 st.session_state["history"].append({"role": "assistant", "content": answer})
                 st.rerun()
 
             except Exception as e:
                 st.error(f"Error: {e}")
+
+
+# ============================================================
+# ========== BACKEND MEMORY VIEWER (for debugging) ===========
+# ============================================================
+
+if rag_pipeline and hasattr(rag_pipeline, "chat_history"):
+    with st.expander("🧠 Backend Memory Viewer", expanded=False):
+        if hasattr(rag_pipeline.chat_history, "messages"):
+            messages = rag_pipeline.chat_history.get_messages()
+            if not messages:
+                st.caption("*(Empty – no conversation stored in backend memory)*")
+            else:
+                for i, msg in enumerate(messages, 1):
+                    role = msg["role"].capitalize()
+                    content = msg["content"][:1000]  # 截断长文本防止爆页面
+                    st.markdown(f"**{i}. {role}:** {content}")
+        else:
+            st.caption("ChatHistory not initialized or has no messages attribute.")
 
 # ============================================================
 # ========== FOOTER ==========================================
