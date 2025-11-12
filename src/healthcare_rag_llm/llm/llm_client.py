@@ -21,13 +21,14 @@ class LLMClient:
         else:
             raise ValueError("Unsupported provider: choose 'openai', 'gemini', or 'ollama'")
 
-    def chat(self, user_prompt: str, system_prompt: str = None) -> str:
+    def chat(self, user_prompt: str, system_prompt: str = None, messages: list = None) -> str:
         if self.provider == "openai":
-            messages = []
-            if system_prompt:
-                messages.append({"role": "system", "content": system_prompt})
-            messages.append({"role": "user", "content": user_prompt})
-
+            if messages is None:
+                messages = []
+                if system_prompt:
+                    messages.append({"role": "system", "content": system_prompt})
+                messages.append({"role": "user", "content": user_prompt})
+            
             resp = self.client.chat.completions.create(
                 model=self.model,
                 messages=messages
@@ -35,15 +36,19 @@ class LLMClient:
             return resp.choices[0].message.content
 
         elif self.provider == "gemini":
-            full_prompt = (system_prompt + "\n" if system_prompt else "") + user_prompt
-            resp = self.client.generate_content(full_prompt)
+            if messages:
+                conversation = "\n".join([f"{m['role'].capitalize()}: {m['content']}" for m in messages])
+            else:
+                conversation = (system_prompt + "\n" if system_prompt else "") + user_prompt
+            resp = self.client.generate_content(conversation)
             return resp.text
 
         elif self.provider == "ollama":
-            messages = []
-            if system_prompt:
-                messages.append({"role": "system", "content": system_prompt})
-            messages.append({"role": "user", "content": user_prompt})
+            if messages is None:
+                messages = []
+                if system_prompt:
+                    messages.append({"role": "system", "content": system_prompt})
+                messages.append({"role": "user", "content": user_prompt})
 
             url = f"{self.ollama_url}/api/chat"
             payload = {"model": self.model, "messages": messages, "stream": False}
