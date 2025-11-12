@@ -3,6 +3,8 @@ from PIL import Image
 from pathlib import Path
 import sys
 from healthcare_rag_llm.filters.load_metadata import build_filter_extractor
+import html
+from textwrap import dedent
 
 # ============================================================
 # ========== PATH SETUP ======================================
@@ -151,21 +153,51 @@ st.markdown('<div class="chat-container">', unsafe_allow_html=True)
 for msg in st.session_state["history"]:
     role = msg["role"]
     text = msg["content"]
+    evidence_text = msg.get("evidence_text", "No evidence returned.")
 
     if role == "assistant":
-        st.markdown(
-            f"""
-            <div class="chat-row assistant">
-                <div class="avatar assistant">🤔</div>
-                <div class="chat-bubble assistant">{text}</div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+        if "retrieved_docs" in msg and msg.get("retrieved_docs"): 
+            display_content = f"""
+<div class="chat-row assistant">
+    <div class="avatar assistant">🤔</div>
+    <div class="chat-bubble assistant">
+    <b>Answer:</b> {text}
+     <br><br>
+     <b>Evidence:</b> {evidence_text}
+        <br><br>
+        <strong>📚 Retrieved Sources:</strong>
+        <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+"""
+            for doc in msg["retrieved_docs"]:
+                doc_id = doc.get("doc_id", "Unknown")
+                pages = str(doc.get("pages", "N/A"))
+                snippet = doc.get("text", "")[:300]
+                display_content += f"""
+<li style="margin-bottom: 0.5rem;">
+    <strong>{doc_id}</strong> (pages {pages})
+    <br>
+    <span style="color: #666; font-size: 0.9em;">{snippet}...</span>
+</li>
+                """
+            display_content += f"""</ul></div></div>"""
+            st.markdown(display_content, unsafe_allow_html=True)
+        else:
+            st.markdown(
+                f"""
+<div class="chat-row assistant">
+<div class="avatar assistant">🤔</div>
+<div class="chat-bubble assistant">
+<b>Answer:</b> {text}
+<br><br>
+<b>Evidence:</b> {evidence_text}
+</div>
+</div>
+""",
+                unsafe_allow_html=True,
+            )
     else:
         st.markdown(
-            f"""
-            <div class="chat-row user">
+            f"""<div class="chat-row user">
                 <div class="chat-bubble user">{text}</div>
                 <div class="avatar user">👤</div>
             </div>
@@ -216,21 +248,8 @@ if submitted:
                     # --- Real backend ---
                     result = rag_pipeline.answer_question(user_query)
                     answer = result.get("answer", "No answer returned.")
+                    evidence_text = result.get("evidence_text", "No evidence returned.")
                     retrieved_docs = result.get("retrieved_docs", [])
-
-                    st.success("✅ Answer Retrieved")
-                    st.markdown(f"**Answer:**\n\n{answer}")
-
-                    st.markdown("### 📚 Retrieved Sources")
-                    if retrieved_docs:
-                        for doc in retrieved_docs:
-                            doc_id = doc.get("doc_id", "Unknown")
-                            pages = doc.get("pages", "N/A")
-                            snippet = doc.get("text", "")[:300]
-                            st.markdown(f"- **{doc_id}** (pages {pages})")
-                            st.caption(snippet + "...")
-                    else:
-                        st.caption("No source documents retrieved.")
                 else:
                     # --- Mock mode ---
                     answer = (
@@ -244,7 +263,12 @@ if submitted:
                     #     "Please connect to the backend to generate answers."
                     # )
                 st.session_state["history"].append({"role": "user", "content": user_query})
-                st.session_state["history"].append({"role": "assistant", "content": answer})
+                st.session_state["history"].append({
+                                                        "role": "assistant", 
+                                                        "content": answer,
+                                                        "evidence_text": evidence_text,
+                                                        "retrieved_docs": retrieved_docs  # 
+                                                    })
                 st.rerun()
 
             except Exception as e:
@@ -255,25 +279,25 @@ if submitted:
 # ========== BACKEND MEMORY VIEWER (for debugging) ===========
 # ============================================================
 
-if rag_pipeline and hasattr(rag_pipeline, "chat_history"):
-    with st.expander("🧠 Backend Memory Viewer", expanded=False):
-        if hasattr(rag_pipeline.chat_history, "messages"):
-            messages = rag_pipeline.chat_history.get_messages()
-            if not messages:
-                st.caption("*(Empty – no conversation stored in backend memory)*")
-            else:
-                for i, msg in enumerate(messages, 1):
-                    role = msg["role"].capitalize()
-                    content = msg["content"][:1000]  # 截断长文本防止爆页面
-                    st.markdown(f"**{i}. {role}:** {content}")
-        else:
-            st.caption("ChatHistory not initialized or has no messages attribute.")
+# if rag_pipeline and hasattr(rag_pipeline, "chat_history"):
+#     with st.expander("🧠 Backend Memory Viewer", expanded=False):
+#         if hasattr(rag_pipeline.chat_history, "messages"):
+#             messages = rag_pipeline.chat_history.get_messages()
+#             if not messages:
+#                 st.caption("*(Empty – no conversation stored in backend memory)*")
+#             else:
+#                 for i, msg in enumerate(messages, 1):
+#                     role = msg["role"].capitalize()
+#                     content = msg["content"][:1000]  # 截断长文本防止爆页面
+#                     st.markdown(f"**{i}. {role}:** {content}")
+#         else:
+#             st.caption("ChatHistory not initialized or has no messages attribute.")
 
-# ============================================================
-# ========== FOOTER ==========================================
-# ============================================================
-st.divider()
-st.markdown(
-    "<p style='font-size: small; color: gray;'>© 2025 Columbia DSI x KPMG | For educational use only.</p>",
-    unsafe_allow_html=True
-)
+# # ============================================================
+# # ========== FOOTER ==========================================
+# # ============================================================
+# st.divider()
+# st.markdown(
+#     "<p style='font-size: small; color: gray;'>© 2025 Columbia DSI x KPMG | For educational use only.</p>",
+#     unsafe_allow_html=True
+# )

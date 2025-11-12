@@ -47,7 +47,7 @@ def query_chunks(
         OPTIONAL MATCH (p:Page)-[:HAS_CHUNK|HAS_TABLE|HAS_OCR]->(c)
         OPTIONAL MATCH (p)<-[:CONTAINS]-(d:Document)<-[:ISSUED]-(a:Authority)
         {extra_where}
-        RETURN
+        RETURN DISTINCT
             c.chunk_id        AS chunk_id,
             c.text            AS text,
             c.type            AS chunk_type,

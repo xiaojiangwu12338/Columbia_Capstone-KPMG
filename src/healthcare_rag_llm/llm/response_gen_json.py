@@ -1,6 +1,6 @@
 # src/healthcare_rag_llm/llm/response_gen_json.py
 
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional,Tuple
 import json
 import csv
 from pathlib import Path
@@ -166,6 +166,65 @@ def _format_pages(pages_val: Any) -> str:
     s = str(pages_val).strip()
     return f"page {s}" if s else ""
 
+
+def _format_answer_json(data: Dict[str, Any],
+    chunks: List[Dict[str, Any]],
+    meta_idx: Dict[str, Dict[str, str]],
+) -> Tuple[str, str]:
+    answer = data["answer"].strip()
+
+    lines: List[str] = []
+    any_ev = False
+    for i in range(1, 6):
+        if data[f"chunk{i}"] != 1:
+            continue
+
+        src_chunk = chunks[i - 1] if i - 1 < len(chunks) else {}
+        meta_row = _lookup_metadata_for_chunk(src_chunk, meta_idx)
+
+        # doc_title from metadata preferred; fallbacks if missing
+        if meta_row and meta_row.get("doc_title"):
+            doc_title = meta_row["doc_title"]
+        elif (src_chunk.get("doc_title") or "").strip():
+            doc_title = src_chunk["doc_title"].strip()
+        else:
+            # last resort: friendly filename/doc_id
+            for key in ("file_name", "doc_id"):
+                val = (src_chunk.get(key) or "").strip()
+                if val:
+                    doc_title = _basename(val) or val
+                    break
+            else:
+                doc_title = f"chunk{i}"
+
+        pages_part = _format_pages(src_chunk.get("pages"))
+        quote = data.get(f"chunk{i}string", "").strip()
+        if not quote:
+            continue
+
+        any_ev = True
+        # "<doc_title>, page 3, 4:"  (omit pages if unavailable)
+        header_suffix = f", {pages_part}:" if pages_part else ":"
+        lines.append(f"{doc_title}{header_suffix}")
+        lines.append(quote)
+
+        # "effective on <date>: <url>" if present
+        src_url = meta_row.get("source_url") if meta_row else ""
+        eff_date = meta_row.get("effective_date") if meta_row else ""
+        if eff_date or src_url:
+            eff_label = eff_date if eff_date else "N/A"
+            url_label = src_url if src_url else "N/A"
+            lines.append(f"effective on {eff_label}: {url_label}")
+
+    if not any_ev:
+        lines.append("(none)")
+
+    # Guarantee exactly one blank line between the Answer block and "Evidence:"
+    evidence_text = "\n".join(lines)
+    return answer, evidence_text
+
+
+
 def _format_manual_view(
     data: Dict[str, Any],
     chunks: List[Dict[str, Any]],
@@ -329,8 +388,19 @@ class ResponseGenerator:
                 dense_score_key="score",
             )
 
-        # 4) Take top-k
-        final_chunks = (retrieved_chunks or [])[:top_k]
+        # 4) Deduplicate chunks based on (doc_id, chunk_id), then take top-k
+        if retrieved_chunks:
+            seen_keys = set()
+            final_chunks = []
+            for chunk in retrieved_chunks:
+                key = (chunk.get("doc_id"), chunk.get("chunk_id"))
+                if key not in seen_keys:
+                    seen_keys.add(key)
+                    final_chunks.append(chunk)
+                    if len(final_chunks) >= top_k:
+                        break
+        else:
+            final_chunks = []
 
         # Label chunks for the model
         labeled = []
@@ -453,11 +523,12 @@ Previous output (verbatim):
         parsed = _normalize_flags_to_ints(parsed)
 
         # 7) Manual view (doc_title + pages + effective date + url), with a forced blank line before "Evidence:"
-        manual_view = _format_manual_view(parsed, final_chunks, self._metadata_index)
-
+        #manual_view = _format_manual_view(parsed, final_chunks, self._metadata_index)
+        answer, evidence_text = _format_answer_json(parsed, final_chunks, self._metadata_index)
         # 8) Return shape identical to response_generator.py
         return {
             "question": question,
-            "answer": manual_view,
+            "answer": answer,
+            "evidence_text": evidence_text,
             "retrieved_docs": final_chunks,
         }
