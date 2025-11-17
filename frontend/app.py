@@ -109,21 +109,28 @@ def format_retrieved_docs(retrieved_docs):
     """format retrieved_docs as HTML list"""
     if not retrieved_docs:
         return ""
-    
+
     html_lines = []
     for doc in retrieved_docs:
+        title = doc.get("title","")
         doc_id = doc.get("doc_id", "Unknown")
+        display_name = title if title else doc_id
+        url = doc.get("url", "N/A")
+
         pages = str(doc.get("pages", "N/A"))
         snippet = doc.get("text", "")[:300]
-        
+        effective_date = doc.get("effective_date","")
+
         html_lines.append(f"""
 <li style="margin-bottom: 0.5rem;">
-<strong>{doc_id}</strong> (pages {pages})
+<strong>{display_name}</strong> (pages {pages})
+<br>
+<a href="{url}" target="_blank" style="color: #4A90E2;">{url}</a>
 <br>
 <span style="color: #666; font-size: 0.9em;">{snippet}...</span>
 </li>
         """)
-    
+
     return "".join(html_lines)
 
 rag_pipeline = load_rag_pipeline()
@@ -212,9 +219,12 @@ for msg in st.session_state["history"]:
 <b>Answer:</b> {text}
 <br><br>
 <b>Evidence:</b><br>
+<em style="color: #666; font-size: 0.9em;">Direct quotes from official documents that support the answer above.</em>
+<br>
 {formatted_evidence}
 <br>
-<strong>📚 Retrieved Sources:</strong>
+<strong>📚 Retrieved Sources:</strong><br>
+<em style="color: #666; font-size: 0.9em;">Document snippets that were retrieved and analyzed to answer your question.</em>
 <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
 {formatted_sources}
 </ul>
@@ -231,6 +241,8 @@ for msg in st.session_state["history"]:
 <b>Answer:</b> {text}
 <br><br>
 <b>Evidence:</b><br>
+<em style="color: #666; font-size: 0.9em;">Direct quotes from official documents that support the answer above.</em>
+<br>
 {formatted_evidence}
 </div>
 </div>

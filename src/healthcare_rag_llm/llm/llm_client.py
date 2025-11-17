@@ -21,22 +21,23 @@ class LLMClient:
         else:
             raise ValueError("Unsupported provider: choose 'openai', 'gemini', or 'ollama'")
 
-    def chat(self, user_prompt: str = None, system_prompt: str = None, messages: list = None) -> str:
+    def chat(self, user_prompt: str = None, system_prompt: str = None, messages: list = None,temperature = 0.1) -> str:
 
         if messages is not None:
             if self.provider == "openai":
                 resp = self.client.chat.completions.create(
                     model=self.model,
-                    messages=messages
+                    messages=messages,
+                    temperature=temperature
                 )
                 return resp.choices[0].message.content
             elif self.provider == "gemini":
                 conversation = "\n".join([f"{m['role'].capitalize()}: {m['content']}" for m in messages])
-                resp = self.client.generate_content(conversation)
+                resp = self.client.generate_content(conversation,generation_config={"temperature":temperature})
                 return resp.text
             elif self.provider == "ollama":
                 url = f"{self.ollama_url}/api/chat"
-                payload = {"model": self.model, "messages": messages, "stream": False}
+                payload = {"model": self.model, "messages": messages, "stream": False,"options":{"temperature":temperature}}
                 r = self.session.post(url, json=payload, timeout=60)
                 r.raise_for_status()
                 data = r.json()

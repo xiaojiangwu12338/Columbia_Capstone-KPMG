@@ -13,9 +13,10 @@
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_004_semantic_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
+                "mu_no7_jun22_pr.pdf",
+                "mu_no6_mar23_pr.pdf",
                 "mu_no02_feb25_pr.pdf",
-                "mu_no10_may23_pr.pdf",
-                "mu_no7_jun22_pr.pdf"
+                "mu_no10_may23_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -34,65 +35,27 @@
                     ],
                     "score": 0.8187350034713745,
                     "rerank_score": 0.9392573833465576,
-                    "final_score": 1.7508301734924316,
+                    "final_score": 1.8927433490753174,
                     "rank": 1
                 },
                 {
-                    "chunk_id": "mu_no7_jun22_pr.pdf::0083",
-                    "text": "9\n\nUnwinding from the COVID-19 Public Health Emergency:\nNew York State Department of Health Shares Strategy to Help\nConsumers Maintain Coverage\nIn early 2020, the United States Department of Health and Human Services (HHS) declared a Public Health\nEmergency (PHE) in response to the Coronavirus Disease 2019 (COVID-19) pandemic, allowing New York\n(NY) residents enrolled in Medicaid, Child Health Plus (CHP), and the Essential Plan (EP) to keep their\ncoverage without requiring an annual eligibility review.",
+                    "chunk_id": "mu_no02_feb25_pr.pdf::0031",
+                    "text": "3\n\nPublic Health Emergency Unwind\nThe Consolidated Appropriations Act of 2023 required states to begin the process of redetermining Medicaid\neligibility for its members, which New York State (NYS) began in April 2023.",
                     "chunk_type": "text",
-                    "doc_id": "mu_no7_jun22_pr.pdf",
-                    "title": "New York State Medicaid Update June 2022 Volume 38 Number 7",
-                    "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no7_jun22_pr.pdf",
+                    "doc_id": "mu_no02_feb25_pr.pdf",
+                    "title": "New York State Medicaid Update February 2025 Volume 41 Number 2",
+                    "url": "https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no02_feb25_pr.pdf",
                     "doc_type": "PDF",
-                    "effective_date": "2022-06-01",
+                    "effective_date": "2025-02-01",
                     "authority": "New York State Department of Health",
                     "pages": [
-                        9,
-                        10
+                        3,
+                        4
                     ],
-                    "score": 0.8187350034713745,
-                    "rerank_score": 0.9392573833465576,
-                    "final_score": 1.7508301734924316,
+                    "score": 0.8162845373153687,
+                    "rerank_score": 0.9415242075920105,
+                    "final_score": 1.7892135381698608,
                     "rank": 2
-                },
-                {
-                    "chunk_id": "mu_no02_feb25_pr.pdf::0031",
-                    "text": "3\n\nPublic Health Emergency Unwind\nThe Consolidated Appropriations Act of 2023 required states to begin the process of redetermining Medicaid\neligibility for its members, which New York State (NYS) began in April 2023.",
-                    "chunk_type": "text",
-                    "doc_id": "mu_no02_feb25_pr.pdf",
-                    "title": "New York State Medicaid Update February 2025 Volume 41 Number 2",
-                    "url": "https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no02_feb25_pr.pdf",
-                    "doc_type": "PDF",
-                    "effective_date": "2025-02-01",
-                    "authority": "New York State Department of Health",
-                    "pages": [
-                        3,
-                        4
-                    ],
-                    "score": 0.8162845373153687,
-                    "rerank_score": 0.9415242075920105,
-                    "final_score": 1.6498249769210815,
-                    "rank": 3
-                },
-                {
-                    "chunk_id": "mu_no02_feb25_pr.pdf::0031",
-                    "text": "3\n\nPublic Health Emergency Unwind\nThe Consolidated Appropriations Act of 2023 required states to begin the process of redetermining Medicaid\neligibility for its members, which New York State (NYS) began in April 2023.",
-                    "chunk_type": "text",
-                    "doc_id": "mu_no02_feb25_pr.pdf",
-                    "title": "New York State Medicaid Update February 2025 Volume 41 Number 2",
-                    "url": "https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no02_feb25_pr.pdf",
-                    "doc_type": "PDF",
-                    "effective_date": "2025-02-01",
-                    "authority": "New York State Department of Health",
-                    "pages": [
-                        3,
-                        4
-                    ],
-                    "score": 0.8162845373153687,
-                    "rerank_score": 0.9415242075920105,
-                    "final_score": 1.6498249769210815,
-                    "rank": 4
                 },
                 {
                     "chunk_id": "mu_no10_may23_pr.pdf::0003",
@@ -109,7 +72,44 @@
                     ],
                     "score": 0.8187734484672546,
                     "rerank_score": 0.3969225585460663,
-                    "final_score": 0.9373245239257812,
+                    "final_score": 1.0086450576782227,
+                    "rank": 3
+                },
+                {
+                    "chunk_id": "mu_no10_may23_pr.pdf::0011",
+                    "text": "2\n\nAll Providers\nNew York State Reminds Members/Enrollees in Medicaid, Child Health Plus\nand the Essential Plan to Renew Their Health Insurance;\nEligibility Redetermination Notices are Being Distributed to New Yorkers\nEnrolled in Public Insurance Programs; NY State of Health Marketplace\nAssisting Consumers to Renew and Maintain Open Enrollment to Help Ensure\na Continuation of Coverage\nWith the passage of the federal Consolidated Appropriations Act, eligibility reviews that were paused during\nthe federal Coronavirus Disease 2019 (COVID-19) Public Health Emergency (PHE) are now resuming for\nover 9 million New Yorkers enrolled in Medicaid, Child Health Plus (CHPlus) and the Essential Plan (EP).",
+                    "chunk_type": "text",
+                    "doc_id": "mu_no10_may23_pr.pdf",
+                    "title": "New York State Medicaid Update May 2023 Volume 39 Number 10",
+                    "url": "https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no10_may23_pr.pdf",
+                    "doc_type": "PDF",
+                    "effective_date": "2023-05-01",
+                    "authority": "New York State Department of Health",
+                    "pages": [
+                        2,
+                        3
+                    ],
+                    "score": 0.8093892931938171,
+                    "rerank_score": 0.5143107175827026,
+                    "final_score": 0.789722204208374,
+                    "rank": 4
+                },
+                {
+                    "chunk_id": "mu_no6_mar23_pr.pdf::0000",
+                    "text": "March 2023\nVolume 39 | Number 6\nNew York State to Resume Eligibility Reviews for Medicaid, Child\nHealth Plus and the Essential Plan; Communications Tool Kit\nAvailable to Help Educate Consumers on How to Renew Insurance\nFor the duration of the federal Coronavirus Disease 2019 (COVID-19) Public Health Emergency (PHE), New\nYork State (NYS) was authorized to protect New Yorkers by pausing annual eligibility reviews and providing\ncontinuous coverage for Medicaid, Child Health Plus (CHP) and the Essential Plan (EP) members/enrollees.",
+                    "chunk_type": "text",
+                    "doc_id": "mu_no6_mar23_pr.pdf",
+                    "title": "New York State Medicaid Update March 2023 Volume 39 Number 6",
+                    "url": "https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no6_mar23_pr.pdf",
+                    "doc_type": "PDF",
+                    "effective_date": "2023-03-01",
+                    "authority": "New York State Department of Health",
+                    "pages": [
+                        1
+                    ],
+                    "score": 0.80661541223526,
+                    "rerank_score": 0.3721313774585724,
+                    "final_score": 0.43611982464790344,
                     "rank": 5
                 }
             ],
@@ -127,7 +127,9 @@
             "short_version_id": "exp_004_semantic_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
                 "mu_no8_aug24_pr.pdf",
+                "mu_no1_jan22_pr.pdf",
                 "mu_no3_feb23_speced_pr.pdf",
+                "mu_no3_mar22_pr.pdf",
                 "mu_no7_jun22_pr.pdf"
             ],
             "predicted_top_chunks": [
@@ -147,27 +149,8 @@
                     ],
                     "score": 0.7767138481140137,
                     "rerank_score": 0.6222454309463501,
-                    "final_score": 1.663941740989685,
+                    "final_score": 1.8894544839859009,
                     "rank": 1
-                },
-                {
-                    "chunk_id": "mu_no7_jun22_pr.pdf::0083",
-                    "text": "9\n\nUnwinding from the COVID-19 Public Health Emergency:\nNew York State Department of Health Shares Strategy to Help\nConsumers Maintain Coverage\nIn early 2020, the United States Department of Health and Human Services (HHS) declared a Public Health\nEmergency (PHE) in response to the Coronavirus Disease 2019 (COVID-19) pandemic, allowing New York\n(NY) residents enrolled in Medicaid, Child Health Plus (CHP), and the Essential Plan (EP) to keep their\ncoverage without requiring an annual eligibility review.",
-                    "chunk_type": "text",
-                    "doc_id": "mu_no7_jun22_pr.pdf",
-                    "title": "New York State Medicaid Update June 2022 Volume 38 Number 7",
-                    "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no7_jun22_pr.pdf",
-                    "doc_type": "PDF",
-                    "effective_date": "2022-06-01",
-                    "authority": "New York State Department of Health",
-                    "pages": [
-                        9,
-                        10
-                    ],
-                    "score": 0.7767138481140137,
-                    "rerank_score": 0.6222454309463501,
-                    "final_score": 1.663941740989685,
-                    "rank": 2
                 },
                 {
                     "chunk_id": "mu_no3_feb23_speced_pr.pdf::0000",
@@ -184,45 +167,63 @@
                     ],
                     "score": 0.771368145942688,
                     "rerank_score": 0.6959680914878845,
-                    "final_score": 1.5125541687011719,
+                    "final_score": 1.7292020320892334,
+                    "rank": 2
+                },
+                {
+                    "chunk_id": "mu_no8_aug24_pr.pdf::0103",
+                    "text": "9\n\nPharmacy\nNew York State Medicaid Pharmacy Policy\nfor Coronavirus Disease 2019 Testing\nEffective October 1, 2024, with the expiration of the Public Health Emergency (PHE) and provisions in the\nAmerican Rescue Plan Act (ARPA), NYRx, the New York State (NYS) Medicaid Pharmacy program, will no\nlonger provide coverage for Coronavirus Disease 2019 (COVID-19) testing when administered in a pharmacy\nor dispensed as a kit for at-home use. Coverage of COVID-19 testing will continue to be provided to eligible\nNYRx members when administered by a NYS Medicaid-enrolled practitioner in-office or performed by a\nclinical laboratory.",
+                    "chunk_type": "text",
+                    "doc_id": "mu_no8_aug24_pr.pdf",
+                    "title": "New York State Medicaid Update August 2024 Volume 40 Number 8",
+                    "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no8_aug24_pr.pdf",
+                    "doc_type": "PDF",
+                    "effective_date": "2024-08-01",
+                    "authority": "New York State Department of Health",
+                    "pages": [
+                        9,
+                        10
+                    ],
+                    "score": 0.7461372017860413,
+                    "rerank_score": 0.7831003665924072,
+                    "final_score": 0.529339075088501,
                     "rank": 3
                 },
                 {
-                    "chunk_id": "mu_no8_aug24_pr.pdf::0103",
-                    "text": "9\n\nPharmacy\nNew York State Medicaid Pharmacy Policy\nfor Coronavirus Disease 2019 Testing\nEffective October 1, 2024, with the expiration of the Public Health Emergency (PHE) and provisions in the\nAmerican Rescue Plan Act (ARPA), NYRx, the New York State (NYS) Medicaid Pharmacy program, will no\nlonger provide coverage for Coronavirus Disease 2019 (COVID-19) testing when administered in a pharmacy\nor dispensed as a kit for at-home use. Coverage of COVID-19 testing will continue to be provided to eligible\nNYRx members when administered by a NYS Medicaid-enrolled practitioner in-office or performed by a\nclinical laboratory.",
+                    "chunk_id": "mu_no1_jan22_pr.pdf::0010",
+                    "text": "2\n\nAll Providers\nNY State of Health Open Enrollment Period Extended as Federal\nPublic Health Emergency Continues\nThe NY State of Health Open Enrollment Period for 2022 Qualified Health Plans (QHPs) will remain open to\nalign with the recent announcement regarding the federal government Public Health Emergency (PHE)\nextension, effective January 16, 2022.",
                     "chunk_type": "text",
-                    "doc_id": "mu_no8_aug24_pr.pdf",
-                    "title": "New York State Medicaid Update August 2024 Volume 40 Number 8",
-                    "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no8_aug24_pr.pdf",
+                    "doc_id": "mu_no1_jan22_pr.pdf",
+                    "title": "New York State Medicaid Update January 2022 Volume 38 Number 1",
+                    "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no1_jan22_pr.pdf",
                     "doc_type": "PDF",
-                    "effective_date": "2024-08-01",
+                    "effective_date": "2022-01-01",
                     "authority": "New York State Department of Health",
                     "pages": [
-                        9,
-                        10
+                        2,
+                        3
                     ],
-                    "score": 0.7461372017860413,
-                    "rerank_score": 0.7831003665924072,
-                    "final_score": 0.3801637887954712,
+                    "score": 0.7505292892456055,
+                    "rerank_score": 0.630850076675415,
+                    "final_score": 0.5051196217536926,
                     "rank": 4
                 },
                 {
-                    "chunk_id": "mu_no8_aug24_pr.pdf::0103",
-                    "text": "9\n\nPharmacy\nNew York State Medicaid Pharmacy Policy\nfor Coronavirus Disease 2019 Testing\nEffective October 1, 2024, with the expiration of the Public Health Emergency (PHE) and provisions in the\nAmerican Rescue Plan Act (ARPA), NYRx, the New York State (NYS) Medicaid Pharmacy program, will no\nlonger provide coverage for Coronavirus Disease 2019 (COVID-19) testing when administered in a pharmacy\nor dispensed as a kit for at-home use. Coverage of COVID-19 testing will continue to be provided to eligible\nNYRx members when administered by a NYS Medicaid-enrolled practitioner in-office or performed by a\nclinical laboratory.",
+                    "chunk_id": "mu_no3_mar22_pr.pdf::0135",
+                    "text": "Enabled by the\nAffordable Care Act, NY State of Health has served as a critical safety net for over 6.5 million New Yorkers\nduring the Coronavirus Disease 2019 (COVID-19) Public Health Emergency (PHE).",
                     "chunk_type": "text",
-                    "doc_id": "mu_no8_aug24_pr.pdf",
-                    "title": "New York State Medicaid Update August 2024 Volume 40 Number 8",
-                    "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no8_aug24_pr.pdf",
+                    "doc_id": "mu_no3_mar22_pr.pdf",
+                    "title": "New York State Medicaid Update March 2022 Volume 38 Number 3",
+                    "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no3_mar22_pr.pdf",
                     "doc_type": "PDF",
-                    "effective_date": "2024-08-01",
+                    "effective_date": "2022-03-01",
                     "authority": "New York State Department of Health",
                     "pages": [
-                        9,
-                        10
+                        12
                     ],
-                    "score": 0.7461372017860413,
-                    "rerank_score": 0.7831003665924072,
-                    "final_score": 0.3801637887954712,
+                    "score": 0.7624621391296387,
+                    "rerank_score": 0.008286310359835625,
+                    "final_score": 0.08409246802330017,
                     "rank": 5
                 }
             ],
@@ -239,6 +240,7 @@
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_004_semantic_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
+                "mu_no2_feb22_pr.pdf",
                 "mu_no4_apr24_pr.pdf"
             ],
             "predicted_top_chunks": [
@@ -257,26 +259,8 @@
                     ],
                     "score": 0.8235000967979431,
                     "rerank_score": 0.9955843091011047,
-                    "final_score": 1.859370470046997,
+                    "final_score": 1.9139587879180908,
                     "rank": 1
-                },
-                {
-                    "chunk_id": "mu_no4_apr24_pr.pdf::0039",
-                    "text": "All claims for BrixadiTM will be entered as milliliters or “ml”.",
-                    "chunk_type": "text",
-                    "doc_id": "mu_no4_apr24_pr.pdf",
-                    "title": "New York State Medicaid Update April 2024 Volume 40 Number 4",
-                    "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no4_apr24_pr.pdf",
-                    "doc_type": "PDF",
-                    "effective_date": "2024-04-01",
-                    "authority": "New York State Department of Health",
-                    "pages": [
-                        5
-                    ],
-                    "score": 0.8081470727920532,
-                    "rerank_score": 0.6802590489387512,
-                    "final_score": 1.1235456466674805,
-                    "rank": 2
                 },
                 {
                     "chunk_id": "mu_no4_apr24_pr.pdf::0034",
@@ -293,7 +277,25 @@
                     ],
                     "score": 0.7909469604492188,
                     "rerank_score": 0.9940471649169922,
-                    "final_score": 1.1139178276062012,
+                    "final_score": 1.1835274696350098,
+                    "rank": 2
+                },
+                {
+                    "chunk_id": "mu_no4_apr24_pr.pdf::0039",
+                    "text": "All claims for BrixadiTM will be entered as milliliters or “ml”.",
+                    "chunk_type": "text",
+                    "doc_id": "mu_no4_apr24_pr.pdf",
+                    "title": "New York State Medicaid Update April 2024 Volume 40 Number 4",
+                    "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no4_apr24_pr.pdf",
+                    "doc_type": "PDF",
+                    "effective_date": "2024-04-01",
+                    "authority": "New York State Department of Health",
+                    "pages": [
+                        5
+                    ],
+                    "score": 0.8081470727920532,
+                    "rerank_score": 0.6802557706832886,
+                    "final_score": 1.1753849983215332,
                     "rank": 3
                 },
                 {
@@ -311,27 +313,26 @@
                         4
                     ],
                     "score": 0.7830297350883484,
-                    "rerank_score": 0.9948804378509521,
-                    "final_score": 0.9340912103652954,
+                    "rerank_score": 0.9948803186416626,
+                    "final_score": 1.0073916912078857,
                     "rank": 4
                 },
                 {
-                    "chunk_id": "mu_no4_apr24_pr.pdf::0030",
-                    "text": "3\n\nPractitioner Administered Drug Update:\nBrixadi™ Billing Guidance\nEffective April 1, 2024, for New York State (NYS) Medicaid fee-for-service (FFS), practitioners must submit\na claim for BrixadiTM with a unit of “1” when the drug is administered in a medical office.",
+                    "chunk_id": "mu_no2_feb22_pr.pdf::0020",
+                    "text": "• “D1354” should be indicated on one claim line with the number of units performed.",
                     "chunk_type": "text",
-                    "doc_id": "mu_no4_apr24_pr.pdf",
-                    "title": "New York State Medicaid Update April 2024 Volume 40 Number 4",
-                    "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no4_apr24_pr.pdf",
+                    "doc_id": "mu_no2_feb22_pr.pdf",
+                    "title": "New York State Medicaid Update February 2022 Volume 38 Number 2",
+                    "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no2_feb22_pr.pdf",
                     "doc_type": "PDF",
-                    "effective_date": "2024-04-01",
+                    "effective_date": "2022-02-01",
                     "authority": "New York State Department of Health",
                     "pages": [
-                        3,
-                        4
+                        3
                     ],
-                    "score": 0.7830297350883484,
-                    "rerank_score": 0.9948804378509521,
-                    "final_score": 0.9340912103652954,
+                    "score": 0.7764256000518799,
+                    "rerank_score": 0.9149336218833923,
+                    "final_score": 0.7594545483589172,
                     "rank": 5
                 }
             ],
@@ -348,9 +349,9 @@
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_004_semantic_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
-                "mu_no13_nov21_pr.pdf",
-                "mu_no02_feb19_speced_pr.pdf",
                 "mu_no07_jun21_speced_telehealth_pr.pdf",
+                "mu_no02_feb19_speced_pr.pdf",
+                "mu_no13_nov21_pr.pdf",
                 "mu_no2_feb22_pr.pdf"
             ],
             "predicted_top_chunks": [
@@ -369,7 +370,7 @@
                     ],
                     "score": 0.8864717483520508,
                     "rerank_score": 0.9995719790458679,
-                    "final_score": 1.7133216857910156,
+                    "final_score": 1.6566249132156372,
                     "rank": 1
                 },
                 {
@@ -387,7 +388,7 @@
                     ],
                     "score": 0.8803572654724121,
                     "rerank_score": 0.9998955726623535,
-                    "final_score": 1.5920335054397583,
+                    "final_score": 1.5403039455413818,
                     "rank": 2
                 },
                 {
@@ -405,7 +406,7 @@
                     ],
                     "score": 0.8300448060035706,
                     "rerank_score": 0.9973434805870056,
-                    "final_score": 0.5865447521209717,
+                    "final_score": 0.575995922088623,
                     "rank": 3
                 },
                 {
@@ -423,7 +424,7 @@
                     ],
                     "score": 0.8273696899414062,
                     "rerank_score": 0.9965219497680664,
-                    "final_score": 0.532099187374115,
+                    "final_score": 0.523780345916748,
                     "rank": 4
                 },
                 {
@@ -441,8 +442,8 @@
                         6
                     ],
                     "score": 0.8229427337646484,
-                    "rerank_score": 0.9340325593948364,
-                    "final_score": 0.35432514548301697,
+                    "rerank_score": 0.9340324401855469,
+                    "final_score": 0.35329964756965637,
                     "rank": 5
                 }
             ],
@@ -459,11 +460,11 @@
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_004_semantic_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
-                "mu_no14_dec22_pr.pdf",
                 "mu_no03_mar25_pr (1).pdf",
-                "mu_no2_jan23_pr.pdf",
                 "mu_no05_may25_pr.pdf",
-                "mu_no1_jan23_speced_pr.pdf"
+                "mu_no14_dec22_pr.pdf",
+                "mu_no1_jan23_speced_pr.pdf",
+                "mu_no2_jan23_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -576,9 +577,9 @@
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_004_semantic_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
+                "mu_no07_jun19_pr.pdf",
                 "mu_no5_may22_speced_pr.pdf",
-                "mu_no7_jun22_pr.pdf",
-                "mu_no07_jun19_pr.pdf"
+                "mu_no7_jun22_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -596,7 +597,7 @@
                     ],
                     "score": 0.8233768939971924,
                     "rerank_score": 0.9777516722679138,
-                    "final_score": 3.0886611938476562,
+                    "final_score": 2.889265775680542,
                     "rank": 1
                 },
                 {
@@ -614,7 +615,7 @@
                     ],
                     "score": 0.79668790102005,
                     "rerank_score": 0.6646904945373535,
-                    "final_score": 1.3011335134506226,
+                    "final_score": 1.1816858053207397,
                     "rank": 2
                 },
                 {
@@ -632,7 +633,7 @@
                     ],
                     "score": 0.8096016049385071,
                     "rerank_score": 0.28639185428619385,
-                    "final_score": 1.1738907098770142,
+                    "final_score": 1.063248634338379,
                     "rank": 3
                 },
                 {
@@ -650,7 +651,7 @@
                     ],
                     "score": 0.7938271164894104,
                     "rerank_score": 0.341461718082428,
-                    "final_score": 0.5670374631881714,
+                    "final_score": 0.4821254312992096,
                     "rank": 4
                 },
                 {
@@ -667,8 +668,8 @@
                         15
                     ],
                     "score": 0.7823286056518555,
-                    "rerank_score": 0.16694673895835876,
-                    "final_score": -0.2773219645023346,
+                    "rerank_score": 0.16694676876068115,
+                    "final_score": -0.32423675060272217,
                     "rank": 5
                 }
             ],
@@ -685,8 +686,8 @@
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_004_semantic_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
-                "mu_no17_dec20_speced_pr.pdf",
-                "mu_no06_may21_pr.pdf"
+                "mu_no06_may21_pr.pdf",
+                "mu_no17_dec20_speced_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -796,8 +797,8 @@
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_004_semantic_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
-                "mu_no11_oct24_pr.pdf",
-                "mu_no02_feb25_pr.pdf"
+                "mu_no02_feb25_pr.pdf",
+                "mu_no11_oct24_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -816,27 +817,8 @@
                     ],
                     "score": 0.8265892863273621,
                     "rerank_score": 0.7500015497207642,
-                    "final_score": 1.998014211654663,
+                    "final_score": 2.299370288848877,
                     "rank": 1
-                },
-                {
-                    "chunk_id": "mu_no02_feb25_pr.pdf::0012",
-                    "text": "2\n\nAll Providers\nSCN Program\nThe SCN program is part of the 1115 New York Health Equity Reform Waiver.",
-                    "chunk_type": "text",
-                    "doc_id": "mu_no02_feb25_pr.pdf",
-                    "title": "New York State Medicaid Update February 2025 Volume 41 Number 2",
-                    "url": "https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no02_feb25_pr.pdf",
-                    "doc_type": "PDF",
-                    "effective_date": "2025-02-01",
-                    "authority": "New York State Department of Health",
-                    "pages": [
-                        2,
-                        3
-                    ],
-                    "score": 0.8265892863273621,
-                    "rerank_score": 0.7500015497207642,
-                    "final_score": 1.998014211654663,
-                    "rank": 2
                 },
                 {
                     "chunk_id": "mu_no02_feb25_pr.pdf::0013",
@@ -853,8 +835,8 @@
                     ],
                     "score": 0.7564464807510376,
                     "rerank_score": 0.9229386448860168,
-                    "final_score": 1.0497875213623047,
-                    "rank": 3
+                    "final_score": 1.216302752494812,
+                    "rank": 2
                 },
                 {
                     "chunk_id": "mu_no11_oct24_pr.pdf::0127",
@@ -871,8 +853,8 @@
                     ],
                     "score": 0.8129531145095825,
                     "rerank_score": 0.2600070536136627,
-                    "final_score": 0.9487349987030029,
-                    "rank": 4
+                    "final_score": 1.1654422283172607,
+                    "rank": 3
                 },
                 {
                     "chunk_id": "mu_no11_oct24_pr.pdf::0129",
@@ -888,8 +870,26 @@
                         11
                     ],
                     "score": 0.7656911611557007,
-                    "rerank_score": 0.38568365573883057,
-                    "final_score": 0.3249417543411255,
+                    "rerank_score": 0.38568368554115295,
+                    "final_score": 0.45181500911712646,
+                    "rank": 4
+                },
+                {
+                    "chunk_id": "mu_no11_oct24_pr.pdf::0146",
+                    "text": "• Questions regarding SCNs should be directed to NYHER@health.ny.gov.",
+                    "chunk_type": "text",
+                    "doc_id": "mu_no11_oct24_pr.pdf",
+                    "title": "New York State Medicaid Update October 2024 Volume 40 Number 11",
+                    "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no11_oct24_pr.pdf",
+                    "doc_type": "PDF",
+                    "effective_date": "2024-10-01",
+                    "authority": "New York State Department of Health",
+                    "pages": [
+                        12
+                    ],
+                    "score": 0.7752569913864136,
+                    "rerank_score": 0.03117385134100914,
+                    "final_score": 0.01594628393650055,
                     "rank": 5
                 }
             ],
@@ -906,11 +906,11 @@
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_004_semantic_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
-                "mu_no03_mar25_pr.pdf",
-                "mu_no03_mar25 (3).pdf",
                 "mu_no03_mar25 (2).pdf",
-                "mu_no01_jan25_pr.pdf",
-                "mu_no06_jun25_pr.pdf"
+                "mu_no03_mar25 (3).pdf",
+                "mu_no03_mar25_pr.pdf",
+                "mu_no06_jun25_pr.pdf",
+                "mu_no01_jan25_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -1017,11 +1017,11 @@
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_004_semantic_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
-                "mu_no05_apr21_pr.pdf",
-                "mu_no8_apr23_pr.pdf",
+                "mu_no8_aug24_pr.pdf",
                 "mu_no04_mar19_pr.pdf",
                 "mu_no12_nov24_pr.pdf",
-                "mu_no8_aug24_pr.pdf"
+                "mu_no8_apr23_pr.pdf",
+                "mu_no05_apr21_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -1039,7 +1039,7 @@
                     ],
                     "score": 0.7966171503067017,
                     "rerank_score": 0.8976873159408569,
-                    "final_score": 3.445402145385742,
+                    "final_score": 3.270761489868164,
                     "rank": 1
                 },
                 {
@@ -1056,8 +1056,8 @@
                         8
                     ],
                     "score": 0.7763901948928833,
-                    "rerank_score": 0.218270942568779,
-                    "final_score": 0.7481673359870911,
+                    "rerank_score": 0.2182708978652954,
+                    "final_score": 0.6982549428939819,
                     "rank": 2
                 },
                 {
@@ -1075,7 +1075,7 @@
                     ],
                     "score": 0.778915524482727,
                     "rerank_score": 0.000615968310739845,
-                    "final_score": 0.37902313470840454,
+                    "final_score": 0.3502935469150543,
                     "rank": 3
                 },
                 {
@@ -1092,8 +1092,8 @@
                         3
                     ],
                     "score": 0.7693827152252197,
-                    "rerank_score": 0.20804046094417572,
-                    "final_score": 0.33915576338768005,
+                    "rerank_score": 0.20804047584533691,
+                    "final_score": 0.30509644746780396,
                     "rank": 4
                 },
                 {
@@ -1112,7 +1112,7 @@
                     ],
                     "score": 0.7750475406646729,
                     "rerank_score": 0.006710922345519066,
-                    "final_score": 0.18065926432609558,
+                    "final_score": 0.15925337374210358,
                     "rank": 5
                 }
             ],
@@ -1135,11 +1135,11 @@
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
             "short_version_id": "exp_004_semantic_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
-                "mu_no11_nov19_pr.pdf",
-                "mu_no06_may19_pr.pdf",
-                "mu_no08_jul19_pr.pdf",
                 "mu_no12_dec19_pr.pdf",
-                "mu_no07_jun19_pr.pdf"
+                "mu_no08_jul19_pr.pdf",
+                "mu_no07_jun19_pr.pdf",
+                "mu_no06_may19_pr.pdf",
+                "mu_no11_nov19_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -1157,7 +1157,7 @@
                     ],
                     "score": 0.8725014328956604,
                     "rerank_score": 0.9978410005569458,
-                    "final_score": 0.7698293924331665,
+                    "final_score": 0.7887057065963745,
                     "rank": 1
                 },
                 {
@@ -1175,7 +1175,7 @@
                     ],
                     "score": 0.8721514940261841,
                     "rerank_score": 0.9977973699569702,
-                    "final_score": 0.5520563721656799,
+                    "final_score": 0.5312634706497192,
                     "rank": 2
                 },
                 {
@@ -1193,7 +1193,7 @@
                     ],
                     "score": 0.8721514940261841,
                     "rerank_score": 0.9977973699569702,
-                    "final_score": 0.5520563721656799,
+                    "final_score": 0.5312634706497192,
                     "rank": 3
                 },
                 {
@@ -1211,7 +1211,7 @@
                     ],
                     "score": 0.8719401359558105,
                     "rerank_score": 0.998040497303009,
-                    "final_score": 0.42098039388656616,
+                    "final_score": 0.3762168288230896,
                     "rank": 4
                 },
                 {
@@ -1229,7 +1229,7 @@
                     ],
                     "score": 0.8719102740287781,
                     "rerank_score": 0.9982372522354126,
-                    "final_score": 0.4027358889579773,
+                    "final_score": 0.35457897186279297,
                     "rank": 5
                 }
             ],

@@ -413,6 +413,13 @@ class ResponseGenerator:
         else:
             final_chunks = []
 
+        #5) Sort final chunks by effective_date (newest to oldest)
+        # Handle None / Empty dates by placing them at the end 
+        final_chunks.sort(
+            key = lambda x: x.get("effective_date") or "",
+            reverse=True
+        )
+
         # Label chunks for the model
         labeled = []
         for idx, ch in enumerate(final_chunks, start=1):
@@ -462,6 +469,10 @@ Rules:
 - Use ONLY the provided CHUNKs; do not cite or quote anything else.
 - If the answer is not fully supported by the provided CHUNKs, set an appropriate answer like:
   "Insufficient grounded evidence in the provided documents to answer." and briefly name what is missing.
+
+The answer should be a natural language response as if you are speaking directly to the user.
+DO NOT include ANY citations, source names, page numbers, or dates in the answer field.
+Citations are handled separately in the chunkNstring fields
 """
 
         user_prompt = f"""

@@ -8,37 +8,35 @@
   "results": {
     "test_id_1": {
       "query": "When did redetrmination begin for the COVID-19 Public Health Emergency unwind in New York State",
-      "answer": "- \"Medicaid eligibility for its members, which New York State (NYS) began in April 2023.\" [mu_no02_feb25_pr.pdf:4]",
+      "answer": "- \"Medicaid eligibility for its members, which New York State (NYS) began in April 2023. This process is also referred to as the Public Health Emergency Unwind.\" [mu_no02_feb25_pr.pdf:4 — Feb 2025]",
       "evaluations": {
         "faithfulness": {
           "score": 1.0,
-          "reasoning": "The answer states that redetermination began in April 2023, which is explicitly supported by Chunk 3 from mu_no02_feb25_pr.pdf: it notes that New York State began redetermining Medicaid eligibility in April 2023 as part of the Public Health Emergency Unwind. No additional claims are made.",
+          "reasoning": "The answer states that redetermination began in April 2023 and that the process is referred to as the Public Health Emergency Unwind. Both statements are directly supported by Chunk 2 from mu_no02_feb25_pr.pdf, which says NYS began redetermining Medicaid eligibility in April 2023 and refers to the process as the Public Health Emergency Unwind.",
           "unsupported_claims": []
         },
         "answer_relevance": {
           "score": 1.0,
-          "reasoning": "The answer directly provides the start date (April 2023) for Medicaid redeterminations related to the COVID-19 Public Health Emergency unwind in New York State, which is exactly what the query asks.",
+          "reasoning": "The answer directly states that redeterminations for the Public Health Emergency unwind in New York State began in April 2023, which directly addresses the 'when' question and stays on topic without irrelevant information.",
           "missing_aspects": []
         },
         "citation_quality": {
-          "score": 0.85,
-          "reasoning": "The citation is properly formatted and references an available document (mu_no02_feb25_pr.pdf). The factual claim about NYS beginning Medicaid eligibility actions in April 2023 is supported by a citation. However, the specific page number (4) cannot be verified from the provided chunks because page information is not available, so accuracy of the page reference cannot be confirmed.",
+          "score": 0.6,
+          "reasoning": "The cited document ID exists among the available chunks, which supports the general source. However, the citation format does not follow the specified standard (uses an em dash instead of the required separator). The page number cannot be verified from the provided chunks, and while a single citation may cover both claims, content coverage cannot be confirmed.",
           "issues": [
-            "Page number cannot be validated against available chunks (page=?).",
-            "No date included in the citation (optional per allowed formats, but could improve clarity)."
+            "Citation format does not match expected: used '—' instead of the specified separator",
+            "Included date formatting not per spec; should follow [<doc_id:page> \u0014 <date>]",
+            "Page number accuracy cannot be verified from available chunks",
+            "Cannot confirm that the single cited page covers both claims from the provided information"
           ]
         },
         "completeness": {
-          "score": 0.9,
-          "reasoning": "The answer correctly identifies that New York State began redeterminations in April 2023, which directly addresses the question and aligns with the provided context (Chunk 3). It succinctly answers 'when' without extraneous detail. However, it omits ancillary but relevant context that appears in other chunks, such as references to the broader scope (Medicaid, Child Health Plus, Essential Plan), the 'Spring 2023' framing, and the overall unwind timeline.",
-          "missing_info": [
-            "Mention that the unwind/redetermination also applied to Child Health Plus and the Essential Plan (Chunk 4).",
-            "Reference that renewal notices began in Spring 2023 (Chunk 4).",
-            "Optional broader context on the unwind timeline concluding by December 31, 2025 (Chunk 3)."
-          ]
+          "score": 1.0,
+          "reasoning": "The answer correctly identifies April 2023 as the start of Medicaid eligibility redeterminations in New York State during the COVID-19 PHE unwind, directly reflecting the relevant information in the provided context. It also notes the process is referred to as the PHE Unwind, which aligns with the terminology in the source.",
+          "missing_info": []
         }
       },
-      "overall_score": 0.95,
+      "overall_score": 0.92,
       "weights_used": {
         "faithfulness": 0.35,
         "answer_relevance": 0.25,
@@ -48,34 +46,37 @@
     },
     "test_id_2": {
       "query": "When did the public health emergency end?",
-      "answer": "- \"following the federally declared Coronavirus Disease 2019 (COVID-19) Public Health Emergency (PHE), which ends on May 11, 2023.\" [mu_no3_feb23_speced_pr.pdf:1 — February 2023]\n- \"With the expiration of the federal PHE on May 11, 2023, the PTPE process also officially ended, and the online PTPE portal closed as of May 11, 2023.\" [mu_no10_may23_pr.pdf:1 — May 2023]",
+      "answer": "- \"...Coronavirus Disease 2019 (COVID-19) Public Health Emergency (PHE), which ends on May 11, 2023.\" [mu_no3_feb23_speced_pr.pdf:1 — February 2023]\n- \"With the expiration of the federal PHE on May 11, 2023, the PTPE process also officially ended, and the online PTPE portal closed as of May 11, 2023.\" [mu_no10_may23_pr.pdf:1 — May 2023]",
       "evaluations": {
         "faithfulness": {
           "score": 1.0,
-          "reasoning": "Both statements in the answer are direct quotes from the provided source chunks and explicitly state that the federal COVID-19 Public Health Emergency ended on May 11, 2023. The citations match the content, and no additional unsupported information is introduced.",
+          "reasoning": "Both statements in the answer are directly supported by the provided source chunks. Chunk 1 explicitly states the COVID-19 PHE ends on May 11, 2023. Chunk 2 reiterates the expiration of the federal PHE on May 11, 2023 and links it to the PTPE process ending. Dates and wording match the sources.",
           "unsupported_claims": []
         },
         "answer_relevance": {
-          "score": 1.0,
-          "reasoning": "The answer directly states that the federal COVID-19 Public Health Emergency ended on May 11, 2023, which fully addresses the question. It stays on topic and adds minimal, relevant context without introducing irrelevant information.",
-          "missing_aspects": []
+          "score": 0.95,
+          "reasoning": "The answer directly states that the public health emergency ended on May 11, 2023, citing relevant sources. It stays on topic and provides the precise date requested. The additional mention of PTPE ending is related but slightly extraneous to the core query.",
+          "missing_aspects": [
+            "Clarify that the date refers to the U.S. federal COVID-19 Public Health Emergency"
+          ]
         },
         "citation_quality": {
-          "score": 0.85,
-          "reasoning": "Both factual claims are cited to the correct document IDs, and each claim has a corresponding citation. However, the citations do not follow the exact expected format, and the page numbers (set to 1) cannot be verified against the available chunks (which do not specify pages).",
+          "score": 0.6,
+          "reasoning": "Both factual claims are accompanied by citations to existing document IDs, and page 1 is plausible. However, the citations do not follow the required format, and the use of an em dash and spelled-out month/year deviates from the expected separator and date format. Page accuracy cannot be verified from the available chunks (pages are unspecified), so correctness of page numbers is uncertain.",
           "issues": [
-            "Citations use an em dash and spelled-out dates instead of the required delimiter and date format (expected [<doc_id:page> \u0014 <date>] or [<doc_id:page>]).",
-            "Page numbers are asserted as :1 but cannot be verified from the available chunks.",
-            "Dates included in the brackets are not in the expected format."
+            "Citations do not use the required separator character (\u0014) for the date; they use an em dash and text date instead.",
+            "Date formatting does not match the expected citation format.",
+            "Page numbers cannot be verified because available chunks list page as '?'",
+            "Minor formatting deviations from the specified expected citation format."
           ]
         },
         "completeness": {
           "score": 1.0,
-          "reasoning": "The answer correctly identifies the end date of the federally declared COVID-19 Public Health Emergency as May 11, 2023, and supports it with two relevant citations from the provided context (Chunks 1 and 2). This fully addresses the query without missing necessary context.",
+          "reasoning": "The answer correctly identifies and cites the relevant information from the provided context, stating that the COVID-19 federal Public Health Emergency ended on May 11, 2023. It uses the key details from chunks 1 and 2, which directly address the question. No additional context is necessary to answer the specific query.",
           "missing_info": []
         }
       },
-      "overall_score": 0.97,
+      "overall_score": 0.907,
       "weights_used": {
         "faithfulness": 0.35,
         "answer_relevance": 0.25,
@@ -89,34 +90,33 @@
       "evaluations": {
         "faithfulness": {
           "score": 1.0,
-          "reasoning": "All statements in the answer are directly supported by the provided source chunks. The effective date and requirement to submit a unit of '1' for Brixadi claims in NYS Medicaid FFS are explicitly stated (pg. 3). The note about submitting '1' as the HCPCS unit quantity and providing the volumetric quantity in milliliters in NDC-related sections is confirmed (pg. 4). The instruction to enter '1' in field 24I (Days or Units) for all Brixadi claims is also explicitly provided (pg. 5).",
+          "reasoning": "All statements in the answer are directly supported by the provided source chunks. Chunk 2 explicitly states that, effective April 1, 2024, NYS Medicaid FFS practitioners must submit a claim for Brixadi with a unit of '1' when administered in a medical office. Chunk 1 specifies that for NDC-related sections, Brixadi must be submitted with a value of '1' as the HCPCS unit quantity and the volumetric quantity in milliliters. Chunk 1 also includes the instruction for the 150003 paper claim form indicating '24I: Days or Units' should be entered as '1' for all Brixadi claims.",
           "unsupported_claims": []
         },
         "answer_relevance": {
           "score": 0.95,
-          "reasoning": "The answer directly states that claims for Brixadi should indicate a unit of '1' and reinforces this across multiple claim sections, staying fully on topic. It is comprehensive for the question asked. Minor caveats include the jurisdiction-specific context (NYS Medicaid FFS) and a possible naming discrepancy (Brixandi vs. Brixadi), but the core instruction remains clear and relevant.",
+          "reasoning": "The answer directly states that claims for Brixadi should indicate a unit of '1' and reinforces this across multiple relevant claim sections. It stays on topic and clearly addresses the question. Minor limitation is that the citations are specific to NYS Medicaid fee-for-service, while the query is generic, and the drug name in the query appears misspelled.",
           "missing_aspects": [
-            "Clarification on whether guidance applies outside NYS Medicaid FFS",
-            "Confirmation that 'Brixandi' in the query refers to 'Brixadi'"
+            "Clarification of applicability beyond New York State Medicaid fee-for-service",
+            "Resolution of the drug name discrepancy (Brixandi vs. Brixadi)"
           ]
         },
         "citation_quality": {
-          "score": 0.6,
-          "reasoning": "All factual claims are cited and the doc ID matches the available document. However, the citation format does not follow the required pattern, and the page numbers cannot be verified against the available chunks because the pages are unspecified. Thus, accuracy of page references and date formatting cannot be confirmed.",
+          "score": 0.78,
+          "reasoning": "All claims are cited and point to the correct document ID (mu_no4_apr24_pr.pdf). However, the citation format does not follow the expected separator between page and date, and the provided chunks do not specify page numbers, so the accuracy of pages 3–5 cannot be verified from the available data.",
           "issues": [
-            "Citations do not follow the expected format; used an em dash instead of the specified separator character.",
-            "Date included but not formatted per the expected '[doc_id:page \u0014 date]' pattern.",
-            "Page numbers (3, 4, 5) cannot be verified against available chunks, which list page='?'.",
-            "Accuracy of page references is uncertain due to unspecified page numbers in the chunks."
+            "Citations include dates but use an em dash instead of the required separator character (\u0014).",
+            "Expected format is [<doc_id:page> \u0014 <date>] or [<doc_id:page>]; provided format is [<doc_id:page> — <date>].",
+            "Pages 3, 4, and 5 cannot be verified against the available chunks since page numbers are unspecified (page=?)."
           ]
         },
         "completeness": {
           "score": 1.0,
-          "reasoning": "The answer correctly states that Brixadi claims should indicate a unit of 1, and it includes the relevant NYS Medicaid FFS context, the NDC/HCPCS unit guidance, and the specific paper claim field instruction (24I) from the provided document. This fully addresses the query using the key points in the available chunks.",
+          "reasoning": "The answer clearly states that Brixadi claims should indicate a unit of “1,” citing the NYS Medicaid FFS guidance effective April 1, 2024. It also includes the specific instruction to enter “1” for HCPCS unit quantity and the 24I Days or Units field, which directly addresses the query. These points are the critical details from the provided chunks relevant to how many units should be indicated.",
           "missing_info": []
         }
       },
-      "overall_score": 0.907,
+      "overall_score": 0.944,
       "weights_used": {
         "faithfulness": 0.35,
         "answer_relevance": 0.25,
@@ -130,38 +130,38 @@
       "evaluations": {
         "faithfulness": {
           "score": 1.0,
-          "reasoning": "All statements in the answer are directly supported by Chunk 1 from mu_no3_feb23_speced_pr.pdf. The source explicitly states that audio-only rate codes used during the COVID-19 PHE will be retired and that FQHCs can bill PPS rate codes 4012 or 4013 depending on on-site presence, with reference to the specified section and page. No additional unsupported information is introduced.",
+          "reasoning": "The answer directly cites and matches the source text from Chunk 1, which states that audio-only rate codes used during the COVID-19 PHE will be retired and that FQHCs can bill PPS rate codes 4012 or 4013 depending on on-site presence, with a reference to the billing rules section noted as being on page 14. All specific details (retirement of audio-only rate codes, use of 4012/4013, dependence on on-site presence, and the section/page reference) are explicitly present in the source.",
           "unsupported_claims": []
         },
         "answer_relevance": {
           "score": 0.9,
-          "reasoning": "The answer directly identifies the appropriate PPS rate codes (4012 or 4013) for FQHC billing of audio-only telehealth and notes retirement of prior COVID-era audio-only codes. It stays on topic and is concise. Minor detail is missing on which specific circumstances map to each code.",
+          "reasoning": "The answer directly states the applicable rate codes (PPS 4012 or 4013) for FQHC audio-only telehealth and notes that prior audio-only codes from the COVID-19 PHE are retired. It remains on topic and is largely complete for the specific question asked. Minor details, such as explicit mapping of which code applies to on-site vs off-site, are not provided.",
           "missing_aspects": [
-            "Explicit mapping of 4012 vs 4013 (which is used when on-site vs off-site)",
-            "Effective date or confirmation that this guidance is current beyond the referenced issue",
-            "Any mention of modifiers or additional billing requirements if applicable"
+            "Explicit mapping of 4012 vs 4013 (which is on-site and which is off-site)",
+            "Any modifiers or additional billing requirements specific to audio-only telehealth",
+            "Clarification of effective dates or jurisdiction if applicable"
           ]
         },
         "citation_quality": {
-          "score": 0.45,
-          "reasoning": "The citation uses the correct doc_id and acceptable format, but it likely cites the wrong page. The text explicitly references content on page 14, while the citation points to page 11, suggesting an inaccuracy. With the provided chunks lacking page metadata, the page cannot be verified, further weakening confidence. One citation is used to support multiple specific claims (retirement of audio-only rate codes and specific PPS rate codes 4012/4013 tied to on-site presence), which may warrant more precise page-level support.",
+          "score": 0.65,
+          "reasoning": "The citation uses an allowed format and the cited document ID exists among the available chunks. However, there is a notable inconsistency: the text says the relevant section is on page 14, while the citation points to page 11. Since the available chunks do not include page-level verification, the page accuracy cannot be confirmed, and the mismatch undermines confidence. All claims are tied to a single citation, which may be fine, but the page mismatch suggests inaccuracy.",
           "issues": [
-            "Cited page (11) conflicts with the statement referencing page 14; likely incorrect page citation.",
-            "Unable to verify page accuracy because available chunks do not include page numbers.",
-            "Single citation used for multiple distinct claims may not adequately support each point."
+            "Inconsistent page reference: text says page 14 but citation is to page 11",
+            "Page-level verification not possible from provided chunks; cannot confirm page 11 content",
+            "Multiple distinct claims may require precise page citations; single page citation may be insufficient if content spans different sections"
           ]
         },
         "completeness": {
-          "score": 0.88,
-          "reasoning": "The answer correctly identifies that FQHCs should use PPS rate codes 4012 or 4013 for audio-only telehealth after retirement of the COVID-era audio-only rate codes, which aligns with the core guidance in the provided context. It also notes that selection depends on on-site presence. However, it omits some useful clarifications from the context, such as explicitly identifying 4012 as the off-site rate code, an example use case (COVID-19 vaccine counseling) where 4012 is specified, and mention of wrap payments availability.",
+          "score": 0.9,
+          "reasoning": "The answer correctly cites the key guidance that audio-only rate codes used during the COVID-19 PHE are retired and that FQHCs should use PPS rate codes 4012 or 4013 depending on on-site presence. This aligns with the main policy in the provided context. While it focuses appropriately on rate codes, it omits some contextual details such as wrap payment availability and specific cases (e.g., vaccine counseling) that use 4012 with a modifier, which are not strictly necessary for the general question but are relevant nuances.",
           "missing_info": [
-            "Explicitly clarify that 4012 is the off-site rate code (implied in vaccine counseling guidance).",
-            "Example: For COVID-19 vaccine counseling via audio-only, FQHCs should bill off-site rate code 4012 with CPT 99429 and GQ modifier.",
-            "Note that wrap payments are available for telephonic services under qualifying PPS and off-site rate codes."
+            "Wrap payments are available for audio-only telehealth under qualifying PPS and off-site rate codes (Chunk 1).",
+            "Clarification/examples of when to use 4012 vs 4013 (e.g., off-site vs on-site presence) referenced in billing rules sections (Chunks 3 and 4).",
+            "Specific case: COVID-19 vaccine counseling via audio-only for FQHCs should use off-site rate code 4012 with CPT 99429 and GQ modifier (Chunks 2 and 5)."
           ]
         }
       },
-      "overall_score": 0.841,
+      "overall_score": 0.885,
       "weights_used": {
         "faithfulness": 0.35,
         "answer_relevance": 0.25,
@@ -171,46 +171,49 @@
     },
     "test_id_5": {
       "query": "Give me a chronological list of the commissioners and what year they first appeared in the medicaid updates.",
-      "answer": "- Insufficient grounded evidence in the provided documents to answer.\n- \"Howard A. Zucker, M.D., J.D.\nCommissioner\nNew York State\nDepartment of Health\" [mu_no13_aug20.pdf:2 — August 2020 New York State Medicaid Update pg. 2].\n- \"Howard A. Zucker, M.D., J.D.\nCommissioner\nNew York State\nDepartment of Health\" [mu_no18_dec20_pr.pdf:2 — ].\n- \"The Medicaid Update is a monthly publication of the New York State Department of Health.\" [mu_no18_dec20_pr.pdf:2 — ]. Missing information needed to answer: prior and subsequent Medicaid Update issues identifying all Commissioners and the specific first year each Commissioner appeared.",
+      "answer": "- Insufficient grounded evidence in the provided documents to answer.\n- \"Howard A. Zucker, M.D., J.D.\nCommissioner\nNew York State\nDepartment of Health\" [mu_no13_aug20.pdf:1 — August 2020]. \"August 2020 New York State Medicaid Update pg. 2\" [mu_no13_aug20.pdf:2 — August 2020]. Missing: Earlier Medicaid Update issues are required to determine the year he first appeared.\n- \"Mary T. Bassett, M.D., M.P.H.\nActing Commissioner\nNew York State\nDepartment of Health\" [mu_no14_dec21_pr.pdf:1 — December 2021]. \"December 2021 New York State Medicaid Update pg. 2\" [mu_no14_dec21_pr.pdf:2 — December 2021]. Missing: Earlier Medicaid Update issues are required to determine the year she first appeared.",
       "evaluations": {
         "faithfulness": {
-          "score": 1.0,
-          "reasoning": "All explicit factual statements are directly supported by the provided chunks. The answer quotes verbatim the commissioner line for Howard A. Zucker from both the August 2020 and December 2020 Medicaid Updates (chunks 1-5) and correctly cites that 'The Medicaid Update is a monthly publication of the New York State Department of Health' (chunks 1-2). The remainder of the response appropriately notes insufficient evidence to produce a chronological list of all commissioners with first appearance years, which is consistent with the limited scope of the provided chunks.",
-          "unsupported_claims": []
+          "score": 0.95,
+          "reasoning": "The quoted identifications of commissioners and their appearances in specific Medicaid Update issues are directly supported by the provided chunks: Howard A. Zucker is shown as Commissioner in the August 2020 issue (chunk 2), and Mary T. Bassett is shown as Acting Commissioner in the December 2021 issue (chunk 4). The page references (pg. 2) also match. The only elements not directly supported by the chunks are the meta-statements about insufficient evidence and the need for earlier issues to determine first appearances, which are reasonable conclusions but not explicitly evidenced by a specific chunk.",
+          "unsupported_claims": [
+            "Insufficient grounded evidence in the provided documents to answer.",
+            "Missing: Earlier Medicaid Update issues are required to determine the year he first appeared.",
+            "Missing: Earlier Medicaid Update issues are required to determine the year she first appeared."
+          ]
         },
         "answer_relevance": {
-          "score": 0.35,
-          "reasoning": "The answer stays on topic and provides one relevant example with citations, but it does not deliver the requested chronological list of commissioners or the first year each appeared in the Medicaid Updates. It primarily states a lack of evidence and thus fails to comprehensively address the query.",
+          "score": 0.3,
+          "reasoning": "The answer stays on topic and mentions two commissioners with specific Medicaid Update issues, but it does not provide the requested chronological list or the years of first appearance. It explicitly states insufficient evidence and fails to compile or infer a comprehensive, ordered list, leaving the main question largely unanswered.",
           "missing_aspects": [
-            "A complete chronological list of all commissioners",
-            "The first year each commissioner appeared in the Medicaid Updates",
-            "Coverage across the full timeline of the publication",
-            "Clear ordering and comprehensive citations for each commissioner"
+            "A chronological list of all commissioners",
+            "The year each commissioner first appeared in the Medicaid Updates",
+            "Clear ordering from earliest to latest",
+            "Coverage beyond the two cited commissioners",
+            "Confirmation that the cited dates represent first appearances"
           ]
         },
         "citation_quality": {
-          "score": 0.4,
-          "reasoning": "Doc IDs cited match the available documents, and claims are generally associated with citations. However, the citations do not follow the required format, include extraneous narrative text, and in two cases are incomplete placeholders. Page verification is not possible from the provided chunks, further reducing confidence.",
+          "score": 0.6,
+          "reasoning": "Doc IDs cited exist among available chunks and the claims are plausibly tied to the correct documents and pages. However, the citations do not follow the required format (wrong delimiter between page and date), and the specific page numbers (1, 2) cannot be verified against the provided chunks. Overall, some grounding is present but formatting and verifiability issues reduce the score.",
           "issues": [
-            "Citations not in the expected format; used em dash and descriptive text instead of [<doc_id:page>] or [<doc_id:page> \u0014 <date>].",
-            "Incorrect or missing date separator; did not use the specified control character.",
-            "Incomplete citations: '[mu_no18_dec20_pr.pdf:2 — ]' appears twice with missing date/details.",
-            "Page numbers cannot be verified from available chunks (pages are unspecified).",
-            "Extraneous narrative text inside the brackets (e.g., '— August 2020 New York State Medicaid Update pg. 2') not allowed by the specified format."
+            "Citations use an em dash instead of the required delimiter (expected [doc_id:page \u0014 date])",
+            "Page numbers (1, 2) are not verifiable from the available chunks (pages unspecified)",
+            "Date inclusion format does not match the expected citation style",
+            "Some factual claims could be stronger with additional supporting citations (earlier issues) though this limitation is noted"
           ]
         },
         "completeness": {
-          "score": 0.8,
-          "reasoning": "The answer correctly identifies from the provided context that Howard A. Zucker is listed as Commissioner in the August 2020 Medicaid Update and acknowledges that the available excerpts are insufficient to determine a full chronological list of commissioners or the year each first appeared. It uses the relevant chunk information and explicitly notes the need for additional issues to determine first appearances. However, it could have stated more clearly that only 2020 evidence is present and that no other commissioners are visible in the provided chunks.",
+          "score": 0.85,
+          "reasoning": "The answer correctly identifies and cites two commissioners from the provided context—Howard A. Zucker (appearing in August 2020) and Mary T. Bassett (first appearing as Acting Commissioner in December 2021)—and acknowledges that earlier issues are needed to determine true first appearances. It uses relevant details from the chunks and provides citations. However, it omits noting Bassett’s subsequent listing as Commissioner in January 2022 (though not required for 'first appeared'), and does not explicitly confirm whether Zucker appeared earlier than August 2020 within the available context. It could also more explicitly format the requested chronological list.",
           "missing_info": [
-            "Any Medicaid Update issues prior to 2020 to identify earlier Commissioners and their first appearance years",
-            "Any issues after 2020 to identify subsequent Commissioners and their first appearance years",
-            "Confirmation within the provided chunks of the December 2020 issue (if applicable) and whether it adds any new Commissioner names beyond Howard A. Zucker",
-            "Explicit determination of the first appearance year for Howard A. Zucker (the chunks only show 2020, not his first appearance)"
+            "Confirmation of Howard A. Zucker's appearance prior to August 2020 (earlier Medicaid Update issues not provided)",
+            "January 2022 chunk showing Mary T. Bassett listed as Commissioner (not just Acting) [Chunk 5]",
+            "Optional corroboration from October 2020 listing of Howard A. Zucker [Chunk 3]"
           ]
         }
       },
-      "overall_score": 0.677,
+      "overall_score": 0.698,
       "weights_used": {
         "faithfulness": 0.35,
         "answer_relevance": 0.25,
@@ -224,35 +227,34 @@
       "evaluations": {
         "faithfulness": {
           "score": 1.0,
-          "reasoning": "All statements in the answer are directly supported by the provided source chunks. Chunk 1 explicitly lists the appointment availability standard for urgent care as within 24 hours and notes that New York State conducts surveillance to evaluate compliance with these standards, referencing the Medicaid Model Contract 15.2. Chunks 3 and 4 contain the 'Please Note' statement about providers being required to schedule appointments according to these standards to be compliant when contacted by an MMC Plan member. The citations match the content and pages.",
+          "reasoning": "All statements in the answer are directly quoted from and fully supported by the provided source chunks. The statement about surveillance activities and reference to 'Medicaid Model Contract 15.2' appears verbatim in Chunk 1. The urgent care appointment standard of 'within twenty-four (24) hours of request' is explicitly listed in Chunk 1. The note requiring providers to schedule appointments according to these standards to be compliant when contacted by an MMC Plan member is exactly present in Chunk 2. Citations and the June 2019 date align with the chunk headers.",
           "unsupported_claims": []
         },
         "answer_relevance": {
           "score": 1.0,
-          "reasoning": "The answer directly states the urgent care appointment requirement (within 24 hours) from the Medicaid Model Contract and keeps the context relevant. It cites the applicable section and reinforces provider compliance expectations, fully addressing the query.",
+          "reasoning": "The answer directly states the urgent care appointment scheduling requirement (within 24 hours of request) from the Medicaid Model Contract and provides relevant context about compliance, staying concise and on-topic.",
           "missing_aspects": []
         },
         "citation_quality": {
-          "score": 0.35,
-          "reasoning": "Each factual claim is accompanied by a citation and the cited doc_id exists, but the citations do not follow the expected format, and the specific cited pages (8 and 9) cannot be verified against the available chunks because their pages are unspecified. The inclusion of an em dash with the date deviates from the required separator, and we cannot confirm page accuracy.",
+          "score": 0.6,
+          "reasoning": "All factual claims are cited to the correct document ID, and the date aligns with the filename (June 2019). However, the citation formatting does not match the expected patterns, and the specific page numbers (8, 9) cannot be verified against the available chunks since their pages are unspecified. Thus, while the sources seem plausible, format and verifiability issues lower the score.",
           "issues": [
-            "Citations do not follow expected format; used an em dash with date instead of the specified separator.",
-            "Pages cited (8, 9) cannot be verified against available chunks (pages are unspecified).",
-            "Accuracy of page numbers and content cannot be confirmed from provided chunks.",
-            "While all claims are cited, the verifiability of the citations is low due to page ambiguity."
+            "Citation format does not match expected patterns; used an em dash and spelled-out date instead of [<doc_id:page>] or [<doc_id:page> \u0014 <date>].",
+            "Pages cited (8, 9) cannot be confirmed from the available chunks because their page numbers are not provided.",
+            "Dates included in citations are not in the expected format and separator."
           ]
         },
         "completeness": {
-          "score": 0.85,
-          "reasoning": "The answer correctly identifies the urgent care appointment scheduling requirement (within 24 hours) and references the Medicaid Model Contract context and compliance. However, it omits other relevant scheduling-related requirements from the same section that affect access and scheduling, such as prohibiting prerequisites for new patients and the after-hours live voice/on-call expectations.",
+          "score": 0.88,
+          "reasoning": "The answer correctly identifies the core urgent-care appointment scheduling requirement from the Medicaid Model Contract (within 24 hours) and cites the compliance context. However, it omits other relevant scheduling-related requirements from the same source that affect access and scheduling processes, such as the prohibition on prerequisites for scheduling and after-hours access expectations, which provide important context for urgent appointment scheduling compliance.",
           "missing_info": [
-            "Providers must not require a new patient to complete prerequisites to schedule an appointment (e.g., medical record copy, health screening questionnaire, immunization record).",
-            "Members must reach a live voice when calling a provider after-hours (e.g., an answering service), and PCPs/OB-GYNs must serve as the after-hours on-call telephone resource.",
-            "Providers should not routinely refer calls to an emergency room unless the member is experiencing a life-threatening health emergency."
+            "Providers must not require prerequisites (e.g., medical records, health screening questionnaire, immunization record) before scheduling an appointment.",
+            "Members must reach a live voice after-hours (answering service) for access.",
+            "PCPs and OB/GYNs have primary responsibility for after-hours on-call telephone support and should not routinely refer to the ER unless life-threatening."
           ]
         }
       },
-      "overall_score": 0.84,
+      "overall_score": 0.896,
       "weights_used": {
         "faithfulness": 0.35,
         "answer_relevance": 0.25,
@@ -262,41 +264,41 @@
     },
     "test_id_7": {
       "query": "When did the pharmacy carve out occur?",
-      "answer": "- Insufficient grounded evidence in the provided documents to answer.\n- Missing information: a document confirming the actual implementation/occurrence date of the New York State Medicaid pharmacy carve-out.\n- \"As modified by the State Fiscal Year (SFY) 2022 Enacted Budget, the transition of the New York State (NYS) Medicaid pharmacy benefit from Medicaid Managed Care (MMC) to the Fee-for-Service (FFS) Program (i.e., the Pharmacy Carve-Out) has been delayed until April 1, 2023.\" [mu_no06_may21_pr.pdf:1 — May 2021]\n- \"Effective April 1, 2021, Medicaid members enrolled in mainstream Managed Care (MC) plans, Health and Recovery Plans (HARPs), and HIV-Special Needs Plan (SNPs) will receive their pharmacy benefits through the Medicaid FFS Pharmacy Program instead of through their Medicaid MC plan as they do now.\" [mu_no17_dec20_speced_pr.pdf:1 — December 2020]",
+      "answer": "- \"Medicaid Pharmacy Carve-Out:\\nDelayed to April 1, 2023\" [mu_no06_may21_pr.pdf:1 — May 2021]\n- \"As modified by the State Fiscal Year (SFY) 2022 Enacted Budget, the transition of the New York State\\n(NYS) Medicaid pharmacy benefit from Medicaid Managed Care (MMC) to the Fee-for-Service (FFS)\\nProgram (i.e., the Pharmacy Carve-Out) has been delayed until April 1, 2023.\" [mu_no06_may21_pr.pdf:1 — May 2021]",
       "evaluations": {
         "faithfulness": {
           "score": 1.0,
-          "reasoning": "All cited statements are directly supported by the provided chunks. The answer accurately quotes the May 2021 document indicating the delay to April 1, 2023, and the December 2020 document stating the planned effective date of April 1, 2021. The conclusion that there is insufficient evidence to confirm the actual occurrence date is consistent with the absence of any chunk confirming implementation.",
+          "reasoning": "Both statements in the answer are directly supported by the provided source chunks. Chunk 1 from the May 2021 Medicaid Update explicitly states that the Medicaid Pharmacy Carve-Out was delayed until April 1, 2023, and includes the exact phrasing cited. The answer does not introduce any additional claims beyond what appears in the source.",
           "unsupported_claims": []
         },
         "answer_relevance": {
-          "score": 0.4,
-          "reasoning": "The answer stays on topic and cites relevant documents, but it does not provide a definitive date for when the pharmacy carve-out occurred. It presents conflicting information (2021 vs. delay to 2023) and concludes that evidence is insufficient, which fails to directly answer the query.",
+          "score": 0.9,
+          "reasoning": "The answer directly provides a specific date—April 1, 2023—as when the pharmacy carve-out would occur, which addresses the 'when' in the query. It stays on topic and is concise. A minor gap is that it frames the date as a delay rather than explicitly stating that the carve-out took effect on that date, and it assumes the New York Medicaid context without stating it plainly.",
           "missing_aspects": [
-            "A clear, definitive implementation date of the pharmacy carve-out",
-            "Resolution of the conflict between the 2021 effective date statement and the 2023 delay",
-            "Confirmation of the actual occurrence date rather than planned or delayed dates"
+            "Explicit confirmation that the carve-out took effect on April 1, 2023 (not just delayed to that date)",
+            "Clarification that this refers to the New York State Medicaid pharmacy carve-out"
           ]
         },
         "citation_quality": {
-          "score": 0.55,
-          "reasoning": "The cited documents (mu_no06_may21_pr.pdf and mu_no17_dec20_speced_pr.pdf) align with the claims and appear relevant. However, the citations do not follow the required format, use an em dash instead of the specified delimiter, and include dates in an unapproved style. Page numbers are asserted as ':1' but the available chunks list pages as unknown (?), so page accuracy cannot be verified. While the key factual statements are supported by the cited documents, formatting and page validation issues reduce the overall quality.",
+          "score": 0.82,
+          "reasoning": "The cited document ID (mu_no06_may21_pr.pdf) appears in the available chunks and both factual claims are supported by citations to that document. However, the citation format does not follow the specified pattern: it uses an em dash to include the date instead of the required delimiter, and the presence/accuracy of the specific page number cannot be verified from the provided chunks. Overall, content seems correctly sourced, but formatting deviates from expectations.",
           "issues": [
-            "Citations not in the expected format (used '—' instead of the specified delimiter \u0014, and included date text rather than the required format).",
-            "Page numbers may be inaccurate or unverifiable (available chunks list pages as '?').",
-            "Dates included in citations do not match the required format.",
-            "No citation provided for the meta-claim about insufficient evidence (though it may not strictly require one)."
+            "Citations use an em dash for date instead of the required delimiter [<doc_id:page> \u0014 <date>].",
+            "Date format not in the exact expected citation style.",
+            "Cannot verify the cited page number (page numbers for available chunks are unspecified)."
           ]
         },
         "completeness": {
-          "score": 1.0,
-          "reasoning": "The answer correctly identifies that the provided context does not confirm an actual occurrence date and cites both key pieces of relevant evidence: the original planned date (April 1, 2021) and the subsequent delay to April 1, 2023. It explicitly acknowledges the insufficiency of the context to state when the carve-out actually occurred.",
+          "score": 0.85,
+          "reasoning": "The answer correctly identifies the delayed implementation date of the Medicaid pharmacy carve-out as April 1, 2023, supported by the May 2021 source. This directly addresses 'when' it occurred per the available context. However, it omits the originally planned date (April 1, 2021) noted in the December 2020 special edition and does not clarify that the May 2021 document is announcing a delay rather than confirming completion. Including that context would improve completeness.",
           "missing_info": [
-            "A document confirming that the New York State Medicaid pharmacy carve-out was implemented on April 1, 2023 (or another actual occurrence date), rather than planned or delayed."
+            "Original planned effective date of April 1, 2021 (from December 2020 special edition).",
+            "Clarification that the April 1, 2023 date was a delayed implementation announced in May 2021, not a retrospective confirmation of occurrence.",
+            "Brief context that the carve-out refers to transitioning the NYS Medicaid pharmacy benefit from Managed Care to Fee-for-Service."
           ]
         }
       },
-      "overall_score": 0.76,
+      "overall_score": 0.909,
       "weights_used": {
         "faithfulness": 0.35,
         "answer_relevance": 0.25,
@@ -306,45 +308,45 @@
     },
     "test_id_8": {
       "query": "What are the key components of the SCN program in the NYHER Waiver?",
-      "answer": "- \"The SCN program is part of the 1115 New York Health Equity Reform Waiver.\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"SCNs will help address health disparities and social needs by connecting NYS Medicaid members to nutritional services, housing supports, transportation, and other social services that can impact the health of an individual.\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"SCNs have been established via the NYS DOH 1115 Waiver Amendment, “New York Health Equity Reform” (NYHER).\" [mu_no11_oct24_pr.pdf:10 — October 2024]\n- \"NYS DOH recently announced contracts with regional entities, which will serve as lead entities for the regional SCNs.\" [mu_no11_oct24_pr.pdf:10 — October 2024]\n- \"SCNs are developing networks of community-based organizations to deliver social care services to eligible NYS Medicaid members.\" [mu_no11_oct24_pr.pdf:10 — October 2024]\n- \"NYS Medicaid members will be screened using the Centers for Medicare & Medicaid Services (CMS) Accountable Health Communities Health-Related Social Needs Tool, located at: https://www.cms.gov/priorities/innovation/files/worksheets/ahcm-screeningtool.pdf,\" [mu_no11_oct24_pr.pdf:10 — October 2024]\n- \"and those with unmet social needs will receive navigation to existing state, federal and local resources.\" [mu_no11_oct24_pr.pdf:11 — October 2024]\n- \"MMC enrollees who meet specific clinical criteria may be eligible for health-related social need services related to housing, nutrition, transportation, and care management.\" [mu_no11_oct24_pr.pdf:11 — October 2024]\n- \"1. Connect patients to the regional SCN for NYS Medicaid members via referral provided to the patient.\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"2. Connect directly with the SCN platform or through a regional Qualified Entity to submit Accountable Health Communities Health-Related Social Needs (HRSN) screenings and referrals for NYS Medicaid members.\" [mu_no02_feb25_pr.pdf:3 — February 2025]\n- \"3. Connect with the regional SCN in another agreed upon way.\" [mu_no02_feb25_pr.pdf:2 — February 2025]",
+      "answer": "- \"The SCN program is part of the 1115 New York Health Equity Reform Waiver.\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"SCNs will help address health disparities and social needs by connecting NYS Medicaid members to nutritional services, housing supports, transportation, and other social services that can impact the health of an individual.\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"NYS DOH recently announced contracts with regional entities, which will serve as lead entities for the regional SCNs.\" [mu_no11_oct24_pr.pdf:10 — October 2024]\n- \"SCNs are developing networks of community-based organizations to deliver social care services to eligible NYS Medicaid members.\" [mu_no11_oct24_pr.pdf:10 — October 2024]\n- \"NYS Medicaid members will be screened using the Centers for Medicare & Medicaid Services (CMS) Accountable Health Communities Health-Related Social Needs Tool, located at: https://www.cms.gov/priorities/innovation/files/worksheets/ahcm-screeningtool.pdf,\" [mu_no11_oct24_pr.pdf:10 — October 2024]\n- \"and those with unmet social needs will receive navigation to existing state, federal and local resources.\" [mu_no11_oct24_pr.pdf:11 — October 2024]\n- \"MMC enrollees who meet specific clinical criteria may be eligible for health-related social need services related to housing, nutrition, transportation, and care management.\" [mu_no11_oct24_pr.pdf:11 — October 2024]\n- \"1. Connect patients to the regional SCN for NYS Medicaid members via referral provided to the patient.\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"2. Connect directly with the SCN platform or through a regional Qualified Entity to submit Accountable Health Communities Health-Related Social Needs (HRSN) screenings and referrals for NYS Medicaid members.\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"3. Connect with the regional SCN in another agreed upon way.\" [mu_no02_feb25_pr.pdf:3 — February 2025]\n- \"For individuals not enrolled in NYS Medicaid, and therefore, ineligible for the SCN program, including CHPlus members, the goal of NYS DOH is to provide these individuals with appropriate services to pre-existing state, federal, and local programs to address health-related social needs.\" [mu_no02_feb25_pr.pdf:2 — February 2025]",
       "evaluations": {
         "faithfulness": {
           "score": 1.0,
-          "reasoning": "Every statement in the answer directly matches language found in the provided source chunks. The claims about SCNs being part of the 1115 NYHER Waiver, their purpose (addressing health disparities and connecting members to social services), establishment via the NYHER amendment, contracts with regional lead entities, development of CBO networks, use of the CMS AHC HRSN screening tool, navigation to resources for unmet needs, MMC eligibility criteria for HRSN services, and the three provider attestation workflow options are all explicitly stated across the February 2025 (pg. 2) and October 2024 (pgs. 10–11) updates.",
+          "reasoning": "Every statement in the answer is directly supported by the provided source chunks. The answer correctly cites verbatim language about the SCN program being part of the 1115 NYHER waiver, its goals (addressing disparities and connecting members to services), the contracting of regional lead entities, development of CBO networks, use of the CMS AHC HRSN screening tool, navigation for those with unmet needs, eligibility for MMC enrollees for specified services, the three provider connection options listed in the attestation, and handling of individuals not enrolled in Medicaid. The citations align with the content in the October 2024 and February 2025 Medicaid Update excerpts.",
           "unsupported_claims": []
         },
         "answer_relevance": {
-          "score": 0.88,
-          "reasoning": "The answer is on-topic and identifies several core components of the SCN program under the NYHER waiver: its placement within the 1115 waiver, regional lead entities, networks of CBOs, use of the CMS HRSN screening tool, navigation to resources, HRSN service domains (housing, nutrition, transportation, care management), target population (NYS Medicaid members/MMC enrollees), and connection/referral pathways. However, it does not explicitly frame these as 'key components' and omits details on financing, data infrastructure, and performance/accountability, which are often considered program components.",
+          "score": 0.9,
+          "reasoning": "The answer stays on topic and lists multiple core elements of the SCN program under the NYHER Waiver: its purpose, use of HRSN screening, navigation to resources, eligible services, formation of regional SCNs with lead entities and CBO networks, and provider referral pathways. It addresses the main question well, though it could be more explicit about governance, funding/payment, data exchange requirements, and performance metrics.",
           "missing_aspects": [
-            "Financing/payment model and funding flows for HRSN services under NYHER",
-            "Data platform/interoperability and reporting requirements",
-            "Quality/performance metrics and accountability framework",
-            "Detailed governance structure beyond noting regional lead entities (roles, responsibilities, oversight)",
-            "Coordination requirements with Medicaid Managed Care Organizations and clinical providers",
-            "Capacity-building supports for CBOs and implementation timeline/phases"
+            "Funding/payment mechanisms for HRSN services and SCN operations",
+            "Detailed governance structure and responsibilities of lead entities",
+            "Data sharing and interoperability requirements for the SCN platform/Qualified Entities",
+            "Performance metrics and accountability measures",
+            "Implementation timeline and regional coverage specifics"
           ]
         },
         "citation_quality": {
-          "score": 0.62,
-          "reasoning": "All statements are cited and the doc IDs match available documents, but the citations do not follow the required format and page verifiability is unclear. The expected delimiter between doc/page and date is not used, and the available chunks do not confirm the cited page numbers (shown as '?'), so page-level accuracy cannot be verified.",
+          "score": 0.7,
+          "reasoning": "All factual claims include citations and the cited doc IDs exist in the available chunks. However, the citation format does not match the expected pattern (uses an em dash and spelled month instead of the specified delimiter), and the specific pages cited (2, 3, 10, 11) cannot be verified against the provided chunks since page numbers are unspecified. Page accuracy therefore remains unconfirmed.",
           "issues": [
-            "Citations use an em dash and spelled-out month/year instead of the required delimiter format: [<doc_id:page> \u0014 <date>].",
-            "Page numbers (e.g., :2, :10, :11) cannot be verified because available chunks list page=?; page-level accuracy uncertain.",
-            "Some citations could have omitted the date and used [<doc_id:page>] per the allowed format; current format deviates from specification."
+            "Citation format does not match expected pattern; uses '— Month Year' instead of the specified delimiter",
+            "Dates included in citations are not in the expected format",
+            "Page numbers cited (2, 3, 10, 11) cannot be validated against available chunks (pages are '?')",
+            "Page-level accuracy cannot be confirmed due to lack of page-specific chunks"
           ]
         },
         "completeness": {
           "score": 0.9,
-          "reasoning": "The answer captures the main components: SCNs are part of the NYHER 1115 waiver; regional lead entities; building CBO networks; use of the CMS AHC HRSN screening tool; navigation to resources; eligibility for specific HRSN services; and provider connection options to SCNs. It omits minor but relevant context about ineligibility for non-Medicaid individuals (e.g., CHPlus) and the program’s approach for them, and does not mention the administrative SCN Indicator/attestation linkage or the DOH SCN webpage link.",
+          "reasoning": "The answer captures the main components of the SCN program as described in the available context: it identifies SCNs as part of the NYHER 1115 waiver; explains their role in addressing social needs; notes regional lead entities and CBO networks; outlines screening via the CMS AHC HRSN tool; describes navigation to resources; clarifies eligibility for specific HRSN services; and includes provider connection pathways as outlined in the attestation. It also correctly notes ineligibility for non-Medicaid individuals and the plan to connect them to other programs. Minor contextual details tied to PCMH incentives and the SCN indicator are not included but are ancillary to the core program components.",
           "missing_info": [
-            "Clarification that individuals not enrolled in NYS Medicaid, including CHPlus members, are ineligible for the SCN program and will be directed to pre-existing state, federal, and local programs.",
-            "Reference to the SCN Indicator and attestation context used for PCMH incentive enhancements (administrative linkage).",
-            "Link to the NYS DOH Social Care Networks (SCN) webpage for additional information."
+            "The existence of an 'SCN Indicator' on the monthly NYS PCMH file to track attestation completion.",
+            "The intent of enhanced PCMH payments to support provider connections and referrals to SCNs.",
+            "Reference to the NYS DOH 'Social Care Networks (SCN)' web page for additional information."
           ]
         }
       },
-      "overall_score": 0.874,
+      "overall_score": 0.895,
       "weights_used": {
         "faithfulness": 0.35,
         "answer_relevance": 0.25,
@@ -354,49 +356,44 @@
     },
     "test_id_9": {
       "query": "What constitutes RRP referral requirements?",
-      "answer": "- \"A referral will be needed from these primary health care providers for any non-emergency medical services rendered by similar providers, including the ordering of transportation or prescriptions.\" [mu_no8_apr23_pr.pdf:7 — April 2023]\n- \"The designated primary physician or primary clinic is responsible for providing all non-emergent medical care to restricted NYS Medicaid members, either directly or by referring them to another medical provider for appropriate services.\" [mu_no06_jun25_pr.pdf:1 — June 2025]\n- \"Medical services should be provided by or coordinated by the designated RRP provider.\" [mu_no06_jun25_pr.pdf:2 — June 2025]\n- \"HH care managers should work with the RRP provider and/or pharmacy to ensure that appropriate referrals are made to specialty care as needed.\" [mu_no06_jun25_pr.pdf:2 — June 2025]\n- \"RRP does not apply to emergency services, opioid treatment program (OTP) services (formerly known as methadone maintenance treatment programs), or inpatient services when a recipient is admitted emergently.\" [mu_no06_jun25_pr.pdf:2 — June 2025]",
+      "answer": "- \"A referral will be needed from these primary health care providers for any non-emergency medical services rendered by similar providers, including the ordering of transportation or prescriptions.\" [mu_no8_apr23_pr.pdf:7 — April 2023]\n- \"The RRP may restrict the NYS Medicaid member to care provided or referred by a primary care provider (PCP), inpatient hospital, and/or primary pharmacy.\" [mu_no06_jun25_pr.pdf:1 — June 2025]\n- \"The designated primary physician or primary clinic is responsible for providing all non-emergent medical care to restricted NYS Medicaid members, either directly or by referring them to another medical provider for appropriate services.\" [mu_no06_jun25_pr.pdf:1 — June 2025]\n- \"Medical services should be provided by or coordinated by the designated RRP provider.\" [mu_no06_jun25_pr.pdf:2 — June 2025]\n- \"HH care managers should work with the RRP provider and/or pharmacy to ensure that appropriate referrals are made to specialty care as needed.\" [mu_no06_jun25_pr.pdf:2 — June 2025]\n- \"RRP does not apply to emergency services, opioid treatment program (OTP) services (formerly known as methadone maintenance treatment programs), or inpatient services when a recipient is admitted emergently.\" [mu_no06_jun25_pr.pdf:2 — June 2025]\n- \"Payment will be made for the following medical care and services, which were not rendered, ordered, or referred by a restricted NYS Medicaid member PCP: • emergency services; • OTP services ...; and • claims for services provided in an inpatient setting as part of an emergency admission.\" [mu_no06_jun25_pr.pdf:3 — June 2025]\n- \"OTP services including methadone maintenance treatment are fully-exempt from all RRP coverage and payment restrictions. Consequently, all NYS Medicaid MMC Plans must cover medically necessary opioid use disorder services delivered in an OTP for RRP-identified NYS Medicaid members without any additional RRP restrictions, edits, authorizations, or referral requirements, and claims for OTP services must not be denied due to RRP restrictions.\" [mu_no03_mar25_pr.pdf:7 — March 2025]",
       "evaluations": {
         "faithfulness": {
-          "score": 0.95,
-          "reasoning": "All quoted statements in the answer are directly supported by the provided source chunks and align exactly with the content. The April 2023 reference from page 7 is explicitly confirmed, and the June 2025 references from page 2 are explicitly confirmed. The only minor detail not verifiable from the chunks is the specific page number '1' for one June 2025 citation, as the chunk does not show that page number, though the content itself is present.",
-          "unsupported_claims": [
-            "The specific page number '1' for the June 2025 citation (mu_no06_jun25_pr.pdf:1) cannot be verified from the provided chunks."
-          ]
+          "score": 1.0,
+          "reasoning": "Every statement in the answer is a direct quote or faithful paraphrase of the provided source chunks. The referral requirement from primary providers for non-emergency services, the scope of RRP restrictions to care provided or referred by designated providers, the responsibility of the designated PCP/clinic, the coordination requirement, the role of HH care managers in referrals, the exclusions for emergency, OTP, and emergent inpatient services, the payment exceptions when not referred by PCP, and the full exemption of OTP services from RRP restrictions are all explicitly stated in the cited chunks.",
+          "unsupported_claims": []
         },
         "answer_relevance": {
-          "score": 0.88,
-          "reasoning": "The answer is on-topic and provides core RRP referral requirements: non-emergent services must be coordinated/referred by the designated primary provider, care coordination roles are noted, and key exceptions (emergency, OTP, emergent inpatient) are included. It directly addresses the query with relevant citations. However, it lacks a synthesized summary and omits some common carve-outs and procedural specifics.",
+          "score": 0.9,
+          "reasoning": "The answer directly addresses RRP referral requirements by stating that non-emergent services must be provided or referred by the designated primary provider(s), identifying the entities that can serve as RRP gatekeepers (PCP, inpatient hospital, primary pharmacy), and listing key exemptions (emergency services, OTP, emergent inpatient admissions). It stays on topic and uses sourced statements. Minor gaps remain regarding procedural specifics and other common exemptions.",
           "missing_aspects": [
-            "Comprehensive list of services exempt from RRP referrals beyond the listed exceptions (e.g., family planning, some lab/radiology, prenatal care, if applicable)",
-            "Details on who exactly can issue referrals (e.g., only the designated RRP PCP/clinic), referral format/documentation, and validity period",
-            "Clarification on whether pharmacy services and prescriptions require referral or are otherwise restricted",
-            "Specialty categories (behavioral health, dental, vision) and any specific rules for them",
-            "Any prior authorization interplay or out-of-network/out-of-state referral rules"
+            "Specific procedural details for referrals (e.g., documentation format, authorization codes, how referrals are recorded/verified)",
+            "Explicit statement that non-referred non-exempt services may be denied payment (beyond listing exceptions that are payable)",
+            "Any additional common exemptions if applicable (e.g., family planning, EPSDT/children’s services), if they exist in the RRP policy",
+            "Clarification on whether specialists can initiate referrals or must route through the designated PCP",
+            "Provider-type scope details (e.g., labs, imaging, DME) beyond general non-emergent services"
           ]
         },
         "citation_quality": {
-          "score": 0.65,
-          "reasoning": "All factual statements are accompanied by citations and the document IDs match the available chunks. However, the citation format does not conform to the expected format (uses an em dash and spelled-out dates instead of the specified delimiter), and the available chunks do not provide page numbers, so the accuracy of cited pages cannot be verified.",
+          "score": 0.7,
+          "reasoning": "All claims are cited and the cited doc IDs match the available documents. However, the citation format does not follow the expected pattern (uses an em dash and a spelled-out date instead of the specified delimiter), and the cited page numbers cannot be verified against the available chunks since the pages are not provided. Accuracy of page numbers cannot be confirmed.",
           "issues": [
-            "Citation format deviates from the expected: uses '— April 2023'/'— June 2025' instead of the specified delimiter '\u0014' or omitting the date.",
-            "Dates are included in a non-standard format (month spelled out), which is not specified as acceptable.",
-            "Page numbers cannot be verified because available chunks list pages as '?'.",
-            "Uncertainty whether the quoted text actually appears on the cited pages due to lack of page details in the chunks."
+            "Citations do not follow the expected format; they use an em dash and month/year instead of [doc_id:page] or [doc_id:page \u0014 date].",
+            "Cited page numbers (e.g., :1, :2, :3, :7) cannot be verified against the available chunks, which do not list specific pages.",
+            "Although all claims are cited and doc IDs are present in available chunks, page-level accuracy cannot be confirmed."
           ]
         },
         "completeness": {
-          "score": 0.88,
-          "reasoning": "The answer captures the core RRP referral requirements: referrals from the designated primary provider are needed for non-emergent services; the designated provider must provide or coordinate care; HH care managers should coordinate referrals; and key exceptions (emergency, OTP, emergent inpatient) are noted. It uses relevant details from both the April 2023 and June 2025 updates. However, it omits some contextual points that further clarify the referral framework, such as that restricted members must receive care only from the designated provider, the explicit exclusion of Health Home Care Management services from RRP restrictions (i.e., no referral requirement), and reference to the governing regulation.",
+          "score": 0.9,
+          "reasoning": "The answer accurately captures the core RRP referral requirements: non-emergency services must be provided by or referred from the designated primary provider; RRP can restrict care to services provided or referred by a PCP/hospital/pharmacy; the designated PCP/clinic coordinates all non-emergent care; and key exclusions (emergency services, emergent inpatient, and OTP services) do not require RRP referrals. It also notes HH care managers’ role in coordinating referrals. One notable omission is that Health Home Care Management (HHCM) services are explicitly excluded from RRP restrictions and thus do not require referrals, which is relevant context to referral requirements. Minor regulatory citation/context details are also not included.",
           "missing_info": [
-            "Restricted NYS Medicaid members must receive care only from their designated provider or pharmacy.",
-            "Health Home Care Management (HHCM) services are excluded from RRP restrictions and do not require referrals under RRP.",
-            "Regulatory reference to Title 18 NYCRR §360-6.4 as the governing guidance.",
-            "Primary pharmacy responsibilities (identifying the ordering prescriber and managing medication delivery), which relate to coordination around prescriptions.",
-            "Nuance that payment will be made for certain services even if not ordered or referred by the PCP (e.g., emergency, OTP, emergent inpatient)."
+            "Health Home Care Management (HHCM) services are excluded from RRP restrictions and must be paid regardless of RRP status (no RRP referral needed).",
+            "Regulatory reference to Title 18 NYCRR §360-6.4 and that restrictions may include dental and pharmacy (contextual).",
+            "Primary pharmacy responsibilities to identify the ordering prescriber and manage medication delivery (coordination context)."
           ]
         }
       },
-      "overall_score": 0.859,
+      "overall_score": 0.895,
       "weights_used": {
         "faithfulness": 0.35,
         "answer_relevance": 0.25,
@@ -410,42 +407,46 @@
       "evaluations": {
         "faithfulness": {
           "score": 1.0,
-          "reasoning": "All statements in the answer are direct quotations or paraphrases from the March 2019 New York State Medicaid Update, page 7 (mu_no04_mar19_pr.pdf). The heading, the description of the Referral Packet and its purpose, the phone numbers to call C-YES, and the phrase 'Upon receipt of a complete Referral Packet, C-YES will:' are all explicitly present in the provided chunks. No additional details beyond what is in the source are introduced.",
+          "reasoning": "All statements in the answer are directly quoted or paraphrased from Chunk 1 of the March 2019 New York State Medicaid Update (page 7). The section title 'Referring a Child who is not Enrolled in Medicaid for HCBS Eligibility Determination,' the description of the Referral Packet (including phone numbers), and the phrase 'Upon receipt of a complete Referral Packet, C-YES will:' are explicitly present in the source. No additional claims, dates, or details beyond what is in Chunk 1 are introduced.",
           "unsupported_claims": []
         },
         "answer_relevance": {
-          "score": 0.4,
-          "reasoning": "The answer is on topic and mentions the referral packet and contacting C-YES, which are related to initiating a referral. However, it does not specify the actual requirements for a referral for Children's Waiver enrollment (e.g., eligibility criteria, who can refer, documentation needed). The content is more about process and contact info than requirements, and it is incomplete.",
+          "score": 0.35,
+          "reasoning": "The answer is tangentially related and mentions the referral packet and C-YES contact information, but it does not directly state the actual requirements for making a referral for Children's Waiver enrollment. It lacks specifics on eligibility criteria, documentation needed, who can refer, and the contents of a complete referral.",
           "missing_aspects": [
-            "Specific eligibility requirements for referral (age, residency, target population, functional/clinical need, risk level)",
-            "Who can make a referral (e.g., caregivers, providers, schools, LDSS, HHCM, C-YES)",
-            "Required documentation within the referral (consents, medical/functional assessments, proof of residence/age, Medicaid status)",
-            "Requirements for children not enrolled vs. enrolled in Medicaid",
-            "Any timelines or procedural steps after referral submission",
-            "Clarification of what constitutes a 'complete' referral packet"
+            "Specific eligibility criteria for referral (age, residency, disability/functional need, risk of institutionalization)",
+            "Who can make a referral (e.g., parents/guardians, providers, schools, care managers)",
+            "Required documentation and forms (consent, medical history, proof of residency, etc.)",
+            "Differences in process for Medicaid-enrolled vs. non-Medicaid children",
+            "Details on what constitutes a 'complete' referral packet",
+            "Any timelines and follow-up steps after referral submission"
           ]
         },
         "citation_quality": {
           "score": 0.65,
-          "reasoning": "All claims are cited and the cited document ID appears in the available chunks, but the citations do not follow the required format and the specific page (7) cannot be verified from the provided chunks. The date inclusion uses an em dash instead of the specified separator. Without page-level chunk info, accuracy of the page references cannot be confirmed.",
+          "reasoning": "The citations reference an available document (mu_no04_mar19_pr.pdf) and consistently provide a page number and date that plausibly align with the doc ID (March 2019). All factual claims are cited. However, the citation format does not match the expected format: it uses an em dash instead of the specified delimiter and does not use the exact bracket structure. Additionally, the availability/accuracy of page 7 cannot be verified from the provided chunks (pages are unspecified), so page-level accuracy is uncertain.",
           "issues": [
-            "Citations use an em dash instead of the required separator [<doc_id:page> \u0014 <date>].",
-            "Page numbers cannot be verified because available chunks do not list specific pages.",
-            "Citation format should be either [<doc_id:page>] or [<doc_id:page> \u0014 <date>], not [<doc_id:page — date>].",
-            "Accuracy of content on page 7 cannot be confirmed with the provided chunk information."
+            "Citation format does not match expected: uses '— March 2019' instead of the specified delimiter",
+            "Cannot verify that page 7 exists or is correct based on provided chunks",
+            "Date placement/format does not strictly follow [<doc_id:page> \u0014 <date>] format",
+            "No confirmation that the quoted text appears on the cited page"
           ]
         },
         "completeness": {
-          "score": 0.55,
-          "reasoning": "The answer includes some relevant information (that a Referral Packet is needed, what it contains, and the C-YES phone numbers). However, it omits key details from the provided context, such as what C-YES does upon receiving a complete Referral Packet and the role of C-YES as the designated independent entity for HCBS eligibility prior to Medicaid enrollment. It also doesn't clearly articulate that the requirement is submission of a complete Referral Packet for children not enrolled in Medicaid, nor does it list the specific follow-up actions C-YES undertakes.",
+          "score": 0.6,
+          "reasoning": "The answer references the correct source and includes the key action to obtain a Referral Packet and the C-YES contact numbers. However, it omits important details from the context about what happens after submission of a complete packet and the role of C-YES, which are central to understanding the referral requirements and process for Children's Waiver (HCBS) enrollment. It also lacks the broader context that C-YES is the designated independent entity for HCBS eligibility determinations, including for children not yet enrolled in Medicaid.",
           "missing_info": [
-            "C-YES is NYS’s designated independent entity responsible for HCBS eligibility determinations prior to Medicaid enrollment and an alternative to Health Home care management.",
-            "Explicit statement that the requirement is submission of a complete Referral Packet for children not enrolled in Medicaid.",
-            "Details of C-YES actions upon receipt of a complete Referral Packet: send a Registered Nurse to conduct an HCBS eligibility determination; provide Medicaid application assistance for those determined eligible; submit Medicaid applications, HCBS eligibility outcomes, support documents, and capacity updates to the LDSS; develop a person-centered HCBS Plan of Care; provide education about Health Home care management."
+            "C-YES is the designated independent entity responsible for HCBS eligibility determinations prior to Medicaid enrollment and an alternative to Health Home care management.",
+            "The Referral Packet must be complete for C-YES to proceed.",
+            "After receiving a complete Referral Packet, C-YES will send a Registered Nurse to conduct an HCBS eligibility determination.",
+            "C-YES provides Medicaid application assistance for children determined eligible for HCBS.",
+            "C-YES submits Medicaid applications, HCBS determination outcomes, support documents, and capacity updates directly to the Local Department of Social Services (LDSS).",
+            "C-YES develops a person-centered HCBS Plan of Care.",
+            "C-YES provides education about Health Home care management."
           ]
         }
       },
-      "overall_score": 0.69,
+      "overall_score": 0.688,
       "weights_used": {
         "faithfulness": 0.35,
         "answer_relevance": 0.25,
@@ -455,38 +456,41 @@
     },
     "test_id_11": {
       "query": "What are REC services offered to NYS providers?",
-      "answer": "- \"NYS RECs offer free support to help providers achieve Meaningful Use of CEHRT.\" [mu_no11_jun20.pdf:9 — June 2020]\n- \"• Answers to questions regarding the program and requirements\" [mu_no11_jun20.pdf:9 — June 2020]\n- \"• Assistance on selecting and using CEHRT\" [mu_no11_jun20.pdf:9 — June 2020]\n- \"• Help meeting program objectives\" [mu_no11_jun20.pdf:9 — June 2020]\n- \"NYS RECs offer free assistance for all practices and providers located within New York.\" [mu_no11_jun20.pdf:9 — June 2020]",
+      "answer": "- \"NYS RECs offer free support to help providers achieve Meaningful Use of CEHRT.\" [mu_no11_jun20.pdf:9 — June 2020]\n- \"Answers to questions regarding the program and requirements\" [mu_no11_jun20.pdf:9 — June 2020]\n- \"Assistance on selecting and using CEHRT\" [mu_no11_jun20.pdf:9 — June 2020]\n- \"Help meeting program objectives\" [mu_no11_jun20.pdf:9 — June 2020]\n- \"NYS RECs offer free assistance for all practices and providers located within New York.\" [mu_no11_jun20.pdf:9 — June 2020]",
       "evaluations": {
         "faithfulness": {
           "score": 1.0,
-          "reasoning": "Every statement in the answer directly matches the language in the provided source chunks. The services listed—answers to program questions, assistance with selecting/using CEHRT, and help meeting program objectives—are explicitly enumerated in the chunks. The statements that NYS RECs offer free support to help providers achieve Meaningful Use of CEHRT and free assistance for all practices and providers located within New York are also verbatim from the sources. Citations to mu_no11_jun20.pdf page 9 align with Chunk 4/5.",
+          "reasoning": "Every bullet in the answer directly quotes or paraphrases lines found in mu_no11_jun20.pdf page 9 (Chunk 3). The statements about free support to achieve Meaningful Use of CEHRT, providing answers to program questions, assistance with selecting/using CEHRT, help meeting program objectives, and offering free assistance to all practices/providers in New York are explicitly present in the source. The citation and date (June 2020, page 9) match the chunk.",
           "unsupported_claims": []
         },
         "answer_relevance": {
           "score": 0.9,
-          "reasoning": "The answer directly lists the REC services offered to NYS providers, including support for Meaningful Use of CEHRT, assistance with selecting/using CEHRT, help meeting program objectives, and answering program questions. It stays on topic and avoids irrelevant details. Minor gap: it could include additional specific services (if applicable) such as privacy/security support or workflow/training assistance.",
+          "reasoning": "The answer directly lists several REC services offered to NYS providers and stays on topic. It identifies free support for Meaningful Use of CEHRT, Q&A on program requirements, assistance with CEHRT selection/use, and help meeting program objectives. It is clear and relevant, though it may not be fully comprehensive if additional specific services exist.",
           "missing_aspects": [
-            "Any mention of privacy and security risk assessment support",
-            "Training or workflow redesign/practice transformation support",
-            "Attestation assistance or audit preparation (if offered)"
+            "Potential inclusion of workflow redesign/practice transformation support",
+            "Security Risk Assessment (privacy/security) assistance",
+            "Attestation or reporting support",
+            "Training and education on CEHRT use",
+            "Ongoing optimization or technical assistance beyond initial selection"
           ]
         },
         "citation_quality": {
-          "score": 0.65,
-          "reasoning": "All factual claims are cited to the correct document ID (mu_no11_jun20.pdf) and consistently point to the same page, which is plausible for a single-page source of those bullet points. However, the citations do not follow the required format (they use an em dash and a spelled-out date instead of the specified separator), and the exact page number cannot be verified from the provided chunks. While the document exists in the available chunks, page 9 is not confirmed.",
+          "score": 0.6,
+          "reasoning": "Document ID is valid and all claims are cited, but the citation format does not match the expected pattern and the specific page (9) cannot be verified from the available chunks. The date inclusion uses an em dash instead of the required delimiter, and relying on a single page for multiple distinct claims may be inaccurate.",
           "issues": [
-            "Citations do not follow the expected format '[<doc_id:page> \u0014 <date>]' or '[<doc_id:page>]' (used '— June 2020' instead of the specified separator).",
-            "Date format not aligned with the expected pattern; included as a free-text month-year.",
-            "Page number accuracy cannot be verified from available chunks (chunk pages unspecified)."
+            "Citation format does not match expected: used '— June 2020' instead of '\u0014 <date>' or omitting date",
+            "Page number '9' cannot be verified from available chunks (pages are unspecified)",
+            "All claims cite the same page; potential misattribution if content spans multiple pages",
+            "Although doc_id exists, accuracy of page reference cannot be confirmed"
           ]
         },
         "completeness": {
           "score": 1.0,
-          "reasoning": "The answer captures all relevant details from the provided context about REC services: free support to achieve Meaningful Use of CEHRT, answers to program/requirements questions, assistance selecting and using CEHRT, help meeting program objectives, and that services are free for all NYS practices/providers. Contact details and program helplines are ancillary and not required to answer the specific question about services.",
+          "reasoning": "The answer lists all REC services explicitly described in the provided context: free support to achieve Meaningful Use of CEHRT, answering program/requirements questions, assistance with selecting/using CEHRT, and help meeting program objectives. It also notes that assistance is free for all practices/providers in NY, matching the context.",
           "missing_info": []
         }
       },
-      "overall_score": 0.905,
+      "overall_score": 0.895,
       "weights_used": {
         "faithfulness": 0.35,
         "answer_relevance": 0.25,
@@ -503,27 +507,27 @@
       "count": 11
     },
     "answer_relevance": {
-      "mean": 0.787,
-      "min": 0.35,
+      "mean": 0.823,
+      "min": 0.3,
       "max": 1.0,
       "count": 11
     },
     "citation_quality": {
-      "mean": 0.602,
-      "min": 0.35,
-      "max": 0.85,
+      "mean": 0.664,
+      "min": 0.6,
+      "max": 0.82,
       "count": 11
     },
     "completeness": {
-      "mean": 0.887,
-      "min": 0.55,
+      "mean": 0.898,
+      "min": 0.6,
       "max": 1.0,
       "count": 11
     },
     "overall": {
-      "mean": 0.843,
-      "min": 0.677,
-      "max": 0.97,
+      "mean": 0.867,
+      "min": 0.688,
+      "max": 0.944,
       "count": 11
     }
   }
