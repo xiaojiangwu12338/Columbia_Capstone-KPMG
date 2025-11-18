@@ -11,7 +11,7 @@ from typing import List, Dict, Optional, Tuple
 def asterisk_separate_chunking(
     processed_dir: str,
     chunked_dir: str,
-    max_chunk_chars: int = 5000,
+    max_chunk_chars: int = 1200,
     glob_pattern: str = "*.json",
     min_repeats: int = 10,
     separator_char: str = "*",
@@ -51,9 +51,9 @@ def asterisk_separate_chunking(
       }
     """
     processed_dir = Path(processed_dir)
-    chunked_base = Path(chunked_dir)
-    output_dir = chunked_base / "asterisk_separate_chunking_result"
+    output_dir = Path(chunked_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
+
 
     if max_chunk_chars <= 0:
         raise ValueError("max_chunk_chars must be > 0")
@@ -84,6 +84,7 @@ def asterisk_separate_chunking(
         file_name = meta.get("file_name") or jp.name
         full_text: Optional[str] = meta.get("full_text")
         pages: Optional[List[Dict]] = meta.get("pages")
+        category: str = (meta.get("category") or "unknown")
 
         if not full_text:
             if verbose:
@@ -167,6 +168,8 @@ def asterisk_separate_chunking(
                     "char_end": c_end,
                     "pages": pages_list,
                     "text": text,
+                    "chunk_type": "text",
+                    "category": category,
                 }
                 buffered_chunks.append((first_page, 0, rec))
                 chunk_idx += 1
@@ -193,6 +196,8 @@ def asterisk_separate_chunking(
                 "char_end": None,
                 "pages": [page_no],
                 "text": csv_text,
+                "chunk_type": "table",
+                "category": category,
             }
             buffered_chunks.append((page_no, 1, rec))
             chunk_idx += 1
@@ -213,7 +218,8 @@ def asterisk_separate_chunking(
                     "pages": [p.get("page")],
                     "text": text_img,
                     "chunk_type": "ocr_image",
-                    "bbox": o.get("bbox")
+                    "bbox": o.get("bbox"),
+                    "category": category,
                 }
                 buffered_chunks.append((p.get("page", 10**9), 2, rec))
                 chunk_idx += 1

@@ -2,6 +2,7 @@ import os
 import json
 import datetime
 from pathlib import Path
+import csv  # NEW
 
 from pdfminer.high_level import extract_text as pdfminer_extract_text
 from docx import Document
@@ -75,7 +76,36 @@ def clean_page_text_remove_isolated_letters(page_text):
     return "\n".join(cleaned_lines)
 
 
-def parse_file(file_path, save_txt=True, save_json=True, out_dir="docs"):
+# NEW: lightweight category lookup (no pandas)
+def _lookup_category(file_name, csv_path="data/metadata/metadata_filled.csv"):
+    """
+    Return category for a given file_name by scanning a CSV that has columns
+    'file_name' and 'category'. Header and values are whitespace-trimmed.
+    If CSV is missing or no match is found, return 'unknown'.
+    """
+    try:
+        with open(csv_path, "r", encoding="utf-8", newline="") as f:
+            reader = csv.DictReader(f)
+            # Normalize header names by stripping whitespace
+            if reader.fieldnames:
+                reader.fieldnames = [h.strip() if h else h for h in reader.fieldnames]
+            for raw in reader:
+                # Normalize keys & values
+                row = { (k.strip() if k else k): (v.strip() if isinstance(v, str) else v)
+                        for k, v in raw.items() }
+                # Handle possible trailing space in 'file_name ' column name
+                fn = row.get("file_name")
+                if fn is None:
+                    fn = row.get("file_name") or row.get("file_name_") or row.get("file") or row.get("filename")
+                if fn == file_name:
+                    cat = row.get("category") or row.get("Category") or row.get("CATEGORY")
+                    return cat if (isinstance(cat, str) and cat.strip()) else "unknown"
+    except Exception:
+        pass
+    return "unknown"
+
+
+def parse_file(file_path, save_txt=True, save_json=True, out_dir="docs", metadata_csv_path="data/metadata/metadata_filled.csv"):
     """
     Parse a document into text + metadata + tables + watermarks + OCR fallback.
     OCR fallback: only triggered when the page contains images, runs per image,
@@ -83,7 +113,39 @@ def parse_file(file_path, save_txt=True, save_json=True, out_dir="docs"):
     """
     file_path = Path(file_path)
     ext = file_path.suffix.lower()
+
+
+
+    # Ensure output directory exists
+
+    Path(out_dir).mkdir(parents=True, exist_ok=True)
+
+
+
+    base_name = file_path.stem
+
+    json_path = Path(out_dir) / f"{base_name}.json"
+
+
+
+    # ---------- NEW SKIP LOGIC WITH CONSOLE OUTPUT ----------
+    if json_path.exists():
+        try:
+            with open(json_path, "r", encoding="utf-8") as f:
+                existing_metadata = json.load(f)
+            print(f"[SKIPPED] {file_path.name} already parsed → using existing JSON.")
+            return existing_metadata
+        except Exception:
+            print(f"[WARN] Existing JSON for {file_path.name} is unreadable → re-parsing.")
+            # Continue to normal parse
+    # ---------------------------------------------------------
+
+
+    
     all_text = []
+    # NEW: determine category (best-effort)
+    category = _lookup_category(file_path.name, metadata_csv_path)
+
     metadata = {
         "source_file": str(file_path),
         "file_name": file_path.name,
@@ -92,7 +154,8 @@ def parse_file(file_path, save_txt=True, save_json=True, out_dir="docs"):
         "pages": [],
         "tables": [],
         "watermarks": [],
-        "ocr": False
+        "ocr": False,
+        "category": category,  # NEW
     }
 
     try:
@@ -216,16 +279,9 @@ if __name__ == "__main__":
     result = parse_file(input_pdf, save_txt=True, save_json=True)
 
     print("Parsed file:", result["file_name"])
+    print("Category:", result.get("category"))  # NEW
     print("Pages:", len(result["pages"]))
     print("Tables:", len(result["tables"]))
     print("Watermarks:", result["watermarks"])
     print("OCR:", result["ocr"])
     print("Total chars:", len(result.get("full_text", "")))
-
-    # Print OCR fallback result
-    # for p in result["pages"]:
-    #     if p.get("ocr_fallback"):
-    #         print(f"Page {p['page']} OCR fallback:")
-    #         for item in p["ocr_fallback"]:
-    #             print("  bbox:", item["bbox"])
-    #             print("  text:", item["text"][:200], "..." if len(item["text"]) > 200 else "")

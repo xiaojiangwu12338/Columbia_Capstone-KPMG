@@ -75,8 +75,7 @@ def semantic_chunking(
         raise ValueError(f"hysteresis must be non-negative, got {hysteresis}")
 
     processed_dir = Path(processed_dir)
-    chunked_base = Path(chunked_dir)
-    output_dir = chunked_base / "semantic_chunking_result"
+    output_dir = Path(chunked_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Load sentence-transformers model (once for all documents)
@@ -109,6 +108,7 @@ def semantic_chunking(
         file_name = meta.get("file_name") or jp.name
         full_text: Optional[str] = meta.get("full_text")
         pages: Optional[List[Dict]] = meta.get("pages")
+        category: str = (meta.get("category") or "unknown")
 
         if not full_text:
             if verbose:
@@ -253,7 +253,8 @@ def semantic_chunking(
                 "char_end": chunk_info["end"],
                 "pages": pages_list,
                 "text": chunk_info["text"],
-                "chunk_type": "text"
+                "chunk_type": "text",
+                "category": category,
             }
             buffered_chunks.append(rec)
             chunk_idx += 1
@@ -274,7 +275,8 @@ def semantic_chunking(
                 "char_end": None,
                 "pages": [page_no],
                 "text": csv_text,
-                "chunk_type": "table"
+                "chunk_type": "table",
+                "category": category,
             }
             buffered_chunks.append(rec)
             chunk_idx += 1
@@ -295,7 +297,8 @@ def semantic_chunking(
                     "pages": [p.get("page")],
                     "text": text_img,
                     "chunk_type": "ocr_image",
-                    "bbox": o.get("bbox")
+                    "bbox": o.get("bbox"),
+                    "category": category,
                 }
                 buffered_chunks.append(rec)
                 chunk_idx += 1
