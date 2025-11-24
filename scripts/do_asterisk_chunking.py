@@ -18,7 +18,7 @@ def main():
     ap.add_argument("--sep", type=str, default="*", help="Separator character (e.g., *, #, -)")
     ap.add_argument("--min-repeats", "-a", type=int, default=10,
                     help="Minimum consecutive repeats of the separator to split on")
-    ap.add_argument("--max-chars", "-s", type=int, default=5000,
+    ap.add_argument("--max-chars", "-s", type=int, default=1200,
                     help="Maximum characters per chunk (segments longer than this are split)")
     ap.add_argument("--pattern", "-p", default="*.json",
                     help="Glob pattern for input JSON files inside processed dir")
@@ -32,10 +32,14 @@ def main():
     processed = Path(cfg["paths"]["processed"])
     chunked = Path(cfg["paths"]["chunked"])
 
-    print(f"[INFO] (sep='{args.sep}') Chunking from processed={processed} -> {chunked}/asterisk_separate_chunking_result")
+    # This is the *actual* output directory for this script
+    chunked_out = chunked / "asterisk_separate_chunking_result"
+
+    print(f"[INFO] (sep='{args.sep}') Chunking from processed={processed} -> {chunked_out}")
+
     asterisk_separate_chunking(
         processed_dir=str(processed),
-        chunked_dir=str(chunked),
+        chunked_dir=str(chunked_out),   # <- note: pass the subfolder here
         max_chunk_chars=args.max_chars,
         glob_pattern=args.pattern,
         min_repeats=args.min_repeats,

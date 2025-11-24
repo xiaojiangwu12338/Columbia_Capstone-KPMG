@@ -19,13 +19,13 @@ def main():
                     help="YAML config with paths.processed and paths.chunked")
     ap.add_argument("--model", "-m", default="sentence-transformers/all-MiniLM-L6-v2",
                     help="SentenceTransformer model name (local)")
-    ap.add_argument("--unit", "-u", choices=["sentence", "paragraph"], default="sentence",
+    ap.add_argument("--unit", "-u", choices=["sentence", "paragraph"], default="paragraph",
                     help="Base segmentation unit")
-    ap.add_argument("--threshold", "-t", type=float, default=0.80,
+    ap.add_argument("--threshold", "-t", type=float, default=0.55,
                     help="Similarity threshold for merging (0-1)")
     ap.add_argument("--hysteresis", type=float, default=0.02,
                     help="Similarity hysteresis to reduce jitter")
-    ap.add_argument("--max-chars", "-s", type=int, default=2000,
+    ap.add_argument("--max-chars", "-s", type=int, default=1200,
                     help="Max characters per chunk (no overlap)")
     ap.add_argument("--pattern", "-p", default="*.json",
                     help="Glob pattern for input JSON files inside processed dir")
@@ -36,10 +36,13 @@ def main():
     processed = Path(cfg["paths"]["processed"])
     chunked = Path(cfg["paths"]["chunked"])
 
+    chunked_out = chunked / "semantic_chunking_result"
+
     print(f"[INFO] (semantic) Chunking from processed={processed} -> {chunked}/semantic_chunking_result")
+
     semantic_chunking(
         processed_dir=str(processed),
-        chunked_dir=str(chunked),
+        chunked_dir=str(chunked_out),
         model_name=args.model,
         unit=args.unit,
         similarity_threshold=args.threshold,
