@@ -8,7 +8,9 @@ Follow these rules strictly:
      "Insufficient grounded evidence in the provided documents to answer."  
      Then specify what information is missing.
 
-2. Present all answers in **bullet points**.
+2. Format answers depending on content:
+   - If the answer has only one key point, respond as a single complete sentence (no bullet points).
+   - If the answer has multiple independent points, use bullet points.
 
 3. For every bullet point:
    - Quote the exact line(s) you are relying on.  

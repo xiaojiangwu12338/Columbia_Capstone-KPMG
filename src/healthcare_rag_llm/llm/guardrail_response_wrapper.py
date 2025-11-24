@@ -2,6 +2,9 @@
 from __future__ import annotations
 
 from typing import Dict, List, Optional
+import csv
+from pathlib import Path
+import re
 
 # Reuse the existing components so nothing downstream changes.
 from healthcare_rag_llm.llm.llm_client import LLMClient
@@ -30,6 +33,11 @@ CLASSIFIER_SYSTEM_PROMPT = (
     "Medicare/Medicaid/insurer policies, coding/billing policy, compliance requirements, "
     "eligibility rules, prior auth policies, formulary coverage, HIPAA policy questions, "
     "or interpretations/changes to policy documents.\n"
+    "\n"
+    "IMPORTANT: Questions asking for definitions or explanations of healthcare policy terms, "
+    "programs, or acronyms (e.g., 'What is PCMH?', 'Explain MLTC') should be classified as YES, "
+    "as understanding policy terminology is essential to policy questions.\n"
+    "\n"
     "Say 'NO' if it's clinical advice, diagnostics, treatments, drugs' mechanisms/dosing, "
     "general wellness, admin/IT topics without policy focus, or anything unrelated to healthcare policy."
 )
@@ -40,14 +48,57 @@ CLASSIFIER_USER_PREFIX = (
     "Examples:\n"
     "Q: Does Medicare cover CGM for type 2 diabetes?\nA: YES\n"
     "Q: What are ICD-10 codes for type 2 diabetes with neuropathy?\nA: YES\n"  # coding policy counts
+    "Q: What is PCMH?\nA: YES\n"  # asking for policy term definition
+    "Q: Explain the MLTC program\nA: YES\n"  # asking about policy program
     "Q: Should I increase my lisinopril dose?\nA: NO\n"
     "Q: How do I treat strep throat?\nA: NO\n"
     "Q: What's the HIPAA rule on texting patients?\nA: YES\n"
     "Q: Build me a Flask app\nA: NO\n"
     "\n"
+    "{acronym_context}"
     "Now classify:\n"
     "Q: {question}\nA:"
 )
+
+
+def _load_acronym_dict(csv_path: Path) -> Dict[str, str]:
+    """
+    Load acronym dictionary from CSV file.
+    Returns dict mapping uppercase acronym -> meaning.
+    """
+    acronyms = {}
+    if not csv_path.exists():
+        return acronyms
+
+    try:
+        with open(csv_path, 'r', encoding='utf-8-sig') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                acronym = row.get('Acronym', '').strip().upper()
+                meaning = row.get('Meaning', '').strip()
+                if acronym and meaning:
+                    acronyms[acronym] = meaning
+    except Exception:
+        pass
+
+    return acronyms
+
+
+def _detect_acronyms_in_question(question: str, acronym_dict: Dict[str, str]) -> Dict[str, str]:
+    """
+    Detect known acronyms in the user's question.
+    Returns dict of found acronyms -> meanings.
+    """
+    found = {}
+    # Split question into words and check each against acronym dict
+    # Match whole words only (avoid partial matches)
+    words = re.findall(r'\b[A-Z]+\b', question)
+
+    for word in words:
+        if word.upper() in acronym_dict:
+            found[word] = acronym_dict[word]
+
+    return found
 
 
 class ResponseGenerator:
@@ -64,6 +115,7 @@ class ResponseGenerator:
         use_reranker: bool = True,
         filter_extractor=None,
         chat_history: ChatHistory = None,
+        acronym_csv_path: Optional[Path] = None,
     ):
         # Mirror the original initialization exactly
         if system_prompt is None:
@@ -74,6 +126,15 @@ class ResponseGenerator:
         self.use_reranker = use_reranker
         self.filter_extractor = filter_extractor
         self.chat_history = chat_history or ChatHistory()
+
+        # Load acronym dictionary
+        if acronym_csv_path is None:
+            # Default path: <project_root>/data/supplement/NYSDOH Acronym List.csv
+            # Assuming this file is 4 levels up from src/healthcare_rag_llm/llm/guardrail_response_wrapper.py
+            project_root = Path(__file__).resolve().parents[3]
+            acronym_csv_path = project_root / "data" / "supplement" / "NYSDOH Acronym List.csv"
+
+        self.acronym_dict = _load_acronym_dict(acronym_csv_path)
 
         # Internal: delegate that does the real RAG work when allowed
         self._delegate = BaseResponseGenerator(
@@ -129,12 +190,31 @@ class ResponseGenerator:
         """
         Uses the same LLM backend to classify. It is intentionally strict and
         expects ONLY 'YES' or 'NO'. Any other output is treated as NO.
+
+        If the question contains known healthcare acronyms, those are dynamically
+        added to the classifier prompt to improve accuracy.
         """
+        # Detect acronyms in the question
+        found_acronyms = _detect_acronyms_in_question(question, self.acronym_dict)
+
+        # Build acronym context string if any were found
+        acronym_context = ""
+        if found_acronyms:
+            acronym_lines = [f"- {acr}: {meaning}" for acr, meaning in found_acronyms.items()]
+            acronym_context = (
+                "Note: This question contains the following healthcare acronyms:\n"
+                + "\n".join(acronym_lines)
+                + "\n\n"
+            )
+
         messages = [
             {"role": "system", "content": CLASSIFIER_SYSTEM_PROMPT},
             {
                 "role": "user",
-                "content": CLASSIFIER_USER_PREFIX.format(question=question.strip()),
+                "content": CLASSIFIER_USER_PREFIX.format(
+                    question=question.strip(),
+                    acronym_context=acronym_context
+                ),
             },
         ]
 

@@ -471,8 +471,11 @@ Rules:
   "Insufficient grounded evidence in the provided documents to answer." and briefly name what is missing.
 
 The answer should be a natural language response as if you are speaking directly to the user.
-DO NOT include ANY citations, source names, page numbers, or dates in the answer field.
-Citations are handled separately in the chunkNstring fields
+Answer Formatting Rules:
+- If the answer contains only ONE main point → write as a single concise paragraph (no bullet points).
+- If the answer contains MORE THAN ONE independent point → format them as bullet points.
+- Bullet point format: each point MUST begin with "- " and be separated by a newline ("\n").
+- Do NOT include any quotations, citations, filenames, page numbers, or dates inside the "answer" field. These belong only in chunkNstring.
 """
 
         user_prompt = f"""

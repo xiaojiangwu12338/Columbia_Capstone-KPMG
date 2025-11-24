@@ -40,7 +40,7 @@ nys_logo_path = ASSETS_DIR / "nys_logo.png"
 # ============================================================
 col1, col2 = st.columns([5, 1])
 with col1:
-    st.title("NYS Policies Assistant")
+    st.title("NYS Healthcare Policies Assistant")
     st.caption("An AI-powered assistant for navigating New York State medical care policies.")
 with col2:
     if nys_logo_path.exists():
@@ -205,6 +205,9 @@ st.markdown('<div class="chat-container">', unsafe_allow_html=True)
 for msg in st.session_state["history"]:
     role = msg["role"]
     text = msg["content"]
+    # Convert newlines to <br> for HTML rendering in assistant responses
+    if role == "assistant":
+        text = text.replace("\n", "<br>")
     evidence_dict = msg.get("evidence_dict", {})
 
     if role == "assistant":
@@ -216,7 +219,8 @@ for msg in st.session_state["history"]:
 <div class="chat-row assistant">
 <div class="avatar assistant">🤔</div>
 <div class="chat-bubble assistant">
-<b>Answer:</b> {text}
+<b>Answer:</b> 
+<br>{text}<br>
 <br><br>
 <b>Evidence:</b><br>
 <em style="color: #666; font-size: 0.9em;">Direct quotes from official documents that support the answer above.</em>

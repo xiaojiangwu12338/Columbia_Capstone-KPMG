@@ -1,0 +1,436 @@
+Acronym,Meaning
+APR-DRG,All Patient Refined Diagnosis Related Groups
+CDPAS,Consumer Directed Personal Assistance Services
+CIN,Client Identification Number
+COS,Category of Service
+CRG,Clinical Risk Group
+CY,Calendar Year
+DRG,Diagnosis Related Group
+DSRIP,Delivery System Reform Incentive Payment Program
+ED,Emergency Department
+EDC,Episode Disease Category
+FFS,Fee for Service
+HARP,Health and Recovery Plans
+HCS,Health Commerce System
+HH,Health Home
+HHA,Home Health Aide
+HHC,Home Healthcare
+IP,Inpatient
+LTC,Long Term Care
+M360,Member360
+MAPP,Medicaid Analytics and Performance Portal
+MC,Managed Care
+MCO,Managed Care Organization
+MDC,Major Diagnostic Category
+MDW,Medicaid Data Warehouse
+MLTC,Managed Long Term Care
+MMIS,Medicaid Management Information System
+MRT,Medicaid Redesign Team
+MY,Measure Year
+NDC,National Drug Code
+NH,Nursing Home
+NPI,National Provider Identifier
+NYHER,New York Health Equity Reform (Waiver)
+NYS,New York State
+OP,Outpatient
+P4P,Pay for Performance
+PC,Personal Care (LTC) or Primary Care
+PDN,Private Duty Nursing
+PMPM,Per Member Per Month
+PPA,Potentially Preventable Admissions
+PPE,Potentially Preventable Events
+PPR,Potentially Preventable Readmissions
+PPS,Performing Provider System or Potentially Preventable Service
+PPV,Potentially Preventable Emergency Department Visits
+PUPM,Per Utilizer Per Month
+R3,Release 3
+ROS,Rest of State
+Rx,Pharmacy
+SFY,State Fiscal Year
+SNF,Skilled Nursing Facility
+SOI,Severity of Illness
+TCC,Total Cost of Care
+TCN,Transaction Control Number
+VBP,Value-Based Payment Program
+VBPC,Value-Based Payment Program Contractor
+VBPPF (CPF),VBP Performance File
+CRGs,Clinical Risk Groups
+AARA,American Recovery and Reconciliation Act (2009)
+ACA ,Affordable Care Act of 2010
+ACE,Adverse Childhood Experiences
+ACF,Adult Care Facility
+ACLAIMH,Association for Community living Mental Health 
+ACO ,Accountable Care Organization
+ACRG,Aggregated Clnical Risk Group
+ADA ,Americans with Disabilities Act
+ADA ,American Dental Association
+ADC,Aid to Dependent Children
+ADHC,Adult Day Health Care
+AHCA,American Health Care Association
+AHCP,AIDS Home Care Program
+AHIP,AIDS Health Insurance Program 
+AIDS,Acquired Immunodeficiency Syndrome 
+ALC,Alternate level of care
+ALOS,Average length of stay
+ALP,Assisted Living Program 
+AMA ,American Medical Association 
+APC ,Advanced Primary Care
+APD,All Payer Database
+APG,Ambulatory Patient Group
+APM,Alternative Payment Models
+APR DRG,All Patient Refined Diagnosis Related Groups
+APTC-PP,Advanced Premium Tax Credit Premium Payment
+ARS,Address Resolution Service
+AV ,Achievement Value 
+B2H,Bridges to Health 
+BAA,Business Associate Agreement
+BCCTP,Breast and Cervical Cancer Tx Program
+BE-InCK,Bronx - Equity - Integrated Care for Kids
+BENDEX,Beneficiary Data Exchange
+BH,Behavioral Health 
+BHCC,Behavioral Health Community Collaborative
+BHO,Behavioral Health Organization
+BIN,Bank Identification Number
+BML,Bureau Mail Log
+BRD,Business Requirements Document
+CAG,Clinical Advisory Group
+CAH ,Critical Access Hospital 
+CAHPS,Consumer Assessment of Healthcare Providers and Systems
+CAP,Child Assistance Program
+CBHS,Community based Health Services
+CBO ,Community Based Organization
+CBS ,Community Based Services 
+CDC ,Centers for Disease Control and Prevention
+CDM,NYSDOH Clinical Data Mart
+CDPAP,Community Directed Personal Assistance Program
+CDPAS,Consumer Directed Personal Assistance Services
+CDR,Continuing Disability Review
+CEHRT,Certified Electronic Health Record Technology
+CFDS,Center for Disabilities Services
+CFTS,Children and Family Treatment and Support Services
+CGM,Continuous Glucose Monitoring 
+CHHA,Certified Home Health Agency
+CHIP/CHP,Children's Health Insurance Program
+CHITA,Community Health Information Technology Adoption Collaborative
+CHW,Community Health Worker
+CIA,Confidentiality - Integrity - Accessibility
+CIDP,Chronic Illness Demonstration Project
+CIN,Client Identification Number
+CJ,Criminal Justice 
+CM,Case Management 
+CMA,"Currier McCabe, and Associates"
+CMA,Care Management Agency
+CMCHO,Consortium for Medicaid and Children's Health Operations
+CMCT,Children's Mobile Crisis Team
+CMHS,Community Mental Health Center
+CMMI,Center for Medicare and Medicaid Innovation
+CMS ,Centers for Medicare and Medicaid Services 
+CNA ,Community Needs Assessment 
+CNS,Client Notice System
+COB ,Coordination of Benefits
+COBRA,Consolidated Omnibus Budget Reconciliation Act (1985)
+COFCCA,Council of Family and Child Caring Agency's 
+COLA,Cost of Living Adjustment
+COS,Category of Services
+COTS,Commercial Off-The-Shelf
+CPI,Consumer Price Index
+CPT,Current Procedural Terminology
+CQI ,Continuous Quality Improvement 
+CQM,Clinical Quality Measures
+CRG,Clinical Risk Group
+CSPP,Colorectal and Prostate Cancer Tx Program 
+CTS,Community Transition Services
+CW,Children's Waiver
+CY,Calendar Year
+DAC,Disabled Adult Child
+DART,Data at Rapid Transit
+DDSO,Developmental Disabilities Services Organization
+DEAA,Data Exchange Application and Agreement 
+DME,Durable Medical Equipment
+DRA ,Deficit Reduction Act
+DRG,Diagnosis-Related Group (3M)
+DSG,Diagnostic Subgroup
+DSRIP,Delivery System Reform Incentive Payment
+DUA,Data Use Agreement
+DUR or DURB,Drug Utilization Review or Drug Utilization Review Board
+DWA,Data Warehouse Assistant
+Dx,Diagnosis Code
+DY,Demonstration Year
+E & M,Evaluation and Management
+EAPG,Enhanced Ambulatory Patient Group
+EDC,Episodic Diagnostic Category
+EDI,Electronic Data Interchange
+EHP/EP,Essential Health Plan
+EHR,Electronic Health Record
+EI,Early Intervention
+EIS,Encounter Intake System
+eMedNY,Electronic Medicaid of New York
+EMR,Electronic Medical Record
+EPIC,Elderly Pharmaceutical Insurance Coverage 
+ERISA,Employee Retirement Income Security Act
+ESI,Employer Sponsored Health Insurance
+ESO,Emergency service only 
+ESSHI,Empire State Supportive Housing Initiative
+ETL,"Extract, Transform, Load"
+EVV,Electronic Visits Verification
+EXC,Exception
+FDB,First Data Bank
+FECC,Family Experience With Care Coordination
+FERPA,Family Educational Rights and Privacy Act
+FFP,Federal Financial Participation
+FFS,Fee-For-Service
+FFY,Federal Fiscal Year
+FIDA,Fully-Integrated Duals Advantage Program
+FMAP,Federal Medical Assistance Percentage
+FNP,Family Nurse Practitioner
+FOIL,Freedom of Information Law
+FPBP,Family Planning Benefit Program
+FQHC,Federally Qualified Health Center
+FRD,Functional Requirement Document
+FY,Fiscal Year
+GCN,Generic Code Number
+GME,Graduate Medical Education (or Direct GME)
+GOTS,Government Off-The-Shelf
+HAC,Healthcare Acquired Condition
+HAI,Healthcare Acquired  Infection 
+HARP,Health and Recovery Plan
+HCBS,Home and Community-Based Services
+HCPCS,Healthcare Common Procedure Coding System
+HCRA,Healthcare Reform Act
+HCS,Health Commerce System
+HCW,Health Care Worker
+HEAP,Home Energy Assistance Program
+HEDIS,Healthcare Effectiveness Data and Information Set
+HH,Health Home
+HHA,Home Health Agency
+HHAP,Homeless Housing Assistance Program
+HHSC,Health Home Serving Children
+HIC,Health Insurance Claim
+HIE,Health Information Exchange
+HIOS ID,Health Insurance Oversight System
+HIP ,Homelessness Intervention Plan
+HIPAA ,Health Insurance Portability and Accountability Act of 1996 
+HIPP,Health Insurance Premium Plan
+HITECH,Health Information Technology Economic and Clinical Health Act 2009
+HIXNY,Health Information Exchange of NY
+HOPWA,Housing Opportunities for Persons with AIDS
+HPDW,OHIP DataMart (legacy datamart)
+HRSN,Health Related Social Need
+HUD ,Housing and Urban Development 
+I/DD ,Intellectually/Developmentally Disabled
+IA,Independent Assessor 
+ICC,Individual Category Code
+ICD-10,International Classification of Diseases (10th revision)
+ICD-9,International Classification of Diseases (9th revision)
+ICF,Intermediate Care Facility
+ICM,Intensive Case Management 
+ICR,Institution Cost Report
+ICU,Intensive Care Unit 
+ILSC,Independent Living Service Coordinator
+InCK,Integrated Care for Kids
+IP,Inpatient
+IPA,Independent Physician Association
+IPC,Integrated Primary Care
+IV-E,Title IV-E Foster Care
+JSON,JavaScript Object Notation
+KPI,Key Performance Indicator
+LARC,Long-acting reversible contraceptives (look up)
+LBW,Low Birth Weight
+LCSW ,Licensed Clinical Social Worker
+LDSS,Local Department of Social Services
+LGU,Local Government Units
+LHCSA,Licensed Home Care Service Agency
+LIF,Low Income Families
+LOINC,Logical Observation Identifiers Names and Codes
+LOS,Length of Stay
+LOS,Location of Service
+LPN,Licensed Practical Nurse
+LRR,Legally Responsible Relatives
+LTC,Long-Term Care 
+LTHHCP,Long-term Home Health Care Program
+M.P.H.  ,Master of Public Health 
+MA ,Medical Assistant 
+MACRA,Medicare Access and CHIP Reauthorization Act
+MAEE,Medicaid Anayltical Extract for Encounters
+MAGI ,Modified Adjusted Gross Income 
+MAPP,Medicaid Analytics Performance Portal
+MAPP HHTS,MAPP Health Home Tracking System
+MATS,Managed Addiction Treatment Services
+MBI-WPD,Medicaid Buy-in for Working People with Disabilities
+MCD,Medicaid Confidential Data
+MCO,Managed Care Organization 
+MCP,Managed Care Plan
+MCTP,Medicaid Cancer Treatment Program
+MDC,Major Diagnostic Category
+MDDB,Master Drug Database
+MDDC,Medicaid Digital Data Center
+MDW,Medicaid Data Warehouse
+MEC,Medicaid Extended Coverage
+MEDS,Medicaid Encounter Data system
+MH,Medical Home
+MIPS,Merit-Based Incentive Payment System
+MISCNY,Medicaid Information Service Center of New York
+MLTC,Managed Long Term Care
+MMC ,Medicaid Managed Care/Mainstream Managed Care
+MMCOR,Medicaid Managed Care Operational Reports 
+MMIS,Medicaid Management Information System
+MMMNA,Minimum Monthly Maintenance Need Allowance
+MOAS,Medicaid Override Application System
+MOTS,Modifiable Off-The-Shelf
+MOU,Memorandum of Understanding
+MRD,Market Requirements Document
+MRT,Medicaid Redesign Team
+MSO,Managed Service Organization
+MUE,Medically Unlikely Edits
+MY,Measurement Year
+NAMI,Net Available Monthly Income
+NCC,Non-Competing Continuation
+NCOA,National Change of Address (USPS)
+NCPDP,National Council for Prescription Drug Programs
+NCQA,National Committee for Quality Assurance
+NDC,National Drug Code
+NF,Nursing Facility
+NH ,Nursing Home 
+NHTD,Nursing Home Transition and Diversion
+NICU,Neonatal Intensive Care Unit 
+NIH ,National Institute of Health
+NOFO,Notice of Funding Opportunity
+NOTS,Niche Off The Shelf
+NPC,News Printing Company
+NPI,National Provider Identifier
+NPPES,National Plan and Provider Enumeration System
+NTA,Neighborhood Tabulation Areas
+NY HITECH,New York Health Information Technology Evaluation Collaborative 
+NYCRR,"New York Codes, Rules, and Regulations"
+NYS ,New York State 
+NYSOH,NYS of Health (Marketplace)
+NYSTEC,NYS Technology Enterprise Corporation
+OCN,Original Claim Number
+OLAP,Online Analytical Processing
+OLTP,Online Transactional Processing
+OMH TCM,Office of Mental Health Targeted Care Management 
+OOHP,Out-of-Home Placements
+OON,Out-of-Network
+OSDS,Original Source Data Submission
+OTDA,Office of Temporary and Disability Assistance
+OUD,Opioid Use Disorder
+P4P,Pay for Performance
+P4R,Pay for Reporting
+PAC ,Project Advisory Committee 
+PACDR,Post-Adjudicated Claims Data Reporting
+PACE,Program of All-Inclusive Care for the Elderly
+PAD,Physician Administered Drugs
+PASS,Plan to Achieve Self-Support
+PCA,Personal Care Assistance
+PCD,Primary Chronic Disease
+PCMH,Patient Centered Medical Home
+PCN,Processor Control Number
+PCP,Per Capitation Payment
+PCP ,Primary Care Physician/Provider
+PCS,Personal Care Services
+PDL,Preferred Drug List
+PBM,Pharmacy Benefit Manager
+PDM,Pharmacy Data Manager
+PDN,Private Duty Nurse
+PDP,Preferred Drug Program
+PDPM,Patient Driven Payment Model
+PHE,Public Health Emergency
+PHI,Protected Health Information 
+PHL,Public Health Law
+PLLC,Professional Limited Liability Company
+PM,Project Manager  
+PMPM,Per Member Per Month
+PNA,Personal Needs Allowances
+POA,Present on Admission
+POC,Plan of Care
+POS ,Place of Service
+PPA,Potentially Preventable Admissions (Inpatient)
+PPC,Potentially Preventable Complications
+PPE,Potentially Preventable Events
+PPG,Public Goods Pool
+PPI,Protected Personal Information
+PPR,Potentially Preventable Readmission (Inpatient)
+PPS,Potentially Preventable Services
+PPS,Performing Provider System 
+PPV,Potentially Preventable Visit (ED)
+PRD,Product Requirements Documents
+PTB,Pre-term Birth
+PUPM,Per Utilizer Per Month
+QA,Quality Assurance
+QARR,Quality Assurance Reporting Requirements
+QE,Qualified Entities
+QM,Quality Measure
+RACI,"Responsible, Accountable, Consult, Inform"
+RAF,Retrospective Attribution File
+RAM,Restricted Access Model
+RDBMS,Relational Database Management System
+REAL,"Race, Ethnicity, and Language"
+RFI ,Request for Information  
+RFP,Request for Proposal
+RHIO,Regional Health Information Organizations
+RN,Registered Nurse 
+RRE,Restricted Recipient Exemption
+RSA,Rivest-Shamir-Adleman
+RTF,Residential Treatment Facilities 
+RTM,Requirements Traceability Matrix
+RY,Rolling Year
+S/CC,Single/Childless Couple
+SAMHSA,Substance Abuse & Mental Health Services Administration Administration
+SDH,Social Determinants of Health
+SDX,State Data Exchange
+SED,State Education Department
+SFS,Statewide Financial System
+SFY,State Fiscal Year
+SHIN-NY,Statewide Health Information Network for New York
+SIC,Service Integration Coordinator
+SIL,Service Integration Level
+SIM,Salient Interactive Miner
+SIW,Service Intensity Weight
+SLMS,Statewide Learning Management System
+SME,Subject Matter Expert
+SMI,Serious Mental Illness
+SN,Safety Net
+SNA,Safety Net Assistance
+SNAP,Supplemental Nutrition Assistance Program
+SNF,Skilled Nursing Facility
+SNOWMED,Systematized Nomenclature of Medicine-Clinical Terms
+SNP,Special Needs Plan
+SNP,Safety Net Provider 
+SNPOR,Special Needs Plan Operating Reports
+SOFC,State Operated Family Care
+SOI,Severity of Illness
+SOIRA,State Operated Individual Residential Alternatives
+SOLQ ,State On-Line Query
+SOPC,State On-Line Query
+SOW,Scope of Work
+SPA,State Plan Amendments
+SPMI,Severely and Persistently Mentally Ill
+SPOA,Single Point of Access
+SPOC,Shared Plan of Care
+SSI,Supplemental Security Income
+SUD ,Substance Use Disorder 
+SURS,Surveillance and Utilization Review Subsystems
+SVE,Sterile Vaginal Exam
+TAF,Temporary Attribution File
+TANF,Temporary Assistance for Needy Families
+TBI,Traumatic Brain Injury
+TCGP,Total Care for the General Population
+TCM,Targeted Case Management 
+TCN,Transaction Control Number
+TEFCA,Trusted Exchange Framework and Common Agreement
+TIN,Tax Identification Number
+TLC,Taxi Limo Commission
+TMA,Transitional Medicaid
+T-MSIS,Transformed Medicaid Statistical Information System
+TPL,Third-Party Liability
+UAT,User Acceptance Testing
+USPSTF,United States Preventive Service Task Force
+VAP,Vital Access Provider
+VBP,Value Based Payment
+VBP-U,Value Based Payment University
+VDI,Virtual Desktop Infrastructure
+VNSNY,Visiting Nurse Service of New York
+VPDW,Vertica Production Data Warehouse
+VPN,Virtual Private Network
+WIC ,"Women, Infants & Children Program"
+WMS,Welfare Management System
