@@ -12,7 +12,7 @@ def main():
     # Embedding and LLM setup
     embedding_method = HealthcareEmbedding
     llm_client = LLMClient(
-        api_key="sk-kTA3hKtUZS5oSkdMA4E8741295C947C1B390898aA7Af8fFa",                # Add API key if needed
+        api_key="",                # Add API key if needed
         provider="openai",         # e.g., openai, anthropic, ollama,
         base_url="https://api.bltcy.ai/v1",
         model="gpt-5"        # model name used by your LLM provider
