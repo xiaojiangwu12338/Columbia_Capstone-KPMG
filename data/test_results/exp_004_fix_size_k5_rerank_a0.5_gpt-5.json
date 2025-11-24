@@ -3,7 +3,100 @@
     "query_id": "Test_query_1",
     "query_content": "When did redetrmination begin for the COVID-19 Public Health Emergency unwind in New York State",
     "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-    "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+    "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
+    "top_k_chunks": [
+      {
+        "chunk_id": "mu_no7_jun22_pr.pdf::0013",
+        "text": "ould be sent to the NYS DOH at\nTelehealth.Policy@health.ny.gov.\n***************************************************************************************************************\nJune 2022 New York State Medicaid Update pg. 9\n\nUnwinding from the COVID-19 Public Health Emergency:\nNew York State Department of Health Shares Strategy to Help\nConsumers Maintain Coverage\nIn early 2020, the United States Department of Health and Human Services (HHS) declared a Public Health\nEmergency (PHE) in response to the Coronavirus Disease 2019 (COVID-19) pandemic, allowing New York\n(NY) residents enrolled in Medicaid, Child Health Plus (CHP), and the Essential Plan (EP) to keep their\ncoverage without requiring an annual eligibility review. To view the official PHE announcement, providers can\nrefer to the HHS “Public Health Emergency Declarations” web page at: https://www.phe.gov/\nemergency/news/healthactions/phe/Pages/default.aspx. For more information on the federal PHE wind down,\nproviders can refer to the Unwinding and Returning to Regular Operations after COVID-19 web page, located\nat: https://www.medicaid.gov/resources-for-states/coronavirus-disease-2019-covid-19/unwinding-and-retu\nrning-regular-operations-after-covid-19/index.html.\nAs NY prepares for the transition out of the PHE, the move to resume eligibility reviews could result in a large\nnumber of beneficiaries becoming disenrolled. The NYS Department of Health (DOH) is working with partners,\nlocal districts, and other stakeholders to inform consumers about renewing their coverage and exploring other\navailable health insurance options if they no longer qualify for Medicaid, CHP or EP.\nDOH’s Strategy\nFederal guidance allows States 14 months to redetermine eligibility with 60 days advanced notice. In NY, this\nmeans renewing eligibility for 8.8 million people, including:\n• 1.4 million new enrollees who have never renewed coverage with DOH, and\n• 7.4 million who have not renewed their coverage in more than two years.\nAs part of t",
+        "chunk_type": "text",
+        "doc_id": "mu_no7_jun22_pr.pdf",
+        "title": "New York State Medicaid Update June 2022 Volume 38 Number 7",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no7_jun22_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2022-06-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          9,
+          10
+        ],
+        "score": 0.8348368406295776,
+        "rerank_score": 0.8868772387504578,
+        "final_score": 2.2813096046447754,
+        "rank": 1
+      },
+      {
+        "chunk_id": "mu_no02_feb25_pr.pdf::0004",
+        "text": "Medicaid\neligibility for its members, which New York State (NYS) began in April 2023. This process is also referred to\nas the Public Health Emergency Unwind. States must conclude the entire Unwind process by December 31,\n2025, in accordance with recent guidance issued by the Centers for Medicare and Medicaid Services.\nBeginning in mid-February 2025, the New York City (NYC) Human Resources Administration will include\nupdated language in its renewal packages informing NYS Medicaid members that their cases will be closed\nif the renewal packet is not returned by the due date. Renewal notices for NYS Medicaid members enrolled\nthrough a local social services district outside of NYC will include similar language indicating coverage will be\nclosed if the renewal packet is not returned by the due date. Please note: In some cases, a NYS Medicaid\nmember may be administratively renewed based on data sources. In that case, the NYS Medicaid member\nwill not receive a renewal packet but will instead receive a notice confirming a successful administrative\nrenewal.\nProviders can assist in this effort by informing their patients of this requirement and encouraging them to\ncomplete and return their renewal packet by the due date so their NYS Medicaid eligibility can be\nredetermined.\n***************************************************************************************************************\nEnhanced Reimbursement for Integrated eConsultations, Physical\nHealth and Behavioral Health eConsults\nEffective June 1, 2025, New York State (NYS) will enhance reimbursement rates for a period of five years\nfor eConsultations between eligible physical health and behavioral health practitioners. For instance, a\nprimary care physician may seek a consultation with a psychiatrist to determine the most suitable\nantidepressant medication for a patient diagnosed with major depressive disorder, who also has complex\ncomorbidities including heart disease, hypertension, and diabetes. This collaborative appro",
+        "chunk_type": "text",
+        "doc_id": "mu_no02_feb25_pr.pdf",
+        "title": "New York State Medicaid Update February 2025 Volume 41 Number 2",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no02_feb25_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2025-02-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          4
+        ],
+        "score": 0.813109278678894,
+        "rerank_score": 0.6134940385818481,
+        "final_score": 0.9751876592636108,
+        "rank": 2
+      },
+      {
+        "chunk_id": "mu_no6_mar23_pr.pdf::0000",
+        "text": "March 2023\nVolume 39 | Number 6\nNew York State to Resume Eligibility Reviews for Medicaid, Child\nHealth Plus and the Essential Plan; Communications Tool Kit\nAvailable to Help Educate Consumers on How to Renew Insurance\nFor the duration of the federal Coronavirus Disease 2019 (COVID-19) Public Health Emergency (PHE), New\nYork State (NYS) was authorized to protect New Yorkers by pausing annual eligibility reviews and providing\ncontinuous coverage for Medicaid, Child Health Plus (CHP) and the Essential Plan (EP) members/enrollees.\nHowever, on December 29, 2022, the federal Consolidated Appropriations Act updated federal rules to require\nNYS, in partnership with the local Departments of Social Services (LDSS), to once again recertify eligibility\nfor members in these public health programs. For additional information regarding the COVID-19 PHE,\nproviders can refer to the United States (U.S.) Department of Health and Human Services (HHS)\nAdministration for Strategic Preparedness and Response (ASPR) \"Declarations of a Public Health\nEmergency\" web page, located at: https://aspr.hhs.gov/legal/PHE/Pages/default.aspx. For additional\ninformation regarding resumed eligibility reviews, providers can refer to the NY State of Health Important\nChanges to New York Medicaid, Child Health Plus and the Essential Plan web page, located at:\nhttps://info.nystateofhealth.ny.gov/COVID-19-Changes.\nThere are approximately 8 million New Yorkers enrolled in Medicaid, CH and EP who will need to\nrenew their health insurance. It is imperative that members/enrollees are made aware of these\nchanges as they may risk losing their coverage if appropriate actions to renew are not made.\nBeginning in Spring 2023, renewal notices will be sent to members/enrollees based on their enrollment end\ndates. Renewal notices will include the deadline to take action to renew their insurance or risk having a gap\nin coverage. Deadlines will be based on the member/enrollee enrollment end dates and will range from June\n30",
+        "chunk_type": "text",
+        "doc_id": "mu_no6_mar23_pr.pdf",
+        "title": "New York State Medicaid Update March 2023 Volume 39 Number 6",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no6_mar23_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2023-03-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          1
+        ],
+        "score": 0.8206430673599243,
+        "rerank_score": 0.4269723892211914,
+        "final_score": 0.766994059085846,
+        "rank": 3
+      },
+      {
+        "chunk_id": "mu_no10_may23_pr.pdf::0003",
+        "text": "Assisting Consumers to Renew and Maintain Open Enrollment to Help Ensure\na Continuation of Coverage\nWith the passage of the federal Consolidated Appropriations Act, eligibility reviews that were paused during\nthe federal Coronavirus Disease 2019 (COVID-19) Public Health Emergency (PHE) are now resuming for\nover 9 million New Yorkers enrolled in Medicaid, Child Health Plus (CHPlus) and the Essential Plan (EP). The\nrenewal process is currently underway, and members/enrollees will continue receiving renewal notices in\nadvance of their coverage end dates with detailed instructions on how to stay covered and their deadline to\ntake action. For more information regarding the COVID-19 PHE, providers should refer to the Administration\nfor Strategic Preparedness and Response (ASPR) “Declarations of a Public Health Emergency” web page,\nlocated at: https://aspr.hhs.gov/legal/PHE/Pages/default.aspx.\nThe New York State (NYS) Department of Health (DOH) has reviewed federal government guidance,\ndeveloped plans to enhance systems, increased resources and added staff to prepare for this renewal\nprocess. Additionally, NYS DOH has collaborated with participating health insurance plans, health care\nproviders, and thousands of certified enrollment staff across the state to help keep New Yorkers covered.\nThroughout the next year, current members/enrollees will receive renewal notices based on their coverage\nend date. Members/enrollees with coverage end dates of June 30 have already received their renewal notices.\nMembers/enrollees should follow the instructions on their renewal notices and take any needed actions ahead\nof the deadlines to renew their coverage.\nNew Yorkers whose public insurance eligibility was affected by a change in income or other family\ncircumstances will continue to have a broad range of free or low-cost health insurance options. New York's\nEP for low-income individuals, located at: https://info.nystateofhealth.ny.gov/EssentialPlan, will smooth the\ntransition for New",
+        "chunk_type": "text",
+        "doc_id": "mu_no10_may23_pr.pdf",
+        "title": "New York State Medicaid Update May 2023 Volume 39 Number 10",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no10_may23_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2023-05-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          3
+        ],
+        "score": 0.8191177845001221,
+        "rerank_score": 0.3343678116798401,
+        "final_score": 0.5027862787246704,
+        "rank": 4
+      },
+      {
+        "chunk_id": "mu_no10_may23_pr.pdf::0000",
+        "text": "May 2023\nVolume 39 | Number 10\nNew York State Medicaid Program\nEnds Provisional Temporary Provider Enrollment\nPursuant to §1135(b)(1)(B) of the Social Security Act, located at: https://www.ssa.gov/OP_Home\n/ssact/title11/1135.htm, the Centers for Medicare and Medicaid Services (CMS) allowed states to temporarily\nwaive and/or suspend some of the requirements for providers who wanted to temporarily enroll in Medicaid\nfor the purpose of assisting with the Coronavirus Disease 2019 (COVID-19) public health emergency (PHE).\nThe New York State (NYS) Department of Health (DOH) Bureau of Provider Enrollment acted by\nimplementing a Provisional Temporary Provider Enrollment (PTPE) process that allowed certain provider\ntypes to rapidly enroll on a temporary basis during the PHE.\nWith the expiration of the federal PHE on May 11, 2023, the PTPE process also officially ended, and the\nonline PTPE portal closed as of May 11, 2023. Since inception of the PTPE process, the eMedNY “COVID\nFAQs” web page, located at: https://www.emedny.org/COVID19/FAQ/, has stated: “Within six months of the\nfederal public health emergency being lifted, New York State will cease payments to providers who are\ntemporarily enrolled unless a provider has submitted an application that meets all requirements for New York\nState Medicaid participation, and the application was reviewed and approved by the New York State\nDepartment of Health within six months of the federal public health emergency being lifted.”\nProviders who temporarily enrolled via the PTPE process must complete the full enrollment process by\nNovember 11, 2023, to continue participation in the program. Temporarily enrolled providers will be terminated\nand their NYS Medicaid payments will cease if they do not complete the enrollment process by November\n11, 2023. It can take up to 120 days to complete processing of an application; therefore, it is suggested that\napplications be submitted with enough time to ensure that they are processed by the Nove",
+        "chunk_type": "text",
+        "doc_id": "mu_no10_may23_pr.pdf",
+        "title": "New York State Medicaid Update May 2023 Volume 39 Number 10",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no10_may23_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2023-05-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          1
+        ],
+        "score": 0.796983540058136,
+        "rerank_score": 0.5474216341972351,
+        "final_score": 0.3273487985134125,
+        "rank": 5
+      }
+    ],
     "answers": "- \"Medicaid eligibility for its members, which New York State (NYS) began in April 2023. This process is also referred to as the Public Health Emergency Unwind.\" [mu_no02_feb25_pr.pdf:4]",
     "document": {
       "mu_no02_feb25_pr.pdf": [
@@ -15,8 +108,101 @@
     "query_id": "Test_query_2",
     "query_content": "When did the public health emergency end?",
     "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-    "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
-    "answers": "- \"following the federally declared Coronavirus Disease 2019 (COVID-19) Public Health Emergency (PHE), which ends on May 11, 2023.\" [mu_no3_feb23_speced_pr.pdf:1 — February 2023]\n- \"With the expiration of the federal PHE on May 11, 2023, the PTPE process also officially ended, and the online PTPE portal closed as of May 11, 2023.\" [mu_no10_may23_pr.pdf:1 — May 2023]",
+    "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
+    "top_k_chunks": [
+      {
+        "chunk_id": "mu_no3_feb23_speced_pr.pdf::0000",
+        "text": "February 2023\nVolume 39 | Number 3\nSpecial Edition\nComprehensive Guidance Regarding Use of Telehealth including\nTelephonic Services After the Coronavirus Disease 2019 Public\nHealth Emergency\nUpdates are highlighted in yellow\nThis guidance is intended to clarify the New York State (NYS) Medicaid program telehealth policy, including\nuse of audio-only technology, following the federally declared Coronavirus Disease 2019 (COVID-19) Public\nHealth Emergency (PHE), which ends on May 11, 2023. Throughout the COVID-19 PHE, NYS Medicaid\nproviders shifted traditional in person care to remote delivery, where possible. Although some barriers still\nexist and not all services are appropriate for remote delivery, telehealth has been largely beneficial in many\nservice areas. Remote services help address workforce shortages, access to specialists, infection control,\ntransportation issues, and dependent care challenges. In recognition of the changing landscape of healthcare\ndelivery and in preparation for the COVID-19 PHE unwind, the NYS Department of Health (DOH) sought\nfeedback from providers and NYS Medicaid members on their experience with telehealth to inform our post\nPHE policy.\nTo support the use of telehealth services, the NYS Medicaid program will continue to cover services delivered\nvia audio-visual telehealth, when appropriate, if such member chooses to receive telehealth services in lieu\nof an in-person visit. An audio-visual visit must contain all elements of the billable procedure codes or rate\ncodes and all required documentation.\nAudio-only services will also continue to be covered when audio-visual services are not available or when the\nmember chooses audio-only services in lieu of audio-visual telehealth or an in-person visit. Audio-only visits\nmust contain all elements of the billable procedure codes or rate codes and all required documentation.\nProviders must document in the chart of the NYS Medicaid member why audio-only services were used for\neach audio-only enco",
+        "chunk_type": "text",
+        "doc_id": "mu_no3_feb23_speced_pr.pdf",
+        "title": "Medicaid Update Special Edition Part Two: NYRx Pharmacy Benefit Transition Medicaid Update Volume 39 Number 1",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no3_feb23_speced_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2023-02-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          1
+        ],
+        "score": 0.7423409223556519,
+        "rerank_score": 0.44314849376678467,
+        "final_score": 1.3896559476852417,
+        "rank": 1
+      },
+      {
+        "chunk_id": "mu_no10_may23_pr.pdf::0000",
+        "text": "May 2023\nVolume 39 | Number 10\nNew York State Medicaid Program\nEnds Provisional Temporary Provider Enrollment\nPursuant to §1135(b)(1)(B) of the Social Security Act, located at: https://www.ssa.gov/OP_Home\n/ssact/title11/1135.htm, the Centers for Medicare and Medicaid Services (CMS) allowed states to temporarily\nwaive and/or suspend some of the requirements for providers who wanted to temporarily enroll in Medicaid\nfor the purpose of assisting with the Coronavirus Disease 2019 (COVID-19) public health emergency (PHE).\nThe New York State (NYS) Department of Health (DOH) Bureau of Provider Enrollment acted by\nimplementing a Provisional Temporary Provider Enrollment (PTPE) process that allowed certain provider\ntypes to rapidly enroll on a temporary basis during the PHE.\nWith the expiration of the federal PHE on May 11, 2023, the PTPE process also officially ended, and the\nonline PTPE portal closed as of May 11, 2023. Since inception of the PTPE process, the eMedNY “COVID\nFAQs” web page, located at: https://www.emedny.org/COVID19/FAQ/, has stated: “Within six months of the\nfederal public health emergency being lifted, New York State will cease payments to providers who are\ntemporarily enrolled unless a provider has submitted an application that meets all requirements for New York\nState Medicaid participation, and the application was reviewed and approved by the New York State\nDepartment of Health within six months of the federal public health emergency being lifted.”\nProviders who temporarily enrolled via the PTPE process must complete the full enrollment process by\nNovember 11, 2023, to continue participation in the program. Temporarily enrolled providers will be terminated\nand their NYS Medicaid payments will cease if they do not complete the enrollment process by November\n11, 2023. It can take up to 120 days to complete processing of an application; therefore, it is suggested that\napplications be submitted with enough time to ensure that they are processed by the Nove",
+        "chunk_type": "text",
+        "doc_id": "mu_no10_may23_pr.pdf",
+        "title": "New York State Medicaid Update May 2023 Volume 39 Number 10",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no10_may23_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2023-05-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          1
+        ],
+        "score": 0.7473128437995911,
+        "rerank_score": 0.27587321400642395,
+        "final_score": 1.0052311420440674,
+        "rank": 2
+      },
+      {
+        "chunk_id": "mu_no3_feb23_speced_pr.pdf::0047::table",
+        "text": "The Notifications of Enforcement Discretion issued by the U.S. Department of Health and Human Services’\r\nOffice for Civil Rights (OCR) expired with the end of the COVID-19 PHE. OCR is providing a 90-calendar day\r\ntransition period for providers to comply with HIPAA rules in their provision of telehealth. The transition period\r\n\"expires on August 9, 2023. More information on HIPAA and telehealth can be found on the U.S. Department\"\r\n\"of Health and Human Services website, located at: https://www.hhs.gov/.\"",
+        "chunk_type": "table",
+        "doc_id": "mu_no3_feb23_speced_pr.pdf",
+        "title": "Medicaid Update Special Edition Part Two: NYRx Pharmacy Benefit Transition Medicaid Update Volume 39 Number 1",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no3_feb23_speced_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2023-02-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          7
+        ],
+        "score": 0.7601951956748962,
+        "rerank_score": 0.0009058589930646122,
+        "final_score": 0.6334549188613892,
+        "rank": 3
+      },
+      {
+        "chunk_id": "mu_no10_may23_pr.pdf::0003",
+        "text": "Assisting Consumers to Renew and Maintain Open Enrollment to Help Ensure\na Continuation of Coverage\nWith the passage of the federal Consolidated Appropriations Act, eligibility reviews that were paused during\nthe federal Coronavirus Disease 2019 (COVID-19) Public Health Emergency (PHE) are now resuming for\nover 9 million New Yorkers enrolled in Medicaid, Child Health Plus (CHPlus) and the Essential Plan (EP). The\nrenewal process is currently underway, and members/enrollees will continue receiving renewal notices in\nadvance of their coverage end dates with detailed instructions on how to stay covered and their deadline to\ntake action. For more information regarding the COVID-19 PHE, providers should refer to the Administration\nfor Strategic Preparedness and Response (ASPR) “Declarations of a Public Health Emergency” web page,\nlocated at: https://aspr.hhs.gov/legal/PHE/Pages/default.aspx.\nThe New York State (NYS) Department of Health (DOH) has reviewed federal government guidance,\ndeveloped plans to enhance systems, increased resources and added staff to prepare for this renewal\nprocess. Additionally, NYS DOH has collaborated with participating health insurance plans, health care\nproviders, and thousands of certified enrollment staff across the state to help keep New Yorkers covered.\nThroughout the next year, current members/enrollees will receive renewal notices based on their coverage\nend date. Members/enrollees with coverage end dates of June 30 have already received their renewal notices.\nMembers/enrollees should follow the instructions on their renewal notices and take any needed actions ahead\nof the deadlines to renew their coverage.\nNew Yorkers whose public insurance eligibility was affected by a change in income or other family\ncircumstances will continue to have a broad range of free or low-cost health insurance options. New York's\nEP for low-income individuals, located at: https://info.nystateofhealth.ny.gov/EssentialPlan, will smooth the\ntransition for New",
+        "chunk_type": "text",
+        "doc_id": "mu_no10_may23_pr.pdf",
+        "title": "New York State Medicaid Update May 2023 Volume 39 Number 10",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no10_may23_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2023-05-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          3
+        ],
+        "score": 0.7583908438682556,
+        "rerank_score": 0.020031340420246124,
+        "final_score": 0.609140932559967,
+        "rank": 4
+      },
+      {
+        "chunk_id": "mu_no1_jan22_pr.pdf::0002",
+        "text": "................. 15\nJanuary 2022 New York State Medicaid Update pg. 2\n\nAll Providers\nNY State of Health Open Enrollment Period Extended as Federal\nPublic Health Emergency Continues\nThe NY State of Health Open Enrollment Period for 2022 Qualified Health Plans (QHPs) will remain open to\nalign with the recent announcement regarding the federal government Public Health Emergency (PHE)\nextension, effective January 16, 2022. To view the announcement, providers can refer to the Assistant\nSecretary for Preparedness and Response (ASPR) “Renewal of Determination That A Public Health\nEmergency Exists” web page, located at: https://aspr.hhs.gov/legal/PHE/Pages/COVID19-14Jan2022.aspx.\nNY State of Health, the Official Health Plan Marketplace (Marketplace), provides new and returning\nconsumers many quality low-cost health insurance options with a choice of QHPs in every county and\ncontinues to offer expanded tax credit savings through the American Rescue Plan Act (ARPA). To learn more\nabout ARPA, providers can visit the How NY State of Health Enrollees Benefit from the American Rescue\nPlan web page, located at: https://info.nystateofhealth.ny.gov/americanrescueplan.\nExtending the Open Enrollment Period for QHPs aligns with the coverage rules for public programs also\nadministered through NY State of Health. New Yorkers need to enroll by February 15, 2022, for coverage\nstarting March 1, 2022. NY State of Health has been a critical safety net during the COVID-19 PHE for\npeople who have experienced income or job-based coverage loss. Between March 2020 and December 31,\n2021, enrollment across Marketplace programs have surged, with more than 1.5 million additional New\nYorkers enrolling in Medicaid, the Essential Plan, Child Health Plus, and QHPs. Enrollment in the Essential\nPlan, Medicaid and Child Health Plus is open year-round.\nConsumers continue to have a choice of health plan options, which can be found on the NY State of Health\n“2022 Qualified Health Plan Map” web page, located at",
+        "chunk_type": "text",
+        "doc_id": "mu_no1_jan22_pr.pdf",
+        "title": "New York State Medicaid Update January 2022 Volume 38 Number 1",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no1_jan22_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2022-01-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          2,
+          3
+        ],
+        "score": 0.740251362323761,
+        "rerank_score": 0.24540957808494568,
+        "final_score": 0.4951455295085907,
+        "rank": 5
+      }
+    ],
+    "answers": "- \"This guidance is intended to clarify the New York State (NYS) Medicaid program telehealth policy, including use of audio-only technology, following the federally declared Coronavirus Disease 2019 (COVID-19) Public Health Emergency (PHE), which ends on May 11, 2023.\" [mu_no3_feb23_speced_pr.pdf:1 — February 2023]\n- \"With the expiration of the federal PHE on May 11, 2023, the PTPE process also officially ended, and the online PTPE portal closed as of May 11, 2023.\" [mu_no10_may23_pr.pdf:1 — May 2023]",
     "document": {
       "mu_no3_feb23_speced_pr.pdf": [
         1
@@ -30,8 +216,103 @@
     "query_id": "Test_query_3",
     "query_content": "When submitting a claim for Brixandi, how many units should be indicated on the claim?",
     "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-    "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
-    "answers": "- \"Effective April 1, 2024, for New York State (NYS) Medicaid fee-for-service (FFS), practitioners must submit a claim for BrixadiTM with a unit of “1” when the drug is administered in a medical office.\" [mu_no4_apr24_pr.pdf:3 — April 2024]\n- \"Please note: When completing sections pertaining to National Drug Code (NDC), all formulations of BrixadiTM must be submitted with a value of “1” as the HCPCS unit quantity...\" [mu_no4_apr24_pr.pdf:4 — April 2024]\n- \"5. 24I: Days or Units Enter a value of “1” for all BrixadiTM claims.\" [mu_no4_apr24_pr.pdf:5 — April 2024]",
+    "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
+    "top_k_chunks": [
+      {
+        "chunk_id": "mu_no4_apr24_pr.pdf::0004",
+        "text": "di™ with reimbursement rates by the unit, not\nmilligrams or milliliters. A set rate has been established for the Healthcare Common Procedure Coding\nSystem (HCPCS) codes below:\n• “J0577” – “Injection, buprenorphine extended-release (Brixadi™), less than or equal to seven days\nof therapy.\"\n• “J0578” – “Injection, buprenorphine extended-release (Brixadi™), greater than seven days and up to\n28 days of therapy.\"\nBilling Units Clarification\nProviders should refer to the examples provided below to assist in completing the electronic Provider Assisted\nClaim Entry System (ePACES) electronic form or the Medical Assistance Health Insurance Claim Form\n(eMedNY 150003 form). Please note: When completing sections pertaining to National Drug Code (NDC),\nall formulations of BrixadiTM must be submitted with a value of “1” as the HCPCS unit quantity and the\nvolumetric quantity administered in milliliters.\nElectronic Claim Example for BrixadiTM Weekly 32mg/0.64ml Syringe\nJ0577 1\n58284023201\n1 -> milliliters\nApril 2024 New York State Medicaid Update pg. 4\n\n150003 Paper Claim Example for BrixadiTM Weekly 32mg/0.64ml Syringe\nWhen completing the Medical Assistance Health Insurance Claim Form (eMedNY 150003 form) for BrixadiTM,\nproviders should refer to the following instructions:\n1. Field 20: National Drug Code\nThe 11-digit unique identifier of the drug administered.\n2. Field 20A: Unit\nThe NDC unit of measure. All claims for BrixadiTM will be entered as milliliters or “ml”.\n3. Field 20B: Quantity\nEnter the volumetric quantity in milliliters in this field.\n4. 24C: Procedure Code\nThe primary five-digit HCPCS code.\n5. 24I: Days or Units\nEnter a value of “1” for all BrixadiTM claims.\nApril 2024 New York State Medicaid Update pg. 5\n\nQuestions and Additional Information:\n• Practitioners should refer to the ePACES Professional Real Time Claim Reference Guide, located at:\nhttps://www.emedny.org/selfhelp/ePACES/PDFS/5010_ePACES_Professional_Real_Time_Claim_R\neference_Guide.pdf, for additional infor",
+        "chunk_type": "text",
+        "doc_id": "mu_no4_apr24_pr.pdf",
+        "title": "New York State Medicaid Update April 2024 Volume 40 Number 4",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no4_apr24_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2024-04-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          4,
+          5,
+          6
+        ],
+        "score": 0.8047887086868286,
+        "rerank_score": 0.8816293478012085,
+        "final_score": 2.8256821632385254,
+        "rank": 1
+      },
+      {
+        "chunk_id": "mu_no4_apr24_pr.pdf::0003",
+        "text": "s and their administration, without cost-sharing obligations,\nfor any outpatient clinic visit in which an approved adult vaccine, recommended by the Advisory Committee\non Immunization Practices (ACIP), was administered as part of the visit.\nBilling Instructions for Fee-for-Service\nThe eMedNY system has been modified to systematically bypass all NYS Medicaid member cost-sharing\nrequirements for any outpatient clinic visits in which an approved adult vaccine, recommended by the ACIP,\nwas administered and no payment reduction will occur. Clinics no longer need to append modifier \"33\" to\nthe applicable Current Procedural Terminology (CPT)/Healthcare Common Procedure Coding System\n(HCPCS) code for the ACIP-recommended vaccine when submitting an outpatient Ambulatory Patient Group\n(APG) or Ordered Ambulatory claim to NYS Medicaid.\nQuestions and Additional Information:\n• Fee-for-service (FFS) billing and claim questions should be directed to the eMedNY Call Center at\n(800) 343-9000.\n• NYS Medicaid FFS medical coverage and policy questions should be directed to the Office of Health\nInsurance Programs (OHIP) Division of Program Development and Management (DPDM) by\ntelephone at (518) 473-2160 or by email at FFSMedicaidPolicy@health.ny.gov.\n***************************************************************************************************************\nApril 2024 New York State Medicaid Update pg. 3\n\nPractitioner Administered Drug Update:\nBrixadi™ Billing Guidance\nEffective April 1, 2024, for New York State (NYS) Medicaid fee-for-service (FFS), practitioners must submit\na claim for BrixadiTM with a unit of “1” when the drug is administered in a medical office. The Centers for\nMedicare and Medicaid Services (CMS) has categorized Brixadi™ with reimbursement rates by the unit, not\nmilligrams or milliliters. A set rate has been established for the Healthcare Common Procedure Coding\nSystem (HCPCS) codes below:\n• “J0577” – “Injection, buprenorphine extended-release (Brixadi™), less th",
+        "chunk_type": "text",
+        "doc_id": "mu_no4_apr24_pr.pdf",
+        "title": "New York State Medicaid Update April 2024 Volume 40 Number 4",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no4_apr24_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2024-04-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          3,
+          4
+        ],
+        "score": 0.7343637943267822,
+        "rerank_score": 0.9578841328620911,
+        "final_score": 1.0168277025222778,
+        "rank": 2
+      },
+      {
+        "chunk_id": "mu_no3_mar24_pr.pdf::0027",
+        "text": "of the corresponding valid units of measure per\nthe NCPDP standard. The value entered in this field corresponds to the “Billing Unit Type” found on\nthe PAD Search Tool. This unit should be utilized when billing for unlisted codes “J3490” and\n“J3590”.\n3. Field 20B: Quantity\nThe number of units from 20A administered to the patient. An injection of 1 ml would be reported as\n“ML” entered into 20A and “1.00” entered in 20B.\n4. Field 24C: Procedure Code\nThe primary five-digit HCPCS code.\n5. Field 24I: Days or Units\nThe value entered in this field should correspond to the “HCPCS Code Dosage Description” (found on\nthe PAG Search Tool) of the procedure code used in 24C (e.g., an injection of 40 mg with a “HCPCS\nCode Dosage Description” of “10 MG” would be entered as “4”. This represents four units of 10 mg).\nQuestions and Additional Information:\n• Additional information regarding the 150003 paper claim form can be found in the eMedNY New York\nState 150003 Billing Guidelines, located at: https://www.emedny.org/providermanuals/physician/\nPDFS/Physician_Billing_Guidelines.pdf.\n• NYRx claim questions should be directed to the eMedNY Call Center at (800) 343-9000.\n• NYRx Pharmacy coverage and policy questions should be directed to the NYS Medicaid Pharmacy\nPolicy Unit by telephone at (518) 486-3209 or by email at NYRx@health.ny.gov.\n***************************************************************************************************************\n2024 Spousal Impoverishment Income and Resource Levels Increase\nProviders of nursing facility services, certain home and community-based waiver services, and\nservices to individuals enrolled in a Managed Long Term Care Plan are required to print and distribute\nthe \"Information Notice to Couples with an Institutionalized Spouse\" (see “Appendix” on page 20 of\nthis issue) at the time they begin to provide services to their patients.\nEffective January 1, 2024, the federal maximum Community Spouse Resource Allowance increased to\n$154,140.00, whil",
+        "chunk_type": "text",
+        "doc_id": "mu_no3_mar24_pr.pdf",
+        "title": "New York State Medicaid Update March 2024 Volume 40 Number 3",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no3_mar24_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2024-03-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          17
+        ],
+        "score": 0.7676007747650146,
+        "rerank_score": 0.006920098792761564,
+        "final_score": 0.39019978046417236,
+        "rank": 3
+      },
+      {
+        "chunk_id": "mu_no8_jul22_pr.pdf::0040::table",
+        "text": "\"Providers should not bill multiple claim lines with the same J-code drugs on the same date of service, even if\"\r\nthe drugs administered have different NDCs. Providers should combine all units of the J-code drug\r\nadministered and bill it on one claim line reporting the NDC that has the highest number of units administered.\r\n\"If the same number of units were administered for each NDC/J-code, providers should choose one NDC to\"\r\nuse for the submitted claim.",
+        "chunk_type": "table",
+        "doc_id": "mu_no8_jul22_pr.pdf",
+        "title": "New York State Medicaid Update July 2022 Volume 38 Number 8",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no8_jul22_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2022-07-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          6
+        ],
+        "score": 0.7398746013641357,
+        "rerank_score": 0.3052274286746979,
+        "final_score": 0.11210960149765015,
+        "rank": 4
+      },
+      {
+        "chunk_id": "mu_no10_may23_pr.pdf::0006",
+        "text": "it of the NYS Medicaid member, the clinic (when submitting their claim to NYS\nMedicaid) would indicate the payment received from the primary/commercial insurer by inserting a “4” in the\n“units” field on the claim line for one of the CDT codes referenced above. The line-level payment is multiplied\nby the number of units submitted on the line, which reflects the number of visits needed to reach the primary\npayer’s decisive appointment. The number of units required to complete billing for dentures reimbursement\nshould not exceed five.\nWhen the NYS Medicaid member has NYS Medicaid FFS without third-party commercial insurance, the clinic\nmay seek reimbursement for every visit in which the NYS Medicaid member crosses the threshold by\nindicating a “1” in the “units” field. The number of units required to complete billing for dentures\nreimbursement should not exceed five. Providers should refer to the NYS DOH APG-Based Weights History\nFile, located on the NYS Department of Health (DOH) “APG and Px-Based Weights History and APG Fee\nSchedules” web page, at: https://www.health.ny.gov/health_care/medicaid\n/rates/methodology/history_and_fee_schedule.htm.\nQuestions and Additional Information:\n• FFS claims reimbursement and/or provider enrollment questions should be directed to the Computer\nSciences Corporation (CSC or CSRA) at (800) 343-9000.\n• FFS dental coverage and policy questions should be directed to the Office of Health Insurance\nPrograms (OHIP) Division of Program Development and Management (DPDM) by telephone at\n(518) 473-2160 or by email at dentalpolicy@health.ny.gov.\n• Medicaid Managed Care (MMC) reimbursement, billing, and/or documentation requirement questions\nshould be directed to the MMC Plan of the enrollee.\n• MMC Plan contact information can be found in the eMedNY New York State Medicaid Program\nInformation for All Providers Managed Care Information document, located at:\nhttps://www.emedny.org/ProviderManuals/AllProviders/PDFS/Information_for_All_Providers_Manag",
+        "chunk_type": "text",
+        "doc_id": "mu_no10_may23_pr.pdf",
+        "title": "New York State Medicaid Update May 2023 Volume 39 Number 10",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no10_may23_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2023-05-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          5
+        ],
+        "score": 0.7438194751739502,
+        "rerank_score": 0.10664469748735428,
+        "final_score": -0.10093803703784943,
+        "rank": 5
+      }
+    ],
+    "answers": "- \"Effective April 1, 2024, for New York State (NYS) Medicaid fee-for-service (FFS), practitioners must submit a claim for BrixadiTM with a unit of “1” when the drug is administered in a medical office.\" [mu_no4_apr24_pr.pdf:3 — April 2024]\n- \"Please note: When completing sections pertaining to National Drug Code (NDC), all formulations of BrixadiTM must be submitted with a value of “1” as the HCPCS unit quantity and the volumetric quantity administered in milliliters.\" [mu_no4_apr24_pr.pdf:4 — April 2024]\n- \"5. Field 24I: Days or Units Enter a value of “1” for all BrixadiTM claims.\" [mu_no4_apr24_pr.pdf:5 — April 2024]",
     "document": {
       "mu_no4_apr24_pr.pdf": [
         3,
@@ -44,16 +325,114 @@
     "query_id": "Test_query_4",
     "query_content": "What rate codes should FQHCs use to bill for audio only telehealth?",
     "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-    "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
-    "answers": "- \"Audio-only rate codes used during the COVID-19 PHE will be retired. FQHCs can bill the Prospective Payment System (PPS) rate code “4012” or “4013”, depending on on-site presence as outlined in “VII. Billing Rules for Telehealth Services”, “M. FFS Billing for Telehealth by Site and Location” on page 14 of this issue.\" [mu_no3_feb23_speced_pr.pdf:11 — February 2023]\n- \"FQHCs should bill the off-site rate code “4012” with CPT code “99429” appended with the GQ modifier to indicate the service was provided via audio-only (telephonic) telehealth.\" [mu_no2_feb22_pr.pdf:6 — February 2022]\n- \"FQHCs should bill the off-site rate code “4012” with CPT code “99429” appended with the GQ modifier to indicate the service was provided via audio-only (telephonic) telehealth.\" [mu_no13_nov21_pr.pdf:6 — November 2021]",
+    "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
+    "top_k_chunks": [
+      {
+        "chunk_id": "mu_no3_feb23_speced_pr.pdf::0023",
+        "text": "verage of telehealth, including suspending geography-based telehealth\nrequirements, allowing audio-only telehealth, patient homes as originating sites, FQHCs and RHCs to\ncontinue to offer telehealth, and delaying in-person visit requirements prior to delivering mental health services\nvia telehealth. When such flexibilities end, NYS Medicaid coverage of some services via telehealth for those\ndually enrolled may be impacted. For additional information, providers can refer to the Congress “House\nCommittee Print 117-59 - RULES COMMITTEE PRINT 117-59 TEXT OF H.R. 4040, THE ADVANCING\nTELEHEALTH BEYOND COVID-19 ACT OF 2021 [Showing the text of H.R. 4040, as introduced, with\nmodifications.]” web page, located at: https://www.congress.gov/committee-print/117th-congress/house-\ncommittee-print/48141.\nF. Telephonic (Audio-only) Reimbursement Overview\n1. Following the COVID-19 PHE, when audio-only telehealth is used in accordance with the policy\noutlined in “II. Telehealth Definitions”, “G. Telephonic (Audio-only)” on page 4 of this issue,\nproviders may bill NYS Medicaid as they would for an in-person or audio-visual telehealth visit (using\nthe appropriate procedure or rate code).\na. Services provided via audio-only visits shall contain all elements of the billable procedures or\nrate codes and must meet all documentation requirements as if provided in person or via an\naudio-visual visit.\nb. Audio-only rate codes used during the COVID-19 PHE will be retired. FQHCs can bill the\nProspective Payment System (PPS) rate code “4012” or “4013”, depending on on-site\npresence as outlined in “VII. Billing Rules for Telehealth Services”, “M. FFS Billing for\nTelehealth by Site and Location” on page 14 of this issue. Wrap payments are available for\nany telehealth services, including telephonic services reimbursed by an MMC Plan, under\nqualifying PPS and off-site rate codes.\nc. Audio-only E&M procedure codes “99441” through “99443” will continue to be billable, though\nas of the date of this gui",
+        "chunk_type": "text",
+        "doc_id": "mu_no3_feb23_speced_pr.pdf",
+        "title": "Medicaid Update Special Edition Part Two: NYRx Pharmacy Benefit Transition Medicaid Update Volume 39 Number 1",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no3_feb23_speced_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2023-02-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          11
+        ],
+        "score": 0.8550325036048889,
+        "rerank_score": 0.9994215965270996,
+        "final_score": 1.4546747207641602,
+        "rank": 1
+      },
+      {
+        "chunk_id": "mu_no2_feb22_pr.pdf::0008",
+        "text": "of Mental Health)\nPlease note: Article 31 facilities/clinics would bill rate code “5521” using COS codes “0160”\nor “0268”.\n• Article 32 facilities/clinics (Office of Addiction Services and Supports)\nPlease note: Article 32 facilities/clinics should bill rate code “5521” using COS code “0160”,\n“0268” or “0287”.\nFebruary 2022 New York State Medicaid Update pg. 5\n\nRate Code Rate Code Description Fee\n5521 COVID-19 VACCINATION COUNSELING – EIGHT-MINUTE MINIMUM $25.00\nCOVID-19 Vaccine Counseling Provided via Audio-Only (Telephonic) Telehealth\nThe following provider types must follow the guidance provided below when billing for COVID-19 vaccine\ncounseling via audio-only (telephonic) telehealth:\n• Physicians, NPs and licensed midwives should bill the CPT code “99429” appended with the GQ\nmodifier to indicate the service was provided via audio-only (telephonic) telehealth.\n• Article 28 clinics (including HOPDs and D&TCs) should bill an ordered ambulatory claim using the\nCPT code “99429” appended with the GQ modifier to indicate the service was provided via audio-\nonly (telephonic) telehealth.\n• Pharmacists may provide audio-only (telephonic) telehealth counseling and must document the\ncounseling in the pharmacy record with the claim that is submitted for CPT code “99429”.\n• Other qualified rate-based providers listed above should bill using rate code “5521” with CPT code\n“99429” appended with the GQ modifier to indicate the service was provided via audio-only\n(telephonic) telehealth.\n• FQHCs should bill the off-site rate code “4012” with CPT code “99429” appended with the GQ\nmodifier to indicate the service was provided via audio-only (telephonic) telehealth.\nQuestions and Additional Information:\n• FFS claim questions should be directed to the eMedNY Call Center at (800) 343-9000.\n• FFS coverage and policy questions should be directed to the Office of Health Insurance Programs\n(OHIP) Division of Program Development and Management (DPDM) by telephone at (518) 473-2160\nor by",
+        "chunk_type": "text",
+        "doc_id": "mu_no2_feb22_pr.pdf",
+        "title": "New York State Medicaid Update February 2022 Volume 38 Number 2",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no2_feb22_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2022-02-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          5,
+          6
+        ],
+        "score": 0.8503886461257935,
+        "rerank_score": 0.9995157718658447,
+        "final_score": 1.3308367729187012,
+        "rank": 2
+      },
+      {
+        "chunk_id": "mu_no07_jun21_speced_telehealth_pr.pdf::0016",
+        "text": "ginating site may bill\nthe Prospective Payment System (PPS) rate in addition to the FQHC off-site services rate code\n(“4012”).\n3. FQHCs That Have Not \"Opted Into\" APGs – FQHC Distant Sites:\na. If a provider who is on-site at an FQHC or is providing service from the practitioner’s home\nduring the PHE via telemedicine to a member who is in their place of residence or other location\nincluding an originating site that is another provider’s office or clinic, the FQHC may bill the\nPPS rate and report the applicable modifier (“95” or “GT”) on the procedure code line.\n4. Wrap payments are available for any telehealth services, including telephonic services reimbursed by\nan MMC Plan, under qualifying PPS and off-site rate codes.\nD. Application-Specific Telehealth Billing Rules\nTelephonic (Audio-only)\nSee Section II: Telephonic Reimbursement Overview.\nStore-and-Forward Technology\n1. Reimbursement will be made to the consulting distant-site practitioner.\n2. The consulting distant-site practitioner must provide the requesting originating-site practitioner with a\nwritten report of the consultation in order for payment to be made.\n3. The consulting practitioner should bill the CPT code for the professional service appended with the\ntelehealth modifier \"GQ”.\nRemote Patient Monitoring (RPM)\n1. Telehealth services provided by means of RPM should be billed using CPT code \"99091\" [Collection\nand interpretation of physiologic data (e.g., Electrocardiography {ECG}, blood pressure, glucose\nmonitoring) digitally stored and/or transmitted by the patient and/or caregiver to the physician or other\nqualified health care professional, qualified by education, training and licensure/regulation (when\napplicable) requiring a minimum of 30 minutes of time].\n2. A fee of $48.00 per month will be paid for RPM.\n3. Providers are not to bill \"99091\" more than one time per member per month.\nJune 2021 New York State Medicaid Update pg. 11\n\nE. Medicaid Managed Care Considerations\n1. MMC Plans are required t",
+        "chunk_type": "text",
+        "doc_id": "mu_no07_jun21_speced_telehealth_pr.pdf",
+        "title": "New York State Medicaid Update June 2021 Volume 37 Number 7",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2021/docs/mu_no07_jun21_speced_telehealth_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2021-06-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          11,
+          12
+        ],
+        "score": 0.8190988898277283,
+        "rerank_score": 0.9983479976654053,
+        "final_score": 0.49368393421173096,
+        "rank": 3
+      },
+      {
+        "chunk_id": "mu_no02_feb19_speced_pr.pdf::0016",
+        "text": "riginating site\nmay bill the Prospective Payment System (PPS) rate in addition to the FQHC offsite\nservices rate code (4012).\nc. If a provider who is onsite at an FQHC is providing services via telemedicine to a member\nwho is in their place of residence or other temporary location, the FQHC should bill the\nFQHC off-site services rate code (4012) and report the applicable modifier (95 or GT) on\nthe procedure code line.\nd. If the FQHC is providing services as a distant site provider, the FQHC may bill their PPS\nrate.\n5. Application-Specific Telehealth Billing Rules\nStore-and-Forward Technology\n1. Reimbursement will be made to the consulting distant-site practitioner.\n2. Reimbursement for consultations provided via store-and-forward technology will be paid at 75\npercent of the Medicaid fee for the service provided.\n3. The consulting distant-site practitioner must provide the requesting originating-site practitioner\nwith a written report of the consultation in order for payment to be made.\n4. The consulting practitioner should bill the CPT code for the professional service appended with\nthe telehealth modifier \"GQ.\"\nRemote Patient Monitoring (RPM)\n1. Telehealth services provided by means of RPM should be billed using CPT code “99091”\n(Collection and interpretation of physiologic data (e.g., Electrocardiography (ECG), blood\npressure, glucose monitoring) digitally stored and/or transmitted by the patient and/or caregiver\nto the physician or other qualified health care professional, qualified by education, training and\nlicensure/regulation (when applicable) requiring a minimum of 30 minutes of time, each 30 days).\n2. A fee of $48.00 per month will be paid for RPM. To bill for RPM, a minimum of 30 minutes per\nmonth must be spent collecting and interpreting the member's RPM data.\n3. Providers are not to bill “99091” more than one time per member per month.\nSpecial Edition: Telehealth Expansion New York State Medicaid Update pg. 11\n\n4. Providers should bill for RPM services o",
+        "chunk_type": "text",
+        "doc_id": "mu_no02_feb19_speced_pr.pdf",
+        "title": "New York State Medicaid Update February 2019 Special Edition Volume 35 Number 2",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2019/feb19_mu_speced.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2019-02-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          11,
+          12
+        ],
+        "score": 0.818567156791687,
+        "rerank_score": 0.997353196144104,
+        "final_score": 0.4779718518257141,
+        "rank": 4
+      },
+      {
+        "chunk_id": "mu_no13_nov21_pr.pdf::0009",
+        "text": "ces\nincluded within the PPS rate in connection with the counseling session.\nNovember 2021 New York State Medicaid Update pg. 5\n\nOther Qualified Rate-Based Providers\nThe rate-based provider types listed below may bill for COVID-19 vaccination counseling using rate code\n“5521” with Category of Service (COS) code “0268” when provided to unvaccinated Medicaid members:\n• Skilled Nursing Facilities (SNFs)\n• Certified Home Health Agencies (CHHAs)\n• Hospice\n• Adult Day Health Care (ADHC)\n• Inpatient Hospitals\n• Assisted Living Programs (ALPs)\n• Voluntary Foster Care Agencies (VFCAs)\nRate Code Rate Code Description Fee\n5521 COVID-19 VACCINE COUNSEL TO UNVAC INDV – EIGHT-MINUTE MINIMUM $25.00\nCOVID-19 Vaccine Counseling Provided via Audio-Only (Telephonic) Telehealth\nPhysicians, NPs and licensed midwives should bill the CPT code “99429” appended with the GQ modifier to\nindicate the service was provided via audio-only (telephonic) telehealth. Article 28 clinics (including HOPDs\nand D&TCs) should bill an ordered ambulatory claim using the CPT code “99429” appended with the GQ\nmodifier to indicate the service was provided via audio-only (telephonic) telehealth. Pharmacists may provide\naudio-only (telephonic) telehealth counseling and must document the counseling in the pharmacy record with\nthe claim that is submitted for CPT code “99429”.\nThe other rate-based providers listed above should bill using rate code “5521” with CPT code “99429”\nappended with the GQ modifier to indicate the service was provided via audio-only (telephonic) telehealth.\nFQHCs should bill the off-site rate code “4012” with CPT code “99429” appended with the GQ modifier to\nindicate the service was provided via audio-only (telephonic) telehealth.\nQuestions and Additional Information:\n• FFS claim questions should be directed to the eMedNY Call Center at (800) 343-9000.\n• FFS coverage and policy questions should be directed to the Office of Health Insurance Programs\n(OHIP) Division of Program Development and Ma",
+        "chunk_type": "text",
+        "doc_id": "mu_no13_nov21_pr.pdf",
+        "title": "New York State Medicaid Update November 2021 Volume 37 Number 13",
+        "url": "https://health.ny.gov/health_care/medicaid/program/update/2021/docs/mu_no13_nov21_pr.pdf",
+        "doc_type": "PDF",
+        "effective_date": "2021-11-01",
+        "authority": "New York State Department of Health",
+        "pages": [
+          5,
+          6
+        ],
+        "score": 0.8146361112594604,
+        "rerank_score": 0.9994039535522461,
+        "final_score": 0.3761458098888397,
+        "rank": 5
+      }
+    ],
+    "answers": "- \"Audio-only rate codes used during the COVID-19 PHE will be retired. FQHCs can bill the Prospective Payment System (PPS) rate code “4012” or “4013”, depending on on-site presence as outlined in “VII. Billing Rules for Telehealth Services”, “M. FFS Billing for Telehealth by Site and Location” on page 14 of this issue.\" [mu_no3_feb23_speced_pr.pdf:11]\n- \"FQHCs should bill the off-site rate code “4012” with CPT code “99429” appended with the GQ modifier to indicate the service was provided via audio-only (telephonic) telehealth.\" [mu_no13_nov21_pr.pdf:5 — November 2021]\n- \"FQHCs should bill the off-site rate code “4012” with CPT code “99429” appended with the GQ modifier to indicate the service was provided via audio-only (telephonic) telehealth.\" [mu_no2_feb22_pr.pdf:5 — February 2022]",
     "document": {
       "mu_no3_feb23_speced_pr.pdf": [
         11
       ],
-      "mu_no2_feb22_pr.pdf": [
+      "mu_no13_nov21_pr.pdf": [
+        5,
         6
       ],
-      "mu_no13_nov21_pr.pdf": [
+      "mu_no2_feb22_pr.pdf": [
+        5,
         6
       ]
     }
@@ -62,7 +441,7 @@
     "query_id": "Test_query_5",
     "query_content": "Give me a chronological list of the commissioners and what year they first appeared in the medicaid updates.",
     "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-    "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+    "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
     "top_k_chunks": [
       {
         "chunk_id": "mu_no18_dec20_pr.pdf::0002",
@@ -164,23 +543,14 @@
         "rank": 5
       }
     ],
-    "answers": "- \"Howard A. Zucker, M.D., J.D.\nCommissioner\nNew York State\nDepartment of Health\" [mu_no13_aug20.pdf:1 — August 2020]; \"August 2020 New York State Medicaid Update pg. 2\" [mu_no13_aug20.pdf:2 — August 2020]\n- \"Mary T. Bassett, M.D., M.P.H.\nActing Commissioner\nNew York State\nDepartment of Health\" [mu_no14_dec21_pr.pdf:1 — December 2021]; \"December 2021 New York State Medicaid Update pg. 2\" [mu_no14_dec21_pr.pdf:2 — December 2021]",
-    "document": {
-      "mu_no13_aug20.pdf": [
-        1,
-        2
-      ],
-      "mu_no14_dec21_pr.pdf": [
-        1,
-        2
-      ]
-    }
+    "answers": "- Insufficient grounded evidence in the provided documents to answer.\n- Missing information: explicit statements indicating the \"first\" appearance year of each Commissioner in the Medicaid Update, or access to a complete chronological archive of Medicaid Updates to verify the earliest occurrence for each Commissioner.",
+    "document": {}
   },
   "test_id_6": {
     "query_id": "Test_query_6",
     "query_content": "What are the requirements for appointment scheduling in the medicaid model contract for urgent care?",
     "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-    "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+    "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
     "top_k_chunks": [
       {
         "chunk_id": "mu_no07_jun19_pr.pdf::0013",
@@ -277,7 +647,7 @@
         "rank": 5
       }
     ],
-    "answers": "- \"New York State routinely completes surveillance activities to evaluate compliance with the following appointment availability standards, (Medicaid Model Contract 15.2, Appointment Availability Standards):\" [mu_no07_jun19_pr.pdf:8 — June 2019]\n- \"For urgent care: within twenty-four (24) hours of request.\" [mu_no07_jun19_pr.pdf:8 — June 2019]\n- \"Please Note: Providers are required to schedule appointments in accordance with appointment and availability standards noted above to be determined compliant with access to care requirements when contacted by an MMC Plan member.\" [mu_no07_jun19_pr.pdf:9 — June 2019]",
+    "answers": "- \"Primary Care Providers (PCPs) (Family Practice, Internal Medicine, Obstetrics/Gynecology (OB/GYN), Pediatricians) who contract with Medicaid Managed Care (MMC) Plans must meet specific appointment and availability standards to ensure that enrolled Medicaid members have appropriate access to necessary health care. New York State routinely completes surveillance activities to evaluate compliance with the following appointment availability standards, (Medicaid Model Contract 15.2, Appointment Availability Standards):\" [mu_no07_jun19_pr.pdf:8 — June 2019]\n- \"For urgent care: within twenty-four (24) hours of request.\" [mu_no07_jun19_pr.pdf:8 — June 2019]\n- \"Please Note: Providers are required to schedule appointments in accordance with appointment and availability standards noted above to be determined compliant with access to care requirements when contacted by an MMC Plan member.\" [mu_no07_jun19_pr.pdf:9 — June 2019]\n- \"Providers must not require a new patient to complete prerequisites to schedule an appointment, such as:\" [mu_no07_jun19_pr.pdf:9 — June 2019]\n- \"• a copy of their medical record;\" [mu_no07_jun19_pr.pdf:9 — June 2019]\n- \"• a health screening questionnaire;\" [mu_no07_jun19_pr.pdf:9 — June 2019]\n- \"• an immunization record.\" [mu_no07_jun19_pr.pdf:9 — June 2019]\n- \"The provider may request additional information from the new Medicaid member, if the appointment is scheduled at the time of the telephone request.\" [mu_no07_jun19_pr.pdf:9 — June 2019]",
     "document": {
       "mu_no07_jun19_pr.pdf": [
         8,
@@ -289,7 +659,7 @@
     "query_id": "Test_query_7",
     "query_content": "When did the pharmacy carve out occur?",
     "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-    "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+    "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
     "top_k_chunks": [
       {
         "chunk_id": "mu_no06_may21_pr.pdf::0000",
@@ -387,9 +757,12 @@
         "rank": 5
       }
     ],
-    "answers": "- \"Medicaid Pharmacy Carve-Out: Delayed to April 1, 2023\" [mu_no06_may21_pr.pdf:1 — May 2021]\n- \"...the Pharmacy Carve-Out) has been delayed until April 1, 2023.\" [mu_no06_may21_pr.pdf:1 — May 2021]\n- \"...preparation for the April 1, 2023 pharmacy carve-out implementation date.\" [mu_no06_may21_pr.pdf:1 — May 2021]",
+    "answers": "- Insufficient grounded evidence in the provided documents to answer.\n- Missing: A document that confirms the actual implementation/occurrence date of the pharmacy carve-out (i.e., that the transition took effect), rather than planned or delayed dates.\n- \"Medicaid Pharmacy Carve-Out: Delayed to April 1, 2023\" [mu_no06_may21_pr.pdf:1 — May 2021].\n- \"the transition of the New York State (NYS) Medicaid pharmacy benefit from Medicaid Managed Care (MMC) to the Fee-for-Service (FFS) Program (i.e., the Pharmacy Carve-Out) has been delayed until April 1, 2023.\" [mu_no06_may21_pr.pdf:1 — May 2021].\n- \"Effective April 1, 2021, Medicaid members enrolled in mainstream Managed Care (MC) plans, Health and Recovery Plans (HARPs), and HIV-Special Needs Plan (SNPs) will receive their pharmacy benefits through the Medicaid FFS Pharmacy Program\" [mu_no17_dec20_speced_pr.pdf:1 — December 2020].",
     "document": {
       "mu_no06_may21_pr.pdf": [
+        1
+      ],
+      "mu_no17_dec20_speced_pr.pdf": [
         1
       ]
     }
@@ -398,7 +771,7 @@
     "query_id": "Test_query_8",
     "query_content": "What are the key components of the SCN program in the NYHER Waiver?",
     "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-    "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+    "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
     "top_k_chunks": [
       {
         "chunk_id": "mu_no02_feb25_pr.pdf::0002",
@@ -496,14 +869,15 @@
         "rank": 5
       }
     ],
-    "answers": "- \"The SCN program is part of the 1115 New York Health Equity Reform Waiver.\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"SCNs will help address health disparities and social needs by connecting NYS Medicaid members to nutritional services, housing supports, transportation, and other social services that can impact the health of an individual.\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"For individuals not enrolled in NYS Medicaid, and therefore, ineligible for the SCN program, including CHPlus members, the goal of NYS DOH is to provide these individuals with appropriate services to pre-existing state, federal, and local programs to address health-related social needs.\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"SCNs have been established via the NYS DOH 1115 Waiver Amendment, “New York Health Equity Reform” (NYHER).\" [mu_no11_oct24_pr.pdf:10 — October 2024]\n- \"NYS DOH recently announced contracts with regional entities, which will serve as lead entities for the regional SCNs.\" [mu_no11_oct24_pr.pdf:10 — October 2024]\n- \"SCNs are developing networks of community-based organizations to deliver social care services to eligible NYS Medicaid members.\" [mu_no11_oct24_pr.pdf:10 — October 2024]\n- \"NYS Medicaid members will be screened using the Centers for Medicare & Medicaid Services (CMS) Accountable Health Communities Health-Related Social Needs Tool, located at: https://www.cms.gov/priorities/innovation/files/worksheets/ahcm-screeningtool.pdf, and those with unmet social needs will receive navigation to existing state, federal and local resources.\" [mu_no11_oct24_pr.pdf:10 — October 2024]\n- \"MMC enrollees who meet specific clinical criteria may be eligible for health-related social need services related to housing, nutrition, transportation, and care management.\" [mu_no11_oct24_pr.pdf:11 — October 2024]\n- \"When completing the attestation, providers are allowed to make more than one selection related to their practice workflow with designated SCNs, as shown below:\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"1. Connect patients to the regional SCN for NYS Medicaid members via referral provided to the patient.\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"2. Connect directly with the SCN platform or through a regional Qualified Entity to submit Accountable Health Communities Health-Related Social Needs (HRSN) screenings and referrals for NYS Medicaid members.\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"3. Connect with the regional SCN in another agreed upon way.\" [mu_no02_feb25_pr.pdf:2 — February 2025]",
+    "answers": "- \"SCNs have been established via the NYS DOH 1115 Waiver Amendment, “New York Health Equity Reform” (NYHER).\" [mu_no11_oct24_pr.pdf:10 — October 2024]\n- \"The SCN program is part of the 1115 New York Health Equity Reform Waiver.\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"NYS DOH recently announced contracts with regional entities, which will serve as lead entities for the regional SCNs.\" [mu_no11_oct24_pr.pdf:10 — October 2024]\n- \"SCNs are developing networks of community-based organizations to deliver social care services to eligible NYS Medicaid members.\" [mu_no11_oct24_pr.pdf:10 — October 2024]\n- \"NYS Medicaid members will be screened using the Centers for Medicare & Medicaid Services (CMS) Accountable Health Communities Health-Related Social Needs Tool, located at: https://www.cms.gov/priorities/innovation/files/worksheets/ahcm-screeningtool.pdf, and those with unmet social needs will receive navigation to existing state, federal and local resources.\" [mu_no11_oct24_pr.pdf:11 — October 2024]\n- \"MMC enrollees who meet specific clinical criteria may be eligible for health-related social need services related to housing, nutrition, transportation, and care management.\" [mu_no11_oct24_pr.pdf:11 — October 2024]\n- \"SCNs will help address health disparities and social needs by connecting NYS Medicaid members to nutritional services, housing supports, transportation, and other social services that can impact the health of an individual.\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"For individuals not enrolled in NYS Medicaid, and therefore, ineligible for the SCN program, including CHPlus members, the goal of NYS DOH is to provide these individuals with appropriate services to pre-existing state, federal, and local programs to address health-related social needs.\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"When completing the attestation, providers are allowed to make more than one selection related to their practice workflow with designated SCNs, as shown below:\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"1. Connect patients to the regional SCN for NYS Medicaid members via referral provided to the patient.\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"2. Connect directly with the SCN platform or through a regional Qualified Entity to submit Accountable Health Communities Health-Related Social Needs (HRSN) screenings and referrals for NYS Medicaid members.\" [mu_no02_feb25_pr.pdf:2 — February 2025]\n- \"3. Connect with the regional SCN in another agreed upon way.\" [mu_no02_feb25_pr.pdf:3 — February 2025]\n- \"The enhanced PCMH payments are intended to help providers connect with and provide referrals to regional SCNs to promote access to health-related social needs for NYS Medicaid members.\" [mu_no11_oct24_pr.pdf:11 — October 2024]",
     "document": {
-      "mu_no02_feb25_pr.pdf": [
-        2
-      ],
       "mu_no11_oct24_pr.pdf": [
         10,
         11
+      ],
+      "mu_no02_feb25_pr.pdf": [
+        2,
+        3
       ]
     }
   },
@@ -511,7 +885,7 @@
     "query_id": "Test_query_9",
     "query_content": "What constitutes RRP referral requirements?",
     "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-    "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+    "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
     "top_k_chunks": [
       {
         "chunk_id": "mu_no8_apr23_pr.pdf::0009",
@@ -608,7 +982,7 @@
         "rank": 5
       }
     ],
-    "answers": "- \"A referral will be needed from these primary health care providers for any non-emergency medical services rendered by similar providers, including the ordering of transportation or prescriptions.\" [mu_no8_apr23_pr.pdf:7 — April 2023]\n- \"The RRP may restrict the NYS Medicaid member to care provided or referred by a primary care provider (PCP), inpatient hospital, and/or primary pharmacy.\" [mu_no06_jun25_pr.pdf:1 — June 2025]\n- \"The designated primary physician or primary clinic is responsible for providing all non-emergent medical care to restricted NYS Medicaid members, either directly or by referring them to another medical provider for appropriate services.\" [mu_no06_jun25_pr.pdf:1 — June 2025]\n- \"Medical services should be provided by or coordinated by the designated RRP provider.\" [mu_no06_jun25_pr.pdf:2 — June 2025]\n- \"HH care managers should work with the RRP provider and/or pharmacy to ensure that appropriate referrals are made to specialty care as needed.\" [mu_no06_jun25_pr.pdf:2 — June 2025]\n- \"Payment will be made for the following medical care and services, which were not rendered, ordered, or referred by a restricted NYS Medicaid member PCP: • emergency services; • OTP services (providers should refer to Reminder: Recipient Restriction Program and Opioid Treatment Program Services article published in the March 2025 issue of the Medicaid Update, located at: https://www.health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no03_mar25_pr.pdf); and • claims for services provided in an inpatient setting as part of an emergency admission.\" [mu_no06_jun25_pr.pdf:3 — June 2025]\n- \"OTP services including methadone maintenance treatment are fully-exempt from all RRP coverage and payment restrictions. Consequently, all NYS Medicaid MMC Plans must cover medically necessary opioid use disorder services delivered in an OTP for RRP-identified NYS Medicaid members without any additional RRP restrictions, edits, authorizations, or referral requirements, and claims for OTP services must not be denied due to RRP restrictions.\" [mu_no03_mar25_pr.pdf:7 — March 2025]",
+    "answers": "- \"A referral will be needed from these primary health care providers for any non-emergency medical services rendered by similar providers, including the ordering of transportation or prescriptions.\" [mu_no8_apr23_pr.pdf:7 — April 2023]\n- \"The RRP may restrict the NYS Medicaid member to care provided or referred by a primary care provider (PCP), inpatient hospital, and/or primary pharmacy.\" [mu_no06_jun25_pr.pdf:1 — June 2025]\n- \"The designated primary physician or primary clinic is responsible for providing all non-emergent medical care to restricted NYS Medicaid members, either directly or by referring them to another medical provider for appropriate services.\" [mu_no06_jun25_pr.pdf:1 — June 2025]\n- \"Medical services should be provided by or coordinated by the designated RRP provider. HH care managers should work with the RRP provider and/or pharmacy to ensure that appropriate referrals are made to specialty care as needed.\" [mu_no06_jun25_pr.pdf:2 — June 2025]\n- \"Payment will be made for the following medical care and services, which were not rendered, ordered, or referred by a restricted NYS Medicaid member PCP:\n• emergency services;\n• OTP services (providers should refer to Reminder: Recipient Restriction Program and Opioid\nTreatment Program Services article published in the March 2025 issue of the Medicaid Update,\nlocated at: https://www.health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no03_\nmar25_pr.pdf); and\n• claims for services provided in an inpatient setting as part of an emergency admission.\" [mu_no06_jun25_pr.pdf:3 — June 2025]\n- \"OTP services including methadone maintenance treatment are fully-exempt from all RRP coverage and payment restrictions. Consequently, all NYS Medicaid MMC Plans must cover medically necessary opioid use disorder services delivered in an OTP for RRP-identified NYS Medicaid members without any additional RRP restrictions, edits, authorizations, or referral requirements, and claims for OTP services must not be denied due to RRP restrictions.\" [mu_no03_mar25_pr.pdf:7 — March 2025]\n- \"It is important to remember that the primary health care provider, whether a physician, hospital, or clinic, is responsible for the provision of most health care services for the restricted NYS Medicaid member.\" [mu_no8_apr23_pr.pdf:7 — April 2023]\n- \"NYS Medicaid members who have been restricted as part of RRP to a designated health care provider (i.e., physician or clinic, hospital) or pharmacy are required to receive care only from the designated health care provider or pharmacy.\" [mu_no8_apr23_pr.pdf:7 — April 2023]",
     "document": {
       "mu_no8_apr23_pr.pdf": [
         7
@@ -627,7 +1001,7 @@
     "query_id": "Test_query_10",
     "query_content": "what are the requirements for a referral for enrollment in the childrens waiver?",
     "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-    "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+    "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
     "top_k_chunks": [
       {
         "chunk_id": "mu_no04_mar19_pr.pdf::0010",
@@ -725,11 +1099,10 @@
         "rank": 5
       }
     ],
-    "answers": "- \"C-YES: New York State’s Designated Independent Entity for Children’s HCBS Children and Youth Evaluation Service (C-YES) was designated by New York State (NYS) to act as the Independent Entity for children’s Home and Community Based Services (HCBS). C-YES is responsible for conducting HCBS eligibility determinations of children prior to their enrollment in Medicaid and serves as the HCBS care coordination alternative to Medicaid-enrolled children/youth who decline Health Home (HH) care management.\" [mu_no04_mar19_pr.pdf:7 — March 2019]\n- \"Referring a Child who is not Enrolled in Medicaid for HCBS Eligibility Determination To obtain a Referral Packet, which is used to collect information about the child’s medical history and includes consent forms, instructions, and general information about children’s HCBS, providers and individuals should call C-YES at: 1-833-333-CYES (1-833-333-2937) or toll-free at 1-888-329-1541.\" [mu_no04_mar19_pr.pdf:7 — March 2019]\n- \"Upon receipt of a complete Referral Packet, C-YES will: • send a Registered Nurse to the child’s home or other agreed-upon location to conduct an HCBS eligibility determination; • provide Medicaid application assistance to children who are determined eligible for HCBS*; • submit Medicaid applications, HCBS eligibility determination outcome and support documents, and capacity updates directly to the Local Department of Social Service (LDSS); • develop a person-centered HCBS Plan of Care (POC); and • provide education about Health Home care management.\" [mu_no04_mar19_pr.pdf:7 — March 2019]",
+    "answers": "- \"Children and Youth Evaluation Service (C-YES) was designated by New York State (NYS) to act as the Independent Entity for children’s Home and Community Based Services (HCBS). C-YES is responsible for conducting HCBS eligibility determinations of children prior to their enrollment in Medicaid and serves as the HCBS care coordination alternative to Medicaid-enrolled children/youth who decline Health Home (HH) care management.\" [mu_no04_mar19_pr.pdf:7 — March 2019]\n- \"To obtain a Referral Packet, which is used to collect information about the child’s medical history and includes consent forms, instructions, and general information about children’s HCBS, providers and individuals should call C-YES at: 1-833-333-CYES (1-833-333-2937) or toll-free at 1-888-329-1541.\" [mu_no04_mar19_pr.pdf:7 — March 2019]\n- \"Upon receipt of a complete Referral Packet, C-YES will:\" [mu_no04_mar19_pr.pdf:7 — March 2019]",
     "document": {
       "mu_no04_mar19_pr.pdf": [
-        7,
-        8
+        7
       ]
     }
   },
@@ -737,7 +1110,7 @@
     "query_id": "Test_query_11",
     "query_content": "What are REC services offered to NYS providers?",
     "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-    "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+    "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
     "top_k_chunks": [
       {
         "chunk_id": "mu_no12_dec19_pr.pdf::0009",
@@ -834,10 +1207,10 @@
         "rank": 5
       }
     ],
-    "answers": "- \"NYS RECs offer free support to help providers achieve Meaningful Use of CEHRT.\" [mu_no10_oct19_pr.pdf:4 — October 2019]\n- \"• Answers to questions regarding the program and requirements\" [mu_no10_oct19_pr.pdf:4 — October 2019]\n- \"• Assistance on selecting and using CEHRT\" [mu_no10_oct19_pr.pdf:4 — October 2019]\n- \"• Help meeting program objectives\" [mu_no10_oct19_pr.pdf:4 — October 2019]\n- \"NYS RECs offer free assistance for all practices and providers located within New York.\" [mu_no10_oct19_pr.pdf:4 — October 2019]",
+    "answers": "- \"NYS RECs offer free support to help providers achieve Meaningful Use of CEHRT.\" [mu_no11_jun20.pdf:9 — June 2020]\n- \"• Answers to questions regarding the program and requirements\" [mu_no11_jun20.pdf:9 — June 2020]\n- \"• Assistance on selecting and using CEHRT\" [mu_no11_jun20.pdf:9 — June 2020]\n- \"• Help meeting program objectives\" [mu_no11_jun20.pdf:9 — June 2020]",
     "document": {
-      "mu_no10_oct19_pr.pdf": [
-        4
+      "mu_no11_jun20.pdf": [
+        9
       ]
     }
   }

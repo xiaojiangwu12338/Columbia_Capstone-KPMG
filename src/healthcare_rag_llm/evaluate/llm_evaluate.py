@@ -334,18 +334,15 @@ Respond in JSON format:
             "evaluations": {}
         }
 
-        # Run all evaluations
+        # Run all evaluations (3 core metrics only)
         print("  Evaluating faithfulness...")
         results["evaluations"]["faithfulness"] = self.evaluate_faithfulness(query, answer, chunks)
 
         print("  Evaluating answer relevance...")
         results["evaluations"]["answer_relevance"] = self.evaluate_answer_relevance(query, answer)
 
-        print("  Evaluating citation quality...")
-        results["evaluations"]["citation_quality"] = self.evaluate_citation_quality(answer, chunks)
-
-        print("  Evaluating completeness...")
-        results["evaluations"]["completeness"] = self.evaluate_completeness(query, answer, chunks)
+        # REMOVED: Citation Quality (redundant with faithfulness)
+        # REMOVED: Completeness (redundant with answer relevance)
 
         # Optional: correctness if ground truth available
         if ground_truth:
@@ -353,18 +350,18 @@ Respond in JSON format:
             results["evaluations"]["correctness"] = self.evaluate_correctness(query, answer, ground_truth)
 
         # Calculate overall score (weighted average)
-        weights = {
-            "faithfulness": 0.35,
-            "answer_relevance": 0.25,
-            "citation_quality": 0.20,
-            "completeness": 0.20,
-            "correctness": 0.30 if ground_truth else 0.0
-        }
-
-        # Normalize weights if no ground truth
-        if not ground_truth:
-            total = sum(v for k, v in weights.items() if k != "correctness")
-            weights = {k: v/total for k, v in weights.items() if k != "correctness"}
+        # Simplified to 3 core metrics: faithfulness, answer_relevance, correctness
+        if ground_truth:
+            weights = {
+                "faithfulness": 0.30,
+                "answer_relevance": 0.30,
+                "correctness": 0.40
+            }
+        else:
+            weights = {
+                "faithfulness": 0.60,
+                "answer_relevance": 0.40
+            }
 
         overall_score = sum(
             results["evaluations"][metric]["score"] * weight
@@ -459,8 +456,10 @@ def evaluate_test_results(
         print(f"Loading ground truth from: {ground_truth_path}")
         with open(ground_truth_path, 'r', encoding='utf-8') as f:
             gt_data = json.load(f)
-            # Convert to dict keyed by query_id
-            ground_truth = {item.get("query_id"): item for item in gt_data.values()} if isinstance(gt_data, dict) else {}
+            # Use the keys directly (e.g., "Test_query_1") - no need to convert
+            # The keys already match the query_id in test_results
+            ground_truth = gt_data if isinstance(gt_data, dict) else {}
+            print(f"Loaded {len(ground_truth)} ground truth entries")
 
     evaluator = LLMEvaluator(llm_client)
     evaluation_results = {
@@ -480,11 +479,10 @@ def evaluate_test_results(
         test_items = test_items[:limit]
         print(f"Limiting evaluation to {limit} tests")
 
+    # Only track 3 core metrics
     scores_by_metric = {
         "faithfulness": [],
         "answer_relevance": [],
-        "citation_quality": [],
-        "completeness": [],
         "correctness": [],
         "overall": []
     }
@@ -500,7 +498,10 @@ def evaluate_test_results(
         # Get ground truth if available
         gt_answer = None
         if query_id in ground_truth:
-            gt_answer = ground_truth[query_id].get("answer", None)
+            # Note: testing_query.json uses "Answer" (capital A), not "answer"
+            gt_answer = ground_truth[query_id].get("Answer", None)
+            if gt_answer:
+                print(f"  Found ground truth for {query_id}")
 
         # Use query_content if available, otherwise fall back to query_id
         query = test_data.get("query_content", query_id)
@@ -512,8 +513,8 @@ def evaluate_test_results(
         result = evaluator.evaluate_comprehensive(query, answer, chunks, gt_answer)
         evaluation_results["results"][test_id] = result
 
-        # Collect scores
-        for metric in ["faithfulness", "answer_relevance", "citation_quality", "completeness"]:
+        # Collect scores (only 3 core metrics)
+        for metric in ["faithfulness", "answer_relevance"]:
             if metric in result["evaluations"]:
                 scores_by_metric[metric].append(result["evaluations"][metric]["score"])
 

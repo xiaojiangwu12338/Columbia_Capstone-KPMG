@@ -331,8 +331,9 @@ if __name__ == "__main__":
             return {
                 "llm_faithfulness_mean": None,
                 "llm_answer_relevance_mean": None,
-                "llm_citation_quality_mean": None,
-                "llm_completeness_mean": None,
+                # "llm_citation_quality_mean": None,  # REMOVED
+                # "llm_completeness_mean": None,      # REMOVED
+                "llm_correctness_mean": None,
                 "llm_overall_mean": None
             }
 
@@ -340,8 +341,9 @@ if __name__ == "__main__":
         return {
             "llm_faithfulness_mean": summary.get("faithfulness", {}).get("mean"),
             "llm_answer_relevance_mean": summary.get("answer_relevance", {}).get("mean"),
-            "llm_citation_quality_mean": summary.get("citation_quality", {}).get("mean"),
-            "llm_completeness_mean": summary.get("completeness", {}).get("mean"),
+            # "llm_citation_quality_mean": summary.get("citation_quality", {}).get("mean"),  # REMOVED
+            # "llm_completeness_mean": summary.get("completeness", {}).get("mean"),          # REMOVED
+            "llm_correctness_mean": summary.get("correctness", {}).get("mean"),
             "llm_overall_mean": summary.get("overall", {}).get("mean")
         }
 
@@ -415,11 +417,12 @@ if __name__ == "__main__":
             "doc_accuracy": None,
             "page_accuracy": None,
             "total_tests": None,
-            # LLM metrics
+            # LLM metrics (3 core metrics only)
             "llm_faithfulness_mean": None,
             "llm_answer_relevance_mean": None,
-            "llm_citation_quality_mean": None,
-            "llm_completeness_mean": None,
+            # "llm_citation_quality_mean": None,  # REMOVED
+            # "llm_completeness_mean": None,      # REMOVED
+            "llm_correctness_mean": None,
             "llm_overall_mean": None,
             "error": error_msg
         }
@@ -438,22 +441,22 @@ def main():
     chunking_configs = [
         # Semantic chunking - different thresholds
         # ChunkingConfig("semantic", {"threshold": 0.80, "max_chars": 2000}),
-        ChunkingConfig("semantic", {"threshold": 0.85, "max_chars": 1500}),
-        ChunkingConfig("semantic", {"threshold": 0.70, "max_chars": 2500}),
+        # ChunkingConfig("semantic", {"threshold": 0.85, "max_chars": 1500}),
+        # ChunkingConfig("semantic", {"threshold": 0.70, "max_chars": 2500}),
 
-        # Fix-size chunking - test different chunk sizes and overlap values
-        ChunkingConfig("fix_size", {"max_chars": 1200, "overlap": 150}),  # Default recommended
-        #ChunkingConfig("fix_size", {"max_chars": 800, "overlap": 100}),  # Smaller chunks
+        # # Fix-size chunking - test different chunk sizes and overlap values
+        # ChunkingConfig("fix_size", {"max_chars": 1200, "overlap": 150}),  # Default recommended
+        # #ChunkingConfig("fix_size", {"max_chars": 800, "overlap": 100}),  # Smaller chunks
         ChunkingConfig("fix_size", {"max_chars": 2000, "overlap": 250}), # Larger chunks
 
-        # Asterisk chunking
-        ChunkingConfig("asterisk", {})
+        # # Asterisk chunking
+        # ChunkingConfig("asterisk", {})
     ]
 
     # Retrieval configurations - Compare baseline vs reranking with different alphas
     retrieval_configs = [
         # === BASELINE (No Reranking) ===
-        RetrievalConfig(top_k=5, rerank=False, alpha=0.0),
+        # RetrievalConfig(top_k=5, rerank=False, alpha=0.0),
 
         # alpha=0.5: Equal weight (50% rerank, 50% dense)
         RetrievalConfig(top_k=5, rerank=True, alpha=0.5),
@@ -535,8 +538,12 @@ def main():
             print(f"  - LLM Overall: {best_llm['llm_overall_mean']:.3f}")
             print(f"  - Faithfulness: {best_llm['llm_faithfulness_mean']:.3f}")
             print(f"  - Answer Relevance: {best_llm['llm_answer_relevance_mean']:.3f}")
-            print(f"  - Citation Quality: {best_llm['llm_citation_quality_mean']:.3f}")
-            print(f"  - Completeness: {best_llm['llm_completeness_mean']:.3f}")
+            # REMOVED: Citation Quality and Completeness
+            # print(f"  - Citation Quality: {best_llm['llm_citation_quality_mean']:.3f}")
+            # print(f"  - Completeness: {best_llm['llm_completeness_mean']:.3f}")
+            # Only print correctness if available (requires ground truth)
+            if 'llm_correctness_mean' in best_llm and best_llm['llm_correctness_mean'] is not None and not pd.isna(best_llm['llm_correctness_mean']):
+                print(f"  - Correctness: {best_llm['llm_correctness_mean']:.3f}")
             print(f"  - Chunking: {best_llm['chunking_method']}")
             print(f"  - Top-K: {best_llm['top_k']}")
 

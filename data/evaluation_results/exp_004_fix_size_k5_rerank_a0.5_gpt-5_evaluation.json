@@ -11,12 +11,12 @@
         "test_id_1": {
             "query_id": "Test_query_1",
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-            "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+            "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
-                "mu_no02_feb25_pr.pdf",
                 "mu_no10_may23_pr.pdf",
-                "mu_no6_mar23_pr.pdf",
-                "mu_no7_jun22_pr.pdf"
+                "mu_no7_jun22_pr.pdf",
+                "mu_no02_feb25_pr.pdf",
+                "mu_no6_mar23_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -122,11 +122,11 @@
         "test_id_2": {
             "query_id": "Test_query_2",
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-            "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+            "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
+                "mu_no3_feb23_speced_pr.pdf",
                 "mu_no10_may23_pr.pdf",
-                "mu_no1_jan22_pr.pdf",
-                "mu_no3_feb23_speced_pr.pdf"
+                "mu_no1_jan22_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -232,12 +232,12 @@
         "test_id_3": {
             "query_id": "Test_query_3",
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-            "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+            "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
-                "mu_no3_mar24_pr.pdf",
                 "mu_no10_may23_pr.pdf",
-                "mu_no8_jul22_pr.pdf",
-                "mu_no4_apr24_pr.pdf"
+                "mu_no3_mar24_pr.pdf",
+                "mu_no4_apr24_pr.pdf",
+                "mu_no8_jul22_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -345,13 +345,13 @@
         "test_id_4": {
             "query_id": "Test_query_4",
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-            "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+            "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
                 "mu_no2_feb22_pr.pdf",
                 "mu_no02_feb19_speced_pr.pdf",
                 "mu_no13_nov21_pr.pdf",
-                "mu_no07_jun21_speced_telehealth_pr.pdf",
-                "mu_no3_feb23_speced_pr.pdf"
+                "mu_no3_feb23_speced_pr.pdf",
+                "mu_no07_jun21_speced_telehealth_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -460,13 +460,13 @@
         "test_id_5": {
             "query_id": "Test_query_5",
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-            "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+            "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
                 "mu_no14_dec21_pr.pdf",
-                "mu_no1_jan22_pr.pdf",
-                "mu_no18_dec20_pr.pdf",
                 "mu_no15_oct20.pdf",
-                "mu_no13_aug20.pdf"
+                "mu_no18_dec20_pr.pdf",
+                "mu_no13_aug20.pdf",
+                "mu_no1_jan22_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -586,7 +586,7 @@
         "test_id_6": {
             "query_id": "Test_query_6",
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-            "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+            "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
                 "mu_no07_jun19_pr.pdf",
                 "mu_no18_dec20_pr.pdf",
@@ -699,10 +699,10 @@
         "test_id_7": {
             "query_id": "Test_query_7",
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-            "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+            "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
-                "mu_no06_may21_pr.pdf",
-                "mu_no17_dec20_speced_pr.pdf"
+                "mu_no17_dec20_speced_pr.pdf",
+                "mu_no06_may21_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -815,10 +815,10 @@
         "test_id_8": {
             "query_id": "Test_query_8",
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-            "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+            "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
-                "mu_no02_feb25_pr.pdf",
                 "mu_no10_oct19_pr.pdf",
+                "mu_no02_feb25_pr.pdf",
                 "mu_no11_oct24_pr.pdf"
             ],
             "predicted_top_chunks": [
@@ -929,11 +929,11 @@
         "test_id_9": {
             "query_id": "Test_query_9",
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-            "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+            "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
+                "mu_no8_apr23_pr.pdf",
                 "mu_no06_jun25_pr.pdf",
-                "mu_no03_mar25_pr.pdf",
-                "mu_no8_apr23_pr.pdf"
+                "mu_no03_mar25_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -1042,13 +1042,13 @@
         "test_id_10": {
             "query_id": "Test_query_10",
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-            "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+            "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
-                "mu_no06_may21_pr.pdf",
+                "mu_no8_aug24_pr.pdf",
+                "mu_no03_mar21_pr.pdf",
                 "mu_no04_mar19_pr.pdf",
                 "mu_no3_mar22_pr.pdf",
-                "mu_no8_aug24_pr.pdf",
-                "mu_no03_mar21_pr.pdf"
+                "mu_no06_may21_pr.pdf"
             ],
             "predicted_top_chunks": [
                 {
@@ -1164,13 +1164,13 @@
         "test_id_11": {
             "query_id": "Test_query_11",
             "long_version_id": "HealthcareEmbedding-LLMClient-k-5-1",
-            "short_version_id": "exp_001_fix_size_k5_rerank_a0.5_gpt-5",
+            "short_version_id": "exp_004_fix_size_k5_rerank_a0.5_gpt-5",
             "predicted_docs": [
+                "mu_no12_dec19_pr.pdf",
                 "mu_no09_aug19_pr.pdf",
                 "mu_no10_oct19_pr.pdf",
-                "mu_no12_dec19_pr.pdf",
-                "mu_no11_jun20.pdf",
-                "mu_no08_jul19_pr.pdf"
+                "mu_no08_jul19_pr.pdf",
+                "mu_no11_jun20.pdf"
             ],
             "predicted_top_chunks": [
                 {
