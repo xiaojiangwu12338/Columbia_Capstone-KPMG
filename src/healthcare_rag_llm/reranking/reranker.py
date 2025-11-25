@@ -277,6 +277,7 @@ if __name__ == "__main__":
     )
 
     for i, h in enumerate(hits[: args.topk], 1):
+        text_preview = h.get('text', '')[:100].replace('\n', ' ')
         print(f"{i:>2}. rr={h.get('rerank_score'):.4f}"
               + (f", final={h.get('final_score'):.4f}" if "final_score" in h else "")
-              + f"  |  {h.get('text','')[:100].replace('\\n',' ')}")
+              + f"  |  {text_preview}")

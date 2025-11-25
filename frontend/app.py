@@ -25,7 +25,7 @@ try:
     HAS_BACKEND = True
 except Exception as e:
     HAS_BACKEND = False
-    # st.warning(f"⚠️ Backend import failed: {e}. Mock mode enabled.")
+    st.warning(f"⚠️ Backend import failed: {e}. Mock mode enabled.")
 
 # ============================================================
 # ========== STREAMLIT PAGE CONFIG ===========================
@@ -315,6 +315,8 @@ if submitted:
                         "No grounded answer can be generated. "
                         "Please connect the backend (RAG pipeline) to enable cited answers."
                     )
+                    evidence_dict = {}
+                    retrieved_docs = []
                     # st.warning("⚠️ Mock mode: Backend not connected.")
                     # st.markdown(
                     #     "The assistant is currently running in mock mode without a live RAG backend. "

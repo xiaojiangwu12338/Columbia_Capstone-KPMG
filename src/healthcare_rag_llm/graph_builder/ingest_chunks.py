@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from tqdm import tqdm
 from typing import Dict, Any, List, Optional
+
 from healthcare_rag_llm.embedding.HealthcareEmbedding import HealthcareEmbedding
 from healthcare_rag_llm.graph_builder.neo4j_loader import Neo4jConnector
 
@@ -12,7 +13,7 @@ def _write_batch(session, batch_rows: List[Dict[str, Any]]):
     Batch write a set of records into Neo4j.
 
     Structure:
-      (:Authority)-[:ISSUED]->(:Document)
+      (:Authority)-[:ISSUED]->(:Document {category})
         └─[:CONTAINS]->(:Page)
              ├─[:HAS_CHUNK]->(:Chunk {type:'text'})
              ├─[:HAS_TABLE]->(:Chunk {type:'table'})
@@ -20,14 +21,20 @@ def _write_batch(session, batch_rows: List[Dict[str, Any]]):
     """
     session.run("""
     UNWIND $batch AS row
+
     // --- Authority + Document ---
     MERGE (a:Authority {name: row.authority})
       ON CREATE SET a.abbr = row.authority_abbr
+
     MERGE (d:Document {doc_id: row.doc_id})
       ON CREATE SET d.title = row.title,
                     d.url = row.url,
                     d.doc_type = row.doc_type,
-                    d.effective_date = row.effective_date
+                    d.effective_date = row.effective_date,
+                    d.category = row.category
+      // Keep category up to date even if the Document already exists
+      SET d.category = coalesce(row.category, d.category)
+
     MERGE (a)-[:ISSUED]->(d)
 
     // --- Pages ---
@@ -65,11 +72,11 @@ def ingest_chunks(
     """
     Ingest a single JSONL chunk file into Neo4j.
 
-    Features:
-    - Automatically links Authority, Document, Page, Chunk
+    Graph: Authority -> Document (category property) -> Page -> Chunk
+    - Links Authority, Document, Page, Chunk
     - Unifies all chunk types (text/table/ocr)
     - Every chunk gets a denseEmbedding (for vector search)
-    - Uses batch mode for stability and performance
+    - Batch mode for stability/performance
     """
     embedder = HealthcareEmbedding()
     connector = Neo4jConnector()
@@ -78,31 +85,49 @@ def ingest_chunks(
     if not chunk_file.exists():
         raise FileNotFoundError(f"❌ File not found: {jsonl_path}")
 
-    batch, chunk_count = [], 0
+    batch: List[Dict[str, Any]] = []
+    chunk_count = 0
 
     with connector.driver.session() as session:
         with open(chunk_file, "r", encoding="utf-8") as f:
             for line in tqdm(f, desc=f"Ingesting {chunk_file.name}"):
                 record = json.loads(line)
-                doc_id = record["doc_id"].strip().lower()
-                chunk_id = record["chunk_id"]
-                pages = record.get("pages", []) or [1]
-                text = record.get("text", "").strip()
 
-                # --- Determine chunk type ---
-                if "::table" in chunk_id:
+                # --- Normalize core fields ---
+                doc_id_raw = (record.get("doc_id") or "").strip()
+                if not doc_id_raw:
+                    continue
+                doc_id = doc_id_raw.lower()  # important: metadata keys should be lowercased too
+
+                chunk_id = record.get("chunk_id")
+                pages = record.get("pages", []) or [1]
+                text = (record.get("text") or "").strip()
+
+                # --- Chunk type detection ---
+                if isinstance(chunk_id, str) and "::table" in chunk_id:
                     chunk_type = "table"
-                elif "::ocr" in chunk_id:
+                elif isinstance(chunk_id, str) and "::ocr" in chunk_id:
                     chunk_type = "ocr"
                 else:
                     chunk_type = "text"
 
+                # --- Category (document-level) from record, then metadata, then 'unknown' ---
+                category = (record.get("category") or "").strip()
+                if not category:
+                    dm = (doc_metadata or {}).get(doc_id, {})
+                    category = (dm.get("category") or "unknown").strip() or "unknown"
+
                 # --- Generate embedding (for all types) ---
-                enc = embedder.encode([text], return_dense=True, return_sparse=False, return_colbert_vecs=False)
+                enc = embedder.encode(
+                    [text],
+                    return_dense=True,
+                    return_sparse=False,
+                    return_colbert_vecs=False
+                )
                 dense_vec = enc["dense_vecs"][0]
                 dense_vec = dense_vec.tolist() if hasattr(dense_vec, "tolist") else list(dense_vec)
 
-                # --- Metadata from CSV ---
+                # --- Document-level metadata (keyed by lowercased doc_id) ---
                 meta = (doc_metadata or {}).get(doc_id, {})
                 authority = meta.get("authority", "Unknown")
                 authority_abbr = meta.get("authority_abbr", "")
@@ -111,6 +136,7 @@ def ingest_chunks(
                 effective_date = meta.get("effective_date", "")
                 doc_type = meta.get("doc_type", "PDF")
 
+                # --- Accumulate row for batch write ---
                 batch.append({
                     "doc_id": doc_id,
                     "title": title,
@@ -119,6 +145,7 @@ def ingest_chunks(
                     "effective_date": effective_date,
                     "authority": authority,
                     "authority_abbr": authority_abbr,
+                    "category": category,          # <- passed to Document level
                     "chunk_id": chunk_id,
                     "chunk_type": chunk_type,
                     "text": text,
@@ -127,14 +154,14 @@ def ingest_chunks(
                 })
                 chunk_count += 1
 
-                # --- Batch write ---
+                # --- Flush batch ---
                 if len(batch) >= batch_size:
                     _write_batch(session, batch)
                     batch = []
 
-            # --- Final batch ---
+            # --- Final flush ---
             if batch:
                 _write_batch(session, batch)
 
     connector.close()
-    print(f"✅ Ingested {chunk_count} chunks (including table/OCR) from {chunk_file.name}")
+    print(f"✅ Ingested {chunk_count} chunks (Document.category set) from {chunk_file.name}")

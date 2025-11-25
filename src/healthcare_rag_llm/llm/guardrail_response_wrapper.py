@@ -174,6 +174,7 @@ class ResponseGenerator:
             return {
                 "question": question,
                 "answer": REJECTION_MESSAGE,
+                "evidence_dict": {},
                 "retrieved_docs": [],
             }
 

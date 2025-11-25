@@ -2,7 +2,7 @@
 
 import pandas as pd
 from pathlib import Path
-from healthcare_rag_llm.filters.filter_extractor import FilterExtractor
+from healthcare_rag_llm.filters.llm_filter_extractor import LLMFilterExtractor as FilterExtractor
 
 DATA_DIR = Path("data/metadata")
 

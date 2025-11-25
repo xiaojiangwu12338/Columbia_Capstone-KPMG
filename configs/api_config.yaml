@@ -6,7 +6,7 @@ api_providers:
     provider: "openai"
     
   bltcy:
-    api_key: "" 
+    api_key: "sk-uGxA1B2QS7davJiwh3MTDeNEFFSIPSZRRHi21k5GUUMA1Jnr" 
     base_url: "https://api.bltcy.ai/v1"
     provider: "openai"
     
