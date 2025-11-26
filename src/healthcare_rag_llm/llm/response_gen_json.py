@@ -173,8 +173,28 @@ def _format_pages(pages_val: Any) -> str:
 def _format_answer_json(data: Dict[str, Any],
     chunks: List[Dict[str, Any]],
     meta_idx: Dict[str, Dict[str, str]],
+    filters: Optional[Dict[str, Any]] = None,
 ) -> Tuple[str, Dict]:
     answer = data["answer"].strip()
+    
+    # Add extracted filters to answer for debugging purposes
+    if filters:
+        filter_info = []
+        if filters.get("authority_names"):
+            filter_info.append(f"Authority Names: {', '.join(filters['authority_names'])}")
+        if filters.get("doc_titles"):
+            filter_info.append(f"Doc Titles: {', '.join(filters['doc_titles'])}")
+        if filters.get("doc_types"):
+            filter_info.append(f"Doc Types: {', '.join(filters['doc_types'])}")
+        if filters.get("keywords"):
+            filter_info.append(f"Keywords: {', '.join(filters['keywords'])}")
+        if filters.get("min_effective_date"):
+            filter_info.append(f"Min Effective Date: {filters['min_effective_date']}")
+        if filters.get("max_effective_date"):
+            filter_info.append(f"Max Effective Date: {filters['max_effective_date']}")
+        
+        if filter_info:
+            answer += "\n\n[DEBUG - Extracted Filters]\n" + "\n".join(filter_info)
 
     evidence_dict = {}
 
@@ -429,21 +449,28 @@ class ResponseGenerator:
                 "chunk_id": ch.get("chunk_id"),
                 "pages": ch.get("pages"),
                 "text": ch.get("text"),
-                "file_name": ch.get("file_name"),
-                "doc_title": ch.get("doc_title"),
+                "title": ch.get("title"),
+                "effective_date": ch.get("effective_date"),
+                "authority": ch.get("authority"),
+                "url": ch.get("url"),
+                "doc_type": ch.get("doc_type"),
             })
 
-        # Build LLM context
+        # Build LLM context with metadata
         context = "\n\n".join(
             [
-                f"{c['label']} "
-                f"[Document ID: {c['doc_id']}] "
-                f"[Chunk ID: {c['chunk_id']}] "
-                f"[pages: {c['pages']}] "
-                f"[Chunk Content: {c['text']}]"
+                f"{c['label']}\n"
+                f"[Document Title: {c['title'] or 'N/A'}]\n"
+                f"[Effective Date: {c['effective_date'] or 'N/A'}]\n"
+                f"[Authority: {c['authority'] or 'N/A'}]\n"
+                f"[Document ID: {c['doc_id']}]\n"
+                f"[Pages: {c['pages']}]\n"
+                f"[Content: {c['text']}]"
                 for c in labeled
             ]
         )
+
+
 
         # Strict JSON contract for model output
         json_contract = """
@@ -549,7 +576,7 @@ Previous output (verbatim):
 
         # 7) Manual view (doc_title + pages + effective date + url), with a forced blank line before "Evidence:"
         #manual_view = _format_manual_view(parsed, final_chunks, self._metadata_index)
-        answer, evidence_dict = _format_answer_json(parsed, final_chunks, self._metadata_index)
+        answer, evidence_dict = _format_answer_json(parsed, final_chunks, self._metadata_index, filters)
         # 8) Return shape identical to response_generator.py
         return {
             "question": question,

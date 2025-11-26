@@ -63,7 +63,7 @@ def main():
 
     # You can change or add queries here
     test_queries = [
-        "what are major update from may 2025 medicaid update",
+        "When did redetrmination begin for the COVID-19 Public Health Emergency unwind in New York State",
     ]
 
     for q in test_queries:

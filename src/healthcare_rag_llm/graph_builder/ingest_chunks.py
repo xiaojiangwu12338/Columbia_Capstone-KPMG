@@ -1,11 +1,47 @@
 # src/healthcare_rag_llm/graph_builder/ingest_chunks.py
 import json
+from datetime import datetime, date
 from pathlib import Path
 from tqdm import tqdm
 from typing import Dict, Any, List, Optional
 
 from healthcare_rag_llm.embedding.HealthcareEmbedding import HealthcareEmbedding
 from healthcare_rag_llm.graph_builder.neo4j_loader import Neo4jConnector
+
+
+def _parse_effective_date(value: Optional[str]) -> Optional[date]:
+    """
+    Convert various date string formats into a datetime.date object so Neo4j
+    receives a proper DATE value.
+    """
+    if not value:
+        return None
+
+    raw = value.strip()
+    if not raw:
+        return None
+
+    # Try ISO first (covers most of our rows).
+    try:
+        return datetime.fromisoformat(raw).date()
+    except ValueError:
+        pass
+
+    # Fall back to a handful of common US formats.
+    candidates = [
+        "%m/%d/%Y",
+        "%m-%d-%Y",
+        "%Y/%m/%d",
+        "%b %d, %Y",
+        "%B %d, %Y",
+    ]
+    for fmt in candidates:
+        try:
+            return datetime.strptime(raw, fmt).date()
+        except ValueError:
+            continue
+
+    return None
 
 
 def _write_batch(session, batch_rows: List[Dict[str, Any]]):
@@ -133,7 +169,9 @@ def ingest_chunks(
                 authority_abbr = meta.get("authority_abbr", "")
                 title = meta.get("title", "")
                 url = meta.get("url", "")
-                effective_date = meta.get("effective_date", "")
+                effective_date = _parse_effective_date(
+                    record.get("effective_date") or meta.get("effective_date")
+                )
                 doc_type = meta.get("doc_type", "PDF")
 
                 # --- Accumulate row for batch write ---

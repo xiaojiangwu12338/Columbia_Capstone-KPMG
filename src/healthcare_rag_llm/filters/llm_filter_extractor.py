@@ -19,23 +19,79 @@ DATE_SYSTEM_PROMPT = (
     "used as bounds when retrieving relevant policy documents for a user's question.\n"
     "\n"
     "Return a JSON object with exactly these fields:\n"
-    "  - \"min_publish_date\": earliest publication date (YYYY-MM-DD) or null\n"
-    "  - \"max_publish_date\": latest publication date (YYYY-MM-DD) or null\n"
+    " - \"min_publish_date\": earliest publication date (YYYY-MM-DD) or null\n"
+    " - \"max_publish_date\": latest publication date (YYYY-MM-DD) or null\n"
     "\n"
     "Rules:\n"
-    "  - Dates must be in ISO format: YYYY-MM-DD.\n"
-    "  - If the question implies only a start (e.g., \"after March 2023\"), set:\n"
-    "        min_publish_date = first day of that month (e.g., 2023-03-01)\n"
-    "        max_publish_date = null.\n"
-    "  - If the question implies only an end (e.g., \"before 2021\"), set:\n"
-    "        max_publish_date = last plausible day of that year (e.g., 2021-12-31)\n"
-    "        min_publish_date = null.\n"
-    "  - If it implies a rough range (e.g., \"during 2020\"), choose a reasonable\n"
-    "    min_publish_date and max_publish_date that cover that period.\n"
-    "  - If no dates are mentioned or implied, set both to null.\n"
+    " - Dates must be in ISO format: YYYY-MM-DD.\n"
+    " - Do not infer min or max dates from your own knowledge of events.\n"
+    " - If the question implies only a start (e.g., \"after March 2023\"), set:\n"
+    "   min_publish_date = first day of that month (e.g., 2023-03-01)\n"
+    "   max_publish_date = null.\n"
+    " - If the question implies only an end (e.g., \"before 2021\"), set:\n"
+    "   max_publish_date = last plausible day of that year (e.g., 2021-12-31)\n"
+    "   min_publish_date = null.\n"
+    " - If it implies a rough range (e.g., \"during 2020\"), choose a reasonable\n"
+    "   min_publish_date and max_publish_date that cover that period.\n"
+    " - If no dates are mentioned or implied, set both to null.\n"
     "\n"
-    "Return ONLY the JSON object. Do not include explanations or any extra text."
+    "Return ONLY the JSON object. Do not include explanations or any extra text.\n"
+    "\n"
+    "--------------------\n"
+    "FEW-SHOT EXAMPLES\n"
+    "--------------------\n"
+    "\n"
+    "User question:\n"
+    "\"What are major Medicaid policies still in effect in Jan 2025?\"\n"
+    "Output:\n"
+    "{\n"
+    "  \"min_publish_date\": null,\n"
+    "  \"max_publish_date\": \"2025-01-31\"\n"
+    "}\n"
+    "\n"
+    "User question:\n"
+    "\"What major Medicaid updates were published in Jan 2025?\"\n"
+    "Output:\n"
+    "{\n"
+    "  \"min_publish_date\": \"2025-01-01\",\n"
+    "  \"max_publish_date\": \"2025-01-31\"\n"
+    "}\n"
+    "\n"
+    "User question:\n"
+    "\"Show me policies released after March 2023.\"\n"
+    "Output:\n"
+    "{\n"
+    "  \"min_publish_date\": \"2023-03-01\",\n"
+    "  \"max_publish_date\": null\n"
+    "}\n"
+    "\n"
+    "User question:\n"
+    "\"Find all guidance issued before 2021.\"\n"
+    "Output:\n"
+    "{\n"
+    "  \"min_publish_date\": null,\n"
+    "  \"max_publish_date\": \"2021-12-31\"\n"
+    "}\n"
+    "\n"
+    "User question:\n"
+    "\"Summaries of rules published during 2020.\"\n"
+    "Output:\n"
+    "{\n"
+    "  \"min_publish_date\": \"2020-01-01\",\n"
+    "  \"max_publish_date\": \"2020-12-31\"\n"
+    "}\n"
+    "\n"
+    "User question:\n"
+    "\"What's the federal stance on Medicaid waivers?\"\n"
+    "Output:\n"
+    "{\n"
+    "  \"min_publish_date\": null,\n"
+    "  \"max_publish_date\": null\n"
+    "}\n"
 )
+
+
+
 
 # IMPORTANT: double-brace the literal JSON example so .format() only fills {question}
 USER_PROMPT_TEMPLATE = (
@@ -236,7 +292,13 @@ class LLMFilterExtractor:
             filters["authority_names"] = list(set(authorities))
 
         # 2. Program / acronym detection (same as original)
-        keywords = [v for k, v in self.acronym_map.items() if k.lower() in q]
+        # Use word boundaries to match acronyms as whole words only
+        keywords = []
+        for k, v in self.acronym_map.items():
+            # Create a regex pattern with word boundaries to match whole words only
+            pattern = r'\b' + re.escape(k.lower()) + r'\b'
+            if re.search(pattern, q):
+                keywords.append(v)
         if keywords:
             filters["keywords"] = list(set(keywords))
 

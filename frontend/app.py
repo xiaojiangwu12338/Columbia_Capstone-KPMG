@@ -304,7 +304,7 @@ if submitted:
             try:
                 if rag_pipeline:
                     # --- Real backend ---
-                    result = rag_pipeline.answer_question(user_query)
+                    result = rag_pipeline.answer_question(user_query, history=st.session_state["history"])
                     answer = result.get("answer", "No answer returned.")
                     evidence_dict = result.get("evidence_dict", {})
                     retrieved_docs = result.get("retrieved_docs", [])

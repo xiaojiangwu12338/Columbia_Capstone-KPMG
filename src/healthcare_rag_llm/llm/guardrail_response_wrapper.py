@@ -74,8 +74,8 @@ def _load_acronym_dict(csv_path: Path) -> Dict[str, str]:
         with open(csv_path, 'r', encoding='utf-8-sig') as f:
             reader = csv.DictReader(f)
             for row in reader:
-                acronym = row.get('Acronym', '').strip().upper()
-                meaning = row.get('Meaning', '').strip()
+                acronym = row.get('acronym', '').strip().upper()
+                meaning = row.get('full_term', '').strip()
                 if acronym and meaning:
                     acronyms[acronym] = meaning
     except Exception:
@@ -132,7 +132,7 @@ class ResponseGenerator:
             # Default path: <project_root>/data/supplement/NYSDOH Acronym List.csv
             # Assuming this file is 4 levels up from src/healthcare_rag_llm/llm/guardrail_response_wrapper.py
             project_root = Path(__file__).resolve().parents[3]
-            acronym_csv_path = project_root / "data" / "supplement" / "NYSDOH Acronym List.csv"
+            acronym_csv_path = project_root / "data" / "metadata" / "acronym_map.csv"
 
         self.acronym_dict = _load_acronym_dict(acronym_csv_path)
 
