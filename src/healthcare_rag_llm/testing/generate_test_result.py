@@ -204,8 +204,19 @@ class RAGBatchTester:
 
     @staticmethod
     def _write_json(path: str, data: Dict[str, Any]) -> None:
+        def default_serializer(obj):
+            """Handle non-serializable objects"""
+            # Handle Neo4j Date objects
+            if hasattr(obj, '__class__') and obj.__class__.__name__ == 'Date':
+                return str(obj)  # Convert to ISO format string
+            # Handle other datetime-like objects
+            if hasattr(obj, 'isoformat'):
+                return obj.isoformat()
+            # Default: convert to string
+            return str(obj)
+
         with open(path, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
+            json.dump(data, f, ensure_ascii=False, indent=2, default=default_serializer)
 
     @staticmethod
     def _extract_question(payload: Any, query_id: str) -> str:

@@ -119,6 +119,8 @@ class EvaluatePipeline:
             self._run_fix_size_chunking(chunking_config.params)
         elif chunking_config.method == "asterisk":
             self._run_asterisk_chunking(chunking_config.params)
+        elif chunking_config.method == "mixed_chunking":
+            self._run_mixed_chunking(chunking_config.params)
         else:
             raise ValueError(f"Invalid chunking method: {chunking_config.method}")
 
@@ -154,6 +156,83 @@ class EvaluatePipeline:
         print(f"  Running: {' '.join(cmd)}")
         subprocess.run(cmd, check=True, timeout=self.timeout_chunking)
 
+    def _run_mixed_chunking(self, params: Dict[str, Any]):
+        """Run mixed chunking (asterisk for Medicaid, semantic for Waiver)"""
+        from healthcare_rag_llm.pipelines.ingest_parse import run_pipeline as parse_pipeline
+        from healthcare_rag_llm.chunking.pattern_chunking import asterisk_separate_chunking
+        from healthcare_rag_llm.chunking.semantic_chunking import semantic_chunking
+        import shutil
+
+        # Get paths
+        root = Path(__file__).resolve().parents[2]
+        chunk_dir = root / "data" / "chunks" / "mixed_chunking_result"
+
+        raw_medicaid = root / "data" / "raw" / "Childrens Evolution of Care" / "State" / "Medicaid Updates"
+        out_medicaid = root / "data" / "processed" / "medicaid update"
+
+        raw_waiver = root / "data" / "raw" / "Childrens Evolution of Care" / "State" / "Waivers" / "Childrens Waiver"
+        out_waiver = root / "data" / "processed" / "children waiver"
+
+        # Clear chunk directory
+        print("  Clearing chunk directory...")
+        if chunk_dir.exists():
+            for item in chunk_dir.iterdir():
+                if item.is_file() or item.is_symlink():
+                    item.unlink()
+                else:
+                    shutil.rmtree(item)
+        chunk_dir.mkdir(parents=True, exist_ok=True)
+
+        # Parse Medicaid
+        print("  Parsing Medicaid Updates...")
+        parse_pipeline(
+            raw_dir=str(raw_medicaid),
+            out_dir=str(out_medicaid),
+            save_text=False,
+            save_json=True
+        )
+
+        # Parse Waiver
+        print("  Parsing Children's Waiver...")
+        parse_pipeline(
+            raw_dir=str(raw_waiver),
+            out_dir=str(out_waiver),
+            save_text=False,
+            save_json=True
+        )
+
+        # Get chunking parameters from config (with defaults)
+        medicaid_params = params.get("medicaid", {})
+        waiver_params = params.get("waiver", {})
+
+        # Chunk Medicaid with asterisk
+        print("  Chunking Medicaid with asterisk method...")
+        asterisk_separate_chunking(
+            processed_dir=str(out_medicaid),
+            chunked_dir=str(chunk_dir),
+            max_chunk_chars=medicaid_params.get("max_chunk_chars", 1200),
+            glob_pattern=medicaid_params.get("glob_pattern", "*.json"),
+            min_repeats=medicaid_params.get("min_repeats", 10),
+            separator_char=medicaid_params.get("separator_char", "*"),
+            verbose=True
+        )
+
+        # Chunk Waiver with semantic
+        print("  Chunking Children's Waiver with semantic method...")
+        semantic_chunking(
+            processed_dir=str(out_waiver),
+            chunked_dir=str(chunk_dir),
+            model_name=waiver_params.get("model_name", "sentence-transformers/all-MiniLM-L6-v2"),
+            unit=waiver_params.get("unit", "paragraph"),
+            similarity_threshold=waiver_params.get("similarity_threshold", 0.55),
+            max_chunk_chars=waiver_params.get("max_chunk_chars", 1200),
+            glob_pattern=waiver_params.get("glob_pattern", "*.json"),
+            hysteresis=waiver_params.get("hysteresis", 0.02),
+            verbose=True
+        )
+
+        print("  Mixed chunking completed!")
+
     def _load_to_neo4j(self, chunking_method: str):
         """Load chunking results to Neo4j (with database reset)"""
         print(f"Loading to Neo4j: {chunking_method}")
@@ -165,9 +244,11 @@ class EvaluatePipeline:
 
         # Step 2: Load new chunks
         print("  Ingesting chunks into Neo4j...")
-        # Handle asterisk chunking's different directory name
+        # Handle different chunking methods' directory names
         if chunking_method == "asterisk":
             chunk_dir = "data/chunks/asterisk_separate_chunking_result"
+        elif chunking_method == "mixed_chunking":
+            chunk_dir = "data/chunks/mixed_chunking_result"
         else:
             chunk_dir = f"data/chunks/{chunking_method}_chunking_result"
 
@@ -175,6 +256,12 @@ class EvaluatePipeline:
             "python", "scripts/ingest_graph.py",
             "--chunk_dir", chunk_dir
         ]
+
+        # Add metadata file for mixed_chunking (matches rebuild_db.py workflow)
+        if chunking_method == "mixed_chunking":
+            metadata_file = "data/metadata/metadata_filled.csv"
+            ingest_cmd.extend(["--meta_file", metadata_file])
+
         subprocess.run(ingest_cmd, check=True, timeout=self.timeout_ingest)
 
     def _run_testing(self, config: ExperimentConfig) -> Dict[str, Any]:
@@ -194,10 +281,27 @@ class EvaluatePipeline:
                 timeout=self.timeout_test
             )
 
+            # Print stdout if any
+            if result.stdout:
+                print(result.stdout)
+
             # Read results
             result_path = f"data/test_results/{config.version_id}.json"
             with open(result_path, 'r', encoding='utf-8') as f:
                 return json.load(f)
+        except subprocess.CalledProcessError as e:
+            # Print both stdout and stderr for debugging
+            print(f"\n{'='*80}")
+            print(f"Error running test script:")
+            print(f"{'='*80}")
+            if e.stdout:
+                print("STDOUT:")
+                print(e.stdout)
+            if e.stderr:
+                print("STDERR:")
+                print(e.stderr)
+            print(f"{'='*80}")
+            raise
         finally:
             # Always clean up temporary file
             if test_script and os.path.exists(test_script):
@@ -439,30 +543,71 @@ def main():
 
     # Chunking method configurations
     chunking_configs = [
-        # Semantic chunking - different thresholds
-        # ChunkingConfig("semantic", {"threshold": 0.80, "max_chars": 2000}),
-        # ChunkingConfig("semantic", {"threshold": 0.85, "max_chars": 1500}),
-        # ChunkingConfig("semantic", {"threshold": 0.70, "max_chars": 2500}),
+        # === Mixed Chunking Variations ===
+        # Test different chunk sizes and semantic thresholds
 
-        # # Fix-size chunking - test different chunk sizes and overlap values
-        # ChunkingConfig("fix_size", {"max_chars": 1200, "overlap": 150}),  # Default recommended
-        # #ChunkingConfig("fix_size", {"max_chars": 800, "overlap": 100}),  # Smaller chunks
-        ChunkingConfig("fix_size", {"max_chars": 2000, "overlap": 250}), # Larger chunks
+        # Configuration 1: Smaller chunks, stricter semantic threshold
+        ChunkingConfig("mixed_chunking", {
+            "medicaid": {
+                "max_chunk_chars": 1000,
+                "glob_pattern": "*.json",
+                "min_repeats": 10,
+                "separator_char": "*"
+            },
+            "waiver": {
+                "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+                "unit": "paragraph",
+                "similarity_threshold": 0.60,
+                "max_chunk_chars": 1000,
+                "glob_pattern": "*.json",
+                "hysteresis": 0.02
+            }
+        }),
 
-        # # Asterisk chunking
-        # ChunkingConfig("asterisk", {})
+        # Configuration 2: Default size (baseline from rebuild_db.py)
+        ChunkingConfig("mixed_chunking", {
+            "medicaid": {
+                "max_chunk_chars": 1200,
+                "glob_pattern": "*.json",
+                "min_repeats": 10,
+                "separator_char": "*"
+            },
+            "waiver": {
+                "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+                "unit": "paragraph",
+                "similarity_threshold": 0.55,
+                "max_chunk_chars": 1200,
+                "glob_pattern": "*.json",
+                "hysteresis": 0.02
+            }
+        }),
+
+        # Configuration 3: Larger chunks, more lenient semantic threshold
+        ChunkingConfig("mixed_chunking", {
+            "medicaid": {
+                "max_chunk_chars": 1500,
+                "glob_pattern": "*.json",
+                "min_repeats": 10,
+                "separator_char": "*"
+            },
+            "waiver": {
+                "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+                "unit": "paragraph",
+                "similarity_threshold": 0.50,
+                "max_chunk_chars": 1500,
+                "glob_pattern": "*.json",
+                "hysteresis": 0.02
+            }
+        })
     ]
 
     # Retrieval configurations - Compare baseline vs reranking with different alphas
     retrieval_configs = [
         # === BASELINE (No Reranking) ===
-        # RetrievalConfig(top_k=5, rerank=False, alpha=0.0),
+        RetrievalConfig(top_k=5, rerank=False, alpha=0.0),
+        RetrievalConfig(top_k=5, rerank=True, alpha=0.5),  # Balanced
+        RetrievalConfig(top_k=5, rerank=True, alpha=0.7),  # More weight on dense
 
-        # alpha=0.5: Equal weight (50% rerank, 50% dense)
-        RetrievalConfig(top_k=5, rerank=True, alpha=0.5),
-
-        # alpha=0.7: More weight on dense search (30% rerank, 70% dense)
-        # RetrievalConfig(top_k=5, rerank=True, alpha=0.7),
     ]
 
     # LLM configurations - Use API configuration manager
