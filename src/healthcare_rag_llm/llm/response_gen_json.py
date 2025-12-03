@@ -346,6 +346,7 @@ class ResponseGenerator:
         metadata_csv_path: Optional[Path] = None,
         chat_history: Optional[ChatHistory] = None,
         filter_extractor=None,  # added to mirror response_generator.py
+        alpha = 0.3
     ):
         self.system_prompt = system_prompt
         self.llm_client = llm_client
@@ -353,6 +354,7 @@ class ResponseGenerator:
         self.use_reranker = use_reranker
         self.chat_history = chat_history or ChatHistory()
         self.filter_extractor = filter_extractor
+        self.alpha = alpha
 
         # Default metadata path: <project_root>/data/metadata/metadata_filled.csv
         if metadata_csv_path is None:
@@ -414,7 +416,7 @@ class ResponseGenerator:
                 query=question,
                 chunks=retrieved_chunks,
                 combine_with_dense=True,
-                alpha=0.3,
+                alpha=self.alpha,
                 text_key="text",
                 dense_score_key="score",
             )

@@ -8,7 +8,39 @@ from tqdm import tqdm
 
 from healthcare_rag_llm.embedding.HealthcareEmbedding import HealthcareEmbedding
 from healthcare_rag_llm.llm.llm_client import LLMClient
-from healthcare_rag_llm.graph_builder.queries import query_chunks
+from healthcare_rag_llm.llm.guardrail_response_wrapper import ResponseGenerator  # Use production wrapper
+from healthcare_rag_llm.filters.load_metadata import build_filter_extractor  # Production filter
+
+
+def _format_evidence_for_evaluation(evidence_dict: Dict[str, Any]) -> str:
+    """
+    Format evidence_dict into a text representation for LLM evaluation.
+    This matches what users see in the frontend (app.py:214-228).
+
+    Args:
+        evidence_dict: Dictionary with evidence1-5 keys containing doc_info, quote, publish_date, url
+
+    Returns:
+        Formatted evidence string
+    """
+    if not evidence_dict:
+        return "(No evidence cited)"
+
+    lines = []
+    for i, (key, ev) in enumerate(evidence_dict.items(), 1):
+        doc_info = ev.get("doc_info", "Unknown")
+        quote = ev.get("quote", "")
+        publish_date = ev.get("publish_date", "N/A")
+        url = ev.get("url", "N/A")
+
+        # Format similar to frontend
+        lines.append(f"{i}. {doc_info}")
+        lines.append(f"   Published: {publish_date}")
+        lines.append(f"   URL: {url}")
+        lines.append(f'   Quote: "{quote}"')
+        lines.append("")  # Blank line between evidence items
+
+    return "\n".join(lines)
 
 
 class RAGBatchTester:
@@ -68,26 +100,29 @@ class RAGBatchTester:
         self.use_rerank = use_rerank
         self.rerank_alpha = rerank_alpha
 
-        # Instantiate embedding and LLM client with defaults if not provided
-        self.embedder = self.embedding_method()
+        # Instantiate LLM client with defaults if not provided
         self.llm_client = (
             llm_client
             if llm_client is not None
             else LLMClient(api_key="", provider="ollama", model="llama3.2:3b")
         )
 
-        # Initialize reranker if needed
-        self.reranker = None
+        # Build filter extractor (matching production: app.py:81)
+        filter_extractor = build_filter_extractor()
+
+        # Use production ResponseGenerator with guardrail wrapper (app.py:24)
+        # This ensures evaluation uses the exact same logic as production:
+        # - Guardrail: checks if question is healthcare-related
+        # - Delegates to response_gen_json.ResponseGenerator for RAG
+        self.response_generator = ResponseGenerator(
+            llm_client=self.llm_client,
+            use_reranker=self.use_rerank,
+            filter_extractor=filter_extractor,
+            alpha=self.rerank_alpha  # Pass alpha parameter
+        )
+
         if self.use_rerank:
-            from healthcare_rag_llm.reranking.reranker import Reranker, RerankConfig
-            rerank_config = RerankConfig(
-                combine_with_dense=True,
-                alpha=self.rerank_alpha,
-                text_key="text",
-                dense_score_key="score"
-            )
-            self.reranker = Reranker(config=rerank_config)
-            print(f"[INFO] Reranker initialized with alpha={self.rerank_alpha}")
+            print(f"[INFO] Using production ResponseGenerator with reranker (alpha={self.rerank_alpha})")
 
         # Derive identifiers
         embedding_name = self.embedding_method.__name__
@@ -100,7 +135,6 @@ class RAGBatchTester:
         self.output_path = os.path.join(self.output_dir, f"{self.version_id}.json")
 
     def run(self) -> Dict[str, Any]:
-        system_prompt = self._read_text(self.system_prompt_path)
         tests = self._read_json(self.testing_queries_path)
 
         results: Dict[str, Any] = {}
@@ -128,48 +162,61 @@ class RAGBatchTester:
                     # Update progress bar description
                     pbar.set_description(f"Processing {query_id}")
 
-                    query_vec = self.embedder.encode([question])["dense_vecs"][0].tolist()
-
-                    # Retrieve more chunks if reranking (to rerank and then select top_k)
-                    retrieval_k = self.top_k * 3 if self.use_rerank else self.top_k
-                    retrieved_chunks = query_chunks(query_vec, top_k=retrieval_k)
-
-                    # Apply reranking if enabled
-                    if self.use_rerank and self.reranker is not None:
-                        retrieved_chunks = self.reranker.rerank_hits(question, retrieved_chunks)
-                        # Take top_k after reranking
-                        retrieved_chunks = retrieved_chunks[:self.top_k]
-
-                    context = self._format_context_chunks(retrieved_chunks)
-                    user_msg = self._build_user_message(question, context)
-
+                    # Use production ResponseGenerator (same logic as app.py:307)
                     # Measure LLM call time
                     llm_start = time.time()
-                    llm_text = self.llm_client.chat(
-                        user_prompt=user_msg,
-                        system_prompt=system_prompt,
+                    result = self.response_generator.answer_question(
+                        question=question,
+                        top_k=self.top_k,
+                        rerank_top_k=self.top_k * 3,
+                        history=None  # No chat history in evaluation
                     )
                     llm_elapsed = time.time() - llm_start
 
                     # Update progress bar with LLM timing
                     pbar.set_postfix({"LLM_time": f"{llm_elapsed:.1f}s"})
 
-                    # Expect strict JSON text from the LLM: {"answer": <str>, "document": {doc_id: [pages]}}
-                    parsed_answer: Optional[str] = None
-                    parsed_document: Optional[Dict[str, Any]] = None
-                    try:
-                        parsed = json.loads(llm_text)
-                        if isinstance(parsed, dict):
-                            parsed_answer = parsed.get("answer")
-                            parsed_document = parsed.get("document")
-                    except Exception:
-                        # If parsing fails, keep raw text in answers and leave document as None
-                        parsed_answer = llm_text
-                        parsed_document = None
+                    # Extract results from production ResponseGenerator
+                    # Result format: {question, answer, evidence_dict, retrieved_docs}
+                    answer_text = result.get("answer", "")
+                    evidence_dict = result.get("evidence_dict", {})
+                    retrieved_chunks = result.get("retrieved_docs", [])
+
+                    # Format evidence for evaluation (matching frontend display)
+                    formatted_evidence = _format_evidence_for_evaluation(evidence_dict)
+
+                    # Combine answer + evidence for LLM evaluation
+                    # This matches what users see in frontend (app.py:222-228)
+                    parsed_answer = f"""{answer_text}
+
+Evidence:
+{formatted_evidence}"""
+
+                    # Build document dict for evaluation (doc_id -> [pages])
+                    # Extract from retrieved_chunks that were actually used (has evidence)
+                    parsed_document = {}
+                    for evidence_key in evidence_dict.keys():
+                        # Evidence keys are like "evidence1", "evidence2", etc.
+                        # Match to chunks (CHUNK1 = index 0)
+                        chunk_idx = int(evidence_key.replace("evidence", "")) - 1
+                        if 0 <= chunk_idx < len(retrieved_chunks):
+                            chunk = retrieved_chunks[chunk_idx]
+                            doc_id = chunk.get("doc_id")
+                            pages = chunk.get("pages", [])
+                            if doc_id:
+                                if doc_id not in parsed_document:
+                                    parsed_document[doc_id] = []
+                                # Add pages if not already present
+                                if isinstance(pages, list):
+                                    for p in pages:
+                                        if p not in parsed_document[doc_id]:
+                                            parsed_document[doc_id].append(p)
+                                elif pages and pages not in parsed_document[doc_id]:
+                                    parsed_document[doc_id].append(pages)
 
                     results[row_name] = {
                         "query_id": query_id,
-                        "query_content":question,
+                        "query_content": question,
                         "long_version_id": self.long_version_id,
                         "short_version_id": self.short_version_id,
                         "top_k_chunks": retrieved_chunks,
@@ -226,29 +273,77 @@ class RAGBatchTester:
 
     @staticmethod
     def _format_context_chunks(retrieved_chunks: List[Dict[str, Any]]) -> str:
+        """
+        Format context chunks to match production format (response_gen_json.py).
+        Each chunk is labeled CHUNK1, CHUNK2, etc. with full metadata.
+        """
         parts: List[str] = []
-        for chunk in retrieved_chunks:
+        for idx, chunk in enumerate(retrieved_chunks, start=1):
             doc_id = chunk.get("doc_id", "?")
-            chunk_id = chunk.get("chunk_id", "?")
+            title = chunk.get("title", "N/A")
+            effective_date = chunk.get("effective_date", "N/A")
+            authority = chunk.get("authority", "N/A")
             pages = chunk.get("pages", "?")
             text = chunk.get("text", "")
+
             parts.append(
-                f"[Document ID: {doc_id}] -[Chunk ID: {chunk_id}]-[pages: {pages}] - [Chunk Content: {text}]"
+                f"CHUNK{idx}\n"
+                f"[Document Title: {title}]\n"
+                f"[Effective Date: {effective_date}]\n"
+                f"[Authority: {authority}]\n"
+                f"[Document ID: {doc_id}]\n"
+                f"[Pages: {pages}]\n"
+                f"[Content: {text}]"
             )
         return "\n\n".join(parts)
 
     @staticmethod
     def _build_user_message(question: str, context: str) -> str:
-        # Instruct the LLM to return STRICT JSON with fields: answer (string) and document (object mapping doc_id -> [pages]).
-        return (
-            f"Question:\n{question}\n\n"
-            f"Context Chunks (authoritative; cite only these):\n{context}\n\n"
-            f"Chunks format:\n"
-            f"[Document ID: <doc_id>] -[Chunk ID: <chunk_id>]-[pages: <pages>] - [Chunk Content: <chunk_content>]\n\n"
-            f"You must answer in STRICT JSON with two fields only, no extra text before/after.\n"
-            f"Schema:\n"
-            f"{{\n  \"answer\": <string>,\n  \"document\": {{ <doc_id>: [<page_numbers:int>] }}\n}}\n\n"
-        )
+        """
+        Build user message matching production format (response_gen_json.py).
+        Uses the same JSON contract for chunk citations.
+        """
+        json_contract = """
+Return ONLY valid JSON with EXACTLY these fields (no extra keys, no trailing text):
+{
+  "answer": "<complete sentence(s) answering the question>",
+  "chunk1": 0|1,
+  "chunk1string": "<verbatim quote from CHUNK1 if used, else empty string>",
+  "chunk2": 0|1,
+  "chunk2string": "<verbatim quote from CHUNK2 if used, else empty string>",
+  "chunk3": 0|1,
+  "chunk3string": "<verbatim quote from CHUNK3 if used, else empty string>",
+  "chunk4": 0|1,
+  "chunk4string": "<verbatim quote from CHUNK4 if used, else empty string>",
+  "chunk5": 0|1,
+  "chunk5string": "<verbatim quote from CHUNK5 if used, else empty string>"
+}
+
+Rules:
+- Set chunkN = 1 ONLY if you used CHUNKN as evidence for the answer; otherwise 0.
+- If chunkN = 1, chunkNstring MUST be a verbatim quote copied from CHUNKN.
+- If chunkN = 0, chunkNstring MUST be "" (empty string).
+- Use ONLY the provided CHUNKs; do not cite or quote anything else.
+- If the answer is not fully supported by the provided CHUNKs, set an appropriate answer like:
+  "Insufficient grounded evidence in the provided documents to answer." and briefly name what is missing.
+
+The answer should be a natural language response as if you are speaking directly to the user.
+Answer Formatting Rules:
+- If the answer contains only ONE main point → write as a single concise paragraph (no bullet points).
+- If the answer contains MORE THAN ONE independent point → format them as bullet points.
+- Bullet point format: each point MUST begin with "- " and be separated by a newline ("\\n").
+- Do NOT include any quotations, citations, filenames, page numbers, or dates inside the "answer" field. These belong only in chunkNstring.
+"""
+
+        return f"""You must answer using ONLY these context chunks:
+
+{context}
+
+Question:
+{question}
+
+Output contract:
+{json_contract}""".strip()
 
 if __name__ == "__main__":
     tester = RAGBatchTester()

@@ -116,6 +116,7 @@ class ResponseGenerator:
         filter_extractor=None,
         chat_history: ChatHistory = None,
         acronym_csv_path: Optional[Path] = None,
+        alpha: float = 0.3,  # Rerank alpha parameter
     ):
         # Mirror the original initialization exactly
         if system_prompt is None:
@@ -126,6 +127,7 @@ class ResponseGenerator:
         self.use_reranker = use_reranker
         self.filter_extractor = filter_extractor
         self.chat_history = chat_history or ChatHistory()
+        self.alpha = alpha
 
         # Load acronym dictionary
         if acronym_csv_path is None:
@@ -143,6 +145,7 @@ class ResponseGenerator:
             use_reranker=use_reranker,
             filter_extractor=filter_extractor,
             chat_history=self.chat_history,
+            alpha=alpha,  # Pass alpha to delegate
         )
 
     # ---- Public API mirrors the base class ----
