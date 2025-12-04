@@ -585,7 +585,7 @@ Previous output (verbatim):
 
         # 7) Manual view (doc_title + pages + effective date + url), with a forced blank line before "Evidence:"
         #manual_view = _format_manual_view(parsed, final_chunks, self._metadata_index)
-        answer, evidence_dict = _format_answer_json(parsed, final_chunks, self._metadata_index)
+        answer, evidence_dict = _format_answer_json(parsed, final_chunks, self._metadata_index, filters)
         # 8) Return shape identical to response_generator.py
         return {
             "question": question,
