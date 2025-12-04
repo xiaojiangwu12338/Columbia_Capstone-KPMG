@@ -612,8 +612,8 @@ def main():
 
     # LLM configurations - Use API configuration manager
     llm_configs = [
-        LLMConfig("gpt-5", api_manager.get_model_config("gpt-5")),  # Fix: Use APIConfig
-        #LLMConfig("gpt-4", api_manager.get_model_config("gpt-4"))  # Fix: Use APIConfig
+        #LLMConfig("gpt-5", api_manager.get_model_config("gpt-5")),  # Fix: Use APIConfig
+        LLMConfig("gemini-3-pro-preview", api_manager.get_model_config("gemini-3-pro-preview"))  # Fix: Use APIConfig
     ]
 
     # Generate all combinations

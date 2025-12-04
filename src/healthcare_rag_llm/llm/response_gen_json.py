@@ -4,7 +4,7 @@ from typing import Dict, Any, List, Optional,Tuple
 import json
 import csv
 from pathlib import Path
-
+import re
 from healthcare_rag_llm.llm.llm_client import LLMClient
 from healthcare_rag_llm.graph_builder.queries import query_chunks
 from healthcare_rag_llm.embedding.HealthcareEmbedding import HealthcareEmbedding
@@ -38,6 +38,13 @@ _JSON_KEYS = [
     "chunk4", "chunk4string",
     "chunk5", "chunk5string",
 ]
+
+def extract_json_from_text(text):
+    match = re.search(r'\{[\s\S]*\}', text)
+    if not match:
+        raise ValueError("Json not found")
+    json_str = match.group(0)
+    return json.loads(json_str)
 
 def _validate_json_payload(data: Any) -> bool:
     """
@@ -193,8 +200,8 @@ def _format_answer_json(data: Dict[str, Any],
         if filters.get("max_effective_date"):
             filter_info.append(f"Max Effective Date: {filters['max_effective_date']}")
         
-        if filter_info:
-            answer += "\n\n[DEBUG - Extracted Filters]\n" + "\n".join(filter_info)
+        # if filter_info:
+        #     answer += "\n\n[DEBUG - Extracted Filters]\n" + "\n".join(filter_info)
 
     evidence_dict = {}
 
@@ -538,7 +545,7 @@ Output contract:
 
         # 6) Parse -> validate -> repair
         try:
-            parsed = json.loads(raw)
+            parsed = extract_json_from_text(raw)
         except Exception:
             parsed = None
 
@@ -560,13 +567,13 @@ Previous output (verbatim):
                 system_prompt="You fix JSON to match the exact schema. Output only JSON."
             )
             try:
-                parsed = json.loads(repaired)
+                parsed = extract_json_from_text(repaired)
             except Exception:
                 parsed = None
 
         if not _validate_json_payload(parsed):
             parsed = {
-                "answer": "Insufficient grounded evidence in the provided documents to answer.",
+                "answer": "Answer not in json",
                 "chunk1": 0, "chunk1string": "",
                 "chunk2": 0, "chunk2string": "",
                 "chunk3": 0, "chunk3string": "",
@@ -578,7 +585,7 @@ Previous output (verbatim):
 
         # 7) Manual view (doc_title + pages + effective date + url), with a forced blank line before "Evidence:"
         #manual_view = _format_manual_view(parsed, final_chunks, self._metadata_index)
-        answer, evidence_dict = _format_answer_json(parsed, final_chunks, self._metadata_index, filters)
+        answer, evidence_dict = _format_answer_json(parsed, final_chunks, self._metadata_index)
         # 8) Return shape identical to response_generator.py
         return {
             "question": question,

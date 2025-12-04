@@ -6,7 +6,7 @@ api_providers:
     provider: "openai"
     
   bltcy:
-    api_key: "sk-uGxA1B2QS7davJiwh3MTDeNEFFSIPSZRRHi21k5GUUMA1Jnr" 
+    api_key: "sk-HeWyKvejTMSQf9sugwAguoqm2lKAh1169NoZ3WlyiHyuZSoN" 
     base_url: "https://api.bltcy.ai/v1"
     provider: "openai"
     
@@ -30,4 +30,8 @@ models:
     
   claude-3:
     provider: "anthropic"
+    max_tokens: 4000
+  
+  gemini-3-pro-preview:
+    provider: "bltcy"
     max_tokens: 4000

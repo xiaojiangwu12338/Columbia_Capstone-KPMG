@@ -1,0 +1,419 @@
+{
+  "metadata": {
+    "test_results_file": "data/test_results/exp_004_mixed_chunking_k5_noRerank_gemini-3-pro-preview.json",
+    "ground_truth_file": "data/testing_queries/testing_query.json",
+    "evaluator_model": "gpt-5",
+    "total_tests": 11
+  },
+  "results": {
+    "test_id_1": {
+      "query": "When did redetrmination begin for the COVID-19 Public Health Emergency unwind in New York State",
+      "answer": "New York State began the process of redetermining Medicaid eligibility for its members, also known as the Public Health Emergency Unwind, in April 2023.\n\nEvidence:\n1. New York State Medicaid Update February 2025 Volume 41 Number 2, page 3, 4\n   Published: 2/1/2025\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no02_feb25_pr.pdf\n   Quote: \"The Consolidated Appropriations Act of 2023 required states to begin the process of redetermining Medicaid\neligibility for its members, which New York State (NYS) began in April 2023.\"\n",
+      "evaluations": {
+        "faithfulness": {
+          "score": 1.0,
+          "reasoning": "The answer states that New York State began redetermining Medicaid eligibility in April 2023 and refers to this process as the Public Health Emergency Unwind. Chunk 1 explicitly confirms both points, including the exact month and the terminology.",
+          "unsupported_claims": []
+        },
+        "answer_relevance": {
+          "score": 1.0,
+          "reasoning": "The answer directly addresses the question by specifying the start date (April 2023) for redeterminations related to the COVID-19 Public Health Emergency unwind in New York State. It stays on topic, is concise, and provides the needed timing without irrelevant information.",
+          "missing_aspects": []
+        },
+        "correctness": {
+          "score": 1.0,
+          "reasoning": "The generated answer states that redetermination began in April 2023, which matches the ground truth that the process would begin in April 2023. The timeframe is identical and the meaning is the same.",
+          "differences": [
+            "Minor tense difference (ground truth uses future tense, answer uses past tense)",
+            "Answer specifies Medicaid eligibility as part of the process, which aligns with context but is not in the ground truth phrasing"
+          ]
+        }
+      },
+      "overall_score": 1.0,
+      "weights_used": {
+        "faithfulness": 0.3,
+        "answer_relevance": 0.3,
+        "correctness": 0.4
+      }
+    },
+    "test_id_2": {
+      "query": "When did the public health emergency end?",
+      "answer": "The federal Coronavirus Disease 2019 Public Health Emergency ended on May 11, 2023.\n\nEvidence:\n1. New York State Medicaid Update May 2023 Volume 39 Number 10, page 1\n   Published: 5/1/2023\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no10_may23_pr.pdf\n   Quote: \"With the expiration of the federal PHE on May 11, 2023\"\n\n2. Medicaid Update Special Edition Part Two: NYRx Pharmacy Benefit Transition Medicaid Update Volume 39 Number 1, page 1\n   Published: 2/1/2023\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no3_feb23_speced_pr.pdf\n   Quote: \"Coronavirus Disease 2019 (COVID-19) Public Health Emergency (PHE), which ends on May 11, 2023.\"\n",
+      "evaluations": {
+        "faithfulness": {
+          "score": 1.0,
+          "reasoning": "The answer states that the federal COVID-19 Public Health Emergency ended on May 11, 2023. This is directly supported by Chunk 1, which mentions the expiration of the federal PHE on May 11, 2023, and by Chunk 4, which explicitly states the federally declared COVID-19 PHE ends on May 11, 2023. No additional unsupported claims are present.",
+          "unsupported_claims": []
+        },
+        "answer_relevance": {
+          "score": 1.0,
+          "reasoning": "The answer directly and clearly states the end date of the federal COVID-19 Public Health Emergency as May 11, 2023, which aligns with the query. It stays on topic, provides the needed information, and avoids irrelevant details.",
+          "missing_aspects": []
+        },
+        "correctness": {
+          "score": 1.0,
+          "reasoning": "The generated answer matches the ground truth exactly in date and meaning. It correctly states that the COVID-19 Public Health Emergency ended on May 11, 2023. The mention of 'federal' is consistent with the nature of the PHE.",
+          "differences": []
+        }
+      },
+      "overall_score": 1.0,
+      "weights_used": {
+        "faithfulness": 0.3,
+        "answer_relevance": 0.3,
+        "correctness": 0.4
+      }
+    },
+    "test_id_3": {
+      "query": "When submitting a claim for Brixandi, how many units should be indicated on the claim?",
+      "answer": "Practitioners must submit a claim for Brixadi with a unit of \"1\" when the drug is administered in a medical office. This value of \"1\" applies to all Brixadi claims.\n\nEvidence:\n1. New York State Medicaid Update April 2024 Volume 40 Number 4, page 4, 5, 6\n   Published: 4/1/2024\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no4_apr24_pr.pdf\n   Quote: \"Enter a value of “1” for all BrixadiTM claims.\"\n\n2. New York State Medicaid Update April 2024 Volume 40 Number 4, page 3, 4\n   Published: 4/1/2024\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no4_apr24_pr.pdf\n   Quote: \"practitioners must submit a claim for BrixadiTM with a unit of “1” when the drug is administered in a medical office.\"\n",
+      "evaluations": {
+        "faithfulness": {
+          "score": 1.0,
+          "reasoning": "The answer states that practitioners must submit a claim for Brixadi with a unit of '1' when administered in a medical office, and that '1' applies to all Brixadi claims. Chunk 2 explicitly supports the first part for NYS Medicaid FFS: 'practitioners must submit a claim for Brixadi with a unit of “1” when the drug is administered in a medical office.' Chunk 1 supports the second part: 'Enter a value of “1” for all BrixadiTM claims' for the Days or Units field, and provides electronic claim examples showing '1' as the HCPCS unit quantity. Therefore, all claims in the answer are directly supported by the provided chunks.",
+          "unsupported_claims": []
+        },
+        "answer_relevance": {
+          "score": 1.0,
+          "reasoning": "The answer directly states the required number of units ('1') for Brixadi claims and reinforces that it applies to all claims, fully addressing the question without irrelevant details. The slight spelling difference (Brixandi vs. Brixadi) does not affect relevance.",
+          "missing_aspects": []
+        },
+        "correctness": {
+          "score": 0.9,
+          "reasoning": "The generated answer correctly states that Brixadi claims should indicate a unit of '1' and notes this applies to all Brixadi claims, matching the core requirement in the ground truth. However, it omits the additional detail that this is required by CMS and that claims should not include values in milligrams or milliliters.",
+          "differences": [
+            "Does not mention that the unit requirement is mandated by CMS.",
+            "Does not specify that claims should not include values in milligrams or milliliters."
+          ]
+        }
+      },
+      "overall_score": 0.96,
+      "weights_used": {
+        "faithfulness": 0.3,
+        "answer_relevance": 0.3,
+        "correctness": 0.4
+      }
+    },
+    "test_id_4": {
+      "query": "What rate codes should FQHCs use to bill for audio only telehealth?",
+      "answer": "- Following the COVID-19 Public Health Emergency (PHE), FQHCs can bill the Prospective Payment System (PPS) rate code \"4012\" or \"4013\" for audio-only telehealth, depending on on-site presence.\n- During the COVID-19 PHE, specifically for COVID-19 vaccine counseling provided via audio-only telehealth, FQHCs were instructed to bill the off-site rate code \"4012\" with CPT code \"99429\" appended with the GQ modifier.\n\nEvidence:\n1. Medicaid Update Special Edition Part Two: NYRx Pharmacy Benefit Transition Medicaid Update Volume 39 Number 1, page 11\n   Published: 2/1/2023\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no3_feb23_speced_pr.pdf\n   Quote: \"FQHCs can bill the Prospective Payment System (PPS) rate code “4012” or “4013”, depending on on-site presence\"\n\n2. New York State Medicaid Update February 2022 Volume 38 Number 2, page 6\n   Published: 2/1/2022\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no2_feb22_pr.pdf\n   Quote: \"FQHCs should bill the off-site rate code “4012” with CPT code “99429” appended with the GQ modifier to indicate the service was provided via audio-only (telephonic) telehealth.\"\n\n3. New York State Medicaid Update November 2021 Volume 37 Number 13, page 6\n   Published: 11/1/2021\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2021/docs/mu_no13_nov21_pr.pdf\n   Quote: \"FQHCs should bill the off-site rate code “4012” with CPT code “99429” appended with the GQ modifier to indicate the service was provided via audio-only (telephonic) telehealth.\"\n",
+      "evaluations": {
+        "faithfulness": {
+          "score": 1.0,
+          "reasoning": "All statements in the answer are directly supported by the provided source chunks. Chunk 2 explicitly states that following the COVID-19 PHE, FQHCs can bill PPS rate codes 4012 or 4013 for audio-only telehealth depending on on-site presence. Chunks 4 and 5 specify that during the PHE, for COVID-19 vaccine counseling via audio-only telehealth, FQHCs should bill the off-site rate code 4012 with CPT 99429 appended with the GQ modifier.",
+          "unsupported_claims": []
+        },
+        "answer_relevance": {
+          "score": 0.88,
+          "reasoning": "The answer identifies the relevant PPS rate codes (4012 and 4013) for FQHC audio-only telehealth and provides context for use during and after the COVID-19 PHE. It stays on topic and is mostly complete for the rate code question, with a useful example for vaccine counseling. Minor gaps include not explicitly stating that 4013 is the on-site code, not clarifying jurisdiction (NY Medicaid), and not detailing post-PHE modifier requirements.",
+          "missing_aspects": [
+            "Explicit clarification that 4013 is the on-site PPS rate code",
+            "Jurisdiction/context that these codes apply to New York State Medicaid",
+            "Whether specific modifiers are required for audio-only telehealth post-PHE",
+            "Effective dates or scope of services beyond vaccine counseling during PHE"
+          ]
+        },
+        "correctness": {
+          "score": 1.0,
+          "reasoning": "The generated answer correctly states that FQHCs can bill PPS rate codes 4012 or 4013 for audio-only telehealth depending on on-site presence, which matches the ground truth. The additional details about vaccine counseling and modifiers are extra but do not conflict with the core information.",
+          "differences": [
+            "Includes additional context about COVID-19 vaccine counseling and the GQ modifier, which is not part of the ground truth.",
+            "Mentions timing relative to the Public Health Emergency, which the ground truth does not specify."
+          ]
+        }
+      },
+      "overall_score": 0.964,
+      "weights_used": {
+        "faithfulness": 0.3,
+        "answer_relevance": 0.3,
+        "correctness": 0.4
+      }
+    },
+    "test_id_5": {
+      "query": "Give me a chronological list of the commissioners and what year they first appeared in the medicaid updates.",
+      "answer": "Based on the provided documents, the commissioners appeared in the following chronological order:\n- Howard A. Zucker, M.D., J.D. (2020)\n- Mary T. Bassett, M.D., M.P.H. (2022)\n- James McDonald, M.D., M.P.H. (2023)\n\nEvidence:\n1. New York State Medicaid Update October 2023 Volume 39 Number 15, page 2\n   Published: 10/1/2023\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2023/docs/mu_no15_oct23_pr.pdf\n   Quote: \"James McDonald, M.D., M.P.H.\nCommissioner\"\n\n2. Medicaid Update Special Edition Medicaid Update Volume 38 Number 5, page 2\n   Published: 5/1/2022\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2022/docs/mu_no5_may22_speced_pr.pdf\n   Quote: \"Mary T. Bassett, M.D., M.P.H.\nCommissioner\"\n\n3. New York State Medicaid Update December 2020 Volume 36 Number 18, page 2, 3\n   Published: 12/1/2020\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2020/docs/mu_no18_dec20_pr.pdf\n   Quote: \"Howard A. Zucker, M.D., J.D.\nCommissioner\"\n",
+      "evaluations": {
+        "faithfulness": {
+          "score": 0.85,
+          "reasoning": "The core claims—that the commissioners listed are Howard A. Zucker (appearing in 2020), Mary T. Bassett (appearing in 2022), and James McDonald (appearing in 2023), and that this is their chronological order—are directly supported by the provided chunks. Chunk 5 shows Howard A. Zucker as Commissioner in December 2020, Chunk 3 shows Mary T. Bassett as Commissioner in May 2022, and Chunks 1 and 2 show James McDonald as Commissioner in 2023. However, several ancillary details in the \"Evidence\" section of the answer (specific publication dates, volume/number identifiers, and page numbers for certain items) are not present in the chunks, so those specific claims cannot be verified from the provided text. The qualifier \"Based on the provided documents\" mitigates overreach regarding \"first appeared,\" and there is no conflicting evidence in the chunks, but the extra bibliographic details are unsupported.",
+          "unsupported_claims": [
+            "Published: 10/1/2023 for the October 2023 issue",
+            "Volume 39 Number 15 for the October 2023 issue",
+            "Page 2 for the October 2023 quote",
+            "Published: 5/1/2022 for the May 2022 Special Edition",
+            "Volume 38 Number 5 for the May 2022 Special Edition",
+            "Page 2 for the May 2022 quote",
+            "Published: 12/1/2020 for the December 2020 issue",
+            "Page 3 for the December 2020 reference (the chunk only shows pg. 2)",
+            "The specific URLs provided for each document (URLs are not present in the chunks)"
+          ]
+        },
+        "answer_relevance": {
+          "score": 0.86,
+          "reasoning": "The answer provides a chronological list of commissioners with the year they first appeared in the Medicaid Update and stays on topic. It includes relevant citations. However, it may not be exhaustive—there could be commissioners who appeared before 2020—and it doesn't explicitly confirm that the list covers all commissioners across the publication's history.",
+          "missing_aspects": [
+            "Explicit confirmation that the list is exhaustive across all years/issues",
+            "Potential inclusion of earlier commissioners who may have appeared before 2020",
+            "Clarification that the context is the New York State Medicaid Update"
+          ]
+        },
+        "correctness": {
+          "score": 0.1,
+          "reasoning": "The generated answer lists the correct commissioners but gives incorrect years for their first appearances. According to the ground truth, Zucker first appeared in Feb 2019 (not 2020), Bassett in Nov 2021 (not 2022), and McDonald in Jan 2025 (not 2023). Thus, all three dates are wrong, leading to a significant factual mismatch.",
+          "differences": [
+            "Howard A. Zucker: generated 2020 vs ground truth Feb 2019",
+            "Mary T. Bassett: generated 2022 vs ground truth Nov 2021",
+            "James McDonald: generated 2023 vs ground truth Jan 2025"
+          ]
+        }
+      },
+      "overall_score": 0.553,
+      "weights_used": {
+        "faithfulness": 0.3,
+        "answer_relevance": 0.3,
+        "correctness": 0.4
+      }
+    },
+    "test_id_6": {
+      "query": "What are the requirements for appointment scheduling in the medicaid model contract for urgent care?",
+      "answer": "Insufficient grounded evidence in the provided documents to answer. The provided texts discuss the Emergency Triage, Treat, and Transport (ET3) model for ambulance services and provider enrollment requirements, but do not contain information regarding appointment scheduling standards for urgent care facilities.\n\nEvidence:\n(No evidence cited)",
+      "evaluations": {
+        "faithfulness": {
+          "score": 0.98,
+          "reasoning": "The answer correctly states that the provided chunks focus on the ET3 model (ambulance services, treatment in place, alternative destinations including urgent care) and provider enrollment requirements for Medicaid managed care, which is supported by Chunks 1, 3, 4, 5 (ET3) and Chunk 2 (enrollment requirements). There is no content in the chunks about appointment scheduling requirements in a Medicaid model contract for urgent care. The only minor caveat is that the claim about absence of information is a negative assertion, but it aligns with the visible content.",
+          "unsupported_claims": []
+        },
+        "answer_relevance": {
+          "score": 0.3,
+          "reasoning": "The response stays on topic by acknowledging the query and explaining that the provided documents don't cover the requested information, but it does not provide the actual appointment scheduling requirements for urgent care in the Medicaid model contract. Therefore, it does not directly or fully answer the question.",
+          "missing_aspects": [
+            "Specific appointment scheduling timeframes for urgent care (e.g., within 24–48 hours)",
+            "Standards for access and timeliness for urgent care visits",
+            "Requirements for after-hours and weekend urgent care availability",
+            "Member notification and scheduling processes",
+            "Monitoring and compliance expectations for plans/providers regarding urgent care access",
+            "Any state-specific variations if applicable to the Medicaid model contract"
+          ]
+        },
+        "correctness": {
+          "score": 0.1,
+          "reasoning": "The generated answer does not provide the required information. The ground truth states that urgent care appointments must be scheduled within 24 hours under Medicaid Model Contract 15.2. The generated answer instead claims insufficient evidence and does not mention the 24-hour requirement, failing to address the key point.",
+          "differences": [
+            "Did not state the 24-hour appointment scheduling requirement for urgent care",
+            "Claimed insufficient evidence instead of answering",
+            "Introduced unrelated context (ET3 model and provider enrollment) not relevant to the question"
+          ]
+        }
+      },
+      "overall_score": 0.424,
+      "weights_used": {
+        "faithfulness": 0.3,
+        "answer_relevance": 0.3,
+        "correctness": 0.4
+      }
+    },
+    "test_id_7": {
+      "query": "When did the pharmacy carve out occur?",
+      "answer": "The transition of the New York State Medicaid pharmacy benefit from Medicaid Managed Care to the Fee-for-Service Program, known as the Pharmacy Carve-Out, was delayed until April 1, 2023.\n\nEvidence:\n1. New York State Medicaid Update May 2021 Volume 37 Number 6, page 1\n   Published: 5/1/2021\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2021/docs/mu_no06_may21_pr.pdf\n   Quote: \"As modified by the State Fiscal Year (SFY) 2022 Enacted Budget, the transition of the New York State\n(NYS) Medicaid pharmacy benefit from Medicaid Managed Care (MMC) to the Fee-for-Service (FFS)\nProgram (i.e., the Pharmacy Carve-Out) has been delayed until April 1, 2023.\"\n",
+      "evaluations": {
+        "faithfulness": {
+          "score": 1.0,
+          "reasoning": "The answer states that the New York State Medicaid pharmacy benefit transition (Pharmacy Carve-Out) from Medicaid Managed Care to Fee-for-Service was delayed until April 1, 2023. Chunk 1 explicitly confirms this delay and describes the transition as moving from MMC to FFS and refers to it as the Pharmacy Carve-Out. All elements of the answer are directly supported by the provided source chunk.",
+          "unsupported_claims": []
+        },
+        "answer_relevance": {
+          "score": 0.98,
+          "reasoning": "The answer directly states the date the pharmacy carve-out occurred (April 1, 2023) and stays on topic. It is complete for the question and includes relevant context about the delay, though it could be more concise.",
+          "missing_aspects": []
+        },
+        "correctness": {
+          "score": 0.9,
+          "reasoning": "The generated answer correctly states that the pharmacy carve-out was delayed until April 1, 2023, which matches the ground truth. However, it omits the initial planned date of April 1, 2021, mentioned in the ground truth.",
+          "differences": [
+            "Does not mention the initial planned implementation date of April 1, 2021."
+          ]
+        }
+      },
+      "overall_score": 0.954,
+      "weights_used": {
+        "faithfulness": 0.3,
+        "answer_relevance": 0.3,
+        "correctness": 0.4
+      }
+    },
+    "test_id_8": {
+      "query": "What are the key components of the SCN program in the NYHER Waiver?",
+      "answer": "- The SCN program is part of the 1115 New York Health Equity Reform (NYHER) Waiver and aims to address health disparities by connecting members to social services such as housing, nutrition, and transportation.\n- Regional entities serve as leads to develop networks of community-based organizations that deliver these social care services.\n- Members are screened using the CMS Accountable Health Communities Health-Related Social Needs Tool, and those with unmet needs receive navigation to existing state, federal, and local resources.\n- Managed Care enrollees meeting specific clinical criteria may be eligible for specific services related to housing, nutrition, transportation, and care management.\n\n[DEBUG - Extracted Filters]\nKeywords: New York Health Equity Reform (Waiver)\n\nEvidence:\n1. New York State Medicaid Update February 2025 Volume 41 Number 2, page 2, 3\n   Published: 2/1/2025\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no02_feb25_pr.pdf\n   Quote: \"The SCN program is part of the 1115 New York Health Equity Reform Waiver. SCNs will help address health disparities and social needs by connecting NYS Medicaid members to nutritional services, housing supports, transportation, and other social services that can impact the health of an individual.\"\n\n2. New York State Medicaid Update October 2024 Volume 40 Number 11, page 10, 11\n   Published: 10/1/2024\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no11_oct24_pr.pdf\n   Quote: \"NYS DOH recently announced contracts with regional entities, which will serve as lead entities for the regional SCNs. SCNs are developing networks of community-based organizations to deliver social care services to eligible NYS Medicaid members. NYS Medicaid members will be screened using the Centers for Medicare & Medicaid Services (CMS)\"\n\n3. New York State Medicaid Update October 2024 Volume 40 Number 11, page 11\n   Published: 10/1/2024\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2024/docs/mu_no11_oct24_pr.pdf\n   Quote: \"Accountable Health Communities Health-Related Social Needs Tool... and those with unmet social needs will receive navigation to existing state, federal and local resources. MMC enrollees who meet specific clinical criteria may be eligible for health-related social need services related to housing, nutrition, transportation, and care management.\"\n",
+      "evaluations": {
+        "faithfulness": {
+          "score": 1.0,
+          "reasoning": "All four components in the answer are directly supported by the provided source chunks. Chunk 1 confirms SCN is part of the 1115 NYHER Waiver and addresses health disparities via connections to housing, nutrition, and transportation. Chunk 3 establishes regional entities as lead entities and that SCNs are developing networks of community-based organizations. Chunks 3-4 state that NYS Medicaid members are screened using the CMS Accountable Health Communities HRSN Tool and those with unmet needs receive navigation to resources. Chunk 4 explicitly notes that MMC enrollees meeting specific clinical criteria may be eligible for services related to housing, nutrition, transportation, and care management.",
+          "unsupported_claims": []
+        },
+        "answer_relevance": {
+          "score": 0.88,
+          "reasoning": "The answer is on topic and outlines several key components of the SCN program: its placement within the NYHER Waiver, purpose (addressing health disparities), regional lead entities building CBO networks, screening using the CMS AHC HRSN tool with navigation, and eligibility for specific HRSN services. It addresses the main question well but lacks detail on governance, payment, IT infrastructure, and performance monitoring, which could be considered part of 'key components.'",
+          "missing_aspects": [
+            "Funding/payment model and how services are reimbursed",
+            "Governance and contracting structure (e.g., relationships among SCN leads, MCOs, and CBOs)",
+            "Data/IT infrastructure (referral platforms, interoperability, data sharing)",
+            "Specific service array details beyond general categories",
+            "Performance metrics, reporting, and evaluation requirements",
+            "Member consent and privacy considerations",
+            "Operational workflows (e.g., referral management, follow-up, documentation)"
+          ]
+        },
+        "correctness": {
+          "score": 1.0,
+          "reasoning": "The generated answer correctly states that the SCN program under the NYHER Waiver connects NYS Medicaid members to services like housing, nutrition, and transportation, matching the ground truth. It also provides accurate additional context about regional leads, screening using the CMS AHC HRSN tool, and eligibility criteria—none of which contradict the core point.",
+          "differences": [
+            "Adds details about regional lead entities and community-based organization networks.",
+            "Includes the screening process using the CMS AHC Health-Related Social Needs Tool.",
+            "Mentions eligibility criteria for managed care enrollees and inclusion of care management services."
+          ]
+        }
+      },
+      "overall_score": 0.964,
+      "weights_used": {
+        "faithfulness": 0.3,
+        "answer_relevance": 0.3,
+        "correctness": 0.4
+      }
+    },
+    "test_id_9": {
+      "query": "What constitutes RRP referral requirements?",
+      "answer": "- A restricted recipient is required to obtain all their care, directly or by referral, from their assigned providers.\n- An assigned primary care provider (PCP) is responsible for coordinating care through referral to another medical provider for specialty services.\n- A referral is needed from the assigned PCP for any non-emergency medical services when a specialist is required.\n- Claims submitted for a restricted recipient will be denied if information for the assigned PCP is not included on the claim as the referring provider.\n- Pharmacies filling prescriptions for a restricted recipient are required to coordinate with the assigned PCP to verify referrals if prescriptions are written by a provider other than the assigned PCP.\n\nEvidence:\n1. New York State Medicaid Update January 2025 Volume 41 Number 1, page 6, 7\n   Published: 1/1/2025\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2025/docs/mu_no01_jan25_pr.pdf\n   Quote: \"As a result, a restricted recipient will be required to obtain all their care, directly or by referral, from\ntheir assigned providers.\nAn assigned primary care provider (PCP) is responsible for providing direct medical care or coordinating care\nthrough referral to another medical provider for specialty services. The assigned PCP is also responsible for\nordering all non-emergency transportation, laboratory, durable medical equipment (DME), and pharmacy\nservices for the assigned restricted recipient. A referral will be needed from the assigned PCP for any non-\nemergency medical services when a specialist is required. Claims submitted for a restricted recipient will be\ndenied if information for the assigned PCP is not included on the claim as the referring provider.\nPharmacies filling prescriptions for a restricted recipient is required to coordinate with the assigned PCP to\nsafely manage the delivery of medications, including verifying referrals if prescription\"\n",
+      "evaluations": {
+        "faithfulness": {
+          "score": 0.92,
+          "reasoning": "Most statements in the answer directly match the language in Chunk 2 of the January 2025 NYS Medicaid Update. Specifically, the requirements that restricted recipients must obtain care from assigned providers (directly or by referral), the PCP's role in coordinating specialty care, the need for PCP referrals for non-emergency specialist services, and the denial of claims lacking PCP referring information are all explicitly supported. The pharmacy-related claim is largely supported (coordination with PCP and verifying referrals), but the added condition \"if prescriptions are written by a provider other than the assigned PCP\" is not explicitly present in the provided chunk; the quote is truncated and does not confirm that specific condition.",
+          "unsupported_claims": [
+            "Pharmacies must verify referrals specifically \"if prescriptions are written by a provider other than the assigned PCP\"."
+          ]
+        },
+        "answer_relevance": {
+          "score": 0.95,
+          "reasoning": "The answer directly addresses RRP referral requirements, stays on topic, and captures the key elements: care must come from assigned providers directly or by referral, PCP coordinates specialty referrals, non-emergency services require PCP referral, claims require the assigned PCP as referring provider, and pharmacies must verify referrals with the PCP. Minor details related to PCP ordering responsibilities and explicit emergency exceptions are not fully articulated.",
+          "missing_aspects": [
+            "Explicit note that emergency services are exempt from referral requirements (implied but not stated)",
+            "PCP responsibility to order non-emergency transportation, laboratory, durable medical equipment (DME), and pharmacy services"
+          ]
+        },
+        "correctness": {
+          "score": 0.88,
+          "reasoning": "The generated answer accurately covers most key elements: care must be obtained directly or by referral from assigned providers; the PCP coordinates referrals for specialty care; referrals are required for non-emergency specialist services; claims require the PCP as referring provider; and pharmacies must coordinate with the PCP when another prescriber is involved. However, it omits the requirement that the assigned PCP is responsible for ordering all non-emergency transportation, laboratory, DME, and pharmacy services. It also doesn't explicitly state that the PCP provides direct medical care, though this is implied.",
+          "differences": [
+            "Omission: Assigned PCP's responsibility for ordering all non-emergency transportation, laboratory, DME, and pharmacy services.",
+            "Minor omission: Explicit statement that the PCP provides direct medical care (not just coordination).",
+            "Minor nuance: Does not mention the 'safely manage the delivery of medications' phrasing in pharmacy coordination."
+          ]
+        }
+      },
+      "overall_score": 0.913,
+      "weights_used": {
+        "faithfulness": 0.3,
+        "answer_relevance": 0.3,
+        "correctness": 0.4
+      }
+    },
+    "test_id_10": {
+      "query": "what are the requirements for a referral for enrollment in the childrens waiver?",
+      "answer": "- Children who are not already enrolled in Medicaid are referred to the Children and Youth Evaluation Services (C-YES) when identified by a referral source, such as a parent, doctor, school, or service provider, as potentially needing Home and Community Based Services (HCBS).\n- For children already enrolled in Medicaid, the family may choose to proceed with the eligibility process through C-YES or be connected to a Health Home so the Health Home Care Manager can conduct the determination.\n- A child should not be enrolled in the Children's Waiver if State Plan or Community First Choice Option (CFCO) services alone meet their needs, unless the child is only eligible for Medicaid under \"Family of One\" provisions.\n\nEvidence:\n1. Children�s Health and Behavioral Health Medicaid System Transformation Children�s Home and Community Based Services Manual, page 143\n   Published: 3/1/2023\n   URL: https://www.health.ny.gov/health_care/medicaid/redesign/behavioral_health/children/docs/hcbs_manual.pdf\n   Quote: \"If State Plan or CFCO services alone meet the needs of the child/youth, then the child/youth should not be enrolled in the Children's Waiver unless the child/youth is only eligible for Medicaid under “Family of One” (KK code).\"\n\n2. Regarding Medicaid Eligibility and Transfer Process to Health Homes, page 2\n   Published: 8/1/2021\n   URL: https://www.health.ny.gov/health_care/medicaid/redesign/behavioral_health/children/docs/reminders_when_working_w_cyes.pdf\n   Quote: \"C-YES serves child/youth... who are not already enrolled in Medicaid and identified by a referral source (i.e., parent/doctor/school/service provider) as potentially needing HCBS.\nFor children/youth already enrolled in Medicaid, the child/youth/family may choose if they would like to proceed with the HCBS/LOC eligibility process with C-YES or be connected to a HH to be enrolled so the HH care manager can conduct the HCBS/LOC eligibility determination.\"\n",
+      "evaluations": {
+        "faithfulness": {
+          "score": 1.0,
+          "reasoning": "All three statements in the answer are directly supported by the provided source chunks. Chunk 4 confirms that C-YES serves children not enrolled in Medicaid who are identified by referral sources (parent, doctor, school, service provider) as potentially needing HCBS, and that families of Medicaid-enrolled children may choose to proceed with HCBS/LOC eligibility via C-YES or be connected to a Health Home for determination by a Health Home Care Manager. Chunk 2 explicitly states that if State Plan or CFCO services alone meet the child's needs, the child should not be enrolled in the Children's Waiver unless the child is only eligible for Medicaid under 'Family of One' (KK code). No additional or inferred claims were made beyond what is in the chunks.",
+          "unsupported_claims": []
+        },
+        "answer_relevance": {
+          "score": 0.62,
+          "reasoning": "The answer is on topic and notes who can refer and the pathways (C-YES vs. Health Home) depending on Medicaid status, and a caveat about using State Plan/CFCO services. However, it does not comprehensively outline the actual requirements for making a referral (e.g., eligibility criteria, age, residency, risk/level of care, documentation/consent, and referral specifics).",
+          "missing_aspects": [
+            "Age and residency requirements (e.g., under 21, NYS residency)",
+            "Eligibility criteria/target populations and risk of institutionalization",
+            "Requirement for Level of Care (LOC) assessment and HCBS eligibility determination",
+            "Consent requirements and needed documentation for referral",
+            "Specific referral process details (who can refer, forms or data elements required, contact pathways)",
+            "Exclusions or incompatibilities (e.g., concurrent waiver participation) beyond State Plan/CFCO note"
+          ]
+        },
+        "correctness": {
+          "score": 0.6,
+          "reasoning": "The generated answer correctly notes C-YES's role in HCBS eligibility and referral from various sources, which aligns generally with the ground truth stating C-YES conducts HCBS eligibility determinations. However, it misses several key ground truth points (age range, foster care/MMCP enrollment specifics, contact information for obtaining a referral packet, and certain policy details). It also subtly diverges by implying Medicaid-enrolled families can choose C-YES or Health Home, whereas the ground truth specifies C-YES as the alternative for those who decline Health Home care management. The inclusion of CFCO/State Plan criteria is not present in the provided ground truth, making the answer only partially aligned.",
+          "differences": [
+            "Missing age eligibility range: birth to age 21.",
+            "Does not mention that children/youth in foster care are enrolled in MMCPs.",
+            "Omits C-YES contact numbers for obtaining a Referral Packet.",
+            "Ground truth specifies C-YES as alternative for Medicaid-enrolled children who decline Health Home care management; generated answer frames it as a general choice.",
+            "Excludes policy updates such as continuous coverage until age six (effective Jan 1, 2025) and VFCA 29-I transition details.",
+            "Adds CFCO/State Plan service sufficiency criterion not included in the provided ground truth."
+          ]
+        }
+      },
+      "overall_score": 0.726,
+      "weights_used": {
+        "faithfulness": 0.3,
+        "answer_relevance": 0.3,
+        "correctness": 0.4
+      }
+    },
+    "test_id_11": {
+      "query": "What are REC services offered to NYS providers?",
+      "answer": "New York State Regional Extension Centers (RECs) offer free support to help providers achieve Meaningful Use of Certified Electronic Health Record Technology (CEHRT). Specific services include answering questions regarding the program and requirements, providing assistance on selecting and using CEHRT, and helping providers meet program objectives.\n\n[DEBUG - Extracted Filters]\nKeywords: New York State\n\nEvidence:\n1. New York State Medicaid Update October 2020 Volume 36 Number 15, page 7\n   Published: 10/1/2020\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2020/docs/mu_no15_oct20.pdf\n   Quote: \"NYS RECs offer free support to help providers achieve Meaningful Use of CEHRT. Support provided by\nNYS RECs includes, but is not limited to, the following:\n• Answers to questions regarding the program and requirements\n• Assistance on selecting and using CEHRT\n• Help on meeting program objectives\"\n\n2. New York State Medicaid Update September 2020 Volume 36 Number 14, page 6\n   Published: 9/1/2020\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2020/docs/mu_no14_sep20.pdf\n   Quote: \"NYS RECs offer free support to help providers achieve Meaningful Use of CEHRT. Support provided by\nNYS RECs includes, but is not limited to, the following:\n• Answers to questions regarding the program and requirements\n• Assistance on selecting and using CEHRT\n• Help on meeting program objectives\"\n\n3. New York State Medicaid Update August 2020 Volume 36 Number 13, page 4\n   Published: 8/1/2020\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2020/docs/mu_no13_aug20.pdf\n   Quote: \"NYS RECs offer free support to help providers achieve Meaningful Use of CEHRT. Support provided by\nNYS RECs includes, but is not limited to, the following:\n• Answers to questions regarding the program and requirements\n• Assistance on selecting and using CEHRT\n• Help on meeting program objectives\"\n\n4. New York State Medicaid Update June 2020 Volume 36 Number 11, page 9, 10\n   Published: 6/1/2020\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2020/docs/mu_no11_jun20.pdf\n   Quote: \"NYS RECs offer free support to help providers achieve Meaningful Use of CEHRT. Support provided by\nNYS RECs includes, but is not limited to, the following:\n• Answers to questions regarding the program and requirements\n• Assistance on selecting and using CEHRT\n• Help meeting program objectives\"\n\n5. New York State Medicaid Update May 2020 Volume 36 Number 10, page 10\n   Published: 5/1/2020\n   URL: https://health.ny.gov/health_care/medicaid/program/update/2020/docs/mu_no10_may20.pdf\n   Quote: \"tance on selecting and using CEHRT\n• Help meeting program objectives\nNYS RECs offer free assistance for all practices and providers located within New York.\"\n",
+      "evaluations": {
+        "faithfulness": {
+          "score": 1.0,
+          "reasoning": "All statements in the answer are directly supported by the source chunks. The chunks explicitly state that NYS RECs offer free support to help providers achieve Meaningful Use of CEHRT and list the specific services: answering questions about the program and requirements, assisting with selecting and using CEHRT, and helping meet program objectives.",
+          "unsupported_claims": []
+        },
+        "answer_relevance": {
+          "score": 0.9,
+          "reasoning": "The answer directly addresses the query by listing specific REC services offered to NYS providers and staying on topic. It mentions free support and three key service areas (questions on program requirements, assistance with CEHRT selection/use, and help meeting objectives), which align with cited sources. Minor gap: it doesn't indicate that the list may not be exhaustive.",
+          "missing_aspects": [
+            "Clarification that services are not limited to the listed items",
+            "Any additional potential services (e.g., training, workflow support, attestation assistance) if applicable"
+          ]
+        },
+        "correctness": {
+          "score": 0.9,
+          "reasoning": "The generated answer accurately states that NYS RECs offer free support to help providers achieve Meaningful Use of CEHRT and correctly lists the key services: answering questions about program requirements, assistance with selecting and using CEHRT, and help meeting program objectives. It is semantically equivalent to the ground truth regarding services. Minor omissions include explicitly naming the 'EHR Incentive Program' and stating that assistance is available for all practices and providers located within New York.",
+          "differences": [
+            "Did not explicitly mention the 'EHR Incentive Program' by name when describing the questions answered.",
+            "Did not explicitly state that assistance is available for all practices and providers located within New York."
+          ]
+        }
+      },
+      "overall_score": 0.93,
+      "weights_used": {
+        "faithfulness": 0.3,
+        "answer_relevance": 0.3,
+        "correctness": 0.4
+      }
+    }
+  },
+  "summary": {
+    "faithfulness": {
+      "mean": 0.977,
+      "min": 0.85,
+      "max": 1.0,
+      "count": 11
+    },
+    "answer_relevance": {
+      "mean": 0.852,
+      "min": 0.3,
+      "max": 1.0,
+      "count": 11
+    },
+    "correctness": {
+      "mean": 0.762,
+      "min": 0.1,
+      "max": 1.0,
+      "count": 11
+    },
+    "overall": {
+      "mean": 0.853,
+      "min": 0.424,
+      "max": 1.0,
+      "count": 11
+    }
+  }
+}

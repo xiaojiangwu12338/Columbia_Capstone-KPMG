@@ -116,7 +116,7 @@ class ResponseGenerator:
         filter_extractor=None,
         chat_history: ChatHistory = None,
         acronym_csv_path: Optional[Path] = None,
-        alpha: float = 0.3,  # Rerank alpha parameter
+        alpha: float = 0.5,  # Rerank alpha parameter
     ):
         # Mirror the original initialization exactly
         if system_prompt is None:
