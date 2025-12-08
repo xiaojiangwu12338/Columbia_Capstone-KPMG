@@ -74,7 +74,7 @@ def load_rag_pipeline():
     api_config_default = api_config_manager.get_default_config()
     llm_client = LLMClient(
         api_key=api_config_default.api_key,  # API key
-        model="gpt-5",
+        model="gpt-5.1-2025-11-13",
         provider=api_config_default.provider,
         base_url=api_config_default.base_url
     )

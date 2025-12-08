@@ -25,37 +25,31 @@ REJECTION_MESSAGE = (
     "or compliance requirements."
 )
 
+# CLASSIFIER_SYSTEM_PROMPT = (
+#     "You are a strict classifier. "
+#     "Answer ONLY 'YES' or 'NO' (uppercase, no punctuation). "
+#     "Say 'YES' if the user's query is primarily about healthcare POLICY, "
+#     "such as laws, regulations, coverage mandates, payer rules, reimbursement policy, "
+#     "Medicare/Medicaid/insurer policies, coding/billing policy, compliance requirements, "
+#     "eligibility rules, prior auth policies, formulary coverage, HIPAA policy questions, "
+#     "or interpretations/changes to policy documents.\n"
+#     "\n"
+#     "IMPORTANT: Questions asking for definitions or explanations of healthcare policy terms, "
+#     "programs, or acronyms (e.g., 'What is PCMH?', 'Explain MLTC') should be classified as YES, "
+#     "as understanding policy terminology is essential to policy questions.\n"
+#     "\n"
+#     "Say 'NO' if it's clinical advice, diagnostics, treatments, drugs' mechanisms/dosing, "
+#     "general wellness, admin/IT topics without policy focus, or anything unrelated to healthcare policy."
+# )
 CLASSIFIER_SYSTEM_PROMPT = (
-    "You are a strict classifier. "
+    "Determine if the user's question is related to healthcare policy, don't be too strict, when you are not sure, assume it is related to healthcare policy."
+    "If you see any acronyms in the question that you not sure the meaning, assume it is related to healthcare policy."
     "Answer ONLY 'YES' or 'NO' (uppercase, no punctuation). "
-    "Say 'YES' if the user's query is primarily about healthcare POLICY, "
-    "such as laws, regulations, coverage mandates, payer rules, reimbursement policy, "
-    "Medicare/Medicaid/insurer policies, coding/billing policy, compliance requirements, "
-    "eligibility rules, prior auth policies, formulary coverage, HIPAA policy questions, "
-    "or interpretations/changes to policy documents.\n"
-    "\n"
-    "IMPORTANT: Questions asking for definitions or explanations of healthcare policy terms, "
-    "programs, or acronyms (e.g., 'What is PCMH?', 'Explain MLTC') should be classified as YES, "
-    "as understanding policy terminology is essential to policy questions.\n"
-    "\n"
-    "Say 'NO' if it's clinical advice, diagnostics, treatments, drugs' mechanisms/dosing, "
-    "general wellness, admin/IT topics without policy focus, or anything unrelated to healthcare policy."
+    "If you not sure, answer 'YES'."
 )
 
 # A few very lightweight positive/negative examples to anchor behavior
 CLASSIFIER_USER_PREFIX = (
-    "Classify the following user input. Reply ONLY YES or NO.\n\n"
-    "Examples:\n"
-    "Q: Does Medicare cover CGM for type 2 diabetes?\nA: YES\n"
-    "Q: What are ICD-10 codes for type 2 diabetes with neuropathy?\nA: YES\n"  # coding policy counts
-    "Q: What is PCMH?\nA: YES\n"  # asking for policy term definition
-    "Q: Explain the MLTC program\nA: YES\n"  # asking about policy program
-    "Q: Should I increase my lisinopril dose?\nA: NO\n"
-    "Q: How do I treat strep throat?\nA: NO\n"
-    "Q: What's the HIPAA rule on texting patients?\nA: YES\n"
-    "Q: Build me a Flask app\nA: NO\n"
-    "\n"
-    "{acronym_context}"
     "Now classify:\n"
     "Q: {question}\nA:"
 )

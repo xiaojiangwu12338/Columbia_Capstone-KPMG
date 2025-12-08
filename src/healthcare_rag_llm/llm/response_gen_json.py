@@ -10,22 +10,8 @@ from healthcare_rag_llm.graph_builder.queries import query_chunks
 from healthcare_rag_llm.embedding.HealthcareEmbedding import HealthcareEmbedding
 from healthcare_rag_llm.reranking.reranker import apply_rerank_to_chunks
 from healthcare_rag_llm.llm.chat_history import ChatHistory  # chat history support
-
-SYSTEM_PROMPT = """
-You are a careful NYS Medicaid policy assistant used in a compliance workflow.
-Answer ONLY using the provided context chunks.
-
-Rules:
-1) Do not speculate. If the answer is not fully supported, say:
-   "Insufficient grounded evidence in the provided documents to answer." and name what is missing.
-2) Prefer the most recent guidance when conflicted, but note the conflict explicitly.
-3) Keep dates, codes, dollar figures, NCPDP fields, and policy names exactly as written.
-4) Be concise and decision-ready.
-5) If timing is relevant, highlight lines starting with "Effective".
-6) Do not only give short answer.The Answer you give should be one or more complete sentences. 
-   - Good example: "The redetermination process began in April 2023, as required by the Consolidated Appropriations Act of 2023."
-   - Bad example: "April 2023."
-"""
+from healthcare_rag_llm.utils.prompt_config import load_system_prompt
+SYSTEM_PROMPT = load_system_prompt()
 
 # --------------------------------------------------------------------
 # Minimal schema helpers (no external dependencies)
@@ -200,8 +186,8 @@ def _format_answer_json(data: Dict[str, Any],
         if filters.get("max_effective_date"):
             filter_info.append(f"Max Effective Date: {filters['max_effective_date']}")
         
-        # if filter_info:
-        #     answer += "\n\n[DEBUG - Extracted Filters]\n" + "\n".join(filter_info)
+        if filter_info:
+            answer += "\n\n[DEBUG - Extracted Filters]\n" + "\n".join(filter_info)
 
     evidence_dict = {}
 
@@ -472,8 +458,6 @@ class ResponseGenerator:
                 f"[Document Title: {c['title'] or 'N/A'}]\n"
                 f"[Effective Date: {c['effective_date'] or 'N/A'}]\n"
                 f"[Authority: {c['authority'] or 'N/A'}]\n"
-                f"[Document ID: {c['doc_id']}]\n"
-                f"[Pages: {c['pages']}]\n"
                 f"[Content: {c['text']}]"
                 for c in labeled
             ]
@@ -504,7 +488,7 @@ Rules:
 - If chunkN = 0, chunkNstring MUST be "" (empty string).
 - Use ONLY the provided CHUNKs; do not cite or quote anything else.
 - If the answer is not fully supported by the provided CHUNKs, set an appropriate answer like:
-  "Insufficient grounded evidence in the provided documents to answer." and briefly name what is missing.
+  "Insufficient evidence to provide a precise answer." and briefly name what is missing.
 
 The answer should be a natural language response as if you are speaking directly to the user.
 Answer Formatting Rules:
@@ -585,7 +569,7 @@ Previous output (verbatim):
 
         # 7) Manual view (doc_title + pages + effective date + url), with a forced blank line before "Evidence:"
         #manual_view = _format_manual_view(parsed, final_chunks, self._metadata_index)
-        answer, evidence_dict = _format_answer_json(parsed, final_chunks, self._metadata_index, filters)
+        answer, evidence_dict = _format_answer_json(parsed, final_chunks, self._metadata_index)
         # 8) Return shape identical to response_generator.py
         return {
             "question": question,
